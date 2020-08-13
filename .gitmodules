@@ -1,0 +1,3 @@
+[submodule "tools/zynq-mkbootimage"]
+	path = tools/zynq-mkbootimage
+	url = https://github.com/antmicro/zynq-mkbootimage.git

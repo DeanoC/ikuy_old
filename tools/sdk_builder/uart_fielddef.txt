@@ -1,0 +1,156 @@
+R"(
+
+CR
+reserved 31:9 ro 0x0
+STOPBRK 8 rw 0x1
+STARTBRK 7 rw 0x0
+TORST 6 rw 0x0 
+TX_DIS 5 rw 0x1
+TX_EN 4 rw 0x0
+RX_DIS 3 rw 0x1
+RX_EN 2 rw 0x0
+TXRST 1 rw 0x0 
+RXRST 0 rw 0x0 
+
+MR
+reserved 31:12 ro 0x0
+reserved 11 rw 0x0
+reserved 10 rw 0x0
+CHMODE 9:8 rw 0x0
+NBSTOP 7:6 rw 0x0
+PAR 5:3 rw 0x0
+CHRL 2:1 rw 0x0
+CLKSEL 0 rw 0x0 
+
+IER
+reserved 31:13 ro 0x0
+TOVR 12 wo 0x0
+TNFUL 11 wo 0x0
+TTRIG 10 wo 0x0
+DMS 9 wo 0x0
+TOUT 8 wo 0x0
+PARITY 7 wo 0x0
+FRAMING 6 wo 0x0
+OVER 5 wo 0x0
+TXFULL 4 wo 0x0
+TXEMPTY 3 wo 0x0
+RXFULL 2 wo 0x0
+RXEMPTY 1 wo 0x0
+RXOVR 0 wo 0x0
+
+IDR
+reserved 31:13 ro 0x0
+TOVR 12 wo 0x0
+TNFUL 11 wo 0x0
+TTRIG 10 wo 0x0
+DMS 9 wo 0x0
+TOUT 8 wo 0x0
+PARITY 7 wo 0x0
+FRAMING 6 wo 0x0
+OVER 5 wo 0x0
+TXFULL 4 wo 0x0
+TXEMPTY 3 wo 0x0
+RXFULL 2 wo 0x0
+RXEMPTY 1 wo 0x0
+RXOVR 0 wo 0x0
+
+IMR
+reserved 31:13 ro 0x0
+TOVR 12 ro 0x0
+TNFUL 11 ro 0x0
+TTRIG 10 ro 0x0
+DMS 9 ro 0x0
+TOUT 8 ro 0x0
+PARITY 7 ro 0x0
+FRAMING 6 ro 0x0
+OVER 5 ro 0x0
+TXFULL 4 ro 0x0
+TXEMPTY 3 ro 0x0
+RXFULL 2 ro 0x0
+RXEMPTY 1 ro 0x0
+RXOVR 0 ro 0x0
+
+ISR
+reserved 31:13 wtc 0x0
+TOVR 12 wtc 0x0
+L 11 wtc 0x0
+G 10 wtc 0x0
+DMS 9 wtc 0x0
+TOUT 8 wtc 0x0
+PARITY 7 wtc 0x0
+FRAMING 6 wtc 0x0
+OVER 5 wtc 0x0
+TXFULL 4 wtc 0x0
+TXEMPTY 3 wtc 0x0
+RXFULL 2 wtc 0x0
+RXEMPTY 1 wtc 0x0
+RXOVR 0 wtc 0x0
+
+BAUD_RATE_GENERATOR
+reserved 31:16 ro 0x0
+CD 15:0 rw 0x28B
+
+RXTOUT
+reserved 31:8 ro 0x0
+RTO 7:0 rw 0x0
+
+RX_FIFO_TRIGGER_LEVEL
+reserved 31:6 ro 0x0
+TRIGGER 5:0 rw 0x20
+
+TX_FIFO_TRIGGER_LEVEL
+reserved 31:6 ro 0x0
+TRIGGER 5:0 rw 0x20
+
+MODEMCR
+reserved 31:6 ro 0x0
+FCM 5 rw 0x0
+reserved 4:2 ro 0x0
+RTS 1 rw 0x0
+DTR 0 rw 0x0
+
+
+MODEMSR
+reserved 31:9 ro x
+FCMS 8 rw x
+DCD 7 ro x
+RI 6 ro x
+DSR 5 ro x
+CTS 4 ro x
+MEDEMSR_DCDX 3 wtc x
+MEDEMSR_RIX 2 wtc x
+MEDEMSR_DSRX 1 wtc x
+MEDEMSR_CTSX 0 wtc x
+
+SR
+reserved 31:15 ro 0x0
+TNFUL 14 ro 0x0
+TTRIG 13 ro 0x0
+FLOWDEL 12 ro 0x0
+TACTIVE 11 ro 0x0
+RACTIVE 10 ro 0x0
+reserved 9 ro 0x0
+reserved 8 ro 0x0
+reserved 7 ro 0x0
+reserved 6 ro 0x0
+reserved 5 ro 0x0
+TXFULL 4 ro 0x0
+TXEMPTY 3 ro 0x0
+RXFULL 2 ro 0x0
+RXEMPTY 1 ro 0x0
+RXOVR 0 ro 0x0
+
+FIFO
+reserved 31:8 ro 0x0
+FIFO 7:0 rw 0x0
+
+BAUD_RATE_DIVIDER
+reserved 31:8 ro 0x0
+BDIV 7:0 rw 0xF
+
+FLOW_DELAY
+reserved 31:6 ro 0x0
+FDEL 5:0 rw 0x0
+
+
+)";

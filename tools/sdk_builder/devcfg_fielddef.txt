@@ -1,0 +1,217 @@
+R"(SCL
+XDCFG_CTRL
+FORCE_RST 31 rw 0x0
+PCFG_PROG_B 30 rw 0x0
+PCFG_POR_CNT_4K 29 rw 0x0
+reserved 28 rw 0x0
+PCAP_PR 27 rw 0x1
+PCAP_MODE 26 rw 0x1
+PCAP_RATE_EN 25 rw 0x0
+MULTIBOOT_EN 24 rw 0x0
+JTAG_CHAIN_DIS 23 rw 0x0
+reserved 22:16 rw 0x0
+reserved 15 wo 0x0
+reserved 14 rw 0x1
+reserved 13 rw 0x1
+PCFG_AES_FUSE 12 rw 0x0
+PCFG_AES_EN 11:9 rw 0x0
+SEU_EN 8 rw 0x0
+SEC_EN 7 ro 0x0
+SPNIDEN 6 rw 0x0
+SPIDEN 5 rw 0x0
+NIDEN 4 rw 0x0
+DBGEN 3 rw 0x0
+DAP_EN 2:0 rw 0x0
+
+XDCFG_LOCK
+reserved 31:5 rw 0x0
+AES_FUSE_LOCK 4 rwso 0x0
+AES_EN 3 rwso 0x0
+SEU 2 rwso 0x0
+SEC 1 rwso 0x0
+DBG 0 rwso 0x0
+
+XDCFG_CFG
+reserved 31:12 rw 0x0
+RFIFO_TH 11:10 rw 0x1
+WFIFO_TH 9:8 rw 0x1
+RCLK_EDGE 7 rw 0x0
+WCLK_EDGE 6 rw 0x0
+DISABLE_SRC_INC 5 rw 0x0
+DISABLE_DST_INC 4 rw 0x0
+reserved 3 rw 0x1
+reserved 2 rw 0x0
+reserved 1 rw 0x0
+reserved 0 rw 0x0
+
+
+XDCFG_INT_STS
+PSS_GTS_USR_B_INT 31 wtc 0x0
+PSS_FST_CFG_B_INT 30 wtc 0x0
+PSS_GPWRDWN_B_INT 29 wtc 0x0
+PSS_GTS_CFG_B_INT 28 wtc 0x0
+PSS_CFG_RESET_B_INT 27 wtc 0x0
+reserved 26:24 rw 0x0
+IXR_AXI_WTO 23 wtc 0x0
+IXR_AXI_WERR 22 wtc 0x0
+IXR_AXI_RTO 21 wtc 0x0
+IXR_AXI_RERR 20 wtc 0x0
+reserved 19 rw 0x0
+IXR_RX_FIFO_OV 18 wtc 0x0
+IXR_WR_FIFO_LVL 17 wtc 0x0
+IXR_RD_FIFO_LVL 16 wtc 0x0
+IXR_DMA_CMD_ERR 15 wtc 0x0
+IXR_DMA_Q_OV 14 wtc 0x0
+IXR_DMA_DONE 13 wtc 0x0
+IXR_D_P_DONE 12 wtc 0x0
+IXR_P2D_LEN_ERR 11 wtc 0x0
+reserved 10:7 rw 0x0
+IXR_PCFG_HMAC_ERR 6 wtc 0x0
+IXR_PCFG_SEU_ERR 5 wtc 0x0
+IXR_PCFG_POR_B 4 wtc 0x0
+IXR_PCFG_CFG_RST 3 wtc 0x0
+IXR_PCFG_DONE 2 wtc 0x0
+IXR_PCFG_INIT_PE 1 wtc 0x0
+IXR_PCFG_INIT_NE 0 wtc 0x0
+
+XDCFG_INT_MASK
+M_PSS_GTS_USR_B_INT 31 rw 0x1
+M_PSS_FST_CFG_B_INT 30 rw 0x1
+M_PSS_GPWRDWN_B_INT 29 rw 0x1
+M_PSS_GTS_CFG_B_INT 28 rw 0x1
+M_PSS_CFG_RESET_B_INT 27 rw 0x1
+reserved 26:24 rw 0x7
+IXR_AXI_WTO 23 rw 0x1
+IXR_AXI_WERR 22 rw 0x
+IXR_AXI_RTO 21 rw 0x1
+IXR_AXI_RERR 20 rw 0x1
+reserved 19 rw 0x1
+IXR_RX_FIFO_OV 18 rw 0x1
+IXR_WR_FIFO_LVL 17 rw 0x1
+IXR_RD_FIFO_LVL 16 rw 0x1
+IXR_DMA_CMD_ERR 15 rw 0x1
+IXR_DMA_Q_OV 14 rw 0x1
+IXR_DMA_DONE 13 rw 0x1
+IXR_D_P_DONE 12 rw 0x1
+IXR_P2D_LEN_ERR 11 rw 0x1
+reserved 10:7 rw 0xF
+IXR_PCFG_HMAC_ERR 6 rw 0x1
+IXR_PCFG_SEU_ERR 5 rw 0x1
+IXR_PCFG_POR_B 4 rw 0x1
+IXR_PCFG_CFG_RST 3 rw 0x1
+IXR_PCFG_DONE 2 rw 0x1
+IXR_PCFG_INIT_PE 1 rw 0x1
+IXR_PCFG_INIT_NE 0 rw 0x1
+
+XDCFG_STATUS
+DMA_CMD_Q_F 31 ro 0x0
+DMA_CMD_Q_E 30 ro 0x1
+DMA_DONE_CNT 29:28 wr 0x0
+reserved 27:25 rw 0x0
+RX_FIFO_LVL 24:20 ro 0x0
+reserved 19 rw 0x0
+TX_FIFO_LVL 18:12 ro 0x0
+PSS_GTS_USR_B 11 ro 0x1
+PSS_FST_CFG_B 10 ro 0x0
+PSS_GPWRDWN_B 9 ro 0x0
+PSS_GTS_CFG_B 8 ro 0x0
+SECURE_RST 7 ro 0x0
+ILLEGAL_APB_ACCESS 6 ro 0x0
+PSS_CFG_RESET_B 5 ro 0x1
+PCFG_INIT 4 ro 0x0
+EFUSE_SW_RESERVE 3 ro 0x0
+EFUSE_SEC_EN 2 ro 0x0
+EFUSE_JTAG_DIS 1 ro 0x0
+reserved 0 ro 0x0
+
+XDCFG_DMA_SRC_ADDR
+SRC_ADDR 31:0 rw 0 
+
+XDCFG_DMA_DEST_ADDR
+DST_ADDR 31:0 rw 0x0
+
+XDCFG_DMA_SRC_LEN
+reserved 31:27 rw 0x0
+DMA_LEN 26:0 rw 0x0 
+
+XDCFG_DMA_DEST_LEN
+reserved 31:27 rw 0x0
+DMA_LEN 26:0 rw 0x0
+
+XDCFG_MULTIBOOT_ADDR
+reserved 31:13 rw 0x0
+MULTIBOOT_ADDR 12:0 rw 0x0
+
+XDCFG_UNLOCK
+UNLOCK 31:0 rw 0x0
+
+XDCFG_MCTRL
+PS_VERSION 31:28 ro 0x0
+reserved 27 ro 0x0
+reserved 26 ro 0x0
+reserved 25 ro 0x0
+reserved 24 ro 0x0
+reserved 23 rw 0x1
+reserved 22:14 rw 0x0
+reserved 13 rw 0x0 
+reserved 12 rw 0x0 
+reserved 11:9 rw 0x0
+PCFG_POR_B 8 ro 0x0
+reserved 7:5 rw 0x0
+PCAP_LPBK 4 rw 0x0
+reserved 3:2 rw 0x0
+reserved 1 rw 0x0
+reserved 0 rw 0x0
+
+XADCIF_CFG
+ENABLE 31 rw 0x0
+reserved 30:24 rw 0x0
+CFIFOTH 23:20 rw 0x0
+DFIFOTH 19:16 rw 0x0
+reserved 15:14 rw 0x0
+WEDGE 13 rw 0x0
+REDGE 12 rw 0x1
+reserved 11:10 rw 0x0
+TCKRATE 9:8 rw 0x1
+reserved 7:5 rw 0x0
+IGAP 4:0 rw 0x14
+
+XADCIF_INT_STS
+reserved 31:10 rw 0x0
+CFIFO_LTH 9 wtc 0x1
+DFIFO_GTH 8 wtc 0x0
+OT 7 wtc 0x0
+ALM 6:0 wtc 0x0
+
+XADCIF_INT_MASK
+reserved 31:10 rw 0x3FFFFF
+M_CFIFO_LTH 9 rw 0x1
+M_DFIFO_GTH 8 rw 0x
+M_OT 7 rw 0x1
+M_ALM 6:0 rw 0x7F
+
+XADCIF_MSTS
+reserved 31:20 ro 0x0 
+CFIFO_LVL 19:16 ro 0x0
+DFIFO_LVL 15:12 ro 0x0
+CFIFOF 11 ro 0x0
+CFIFOE 10 ro 0x1
+DFIFOF 9 ro 0x0
+DFIFOE 8 ro 0x1
+OT 7 ro 0x0
+ALM 6:0 ro 0x0
+
+XADCIF_CMDFIFO
+CMD 31:0 wo 0x0
+
+XADCIF_RDFIFO
+RDDATA 31:0 ro 0x0
+
+XADCIF_MCTL
+reserved 31:5 rw 0x0
+RESET 4 rw 0x1
+reserved 3:1 rw 0x0
+reserved 0 rw 0x0
+
+
+)";

@@ -1,0 +1,19 @@
+R"(
+CR 0x00000000 32 mixed 0x00000128 UART Control Register
+MR 0x00000004 32 mixed 0x00000000 UART Mode Register
+IER 0x00000008 32 mixed 0x00000000 Interrupt Enable Register
+IDR 0x0000000C 32 mixed 0x00000000 Interrupt Disable Register
+IMR 0x00000010 32 ro 0x00000000 Interrupt Mask Register
+ISR 0x00000014 32 wtc 0x00000000 Channel Interrupt Status Register
+BAUD_RATE_GENERATOR 0x00000018 32 mixed 0x0000028B Baud Rate Generator Register.
+RXTOUT 0x0000001C 32 mixed 0x00000000 Receiver Timeout Register
+RX_FIFO_TRIGGER_LEVEL 0x00000020 32 mixed 0x00000020 Receiver FIFO Trigger Level Register
+MODEMCR 0x00000024 32 mixed 0x00000000 Modem Control Register
+MODEMSR 0x00000028 32 mixed x Modem Status Register
+SR 0x0000002C 32 ro 0x00000000 Channel Status Register
+FIFO 0x00000030 32 mixed 0x00000000 Transmit and Receive FIFO
+BAUD_RATE_DIVIDER 0x00000034 32 mixed 0x0000000F Baud Rate Divider Register
+FLOW_DELAY 0x00000038 32 mixed 0x00000000 Flow Control Delay Register
+TX_FIFO_TRIGGER_LEVEL 0x00000044 32 mixed 0x00000020 Transmitter fifo trigger level
+
+)";

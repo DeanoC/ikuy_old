@@ -1,0 +1,87 @@
+R"(
+CR
+reserved 31:18 ro 0x0
+MODEFAIL_GEN_EN 17 rw 0x1
+MANSTRT 16 wo 0x0
+MAN_START_EN 15 rw 0x0
+MANUAL_CS 14 rw 0x0
+CS 13:10 rw 0x0
+PERI_SEL 9 rw 0x0
+REF_CLK 8 rw 0x0
+reserved 7:6 rw 0x0
+BAUD_RATE_DIV 5:3 rw 0x0
+CPHA 2 rw 0x0
+CPOL 1 rw 0x0
+MSTREN 0 rw 0x0
+
+SR
+reserved 31:7 ro 0x0
+IXR_TXUF 6 wtc 0x0
+IXR_RXFULL 5 wtc 0x0
+IXR_RXNEMPTY 4 wtc 0x0
+IXR_TXFULL 3 wtc 0x0
+IXR_TXOW 2 wtc 0x1
+IXR_MODF 1 wtc 0x0
+IXR_RXOVR 0 wtc 0x0
+
+IER
+reserved 31:7 ro 0x0
+IXR_TXUF 6 wo 0x0
+IXR_RXFULL 5 wo 0x0
+IXR_RXNEMPTY 4 wo 0x0
+IXR_TXFULL 3 wo 0x0
+IXR_TXOW 2 wo 0x0
+IXR_MODF 1 wo 0x0
+IXR_RXOVR 0 wo 0x0
+
+IDR
+reserved 31:7 ro 0x0
+IXR_TXUF 6 wo 0x0
+IXR_RXFULL 5 wo 0x0
+IXR_RXNEMPTY 4 wo 0x0
+IXR_TXFULL 3 wo 0x0
+IXR_TXOW 2 wo 0x0
+IXR_MODF 1 wo 0x0
+IXR_RXOVR 0 wo 0x0
+
+IMR
+reserved 31:7 ro 0x0
+IXR_TXUF 6 ro 0x0
+IXR_RXFULL 5 ro 0x0
+IXR_RXNEMPTY 4 ro 0x0
+IXR_TXFULL 3 ro 0x0
+IXR_TXOW 2 ro 0x0
+IXR_MODF 1 ro 0x0
+IXR_RXOVR 0 ro 0x0
+
+ER
+reserved 31:1 ro 0x0
+ENABLE 0 rw 0x0
+
+DR
+D_NSS 31:24 rw 0x0
+BTWN 23:16 rw 0x0
+AFTER 15:8 rw 0x0
+INIT 7:0 rw 0x0
+
+TXD
+TX_FIFO_data 31:0 wo 0x0
+
+RXD
+RX_FIFO_data 31:0 ro 0x0
+
+SICR
+reserved 31:8 ro 0x0
+SLAVE_IDLE_COUNT 7:0 rw 0xFF
+
+TXWR
+THRESHOLD_OF_TX_FIFO 31:0 rw 0x1
+
+RX_THRES
+THRESHOLD_OF_RX_FIFO 31:0 rw 0x1
+
+MOD_ID
+reserved 31:25 ro 0x0
+MODULE_ID 24:0 ro 0x90106
+
+)";

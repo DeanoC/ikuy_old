@@ -1,0 +1,912 @@
+#pragma once
+#include <stdint.h>
+
+// 1 bank of devcfg
+
+#define devcfg_BASE_ADDR 0xf8007000U
+
+// Registers
+
+// Control Register
+#define devcfg_XDCFG_CTRL_REG 0x0U
+typedef union devcfg_XDCFG_CTRL
+{
+	struct
+	{
+		uint32_t FORCE_RST : 1;
+		uint32_t PCFG_PROG_B : 1;
+		uint32_t PCFG_POR_CNT_4K : 1;
+		uint32_t RESERVED_0 : 1;
+		uint32_t PCAP_PR : 1;
+		uint32_t PCAP_MODE : 1;
+		uint32_t PCAP_RATE_EN : 1;
+		uint32_t MULTIBOOT_EN : 1;
+		uint32_t JTAG_CHAIN_DIS : 1;
+		uint32_t RESERVED_1 : 7;
+		uint32_t RESERVED_2 : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+		uint32_t PCFG_AES_FUSE : 1;
+		uint32_t PCFG_AES_EN : 3;
+		uint32_t SEU_EN : 1;
+		uint32_t SEC_EN : 1;
+		uint32_t SPNIDEN : 1;
+		uint32_t SPIDEN : 1;
+		uint32_t NIDEN : 1;
+		uint32_t DBGEN : 1;
+		uint32_t DAP_EN : 3;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_CTRL;
+
+#define devcfg_XDCFG_CTRL_FORCE_RST_LSHIFT 31U
+#define devcfg_XDCFG_CTRL_FORCE_RST 0x80000000U
+#define devcfg_XDCFG_CTRL_FORCE_RST_MASK 0x80000000U
+#define devcfg_XDCFG_CTRL_PCFG_PROG_B_LSHIFT 30U
+#define devcfg_XDCFG_CTRL_PCFG_PROG_B 0x40000000U
+#define devcfg_XDCFG_CTRL_PCFG_PROG_B_MASK 0x40000000U
+#define devcfg_XDCFG_CTRL_PCFG_POR_CNT_4K_LSHIFT 29U
+#define devcfg_XDCFG_CTRL_PCFG_POR_CNT_4K 0x20000000U
+#define devcfg_XDCFG_CTRL_PCFG_POR_CNT_4K_MASK 0x20000000U
+#define devcfg_XDCFG_CTRL_RESERVED_0_LSHIFT 28U
+#define devcfg_XDCFG_CTRL_RESERVED_0 0x10000000U
+#define devcfg_XDCFG_CTRL_RESERVED_0_MASK 0x10000000U
+#define devcfg_XDCFG_CTRL_PCAP_PR_LSHIFT 27U
+#define devcfg_XDCFG_CTRL_PCAP_PR 0x8000000U
+#define devcfg_XDCFG_CTRL_PCAP_PR_MASK 0x8000000U
+#define devcfg_XDCFG_CTRL_PCAP_MODE_LSHIFT 26U
+#define devcfg_XDCFG_CTRL_PCAP_MODE 0x4000000U
+#define devcfg_XDCFG_CTRL_PCAP_MODE_MASK 0x4000000U
+#define devcfg_XDCFG_CTRL_PCAP_RATE_EN_LSHIFT 25U
+#define devcfg_XDCFG_CTRL_PCAP_RATE_EN 0x2000000U
+#define devcfg_XDCFG_CTRL_PCAP_RATE_EN_MASK 0x2000000U
+#define devcfg_XDCFG_CTRL_MULTIBOOT_EN_LSHIFT 24U
+#define devcfg_XDCFG_CTRL_MULTIBOOT_EN 0x1000000U
+#define devcfg_XDCFG_CTRL_MULTIBOOT_EN_MASK 0x1000000U
+#define devcfg_XDCFG_CTRL_JTAG_CHAIN_DIS_LSHIFT 23U
+#define devcfg_XDCFG_CTRL_JTAG_CHAIN_DIS 0x800000U
+#define devcfg_XDCFG_CTRL_JTAG_CHAIN_DIS_MASK 0x800000U
+#define devcfg_XDCFG_CTRL_RESERVED_1_LSHIFT 16U
+#define devcfg_XDCFG_CTRL_RESERVED_1_MASK 0x7f0000U
+#define devcfg_XDCFG_CTRL_RESERVED_2_LSHIFT 15U
+#define devcfg_XDCFG_CTRL_RESERVED_2 0x8000U
+#define devcfg_XDCFG_CTRL_RESERVED_2_MASK 0x8000U
+#define devcfg_XDCFG_CTRL_RESERVED_3_LSHIFT 14U
+#define devcfg_XDCFG_CTRL_RESERVED_3 0x4000U
+#define devcfg_XDCFG_CTRL_RESERVED_3_MASK 0x4000U
+#define devcfg_XDCFG_CTRL_RESERVED_4_LSHIFT 13U
+#define devcfg_XDCFG_CTRL_RESERVED_4 0x2000U
+#define devcfg_XDCFG_CTRL_RESERVED_4_MASK 0x2000U
+#define devcfg_XDCFG_CTRL_PCFG_AES_FUSE_LSHIFT 12U
+#define devcfg_XDCFG_CTRL_PCFG_AES_FUSE 0x1000U
+#define devcfg_XDCFG_CTRL_PCFG_AES_FUSE_MASK 0x1000U
+#define devcfg_XDCFG_CTRL_PCFG_AES_EN_LSHIFT 9U
+#define devcfg_XDCFG_CTRL_PCFG_AES_EN_MASK 0xe00U
+#define devcfg_XDCFG_CTRL_SEU_EN_LSHIFT 8U
+#define devcfg_XDCFG_CTRL_SEU_EN 0x100U
+#define devcfg_XDCFG_CTRL_SEU_EN_MASK 0x100U
+#define devcfg_XDCFG_CTRL_SEC_EN_LSHIFT 7U
+#define devcfg_XDCFG_CTRL_SEC_EN 0x80U
+#define devcfg_XDCFG_CTRL_SEC_EN_MASK 0x80U
+#define devcfg_XDCFG_CTRL_SPNIDEN_LSHIFT 6U
+#define devcfg_XDCFG_CTRL_SPNIDEN 0x40U
+#define devcfg_XDCFG_CTRL_SPNIDEN_MASK 0x40U
+#define devcfg_XDCFG_CTRL_SPIDEN_LSHIFT 5U
+#define devcfg_XDCFG_CTRL_SPIDEN 0x20U
+#define devcfg_XDCFG_CTRL_SPIDEN_MASK 0x20U
+#define devcfg_XDCFG_CTRL_NIDEN_LSHIFT 4U
+#define devcfg_XDCFG_CTRL_NIDEN 0x10U
+#define devcfg_XDCFG_CTRL_NIDEN_MASK 0x10U
+#define devcfg_XDCFG_CTRL_DBGEN_LSHIFT 3U
+#define devcfg_XDCFG_CTRL_DBGEN 0x8U
+#define devcfg_XDCFG_CTRL_DBGEN_MASK 0x8U
+#define devcfg_XDCFG_CTRL_DAP_EN_LSHIFT 0U
+#define devcfg_XDCFG_CTRL_DAP_EN_MASK 0x7U
+#define devcfg_XDCFG_CTRL_MASK 0xef801fffU
+
+
+// Locks for the Control Register.
+#define devcfg_XDCFG_LOCK_REG 0x4U
+typedef union devcfg_XDCFG_LOCK
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t AES_FUSE_LOCK : 1;
+		uint32_t AES_EN : 1;
+		uint32_t SEU : 1;
+		uint32_t SEC : 1;
+		uint32_t DBG : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_LOCK;
+
+#define devcfg_XDCFG_LOCK_RESERVED_0_LSHIFT 5U
+#define devcfg_XDCFG_LOCK_RESERVED_0_MASK 0xffffffe0U
+#define devcfg_XDCFG_LOCK_AES_FUSE_LOCK_LSHIFT 4U
+#define devcfg_XDCFG_LOCK_AES_FUSE_LOCK 0x10U
+#define devcfg_XDCFG_LOCK_AES_FUSE_LOCK_MASK 0x10U
+#define devcfg_XDCFG_LOCK_AES_EN_LSHIFT 3U
+#define devcfg_XDCFG_LOCK_AES_EN 0x8U
+#define devcfg_XDCFG_LOCK_AES_EN_MASK 0x8U
+#define devcfg_XDCFG_LOCK_SEU_LSHIFT 2U
+#define devcfg_XDCFG_LOCK_SEU 0x4U
+#define devcfg_XDCFG_LOCK_SEU_MASK 0x4U
+#define devcfg_XDCFG_LOCK_SEC_LSHIFT 1U
+#define devcfg_XDCFG_LOCK_SEC 0x2U
+#define devcfg_XDCFG_LOCK_SEC_MASK 0x2U
+#define devcfg_XDCFG_LOCK_DBG_LSHIFT 0U
+#define devcfg_XDCFG_LOCK_DBG 0x1U
+#define devcfg_XDCFG_LOCK_DBG_MASK 0x1U
+#define devcfg_XDCFG_LOCK_MASK 0x1fU
+
+
+// Configuration Register 
+#define devcfg_XDCFG_CFG_REG 0x8U
+typedef union devcfg_XDCFG_CFG
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t RFIFO_TH : 2;
+		uint32_t WFIFO_TH : 2;
+		uint32_t RCLK_EDGE : 1;
+		uint32_t WCLK_EDGE : 1;
+		uint32_t DISABLE_SRC_INC : 1;
+		uint32_t DISABLE_DST_INC : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_CFG;
+
+#define devcfg_XDCFG_CFG_RESERVED_0_LSHIFT 12U
+#define devcfg_XDCFG_CFG_RESERVED_0_MASK 0xfffff000U
+#define devcfg_XDCFG_CFG_RFIFO_TH_LSHIFT 10U
+#define devcfg_XDCFG_CFG_RFIFO_TH_MASK 0xc00U
+#define devcfg_XDCFG_CFG_WFIFO_TH_LSHIFT 8U
+#define devcfg_XDCFG_CFG_WFIFO_TH_MASK 0x300U
+#define devcfg_XDCFG_CFG_RCLK_EDGE_LSHIFT 7U
+#define devcfg_XDCFG_CFG_RCLK_EDGE 0x80U
+#define devcfg_XDCFG_CFG_RCLK_EDGE_MASK 0x80U
+#define devcfg_XDCFG_CFG_WCLK_EDGE_LSHIFT 6U
+#define devcfg_XDCFG_CFG_WCLK_EDGE 0x40U
+#define devcfg_XDCFG_CFG_WCLK_EDGE_MASK 0x40U
+#define devcfg_XDCFG_CFG_DISABLE_SRC_INC_LSHIFT 5U
+#define devcfg_XDCFG_CFG_DISABLE_SRC_INC 0x20U
+#define devcfg_XDCFG_CFG_DISABLE_SRC_INC_MASK 0x20U
+#define devcfg_XDCFG_CFG_DISABLE_DST_INC_LSHIFT 4U
+#define devcfg_XDCFG_CFG_DISABLE_DST_INC 0x10U
+#define devcfg_XDCFG_CFG_DISABLE_DST_INC_MASK 0x10U
+#define devcfg_XDCFG_CFG_RESERVED_1_LSHIFT 3U
+#define devcfg_XDCFG_CFG_RESERVED_1 0x8U
+#define devcfg_XDCFG_CFG_RESERVED_1_MASK 0x8U
+#define devcfg_XDCFG_CFG_RESERVED_2_LSHIFT 2U
+#define devcfg_XDCFG_CFG_RESERVED_2 0x4U
+#define devcfg_XDCFG_CFG_RESERVED_2_MASK 0x4U
+#define devcfg_XDCFG_CFG_RESERVED_3_LSHIFT 1U
+#define devcfg_XDCFG_CFG_RESERVED_3 0x2U
+#define devcfg_XDCFG_CFG_RESERVED_3_MASK 0x2U
+#define devcfg_XDCFG_CFG_RESERVED_4_LSHIFT 0U
+#define devcfg_XDCFG_CFG_RESERVED_4 0x1U
+#define devcfg_XDCFG_CFG_RESERVED_4_MASK 0x1U
+#define devcfg_XDCFG_CFG_MASK 0xff0U
+
+
+// Interrupt Status
+#define devcfg_XDCFG_INT_STS_REG 0xcU
+typedef union devcfg_XDCFG_INT_STS
+{
+	struct
+	{
+		uint32_t PSS_GTS_USR_B_INT : 1;
+		uint32_t PSS_FST_CFG_B_INT : 1;
+		uint32_t PSS_GPWRDWN_B_INT : 1;
+		uint32_t PSS_GTS_CFG_B_INT : 1;
+		uint32_t PSS_CFG_RESET_B_INT : 1;
+		uint32_t RESERVED_0 : 3;
+		uint32_t IXR_AXI_WTO : 1;
+		uint32_t IXR_AXI_WERR : 1;
+		uint32_t IXR_AXI_RTO : 1;
+		uint32_t IXR_AXI_RERR : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t IXR_RX_FIFO_OV : 1;
+		uint32_t IXR_WR_FIFO_LVL : 1;
+		uint32_t IXR_RD_FIFO_LVL : 1;
+		uint32_t IXR_DMA_CMD_ERR : 1;
+		uint32_t IXR_DMA_Q_OV : 1;
+		uint32_t IXR_DMA_DONE : 1;
+		uint32_t IXR_D_P_DONE : 1;
+		uint32_t IXR_P2D_LEN_ERR : 1;
+		uint32_t RESERVED_2 : 4;
+		uint32_t IXR_PCFG_HMAC_ERR : 1;
+		uint32_t IXR_PCFG_SEU_ERR : 1;
+		uint32_t IXR_PCFG_POR_B : 1;
+		uint32_t IXR_PCFG_CFG_RST : 1;
+		uint32_t IXR_PCFG_DONE : 1;
+		uint32_t IXR_PCFG_INIT_PE : 1;
+		uint32_t IXR_PCFG_INIT_NE : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_INT_STS;
+
+#define devcfg_XDCFG_INT_STS_PSS_GTS_USR_B_INT_LSHIFT 31U
+#define devcfg_XDCFG_INT_STS_PSS_GTS_USR_B_INT 0x80000000U
+#define devcfg_XDCFG_INT_STS_PSS_GTS_USR_B_INT_MASK 0x80000000U
+#define devcfg_XDCFG_INT_STS_PSS_FST_CFG_B_INT_LSHIFT 30U
+#define devcfg_XDCFG_INT_STS_PSS_FST_CFG_B_INT 0x40000000U
+#define devcfg_XDCFG_INT_STS_PSS_FST_CFG_B_INT_MASK 0x40000000U
+#define devcfg_XDCFG_INT_STS_PSS_GPWRDWN_B_INT_LSHIFT 29U
+#define devcfg_XDCFG_INT_STS_PSS_GPWRDWN_B_INT 0x20000000U
+#define devcfg_XDCFG_INT_STS_PSS_GPWRDWN_B_INT_MASK 0x20000000U
+#define devcfg_XDCFG_INT_STS_PSS_GTS_CFG_B_INT_LSHIFT 28U
+#define devcfg_XDCFG_INT_STS_PSS_GTS_CFG_B_INT 0x10000000U
+#define devcfg_XDCFG_INT_STS_PSS_GTS_CFG_B_INT_MASK 0x10000000U
+#define devcfg_XDCFG_INT_STS_PSS_CFG_RESET_B_INT_LSHIFT 27U
+#define devcfg_XDCFG_INT_STS_PSS_CFG_RESET_B_INT 0x8000000U
+#define devcfg_XDCFG_INT_STS_PSS_CFG_RESET_B_INT_MASK 0x8000000U
+#define devcfg_XDCFG_INT_STS_RESERVED_0_LSHIFT 24U
+#define devcfg_XDCFG_INT_STS_RESERVED_0_MASK 0x7000000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_WTO_LSHIFT 23U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_WTO 0x800000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_WTO_MASK 0x800000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_WERR_LSHIFT 22U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_WERR 0x400000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_WERR_MASK 0x400000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_RTO_LSHIFT 21U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_RTO 0x200000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_RTO_MASK 0x200000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_RERR_LSHIFT 20U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_RERR 0x100000U
+#define devcfg_XDCFG_INT_STS_IXR_AXI_RERR_MASK 0x100000U
+#define devcfg_XDCFG_INT_STS_RESERVED_1_LSHIFT 19U
+#define devcfg_XDCFG_INT_STS_RESERVED_1 0x80000U
+#define devcfg_XDCFG_INT_STS_RESERVED_1_MASK 0x80000U
+#define devcfg_XDCFG_INT_STS_IXR_RX_FIFO_OV_LSHIFT 18U
+#define devcfg_XDCFG_INT_STS_IXR_RX_FIFO_OV 0x40000U
+#define devcfg_XDCFG_INT_STS_IXR_RX_FIFO_OV_MASK 0x40000U
+#define devcfg_XDCFG_INT_STS_IXR_WR_FIFO_LVL_LSHIFT 17U
+#define devcfg_XDCFG_INT_STS_IXR_WR_FIFO_LVL 0x20000U
+#define devcfg_XDCFG_INT_STS_IXR_WR_FIFO_LVL_MASK 0x20000U
+#define devcfg_XDCFG_INT_STS_IXR_RD_FIFO_LVL_LSHIFT 16U
+#define devcfg_XDCFG_INT_STS_IXR_RD_FIFO_LVL 0x10000U
+#define devcfg_XDCFG_INT_STS_IXR_RD_FIFO_LVL_MASK 0x10000U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_CMD_ERR_LSHIFT 15U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_CMD_ERR 0x8000U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_CMD_ERR_MASK 0x8000U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_Q_OV_LSHIFT 14U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_Q_OV 0x4000U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_Q_OV_MASK 0x4000U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_DONE_LSHIFT 13U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_DONE 0x2000U
+#define devcfg_XDCFG_INT_STS_IXR_DMA_DONE_MASK 0x2000U
+#define devcfg_XDCFG_INT_STS_IXR_D_P_DONE_LSHIFT 12U
+#define devcfg_XDCFG_INT_STS_IXR_D_P_DONE 0x1000U
+#define devcfg_XDCFG_INT_STS_IXR_D_P_DONE_MASK 0x1000U
+#define devcfg_XDCFG_INT_STS_IXR_P2D_LEN_ERR_LSHIFT 11U
+#define devcfg_XDCFG_INT_STS_IXR_P2D_LEN_ERR 0x800U
+#define devcfg_XDCFG_INT_STS_IXR_P2D_LEN_ERR_MASK 0x800U
+#define devcfg_XDCFG_INT_STS_RESERVED_2_LSHIFT 7U
+#define devcfg_XDCFG_INT_STS_RESERVED_2_MASK 0x780U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_HMAC_ERR_LSHIFT 6U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_HMAC_ERR 0x40U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_HMAC_ERR_MASK 0x40U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_SEU_ERR_LSHIFT 5U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_SEU_ERR 0x20U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_SEU_ERR_MASK 0x20U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_POR_B_LSHIFT 4U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_POR_B 0x10U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_POR_B_MASK 0x10U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_CFG_RST_LSHIFT 3U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_CFG_RST 0x8U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_CFG_RST_MASK 0x8U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_DONE_LSHIFT 2U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_DONE 0x4U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_DONE_MASK 0x4U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_INIT_PE_LSHIFT 1U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_INIT_PE 0x2U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_INIT_PE_MASK 0x2U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_INIT_NE_LSHIFT 0U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_INIT_NE 0x1U
+#define devcfg_XDCFG_INT_STS_IXR_PCFG_INIT_NE_MASK 0x1U
+#define devcfg_XDCFG_INT_STS_MASK 0xf8f7f87fU
+
+
+// Interrupt Mask.
+#define devcfg_XDCFG_INT_MASK_REG 0x10U
+typedef union devcfg_XDCFG_INT_MASK
+{
+	struct
+	{
+		uint32_t M_PSS_GTS_USR_B_INT : 1;
+		uint32_t M_PSS_FST_CFG_B_INT : 1;
+		uint32_t M_PSS_GPWRDWN_B_INT : 1;
+		uint32_t M_PSS_GTS_CFG_B_INT : 1;
+		uint32_t M_PSS_CFG_RESET_B_INT : 1;
+		uint32_t RESERVED_0 : 3;
+		uint32_t IXR_AXI_WTO : 1;
+		uint32_t IXR_AXI_WERR : 1;
+		uint32_t IXR_AXI_RTO : 1;
+		uint32_t IXR_AXI_RERR : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t IXR_RX_FIFO_OV : 1;
+		uint32_t IXR_WR_FIFO_LVL : 1;
+		uint32_t IXR_RD_FIFO_LVL : 1;
+		uint32_t IXR_DMA_CMD_ERR : 1;
+		uint32_t IXR_DMA_Q_OV : 1;
+		uint32_t IXR_DMA_DONE : 1;
+		uint32_t IXR_D_P_DONE : 1;
+		uint32_t IXR_P2D_LEN_ERR : 1;
+		uint32_t RESERVED_2 : 4;
+		uint32_t IXR_PCFG_HMAC_ERR : 1;
+		uint32_t IXR_PCFG_SEU_ERR : 1;
+		uint32_t IXR_PCFG_POR_B : 1;
+		uint32_t IXR_PCFG_CFG_RST : 1;
+		uint32_t IXR_PCFG_DONE : 1;
+		uint32_t IXR_PCFG_INIT_PE : 1;
+		uint32_t IXR_PCFG_INIT_NE : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_INT_MASK;
+
+#define devcfg_XDCFG_INT_MASK_M_PSS_GTS_USR_B_INT_LSHIFT 31U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GTS_USR_B_INT 0x80000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GTS_USR_B_INT_MASK 0x80000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_FST_CFG_B_INT_LSHIFT 30U
+#define devcfg_XDCFG_INT_MASK_M_PSS_FST_CFG_B_INT 0x40000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_FST_CFG_B_INT_MASK 0x40000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GPWRDWN_B_INT_LSHIFT 29U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GPWRDWN_B_INT 0x20000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GPWRDWN_B_INT_MASK 0x20000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GTS_CFG_B_INT_LSHIFT 28U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GTS_CFG_B_INT 0x10000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_GTS_CFG_B_INT_MASK 0x10000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_CFG_RESET_B_INT_LSHIFT 27U
+#define devcfg_XDCFG_INT_MASK_M_PSS_CFG_RESET_B_INT 0x8000000U
+#define devcfg_XDCFG_INT_MASK_M_PSS_CFG_RESET_B_INT_MASK 0x8000000U
+#define devcfg_XDCFG_INT_MASK_RESERVED_0_LSHIFT 24U
+#define devcfg_XDCFG_INT_MASK_RESERVED_0_MASK 0x7000000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_WTO_LSHIFT 23U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_WTO 0x800000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_WTO_MASK 0x800000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_WERR_LSHIFT 22U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_WERR 0x400000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_WERR_MASK 0x400000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_RTO_LSHIFT 21U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_RTO 0x200000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_RTO_MASK 0x200000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_RERR_LSHIFT 20U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_RERR 0x100000U
+#define devcfg_XDCFG_INT_MASK_IXR_AXI_RERR_MASK 0x100000U
+#define devcfg_XDCFG_INT_MASK_RESERVED_1_LSHIFT 19U
+#define devcfg_XDCFG_INT_MASK_RESERVED_1 0x80000U
+#define devcfg_XDCFG_INT_MASK_RESERVED_1_MASK 0x80000U
+#define devcfg_XDCFG_INT_MASK_IXR_RX_FIFO_OV_LSHIFT 18U
+#define devcfg_XDCFG_INT_MASK_IXR_RX_FIFO_OV 0x40000U
+#define devcfg_XDCFG_INT_MASK_IXR_RX_FIFO_OV_MASK 0x40000U
+#define devcfg_XDCFG_INT_MASK_IXR_WR_FIFO_LVL_LSHIFT 17U
+#define devcfg_XDCFG_INT_MASK_IXR_WR_FIFO_LVL 0x20000U
+#define devcfg_XDCFG_INT_MASK_IXR_WR_FIFO_LVL_MASK 0x20000U
+#define devcfg_XDCFG_INT_MASK_IXR_RD_FIFO_LVL_LSHIFT 16U
+#define devcfg_XDCFG_INT_MASK_IXR_RD_FIFO_LVL 0x10000U
+#define devcfg_XDCFG_INT_MASK_IXR_RD_FIFO_LVL_MASK 0x10000U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_CMD_ERR_LSHIFT 15U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_CMD_ERR 0x8000U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_CMD_ERR_MASK 0x8000U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_Q_OV_LSHIFT 14U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_Q_OV 0x4000U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_Q_OV_MASK 0x4000U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_DONE_LSHIFT 13U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_DONE 0x2000U
+#define devcfg_XDCFG_INT_MASK_IXR_DMA_DONE_MASK 0x2000U
+#define devcfg_XDCFG_INT_MASK_IXR_D_P_DONE_LSHIFT 12U
+#define devcfg_XDCFG_INT_MASK_IXR_D_P_DONE 0x1000U
+#define devcfg_XDCFG_INT_MASK_IXR_D_P_DONE_MASK 0x1000U
+#define devcfg_XDCFG_INT_MASK_IXR_P2D_LEN_ERR_LSHIFT 11U
+#define devcfg_XDCFG_INT_MASK_IXR_P2D_LEN_ERR 0x800U
+#define devcfg_XDCFG_INT_MASK_IXR_P2D_LEN_ERR_MASK 0x800U
+#define devcfg_XDCFG_INT_MASK_RESERVED_2_LSHIFT 7U
+#define devcfg_XDCFG_INT_MASK_RESERVED_2_MASK 0x780U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_HMAC_ERR_LSHIFT 6U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_HMAC_ERR 0x40U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_HMAC_ERR_MASK 0x40U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_SEU_ERR_LSHIFT 5U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_SEU_ERR 0x20U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_SEU_ERR_MASK 0x20U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_POR_B_LSHIFT 4U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_POR_B 0x10U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_POR_B_MASK 0x10U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_CFG_RST_LSHIFT 3U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_CFG_RST 0x8U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_CFG_RST_MASK 0x8U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_DONE_LSHIFT 2U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_DONE 0x4U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_DONE_MASK 0x4U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_INIT_PE_LSHIFT 1U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_INIT_PE 0x2U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_INIT_PE_MASK 0x2U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_INIT_NE_LSHIFT 0U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_INIT_NE 0x1U
+#define devcfg_XDCFG_INT_MASK_IXR_PCFG_INIT_NE_MASK 0x1U
+#define devcfg_XDCFG_INT_MASK_MASK 0xf8f7f87fU
+
+
+// Miscellaneous Status.
+#define devcfg_XDCFG_STATUS_REG 0x14U
+typedef union devcfg_XDCFG_STATUS
+{
+	struct
+	{
+		uint32_t DMA_CMD_Q_F : 1;
+		uint32_t DMA_CMD_Q_E : 1;
+		uint32_t DMA_DONE_CNT : 2;
+		uint32_t RESERVED_0 : 3;
+		uint32_t RX_FIFO_LVL : 5;
+		uint32_t RESERVED_1 : 1;
+		uint32_t TX_FIFO_LVL : 7;
+		uint32_t PSS_GTS_USR_B : 1;
+		uint32_t PSS_FST_CFG_B : 1;
+		uint32_t PSS_GPWRDWN_B : 1;
+		uint32_t PSS_GTS_CFG_B : 1;
+		uint32_t SECURE_RST : 1;
+		uint32_t ILLEGAL_APB_ACCESS : 1;
+		uint32_t PSS_CFG_RESET_B : 1;
+		uint32_t PCFG_INIT : 1;
+		uint32_t EFUSE_SW_RESERVE : 1;
+		uint32_t EFUSE_SEC_EN : 1;
+		uint32_t EFUSE_JTAG_DIS : 1;
+		uint32_t RESERVED_2 : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_STATUS;
+
+#define devcfg_XDCFG_STATUS_DMA_CMD_Q_F_LSHIFT 31U
+#define devcfg_XDCFG_STATUS_DMA_CMD_Q_F 0x80000000U
+#define devcfg_XDCFG_STATUS_DMA_CMD_Q_F_MASK 0x80000000U
+#define devcfg_XDCFG_STATUS_DMA_CMD_Q_E_LSHIFT 30U
+#define devcfg_XDCFG_STATUS_DMA_CMD_Q_E 0x40000000U
+#define devcfg_XDCFG_STATUS_DMA_CMD_Q_E_MASK 0x40000000U
+#define devcfg_XDCFG_STATUS_DMA_DONE_CNT_LSHIFT 28U
+#define devcfg_XDCFG_STATUS_DMA_DONE_CNT_MASK 0x30000000U
+#define devcfg_XDCFG_STATUS_RESERVED_0_LSHIFT 25U
+#define devcfg_XDCFG_STATUS_RESERVED_0_MASK 0xe000000U
+#define devcfg_XDCFG_STATUS_RX_FIFO_LVL_LSHIFT 20U
+#define devcfg_XDCFG_STATUS_RX_FIFO_LVL_MASK 0x1f00000U
+#define devcfg_XDCFG_STATUS_RESERVED_1_LSHIFT 19U
+#define devcfg_XDCFG_STATUS_RESERVED_1 0x80000U
+#define devcfg_XDCFG_STATUS_RESERVED_1_MASK 0x80000U
+#define devcfg_XDCFG_STATUS_TX_FIFO_LVL_LSHIFT 12U
+#define devcfg_XDCFG_STATUS_TX_FIFO_LVL_MASK 0x7f000U
+#define devcfg_XDCFG_STATUS_PSS_GTS_USR_B_LSHIFT 11U
+#define devcfg_XDCFG_STATUS_PSS_GTS_USR_B 0x800U
+#define devcfg_XDCFG_STATUS_PSS_GTS_USR_B_MASK 0x800U
+#define devcfg_XDCFG_STATUS_PSS_FST_CFG_B_LSHIFT 10U
+#define devcfg_XDCFG_STATUS_PSS_FST_CFG_B 0x400U
+#define devcfg_XDCFG_STATUS_PSS_FST_CFG_B_MASK 0x400U
+#define devcfg_XDCFG_STATUS_PSS_GPWRDWN_B_LSHIFT 9U
+#define devcfg_XDCFG_STATUS_PSS_GPWRDWN_B 0x200U
+#define devcfg_XDCFG_STATUS_PSS_GPWRDWN_B_MASK 0x200U
+#define devcfg_XDCFG_STATUS_PSS_GTS_CFG_B_LSHIFT 8U
+#define devcfg_XDCFG_STATUS_PSS_GTS_CFG_B 0x100U
+#define devcfg_XDCFG_STATUS_PSS_GTS_CFG_B_MASK 0x100U
+#define devcfg_XDCFG_STATUS_SECURE_RST_LSHIFT 7U
+#define devcfg_XDCFG_STATUS_SECURE_RST 0x80U
+#define devcfg_XDCFG_STATUS_SECURE_RST_MASK 0x80U
+#define devcfg_XDCFG_STATUS_ILLEGAL_APB_ACCESS_LSHIFT 6U
+#define devcfg_XDCFG_STATUS_ILLEGAL_APB_ACCESS 0x40U
+#define devcfg_XDCFG_STATUS_ILLEGAL_APB_ACCESS_MASK 0x40U
+#define devcfg_XDCFG_STATUS_PSS_CFG_RESET_B_LSHIFT 5U
+#define devcfg_XDCFG_STATUS_PSS_CFG_RESET_B 0x20U
+#define devcfg_XDCFG_STATUS_PSS_CFG_RESET_B_MASK 0x20U
+#define devcfg_XDCFG_STATUS_PCFG_INIT_LSHIFT 4U
+#define devcfg_XDCFG_STATUS_PCFG_INIT 0x10U
+#define devcfg_XDCFG_STATUS_PCFG_INIT_MASK 0x10U
+#define devcfg_XDCFG_STATUS_EFUSE_SW_RESERVE_LSHIFT 3U
+#define devcfg_XDCFG_STATUS_EFUSE_SW_RESERVE 0x8U
+#define devcfg_XDCFG_STATUS_EFUSE_SW_RESERVE_MASK 0x8U
+#define devcfg_XDCFG_STATUS_EFUSE_SEC_EN_LSHIFT 2U
+#define devcfg_XDCFG_STATUS_EFUSE_SEC_EN 0x4U
+#define devcfg_XDCFG_STATUS_EFUSE_SEC_EN_MASK 0x4U
+#define devcfg_XDCFG_STATUS_EFUSE_JTAG_DIS_LSHIFT 1U
+#define devcfg_XDCFG_STATUS_EFUSE_JTAG_DIS 0x2U
+#define devcfg_XDCFG_STATUS_EFUSE_JTAG_DIS_MASK 0x2U
+#define devcfg_XDCFG_STATUS_RESERVED_2_LSHIFT 0U
+#define devcfg_XDCFG_STATUS_RESERVED_2 0x1U
+#define devcfg_XDCFG_STATUS_RESERVED_2_MASK 0x1U
+#define devcfg_XDCFG_STATUS_MASK 0xf1f7fffeU
+
+
+// DMA Source Address.
+#define devcfg_XDCFG_DMA_SRC_ADDR_REG 0x18U
+typedef union devcfg_XDCFG_DMA_SRC_ADDR
+{
+	struct
+	{
+		uint32_t SRC_ADDR : 32;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_DMA_SRC_ADDR;
+
+#define devcfg_XDCFG_DMA_SRC_ADDR_SRC_ADDR_LSHIFT 0U
+#define devcfg_XDCFG_DMA_SRC_ADDR_SRC_ADDR_MASK 0x0U
+#define devcfg_XDCFG_DMA_SRC_ADDR_MASK 0x0U
+
+
+// DMA Destination Address.
+#define devcfg_XDCFG_DMA_DEST_ADDR_REG 0x1cU
+typedef union devcfg_XDCFG_DMA_DEST_ADDR
+{
+	struct
+	{
+		uint32_t DST_ADDR : 32;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_DMA_DEST_ADDR;
+
+#define devcfg_XDCFG_DMA_DEST_ADDR_DST_ADDR_LSHIFT 0U
+#define devcfg_XDCFG_DMA_DEST_ADDR_DST_ADDR_MASK 0x0U
+#define devcfg_XDCFG_DMA_DEST_ADDR_MASK 0x0U
+
+
+// DMA Source Transfer Length.
+#define devcfg_XDCFG_DMA_SRC_LEN_REG 0x20U
+typedef union devcfg_XDCFG_DMA_SRC_LEN
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 5;
+		uint32_t DMA_LEN : 27;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_DMA_SRC_LEN;
+
+#define devcfg_XDCFG_DMA_SRC_LEN_RESERVED_0_LSHIFT 27U
+#define devcfg_XDCFG_DMA_SRC_LEN_RESERVED_0_MASK 0xf8000000U
+#define devcfg_XDCFG_DMA_SRC_LEN_DMA_LEN_LSHIFT 0U
+#define devcfg_XDCFG_DMA_SRC_LEN_DMA_LEN_MASK 0x7ffffffU
+#define devcfg_XDCFG_DMA_SRC_LEN_MASK 0x7ffffffU
+
+
+// DMA Destination Transfer Length.
+#define devcfg_XDCFG_DMA_DEST_LEN_REG 0x24U
+typedef union devcfg_XDCFG_DMA_DEST_LEN
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 5;
+		uint32_t DMA_LEN : 27;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_DMA_DEST_LEN;
+
+#define devcfg_XDCFG_DMA_DEST_LEN_RESERVED_0_LSHIFT 27U
+#define devcfg_XDCFG_DMA_DEST_LEN_RESERVED_0_MASK 0xf8000000U
+#define devcfg_XDCFG_DMA_DEST_LEN_DMA_LEN_LSHIFT 0U
+#define devcfg_XDCFG_DMA_DEST_LEN_DMA_LEN_MASK 0x7ffffffU
+#define devcfg_XDCFG_DMA_DEST_LEN_MASK 0x7ffffffU
+
+
+// Multi-Boot Address Pointer.
+#define devcfg_XDCFG_MULTIBOOT_ADDR_REG 0x2cU
+typedef union devcfg_XDCFG_MULTIBOOT_ADDR
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 19;
+		uint32_t MULTIBOOT_ADDR : 13;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_MULTIBOOT_ADDR;
+
+#define devcfg_XDCFG_MULTIBOOT_ADDR_RESERVED_0_LSHIFT 13U
+#define devcfg_XDCFG_MULTIBOOT_ADDR_RESERVED_0_MASK 0xffffe000U
+#define devcfg_XDCFG_MULTIBOOT_ADDR_MULTIBOOT_ADDR_LSHIFT 0U
+#define devcfg_XDCFG_MULTIBOOT_ADDR_MULTIBOOT_ADDR_MASK 0x1fffU
+#define devcfg_XDCFG_MULTIBOOT_ADDR_MASK 0x1fffU
+
+
+// Unlock Control.
+#define devcfg_XDCFG_UNLOCK_REG 0x34U
+typedef union devcfg_XDCFG_UNLOCK
+{
+	struct
+	{
+		uint32_t UNLOCK : 32;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_UNLOCK;
+
+#define devcfg_XDCFG_UNLOCK_UNLOCK_LSHIFT 0U
+#define devcfg_XDCFG_UNLOCK_UNLOCK_MASK 0x0U
+#define devcfg_XDCFG_UNLOCK_MASK 0x0U
+
+
+// Address Pointer.
+#define devcfg_XDCFG_MCTRL_REG 0x80U
+typedef union devcfg_XDCFG_MCTRL
+{
+	struct
+	{
+		uint32_t PS_VERSION : 4;
+		uint32_t RESERVED_0 : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+		uint32_t RESERVED_5 : 9;
+		uint32_t RESERVED_6 : 1;
+		uint32_t RESERVED_7 : 1;
+		uint32_t RESERVED_8 : 3;
+		uint32_t PCFG_POR_B : 1;
+		uint32_t RESERVED_9 : 3;
+		uint32_t PCAP_LPBK : 1;
+		uint32_t RESERVED_10 : 2;
+		uint32_t RESERVED_11 : 1;
+		uint32_t RESERVED_12 : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XDCFG_MCTRL;
+
+#define devcfg_XDCFG_MCTRL_PS_VERSION_LSHIFT 28U
+#define devcfg_XDCFG_MCTRL_PS_VERSION_MASK 0xf0000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_0_LSHIFT 27U
+#define devcfg_XDCFG_MCTRL_RESERVED_0 0x8000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_0_MASK 0x8000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_1_LSHIFT 26U
+#define devcfg_XDCFG_MCTRL_RESERVED_1 0x4000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_1_MASK 0x4000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_2_LSHIFT 25U
+#define devcfg_XDCFG_MCTRL_RESERVED_2 0x2000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_2_MASK 0x2000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_3_LSHIFT 24U
+#define devcfg_XDCFG_MCTRL_RESERVED_3 0x1000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_3_MASK 0x1000000U
+#define devcfg_XDCFG_MCTRL_RESERVED_4_LSHIFT 23U
+#define devcfg_XDCFG_MCTRL_RESERVED_4 0x800000U
+#define devcfg_XDCFG_MCTRL_RESERVED_4_MASK 0x800000U
+#define devcfg_XDCFG_MCTRL_RESERVED_5_LSHIFT 14U
+#define devcfg_XDCFG_MCTRL_RESERVED_5_MASK 0x7fc000U
+#define devcfg_XDCFG_MCTRL_RESERVED_6_LSHIFT 13U
+#define devcfg_XDCFG_MCTRL_RESERVED_6 0x2000U
+#define devcfg_XDCFG_MCTRL_RESERVED_6_MASK 0x2000U
+#define devcfg_XDCFG_MCTRL_RESERVED_7_LSHIFT 12U
+#define devcfg_XDCFG_MCTRL_RESERVED_7 0x1000U
+#define devcfg_XDCFG_MCTRL_RESERVED_7_MASK 0x1000U
+#define devcfg_XDCFG_MCTRL_RESERVED_8_LSHIFT 9U
+#define devcfg_XDCFG_MCTRL_RESERVED_8_MASK 0xe00U
+#define devcfg_XDCFG_MCTRL_PCFG_POR_B_LSHIFT 8U
+#define devcfg_XDCFG_MCTRL_PCFG_POR_B 0x100U
+#define devcfg_XDCFG_MCTRL_PCFG_POR_B_MASK 0x100U
+#define devcfg_XDCFG_MCTRL_RESERVED_9_LSHIFT 5U
+#define devcfg_XDCFG_MCTRL_RESERVED_9_MASK 0xe0U
+#define devcfg_XDCFG_MCTRL_PCAP_LPBK_LSHIFT 4U
+#define devcfg_XDCFG_MCTRL_PCAP_LPBK 0x10U
+#define devcfg_XDCFG_MCTRL_PCAP_LPBK_MASK 0x10U
+#define devcfg_XDCFG_MCTRL_RESERVED_10_LSHIFT 2U
+#define devcfg_XDCFG_MCTRL_RESERVED_10_MASK 0xcU
+#define devcfg_XDCFG_MCTRL_RESERVED_11_LSHIFT 1U
+#define devcfg_XDCFG_MCTRL_RESERVED_11 0x2U
+#define devcfg_XDCFG_MCTRL_RESERVED_11_MASK 0x2U
+#define devcfg_XDCFG_MCTRL_RESERVED_12_LSHIFT 0U
+#define devcfg_XDCFG_MCTRL_RESERVED_12 0x1U
+#define devcfg_XDCFG_MCTRL_RESERVED_12_MASK 0x1U
+#define devcfg_XDCFG_MCTRL_MASK 0xf0000110U
+
+
+// XADC Interface Configuration.
+#define devcfg_XADCIF_CFG_REG 0x100U
+typedef union devcfg_XADCIF_CFG
+{
+	struct
+	{
+		uint32_t ENABLE : 1;
+		uint32_t RESERVED_0 : 7;
+		uint32_t CFIFOTH : 4;
+		uint32_t DFIFOTH : 4;
+		uint32_t RESERVED_1 : 2;
+		uint32_t WEDGE : 1;
+		uint32_t REDGE : 1;
+		uint32_t RESERVED_2 : 2;
+		uint32_t TCKRATE : 2;
+		uint32_t RESERVED_3 : 3;
+		uint32_t IGAP : 5;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_CFG;
+
+#define devcfg_XADCIF_CFG_ENABLE_LSHIFT 31U
+#define devcfg_XADCIF_CFG_ENABLE 0x80000000U
+#define devcfg_XADCIF_CFG_ENABLE_MASK 0x80000000U
+#define devcfg_XADCIF_CFG_RESERVED_0_LSHIFT 24U
+#define devcfg_XADCIF_CFG_RESERVED_0_MASK 0x7f000000U
+#define devcfg_XADCIF_CFG_CFIFOTH_LSHIFT 20U
+#define devcfg_XADCIF_CFG_CFIFOTH_MASK 0xf00000U
+#define devcfg_XADCIF_CFG_DFIFOTH_LSHIFT 16U
+#define devcfg_XADCIF_CFG_DFIFOTH_MASK 0xf0000U
+#define devcfg_XADCIF_CFG_RESERVED_1_LSHIFT 14U
+#define devcfg_XADCIF_CFG_RESERVED_1_MASK 0xc000U
+#define devcfg_XADCIF_CFG_WEDGE_LSHIFT 13U
+#define devcfg_XADCIF_CFG_WEDGE 0x2000U
+#define devcfg_XADCIF_CFG_WEDGE_MASK 0x2000U
+#define devcfg_XADCIF_CFG_REDGE_LSHIFT 12U
+#define devcfg_XADCIF_CFG_REDGE 0x1000U
+#define devcfg_XADCIF_CFG_REDGE_MASK 0x1000U
+#define devcfg_XADCIF_CFG_RESERVED_2_LSHIFT 10U
+#define devcfg_XADCIF_CFG_RESERVED_2_MASK 0xc00U
+#define devcfg_XADCIF_CFG_TCKRATE_LSHIFT 8U
+#define devcfg_XADCIF_CFG_TCKRATE_MASK 0x300U
+#define devcfg_XADCIF_CFG_RESERVED_3_LSHIFT 5U
+#define devcfg_XADCIF_CFG_RESERVED_3_MASK 0xe0U
+#define devcfg_XADCIF_CFG_IGAP_LSHIFT 0U
+#define devcfg_XADCIF_CFG_IGAP_MASK 0x1fU
+#define devcfg_XADCIF_CFG_MASK 0x80ff331fU
+
+
+// XADC Interface Interrupt Status.
+#define devcfg_XADCIF_INT_STS_REG 0x104U
+typedef union devcfg_XADCIF_INT_STS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 22;
+		uint32_t CFIFO_LTH : 1;
+		uint32_t DFIFO_GTH : 1;
+		uint32_t OT : 1;
+		uint32_t ALM : 7;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_INT_STS;
+
+#define devcfg_XADCIF_INT_STS_RESERVED_0_LSHIFT 10U
+#define devcfg_XADCIF_INT_STS_RESERVED_0_MASK 0xfffffc00U
+#define devcfg_XADCIF_INT_STS_CFIFO_LTH_LSHIFT 9U
+#define devcfg_XADCIF_INT_STS_CFIFO_LTH 0x200U
+#define devcfg_XADCIF_INT_STS_CFIFO_LTH_MASK 0x200U
+#define devcfg_XADCIF_INT_STS_DFIFO_GTH_LSHIFT 8U
+#define devcfg_XADCIF_INT_STS_DFIFO_GTH 0x100U
+#define devcfg_XADCIF_INT_STS_DFIFO_GTH_MASK 0x100U
+#define devcfg_XADCIF_INT_STS_OT_LSHIFT 7U
+#define devcfg_XADCIF_INT_STS_OT 0x80U
+#define devcfg_XADCIF_INT_STS_OT_MASK 0x80U
+#define devcfg_XADCIF_INT_STS_ALM_LSHIFT 0U
+#define devcfg_XADCIF_INT_STS_ALM_MASK 0x7fU
+#define devcfg_XADCIF_INT_STS_MASK 0x3ffU
+
+
+// XADC Interface Interrupt Mask.
+#define devcfg_XADCIF_INT_MASK_REG 0x108U
+typedef union devcfg_XADCIF_INT_MASK
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 22;
+		uint32_t M_CFIFO_LTH : 1;
+		uint32_t M_DFIFO_GTH : 1;
+		uint32_t M_OT : 1;
+		uint32_t M_ALM : 7;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_INT_MASK;
+
+#define devcfg_XADCIF_INT_MASK_RESERVED_0_LSHIFT 10U
+#define devcfg_XADCIF_INT_MASK_RESERVED_0_MASK 0xfffffc00U
+#define devcfg_XADCIF_INT_MASK_M_CFIFO_LTH_LSHIFT 9U
+#define devcfg_XADCIF_INT_MASK_M_CFIFO_LTH 0x200U
+#define devcfg_XADCIF_INT_MASK_M_CFIFO_LTH_MASK 0x200U
+#define devcfg_XADCIF_INT_MASK_M_DFIFO_GTH_LSHIFT 8U
+#define devcfg_XADCIF_INT_MASK_M_DFIFO_GTH 0x100U
+#define devcfg_XADCIF_INT_MASK_M_DFIFO_GTH_MASK 0x100U
+#define devcfg_XADCIF_INT_MASK_M_OT_LSHIFT 7U
+#define devcfg_XADCIF_INT_MASK_M_OT 0x80U
+#define devcfg_XADCIF_INT_MASK_M_OT_MASK 0x80U
+#define devcfg_XADCIF_INT_MASK_M_ALM_LSHIFT 0U
+#define devcfg_XADCIF_INT_MASK_M_ALM_MASK 0x7fU
+#define devcfg_XADCIF_INT_MASK_MASK 0x3ffU
+
+
+// XADC Interface Miscellaneous Status.
+#define devcfg_XADCIF_MSTS_REG 0x10cU
+typedef union devcfg_XADCIF_MSTS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 12;
+		uint32_t CFIFO_LVL : 4;
+		uint32_t DFIFO_LVL : 4;
+		uint32_t CFIFOF : 1;
+		uint32_t CFIFOE : 1;
+		uint32_t DFIFOF : 1;
+		uint32_t DFIFOE : 1;
+		uint32_t OT : 1;
+		uint32_t ALM : 7;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_MSTS;
+
+#define devcfg_XADCIF_MSTS_RESERVED_0_LSHIFT 20U
+#define devcfg_XADCIF_MSTS_RESERVED_0_MASK 0xfff00000U
+#define devcfg_XADCIF_MSTS_CFIFO_LVL_LSHIFT 16U
+#define devcfg_XADCIF_MSTS_CFIFO_LVL_MASK 0xf0000U
+#define devcfg_XADCIF_MSTS_DFIFO_LVL_LSHIFT 12U
+#define devcfg_XADCIF_MSTS_DFIFO_LVL_MASK 0xf000U
+#define devcfg_XADCIF_MSTS_CFIFOF_LSHIFT 11U
+#define devcfg_XADCIF_MSTS_CFIFOF 0x800U
+#define devcfg_XADCIF_MSTS_CFIFOF_MASK 0x800U
+#define devcfg_XADCIF_MSTS_CFIFOE_LSHIFT 10U
+#define devcfg_XADCIF_MSTS_CFIFOE 0x400U
+#define devcfg_XADCIF_MSTS_CFIFOE_MASK 0x400U
+#define devcfg_XADCIF_MSTS_DFIFOF_LSHIFT 9U
+#define devcfg_XADCIF_MSTS_DFIFOF 0x200U
+#define devcfg_XADCIF_MSTS_DFIFOF_MASK 0x200U
+#define devcfg_XADCIF_MSTS_DFIFOE_LSHIFT 8U
+#define devcfg_XADCIF_MSTS_DFIFOE 0x100U
+#define devcfg_XADCIF_MSTS_DFIFOE_MASK 0x100U
+#define devcfg_XADCIF_MSTS_OT_LSHIFT 7U
+#define devcfg_XADCIF_MSTS_OT 0x80U
+#define devcfg_XADCIF_MSTS_OT_MASK 0x80U
+#define devcfg_XADCIF_MSTS_ALM_LSHIFT 0U
+#define devcfg_XADCIF_MSTS_ALM_MASK 0x7fU
+#define devcfg_XADCIF_MSTS_MASK 0xfffffU
+
+
+// XADC Interface Command FIFO Data Port
+#define devcfg_XADCIF_CMDFIFO_REG 0x110U
+typedef union devcfg_XADCIF_CMDFIFO
+{
+	struct
+	{
+		uint32_t CMD : 32;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_CMDFIFO;
+
+#define devcfg_XADCIF_CMDFIFO_CMD_LSHIFT 0U
+#define devcfg_XADCIF_CMDFIFO_CMD_MASK 0x0U
+#define devcfg_XADCIF_CMDFIFO_MASK 0x0U
+
+
+// XADC Interface Data FIFO Data Port
+#define devcfg_XADCIF_RDFIFO_REG 0x114U
+typedef union devcfg_XADCIF_RDFIFO
+{
+	struct
+	{
+		uint32_t RDDATA : 32;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_RDFIFO;
+
+#define devcfg_XADCIF_RDFIFO_RDDATA_LSHIFT 0U
+#define devcfg_XADCIF_RDFIFO_RDDATA_MASK 0x0U
+#define devcfg_XADCIF_RDFIFO_MASK 0x0U
+
+
+// XADC Interface Miscellaneous Control.
+#define devcfg_XADCIF_MCTL_REG 0x118U
+typedef union devcfg_XADCIF_MCTL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t RESET : 1;
+		uint32_t RESERVED_1 : 3;
+		uint32_t RESERVED_2 : 1;
+	} fields;
+	uint32_t v;
+} devcfg_XADCIF_MCTL;
+
+#define devcfg_XADCIF_MCTL_RESERVED_0_LSHIFT 5U
+#define devcfg_XADCIF_MCTL_RESERVED_0_MASK 0xffffffe0U
+#define devcfg_XADCIF_MCTL_RESET_LSHIFT 4U
+#define devcfg_XADCIF_MCTL_RESET 0x10U
+#define devcfg_XADCIF_MCTL_RESET_MASK 0x10U
+#define devcfg_XADCIF_MCTL_RESERVED_1_LSHIFT 1U
+#define devcfg_XADCIF_MCTL_RESERVED_1_MASK 0xeU
+#define devcfg_XADCIF_MCTL_RESERVED_2_LSHIFT 0U
+#define devcfg_XADCIF_MCTL_RESERVED_2 0x1U
+#define devcfg_XADCIF_MCTL_RESERVED_2_MASK 0x1U
+#define devcfg_XADCIF_MCTL_MASK 0x10U
+
+
