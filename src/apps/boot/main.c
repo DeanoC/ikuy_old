@@ -2,6 +2,7 @@
 #include <uart.h>
 #include <hw_regs.h>
 
+#include "uart_control.h"
 #include "debug_print.h"
 
 extern void sclrRunInitProgram();
@@ -23,16 +24,22 @@ int main(int argc, char const * argv[])
     
     // lets get the uart running as early as possible for debug messages during boot
     uartRunInitProgram();
-    
+    // step our debug uart baud to 921600!
+    debug_set_uart_freq(DUF_BAUD_921600);
+    // make the uart fifo as big as allowed
+    debug_set_uart_fifo_size(0x2F);
+
     // System Level Control Registers need setting up
     sclrRunInitProgram();
 
    //   ddrcRunInitProgram();
 
+    debug_printf(DEBUG_CLR_SCREEN);
+    
     int counter = 0;
     while (1)
     {
-        debug_printf("hello %i\n", counter++);
+        debug_printf(DEBUG_CLR_LINE DEBUG_RED_PEN "hello %i\n", counter++);
         // infinite loop
     }
 }

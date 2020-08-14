@@ -1,5 +1,9 @@
 #pragma once
 
+#define HW_REG_FIELD(type, regname, fieldname) (type##_##regname##_##fieldname)
+
+#define HW_REG(type, regname) (((volatile uint32_t *)type_BASE_ADDR) + (type##_##regname##_REG / 4))
+
 #define HW_REG_STRUCT(type, regname) \
     ((volatile type##_##regname*)(((uint32_t*)type_BASE_ADDR) + (type##_##regname##_REG/4)))
 
