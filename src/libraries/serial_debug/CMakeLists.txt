@@ -1,4 +1,4 @@
-set(project serialdebug)
+set(project serial_debug)
 
 project(${project} C ASM)
 
@@ -7,8 +7,8 @@ set(SRCLIST
         src/uart_control.c
 )
 set(HEADERLIST 
-        include/debug_print.h
-        include/uart_control.h
+        include/${project}/debug_print.h
+        include/${project}/uart_control.h
 )
 
 

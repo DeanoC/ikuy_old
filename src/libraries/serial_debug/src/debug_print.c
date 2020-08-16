@@ -1,9 +1,9 @@
 #include <stdint.h>
 #include <hw/uart.h>
-#include <hw/regs.h>
+#include <hw/reg.h>
 #include "snprintf.h"
 
-#define IsTransmitFull() ((*HW_MB_REG(uart, 0, SR) & uart_SR_TXFULL_MASK) == uart_SR_TXFULL_MASK)
+#define IsTransmitFull() ((*HW_REG_MB(uart, 0, SR) & uart_SR_TXFULL_MASK) == uart_SR_TXFULL_MASK)
 
 void debug_print(char const *const text)
 {
@@ -15,7 +15,7 @@ void debug_print(char const *const text)
             // stall
         }
 
-        *HW_MB_REG(uart, 0, FIFO) = *cur;
+        *HW_REG_MB(uart, 0, FIFO) = *cur;
 
         cur++;
     }

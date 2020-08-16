@@ -21,7 +21,7 @@ static void DecodeBits(    std::string const & bits,
         uint32_t vhi = std::stoul(hi);
         uint32_t vlo = std::stoul(lo);
         outShift = vlo;
-        outBitCount = (vhi - vlo)+1;
+        outBitCount = (vhi - vlo) + 1;
         outMask = ((1 << outBitCount) - 1) << vlo;
     } else
     {
@@ -81,11 +81,11 @@ void RegisterBankImplementations::GenerateRegisterStructures()
         {
             printf("WARNING: Only %i for register %s : %s\n", bitsAllocated, bank.name.c_str(), i.name.c_str());
         }
-
+/*
         s << "typedef union " << bank.name << "_" << i.name << "\n";
         s << "{\n";
         s << "\tstruct\n\t{\n";
-
+*/
         uint32_t totalMask = 0;
 
         for (auto &&f : i.fields)
@@ -94,7 +94,7 @@ void RegisterBankImplementations::GenerateRegisterStructures()
             uint32_t mask = 0;
             uint32_t bitWidth = 0;
             DecodeBits(f.bits,shift, mask, bitWidth);
-            s << "\t\tuint32_t " << f.name << " : " << bitWidth << ";\n";
+//            s << "\t\tuint32_t " << f.name << " : " << bitWidth << ";\n";
             if(f.name.find("RESERVED") != f.name.npos|| f.name.find("reserved") != f.name.npos)
             {
                 // don't add to total mask
@@ -106,11 +106,11 @@ void RegisterBankImplementations::GenerateRegisterStructures()
         }
         
 
-        s << "\t} fields;\n";
+/*        s << "\t} fields;\n";
         s << "\tuint32_t v;\n";
         s << "} " << bank.name << "_" << i.name <<";\n";
 
-        s << "\n";
+        s << "\n";*/
         for (auto &&f : i.fields)
         {
             uint32_t shift = 0;

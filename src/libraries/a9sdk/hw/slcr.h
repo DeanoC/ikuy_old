@@ -11,16 +11,6 @@
 
 // Secure Configuration Lock
 #define slcr_SCL_REG 0x0U
-typedef union slcr_SCL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t LOCK : 1;
-	} fields;
-	uint32_t v;
-} slcr_SCL;
-
 #define slcr_SCL_RESERVED_0_LSHIFT 1U
 #define slcr_SCL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_SCL_LOCK_LSHIFT 0U
@@ -31,16 +21,6 @@ typedef union slcr_SCL
 
 // SLCR Write Protection Lock
 #define slcr_SLCR_LOCK_REG 0x4U
-typedef union slcr_SLCR_LOCK
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 16;
-		uint32_t LOCK_KEY : 16;
-	} fields;
-	uint32_t v;
-} slcr_SLCR_LOCK;
-
 #define slcr_SLCR_LOCK_RESERVED_0_LSHIFT 16U
 #define slcr_SLCR_LOCK_RESERVED_0_MASK 0xffff0000U
 #define slcr_SLCR_LOCK_LOCK_KEY_LSHIFT 0U
@@ -50,16 +30,6 @@ typedef union slcr_SLCR_LOCK
 
 // SLCR Write Protection Unlock
 #define slcr_SLCR_UNLOCK_REG 0x8U
-typedef union slcr_SLCR_UNLOCK
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 16;
-		uint32_t UNLOCK_KEY : 16;
-	} fields;
-	uint32_t v;
-} slcr_SLCR_UNLOCK;
-
 #define slcr_SLCR_UNLOCK_RESERVED_0_LSHIFT 16U
 #define slcr_SLCR_UNLOCK_RESERVED_0_MASK 0xffff0000U
 #define slcr_SLCR_UNLOCK_UNLOCK_KEY_LSHIFT 0U
@@ -69,16 +39,6 @@ typedef union slcr_SLCR_UNLOCK
 
 // SLCR Write Protection Status
 #define slcr_SLCR_LOCKSTA_REG 0xcU
-typedef union slcr_SLCR_LOCKSTA
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t LOCK_STATUS : 1;
-	} fields;
-	uint32_t v;
-} slcr_SLCR_LOCKSTA;
-
 #define slcr_SLCR_LOCKSTA_RESERVED_0_LSHIFT 1U
 #define slcr_SLCR_LOCKSTA_RESERVED_0_MASK 0xfffffffeU
 #define slcr_SLCR_LOCKSTA_LOCK_STATUS_LSHIFT 0U
@@ -89,22 +49,6 @@ typedef union slcr_SLCR_LOCKSTA
 
 // ARM PLL Control
 #define slcr_ARM_PLL_CTRL_REG 0x100U
-typedef union slcr_ARM_PLL_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 13;
-		uint32_t PLL_FDIV : 7;
-		uint32_t RESERVED_1 : 7;
-		uint32_t PLL_BYPASS_FORCE : 1;
-		uint32_t PLL_BYPASS_QUAL : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t PLL_PWRDWN : 1;
-		uint32_t PLL_RESET : 1;
-	} fields;
-	uint32_t v;
-} slcr_ARM_PLL_CTRL;
-
 #define slcr_ARM_PLL_CTRL_RESERVED_0_LSHIFT 19U
 #define slcr_ARM_PLL_CTRL_RESERVED_0_MASK 0xfff80000U
 #define slcr_ARM_PLL_CTRL_PLL_FDIV_LSHIFT 12U
@@ -131,22 +75,6 @@ typedef union slcr_ARM_PLL_CTRL
 
 // DDR PLL Control
 #define slcr_DDR_PLL_CTRL_REG 0x104U
-typedef union slcr_DDR_PLL_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 13;
-		uint32_t PLL_FDIV : 7;
-		uint32_t RESERVED_1 : 7;
-		uint32_t PLL_BYPASS_FORCE : 1;
-		uint32_t PLL_BYPASS_QUAL : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t PLL_PWRDWN : 1;
-		uint32_t PLL_RESET : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_PLL_CTRL;
-
 #define slcr_DDR_PLL_CTRL_RESERVED_0_LSHIFT 19U
 #define slcr_DDR_PLL_CTRL_RESERVED_0_MASK 0xfff80000U
 #define slcr_DDR_PLL_CTRL_PLL_FDIV_LSHIFT 12U
@@ -173,22 +101,6 @@ typedef union slcr_DDR_PLL_CTRL
 
 // IO PLL Control
 #define slcr_IO_PLL_CTRL_REG 0x108U
-typedef union slcr_IO_PLL_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 13;
-		uint32_t PLL_FDIV : 7;
-		uint32_t RESERVED_1 : 7;
-		uint32_t PLL_BYPASS_FORCE : 1;
-		uint32_t PLL_BYPASS_QUAL : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t PLL_PWRDWN : 1;
-		uint32_t PLL_RESET : 1;
-	} fields;
-	uint32_t v;
-} slcr_IO_PLL_CTRL;
-
 #define slcr_IO_PLL_CTRL_RESERVED_0_LSHIFT 19U
 #define slcr_IO_PLL_CTRL_RESERVED_0_MASK 0xfff80000U
 #define slcr_IO_PLL_CTRL_PLL_FDIV_LSHIFT 12U
@@ -215,21 +127,6 @@ typedef union slcr_IO_PLL_CTRL
 
 // PLL Status
 #define slcr_PLL_STATUS_REG 0x10cU
-typedef union slcr_PLL_STATUS
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 26;
-		uint32_t IO_PLL_STABLE : 1;
-		uint32_t DDR_PLL_STABLE : 1;
-		uint32_t ARM_PLL_STABLE : 1;
-		uint32_t IO_PLL_LOCK : 1;
-		uint32_t DDR_PLL_LOCK : 1;
-		uint32_t ARM_PLL_LOCK : 1;
-	} fields;
-	uint32_t v;
-} slcr_PLL_STATUS;
-
 #define slcr_PLL_STATUS_RESERVED_0_LSHIFT 6U
 #define slcr_PLL_STATUS_RESERVED_0_MASK 0xffffffc0U
 #define slcr_PLL_STATUS_IO_PLL_STABLE_LSHIFT 5U
@@ -255,19 +152,6 @@ typedef union slcr_PLL_STATUS
 
 // ARM PLL Configuration
 #define slcr_ARM_PLL_CFG_REG 0x110U
-typedef union slcr_ARM_PLL_CFG
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 10;
-		uint32_t LOCK_CNT : 10;
-		uint32_t PLL_CP : 4;
-		uint32_t PLL_RES : 4;
-		uint32_t RESERVED_1 : 4;
-	} fields;
-	uint32_t v;
-} slcr_ARM_PLL_CFG;
-
 #define slcr_ARM_PLL_CFG_RESERVED_0_LSHIFT 22U
 #define slcr_ARM_PLL_CFG_RESERVED_0_MASK 0xffc00000U
 #define slcr_ARM_PLL_CFG_LOCK_CNT_LSHIFT 12U
@@ -283,19 +167,6 @@ typedef union slcr_ARM_PLL_CFG
 
 // DDR PLL Configuration
 #define slcr_DDR_PLL_CFG_REG 0x114U
-typedef union slcr_DDR_PLL_CFG
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 10;
-		uint32_t LOCK_CNT : 10;
-		uint32_t PLL_CP : 4;
-		uint32_t PLL_RES : 4;
-		uint32_t RESERVED_1 : 4;
-	} fields;
-	uint32_t v;
-} slcr_DDR_PLL_CFG;
-
 #define slcr_DDR_PLL_CFG_RESERVED_0_LSHIFT 22U
 #define slcr_DDR_PLL_CFG_RESERVED_0_MASK 0xffc00000U
 #define slcr_DDR_PLL_CFG_LOCK_CNT_LSHIFT 12U
@@ -311,19 +182,6 @@ typedef union slcr_DDR_PLL_CFG
 
 // IO PLL Configuration
 #define slcr_IO_PLL_CFG_REG 0x118U
-typedef union slcr_IO_PLL_CFG
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 10;
-		uint32_t LOCK_CNT : 10;
-		uint32_t PLL_CP : 4;
-		uint32_t PLL_RES : 4;
-		uint32_t RESERVED_1 : 4;
-	} fields;
-	uint32_t v;
-} slcr_IO_PLL_CFG;
-
 #define slcr_IO_PLL_CFG_RESERVED_0_LSHIFT 22U
 #define slcr_IO_PLL_CFG_RESERVED_0_MASK 0xffc00000U
 #define slcr_IO_PLL_CFG_LOCK_CNT_LSHIFT 12U
@@ -339,25 +197,6 @@ typedef union slcr_IO_PLL_CFG
 
 // CPU Clock Control
 #define slcr_ARM_CLK_CTRL_REG 0x120U
-typedef union slcr_ARM_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 3;
-		uint32_t CPU_PERI_CLKACT : 1;
-		uint32_t CPU_1XCLKACT : 1;
-		uint32_t CPU_2XCLKACT : 1;
-		uint32_t CPU_3OR2XCLKACT : 1;
-		uint32_t CPU_6OR4XCLKACT : 1;
-		uint32_t RESERVED_1 : 10;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_2 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_3 : 4;
-	} fields;
-	uint32_t v;
-} slcr_ARM_CLK_CTRL;
-
 #define slcr_ARM_CLK_CTRL_RESERVED_0_LSHIFT 29U
 #define slcr_ARM_CLK_CTRL_RESERVED_0_MASK 0xe0000000U
 #define slcr_ARM_CLK_CTRL_CPU_PERI_CLKACT_LSHIFT 28U
@@ -390,19 +229,6 @@ typedef union slcr_ARM_CLK_CTRL
 
 // DDR Clock Control
 #define slcr_DDR_CLK_CTRL_REG 0x124U
-typedef union slcr_DDR_CLK_CTRL
-{
-	struct
-	{
-		uint32_t DDR_2XCLK_DIVISOR : 6;
-		uint32_t DDR_3XCLK_DIVISOR : 6;
-		uint32_t RESERVED_0 : 18;
-		uint32_t DDR_2XCLKACT : 1;
-		uint32_t DDR_3XCLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_CLK_CTRL;
-
 #define slcr_DDR_CLK_CTRL_DDR_2XCLK_DIVISOR_LSHIFT 26U
 #define slcr_DDR_CLK_CTRL_DDR_2XCLK_DIVISOR_MASK 0xfc000000U
 #define slcr_DDR_CLK_CTRL_DDR_3XCLK_DIVISOR_LSHIFT 20U
@@ -420,20 +246,6 @@ typedef union slcr_DDR_CLK_CTRL
 
 // DCI clock control
 #define slcr_DCI_CLK_CTRL_REG 0x128U
-typedef union slcr_DCI_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR0 : 6;
-		uint32_t RESERVED_2 : 7;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_DCI_CLK_CTRL;
-
 #define slcr_DCI_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_DCI_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_DCI_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -452,40 +264,6 @@ typedef union slcr_DCI_CLK_CTRL
 
 // AMBA Peripheral Clock Control
 #define slcr_APER_CLK_CTRL_REG 0x12cU
-typedef union slcr_APER_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 7;
-		uint32_t SMC_CPU_1XCLKACT : 1;
-		uint32_t LQSPI_CPU_1XCLKACT : 1;
-		uint32_t GPIO_CPU_1XCLKACT : 1;
-		uint32_t UART1_CPU_1XCLKACT : 1;
-		uint32_t UART0_CPU_1XCLKACT : 1;
-		uint32_t I2C1_CPU_1XCLKACT : 1;
-		uint32_t I2C0_CPU_1XCLKACT : 1;
-		uint32_t CAN1_CPU_1XCLKACT : 1;
-		uint32_t CAN0_CPU_1XCLKACT : 1;
-		uint32_t SPI1_CPU_1XCLKACT : 1;
-		uint32_t SPI0_CPU_1XCLKACT : 1;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t SDI1_CPU_1XCLKACT : 1;
-		uint32_t SDI0_CPU_1XCLKACT : 1;
-		uint32_t RESERVED_3 : 1;
-		uint32_t RESERVED_4 : 1;
-		uint32_t GEM1_CPU_1XCLKACT : 1;
-		uint32_t GEM0_CPU_1XCLKACT : 1;
-		uint32_t RESERVED_5 : 1;
-		uint32_t RESERVED_6 : 1;
-		uint32_t USB1_CPU_1XCLKACT : 1;
-		uint32_t USB0_CPU_1XCLKACT : 1;
-		uint32_t RESERVED_7 : 1;
-		uint32_t DMA_CPU_2XCLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_APER_CLK_CTRL;
-
 #define slcr_APER_CLK_CTRL_RESERVED_0_LSHIFT 25U
 #define slcr_APER_CLK_CTRL_RESERVED_0_MASK 0xfe000000U
 #define slcr_APER_CLK_CTRL_SMC_CPU_1XCLKACT_LSHIFT 24U
@@ -568,22 +346,6 @@ typedef union slcr_APER_CLK_CTRL
 
 // USB 0 ULPI Clock Control
 #define slcr_USB0_CLK_CTRL_REG 0x130U
-typedef union slcr_USB0_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t RESERVED_2 : 6;
-		uint32_t RESERVED_3 : 6;
-		uint32_t RESERVED_4 : 1;
-		uint32_t SRCSEL : 3;
-		uint32_t RESERVED_5 : 3;
-		uint32_t RESERVED_6 : 1;
-	} fields;
-	uint32_t v;
-} slcr_USB0_CLK_CTRL;
-
 #define slcr_USB0_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_USB0_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_USB0_CLK_CTRL_RESERVED_1_LSHIFT 20U
@@ -607,22 +369,6 @@ typedef union slcr_USB0_CLK_CTRL
 
 // USB 1 ULPI Clock Control
 #define slcr_USB1_CLK_CTRL_REG 0x134U
-typedef union slcr_USB1_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t RESERVED_2 : 6;
-		uint32_t RESERVED_3 : 6;
-		uint32_t RESERVED_4 : 1;
-		uint32_t SRCSEL : 3;
-		uint32_t RESERVED_5 : 3;
-		uint32_t RESERVED_6 : 1;
-	} fields;
-	uint32_t v;
-} slcr_USB1_CLK_CTRL;
-
 #define slcr_USB1_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_USB1_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_USB1_CLK_CTRL_RESERVED_1_LSHIFT 20U
@@ -646,18 +392,6 @@ typedef union slcr_USB1_CLK_CTRL
 
 // GigE 0 Rx Clock and Rx Signals Select
 #define slcr_GEM0_RCLK_CTRL_REG 0x138U
-typedef union slcr_GEM0_RCLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 27;
-		uint32_t SRCSEL : 1;
-		uint32_t RESERVED_1 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_GEM0_RCLK_CTRL;
-
 #define slcr_GEM0_RCLK_CTRL_RESERVED_0_LSHIFT 5U
 #define slcr_GEM0_RCLK_CTRL_RESERVED_0_MASK 0xffffffe0U
 #define slcr_GEM0_RCLK_CTRL_SRCSEL_LSHIFT 4U
@@ -673,18 +407,6 @@ typedef union slcr_GEM0_RCLK_CTRL
 
 // GigE 1 Rx Clock and Rx Signals Select
 #define slcr_GEM1_RCLK_CTRL_REG 0x13cU
-typedef union slcr_GEM1_RCLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 27;
-		uint32_t SRCSEL : 1;
-		uint32_t RESERVED_1 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_GEM1_RCLK_CTRL;
-
 #define slcr_GEM1_RCLK_CTRL_RESERVED_0_LSHIFT 5U
 #define slcr_GEM1_RCLK_CTRL_RESERVED_0_MASK 0xffffffe0U
 #define slcr_GEM1_RCLK_CTRL_SRCSEL_LSHIFT 4U
@@ -700,22 +422,6 @@ typedef union slcr_GEM1_RCLK_CTRL
 
 // GigE 0 Ref Clock Control
 #define slcr_GEM0_CLK_CTRL_REG 0x140U
-typedef union slcr_GEM0_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_2 : 1;
-		uint32_t SRCSEL : 3;
-		uint32_t RESERVED_3 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_GEM0_CLK_CTRL;
-
 #define slcr_GEM0_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_GEM0_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_GEM0_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -739,22 +445,6 @@ typedef union slcr_GEM0_CLK_CTRL
 
 // GigE 1 Ref Clock Control
 #define slcr_GEM1_CLK_CTRL_REG 0x144U
-typedef union slcr_GEM1_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_2 : 1;
-		uint32_t SRCSEL : 3;
-		uint32_t RESERVED_3 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_GEM1_CLK_CTRL;
-
 #define slcr_GEM1_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_GEM1_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_GEM1_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -778,20 +468,6 @@ typedef union slcr_GEM1_CLK_CTRL
 
 // SMC Ref Clock Control
 #define slcr_SMC_CLK_CTRL_REG 0x148U
-typedef union slcr_SMC_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_2 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_SMC_CLK_CTRL;
-
 #define slcr_SMC_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_SMC_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_SMC_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -810,20 +486,6 @@ typedef union slcr_SMC_CLK_CTRL
 
 // Quad SPI Ref Clock Control
 #define slcr_LQSPI_CLK_CTRL_REG 0x14cU
-typedef union slcr_LQSPI_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_2 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_LQSPI_CLK_CTRL;
-
 #define slcr_LQSPI_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_LQSPI_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_LQSPI_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -842,21 +504,6 @@ typedef union slcr_LQSPI_CLK_CTRL
 
 // SDIO Ref Clock Control
 #define slcr_SDIO_CLK_CTRL_REG 0x150U
-typedef union slcr_SDIO_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_2 : 2;
-		uint32_t CLKACT1 : 1;
-		uint32_t CLKACT0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_SDIO_CLK_CTRL;
-
 #define slcr_SDIO_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_SDIO_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_SDIO_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -878,21 +525,6 @@ typedef union slcr_SDIO_CLK_CTRL
 
 // UART Ref Clock Control
 #define slcr_UART_CLK_CTRL_REG 0x154U
-typedef union slcr_UART_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_2 : 2;
-		uint32_t CLKACT1 : 1;
-		uint32_t CLKACT0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_UART_CLK_CTRL;
-
 #define slcr_UART_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_UART_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_UART_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -914,21 +546,6 @@ typedef union slcr_UART_CLK_CTRL
 
 // SPI Ref Clock Control
 #define slcr_SPI_CLK_CTRL_REG 0x158U
-typedef union slcr_SPI_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_2 : 2;
-		uint32_t CLKACT1 : 1;
-		uint32_t CLKACT0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_SPI_CLK_CTRL;
-
 #define slcr_SPI_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_SPI_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_SPI_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -950,23 +567,6 @@ typedef union slcr_SPI_CLK_CTRL
 
 // CAN Ref Clock Control
 #define slcr_CAN_CLK_CTRL_REG 0x15cU
-typedef union slcr_CAN_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR0 : 6;
-		uint32_t RESERVED_2 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_3 : 2;
-		uint32_t CLKACT1 : 1;
-		uint32_t CLKACT0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_CAN_CLK_CTRL;
-
 #define slcr_CAN_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_CAN_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_CAN_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -992,20 +592,6 @@ typedef union slcr_CAN_CLK_CTRL
 
 // CAN MIO Clock Control
 #define slcr_CAN_MIOCLK_CTRL_REG 0x160U
-typedef union slcr_CAN_MIOCLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 9;
-		uint32_t CAN1_REF_SEL : 1;
-		uint32_t CAN1_MUX : 6;
-		uint32_t RESERVED_1 : 9;
-		uint32_t CAN0_REF_SEL : 1;
-		uint32_t CAN0_MUX : 6;
-	} fields;
-	uint32_t v;
-} slcr_CAN_MIOCLK_CTRL;
-
 #define slcr_CAN_MIOCLK_CTRL_RESERVED_0_LSHIFT 23U
 #define slcr_CAN_MIOCLK_CTRL_RESERVED_0_MASK 0xff800000U
 #define slcr_CAN_MIOCLK_CTRL_CAN1_REF_SEL_LSHIFT 22U
@@ -1025,21 +611,6 @@ typedef union slcr_CAN_MIOCLK_CTRL
 
 // SoC Debug Clock Control
 #define slcr_DBG_CLK_CTRL_REG 0x164U
-typedef union slcr_DBG_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 1;
-		uint32_t SRCSEL : 3;
-		uint32_t RESERVED_2 : 2;
-		uint32_t CPU_1XCLKACT : 1;
-		uint32_t CLKACT_TRC : 1;
-	} fields;
-	uint32_t v;
-} slcr_DBG_CLK_CTRL;
-
 #define slcr_DBG_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_DBG_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_DBG_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -1062,20 +633,6 @@ typedef union slcr_DBG_CLK_CTRL
 
 // PCAP Clock Control
 #define slcr_PCAP_CLK_CTRL_REG 0x168U
-typedef union slcr_PCAP_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DIVISOR : 6;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_2 : 3;
-		uint32_t CLKACT : 1;
-	} fields;
-	uint32_t v;
-} slcr_PCAP_CLK_CTRL;
-
 #define slcr_PCAP_CLK_CTRL_RESERVED_0_LSHIFT 14U
 #define slcr_PCAP_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
 #define slcr_PCAP_CLK_CTRL_DIVISOR_LSHIFT 8U
@@ -1094,16 +651,6 @@ typedef union slcr_PCAP_CLK_CTRL
 
 // Central Interconnect Clock Control
 #define slcr_TOPSW_CLK_CTRL_REG 0x16cU
-typedef union slcr_TOPSW_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t CLK_DIS : 1;
-	} fields;
-	uint32_t v;
-} slcr_TOPSW_CLK_CTRL;
-
 #define slcr_TOPSW_CLK_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_TOPSW_CLK_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_TOPSW_CLK_CTRL_CLK_DIS_LSHIFT 0U
@@ -1114,21 +661,6 @@ typedef union slcr_TOPSW_CLK_CTRL
 
 // PL Clock 0 Output control
 #define slcr_FPGA0_CLK_CTRL_REG 0x170U
-typedef union slcr_FPGA0_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR0 : 6;
-		uint32_t RESERVED_2 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_3 : 4;
-	} fields;
-	uint32_t v;
-} slcr_FPGA0_CLK_CTRL;
-
 #define slcr_FPGA0_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_FPGA0_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_FPGA0_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -1148,19 +680,6 @@ typedef union slcr_FPGA0_CLK_CTRL
 
 // PL Clock 0 Throttle control
 #define slcr_FPGA0_THR_CTRL_REG 0x174U
-typedef union slcr_FPGA0_THR_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t CNT_RST : 1;
-		uint32_t CPU_START : 1;
-	} fields;
-	uint32_t v;
-} slcr_FPGA0_THR_CTRL;
-
 #define slcr_FPGA0_THR_CTRL_RESERVED_0_LSHIFT 4U
 #define slcr_FPGA0_THR_CTRL_RESERVED_0_MASK 0xfffffff0U
 #define slcr_FPGA0_THR_CTRL_RESERVED_1_LSHIFT 3U
@@ -1180,17 +699,6 @@ typedef union slcr_FPGA0_THR_CTRL
 
 // PL Clock 0 Throttle Count control
 #define slcr_FPGA0_THR_CNT_REG 0x178U
-typedef union slcr_FPGA0_THR_CNT
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 12;
-		uint32_t RESERVED_1 : 4;
-		uint32_t LAST_CNT : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA0_THR_CNT;
-
 #define slcr_FPGA0_THR_CNT_RESERVED_0_LSHIFT 20U
 #define slcr_FPGA0_THR_CNT_RESERVED_0_MASK 0xfff00000U
 #define slcr_FPGA0_THR_CNT_RESERVED_1_LSHIFT 16U
@@ -1202,17 +710,6 @@ typedef union slcr_FPGA0_THR_CNT
 
 // PL Clock 0 Throttle Status read
 #define slcr_FPGA0_THR_STA_REG 0x17cU
-typedef union slcr_FPGA0_THR_STA
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 15;
-		uint32_t RUNNING : 1;
-		uint32_t CURR_VAL : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA0_THR_STA;
-
 #define slcr_FPGA0_THR_STA_RESERVED_0_LSHIFT 17U
 #define slcr_FPGA0_THR_STA_RESERVED_0_MASK 0xfffe0000U
 #define slcr_FPGA0_THR_STA_RUNNING_LSHIFT 16U
@@ -1225,21 +722,6 @@ typedef union slcr_FPGA0_THR_STA
 
 // PL Clock 1 Output control
 #define slcr_FPGA1_CLK_CTRL_REG 0x180U
-typedef union slcr_FPGA1_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR0 : 6;
-		uint32_t RESERVED_2 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_3 : 4;
-	} fields;
-	uint32_t v;
-} slcr_FPGA1_CLK_CTRL;
-
 #define slcr_FPGA1_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_FPGA1_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_FPGA1_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -1259,19 +741,6 @@ typedef union slcr_FPGA1_CLK_CTRL
 
 // PL Clock 1 Throttle control
 #define slcr_FPGA1_THR_CTRL_REG 0x184U
-typedef union slcr_FPGA1_THR_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t CNT_RST : 1;
-		uint32_t CPU_START : 1;
-	} fields;
-	uint32_t v;
-} slcr_FPGA1_THR_CTRL;
-
 #define slcr_FPGA1_THR_CTRL_RESERVED_0_LSHIFT 4U
 #define slcr_FPGA1_THR_CTRL_RESERVED_0_MASK 0xfffffff0U
 #define slcr_FPGA1_THR_CTRL_RESERVED_1_LSHIFT 3U
@@ -1291,17 +760,6 @@ typedef union slcr_FPGA1_THR_CTRL
 
 // PL Clock 1 Throttle Count
 #define slcr_FPGA1_THR_CNT_REG 0x188U
-typedef union slcr_FPGA1_THR_CNT
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 12;
-		uint32_t RESERVED_1 : 4;
-		uint32_t LAST_CNT : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA1_THR_CNT;
-
 #define slcr_FPGA1_THR_CNT_RESERVED_0_LSHIFT 20U
 #define slcr_FPGA1_THR_CNT_RESERVED_0_MASK 0xfff00000U
 #define slcr_FPGA1_THR_CNT_RESERVED_1_LSHIFT 16U
@@ -1313,17 +771,6 @@ typedef union slcr_FPGA1_THR_CNT
 
 // PL Clock 1 Throttle Status control
 #define slcr_FPGA1_THR_STA_REG 0x18cU
-typedef union slcr_FPGA1_THR_STA
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 15;
-		uint32_t RUNNING : 1;
-		uint32_t CURR_VAL : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA1_THR_STA;
-
 #define slcr_FPGA1_THR_STA_RESERVED_0_LSHIFT 17U
 #define slcr_FPGA1_THR_STA_RESERVED_0_MASK 0xfffe0000U
 #define slcr_FPGA1_THR_STA_RUNNING_LSHIFT 16U
@@ -1336,21 +783,6 @@ typedef union slcr_FPGA1_THR_STA
 
 // PL Clock 2 output control
 #define slcr_FPGA2_CLK_CTRL_REG 0x190U
-typedef union slcr_FPGA2_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR0 : 6;
-		uint32_t RESERVED_2 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_3 : 4;
-	} fields;
-	uint32_t v;
-} slcr_FPGA2_CLK_CTRL;
-
 #define slcr_FPGA2_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_FPGA2_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_FPGA2_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -1370,19 +802,6 @@ typedef union slcr_FPGA2_CLK_CTRL
 
 // PL Clock 2 Throttle Control
 #define slcr_FPGA2_THR_CTRL_REG 0x194U
-typedef union slcr_FPGA2_THR_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t CNT_RST : 1;
-		uint32_t CPU_START : 1;
-	} fields;
-	uint32_t v;
-} slcr_FPGA2_THR_CTRL;
-
 #define slcr_FPGA2_THR_CTRL_RESERVED_0_LSHIFT 4U
 #define slcr_FPGA2_THR_CTRL_RESERVED_0_MASK 0xfffffff0U
 #define slcr_FPGA2_THR_CTRL_RESERVED_1_LSHIFT 3U
@@ -1402,17 +821,6 @@ typedef union slcr_FPGA2_THR_CTRL
 
 // PL Clock 2 Throttle Count
 #define slcr_FPGA2_THR_CNT_REG 0x198U
-typedef union slcr_FPGA2_THR_CNT
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 12;
-		uint32_t RESERVED_1 : 4;
-		uint32_t LAST_CNT : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA2_THR_CNT;
-
 #define slcr_FPGA2_THR_CNT_RESERVED_0_LSHIFT 20U
 #define slcr_FPGA2_THR_CNT_RESERVED_0_MASK 0xfff00000U
 #define slcr_FPGA2_THR_CNT_RESERVED_1_LSHIFT 16U
@@ -1424,17 +832,6 @@ typedef union slcr_FPGA2_THR_CNT
 
 // PL Clock 2 Throttle Status
 #define slcr_FPGA2_THR_STA_REG 0x19cU
-typedef union slcr_FPGA2_THR_STA
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 15;
-		uint32_t RUNNING : 1;
-		uint32_t CURR_VAL : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA2_THR_STA;
-
 #define slcr_FPGA2_THR_STA_RESERVED_0_LSHIFT 17U
 #define slcr_FPGA2_THR_STA_RESERVED_0_MASK 0xfffe0000U
 #define slcr_FPGA2_THR_STA_RUNNING_LSHIFT 16U
@@ -1447,21 +844,6 @@ typedef union slcr_FPGA2_THR_STA
 
 // PL Clock 3 output control
 #define slcr_FPGA3_CLK_CTRL_REG 0x1a0U
-typedef union slcr_FPGA3_CLK_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 6;
-		uint32_t DIVISOR1 : 6;
-		uint32_t RESERVED_1 : 6;
-		uint32_t DIVISOR0 : 6;
-		uint32_t RESERVED_2 : 2;
-		uint32_t SRCSEL : 2;
-		uint32_t RESERVED_3 : 4;
-	} fields;
-	uint32_t v;
-} slcr_FPGA3_CLK_CTRL;
-
 #define slcr_FPGA3_CLK_CTRL_RESERVED_0_LSHIFT 26U
 #define slcr_FPGA3_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
 #define slcr_FPGA3_CLK_CTRL_DIVISOR1_LSHIFT 20U
@@ -1485,17 +867,6 @@ typedef union slcr_FPGA3_CLK_CTRL
 
 // PL Clock 3 Throttle Count
 #define slcr_FPGA3_THR_CNT_REG 0x1a8U
-typedef union slcr_FPGA3_THR_CNT
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 12;
-		uint32_t RESERVED_1 : 4;
-		uint32_t LAST_CNT : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA3_THR_CNT;
-
 #define slcr_FPGA3_THR_CNT_RESERVED_0_LSHIFT 20U
 #define slcr_FPGA3_THR_CNT_RESERVED_0_MASK 0xfff00000U
 #define slcr_FPGA3_THR_CNT_RESERVED_1_LSHIFT 16U
@@ -1507,17 +878,6 @@ typedef union slcr_FPGA3_THR_CNT
 
 // PL Clock 3 Throttle Status
 #define slcr_FPGA3_THR_STA_REG 0x1acU
-typedef union slcr_FPGA3_THR_STA
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 15;
-		uint32_t RUNNING : 1;
-		uint32_t CURR_VAL : 16;
-	} fields;
-	uint32_t v;
-} slcr_FPGA3_THR_STA;
-
 #define slcr_FPGA3_THR_STA_RESERVED_0_LSHIFT 17U
 #define slcr_FPGA3_THR_STA_RESERVED_0_MASK 0xfffe0000U
 #define slcr_FPGA3_THR_STA_RUNNING_LSHIFT 16U
@@ -1530,16 +890,6 @@ typedef union slcr_FPGA3_THR_STA
 
 // CPU Clock Ratio Mode select
 #define slcr_CLK_621_TRUE_REG 0x1c4U
-typedef union slcr_CLK_621_TRUE
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t CLK_621_TRUE : 1;
-	} fields;
-	uint32_t v;
-} slcr_CLK_621_TRUE;
-
 #define slcr_CLK_621_TRUE_RESERVED_0_LSHIFT 1U
 #define slcr_CLK_621_TRUE_RESERVED_0_MASK 0xfffffffeU
 #define slcr_CLK_621_TRUE_CLK_621_TRUE_LSHIFT 0U
@@ -1550,16 +900,6 @@ typedef union slcr_CLK_621_TRUE
 
 // PS Software Reset Control
 #define slcr_PSS_RST_CTRL_REG 0x200U
-typedef union slcr_PSS_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t SOFT_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_PSS_RST_CTRL;
-
 #define slcr_PSS_RST_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_PSS_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_PSS_RST_CTRL_SOFT_RST_LSHIFT 0U
@@ -1570,16 +910,6 @@ typedef union slcr_PSS_RST_CTRL
 
 // DDR Software Reset Control
 #define slcr_DDR_RST_CTRL_REG 0x204U
-typedef union slcr_DDR_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t DDR_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_RST_CTRL;
-
 #define slcr_DDR_RST_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_DDR_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_DDR_RST_CTRL_DDR_RST_LSHIFT 0U
@@ -1590,16 +920,6 @@ typedef union slcr_DDR_RST_CTRL
 
 // Central Interconnect Reset Control
 #define slcr_TOPSW_RST_CTRL_REG 0x208U
-typedef union slcr_TOPSW_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t TOPSW_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_TOPSW_RST_CTRL;
-
 #define slcr_TOPSW_RST_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_TOPSW_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_TOPSW_RST_CTRL_TOPSW_RST_LSHIFT 0U
@@ -1610,16 +930,6 @@ typedef union slcr_TOPSW_RST_CTRL
 
 // DMAC Software Reset Control
 #define slcr_DMAC_RST_CTRL_REG 0x20cU
-typedef union slcr_DMAC_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t DMAC_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_DMAC_RST_CTRL;
-
 #define slcr_DMAC_RST_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_DMAC_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_DMAC_RST_CTRL_DMAC_RST_LSHIFT 0U
@@ -1630,17 +940,6 @@ typedef union slcr_DMAC_RST_CTRL
 
 // USB Software Reset Control
 #define slcr_USB_RST_CTRL_REG 0x210U
-typedef union slcr_USB_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 30;
-		uint32_t USB1_CPU1X_RST : 1;
-		uint32_t USB0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_USB_RST_CTRL;
-
 #define slcr_USB_RST_CTRL_RESERVED_0_LSHIFT 2U
 #define slcr_USB_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
 #define slcr_USB_RST_CTRL_USB1_CPU1X_RST_LSHIFT 1U
@@ -1654,22 +953,6 @@ typedef union slcr_USB_RST_CTRL
 
 // Gigabit Ethernet SW Reset Control
 #define slcr_GEM_RST_CTRL_REG 0x214U
-typedef union slcr_GEM_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 24;
-		uint32_t GEM1_REF_RST : 1;
-		uint32_t GEM0_REF_RST : 1;
-		uint32_t GEM1_RX_RST : 1;
-		uint32_t GEM0_RX_RST : 1;
-		uint32_t RESERVED_1 : 2;
-		uint32_t GEM1_CPU1X_RST : 1;
-		uint32_t GEM0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_GEM_RST_CTRL;
-
 #define slcr_GEM_RST_CTRL_RESERVED_0_LSHIFT 8U
 #define slcr_GEM_RST_CTRL_RESERVED_0_MASK 0xffffff00U
 #define slcr_GEM_RST_CTRL_GEM1_REF_RST_LSHIFT 7U
@@ -1697,20 +980,6 @@ typedef union slcr_GEM_RST_CTRL
 
 // SDIO Software Reset Control
 #define slcr_SDIO_RST_CTRL_REG 0x218U
-typedef union slcr_SDIO_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 26;
-		uint32_t SDIO1_REF_RST : 1;
-		uint32_t SDIO0_REF_RST : 1;
-		uint32_t RESERVED_1 : 2;
-		uint32_t SDIO1_CPU1X_RST : 1;
-		uint32_t SDIO0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_SDIO_RST_CTRL;
-
 #define slcr_SDIO_RST_CTRL_RESERVED_0_LSHIFT 6U
 #define slcr_SDIO_RST_CTRL_RESERVED_0_MASK 0xffffffc0U
 #define slcr_SDIO_RST_CTRL_SDIO1_REF_RST_LSHIFT 5U
@@ -1732,19 +1001,6 @@ typedef union slcr_SDIO_RST_CTRL
 
 // SPI Software Reset Control
 #define slcr_SPI_RST_CTRL_REG 0x21cU
-typedef union slcr_SPI_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t SPI1_REF_RST : 1;
-		uint32_t SPI0_REF_RST : 1;
-		uint32_t SPI1_CPU1X_RST : 1;
-		uint32_t SPI0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_SPI_RST_CTRL;
-
 #define slcr_SPI_RST_CTRL_RESERVED_0_LSHIFT 4U
 #define slcr_SPI_RST_CTRL_RESERVED_0_MASK 0xfffffff0U
 #define slcr_SPI_RST_CTRL_SPI1_REF_RST_LSHIFT 3U
@@ -1764,19 +1020,6 @@ typedef union slcr_SPI_RST_CTRL
 
 // CAN Software Reset Control
 #define slcr_CAN_RST_CTRL_REG 0x220U
-typedef union slcr_CAN_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t CAN1_CPU1X_RST : 1;
-		uint32_t CAN0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_CAN_RST_CTRL;
-
 #define slcr_CAN_RST_CTRL_RESERVED_0_LSHIFT 4U
 #define slcr_CAN_RST_CTRL_RESERVED_0_MASK 0xfffffff0U
 #define slcr_CAN_RST_CTRL_RESERVED_1_LSHIFT 3U
@@ -1796,17 +1039,6 @@ typedef union slcr_CAN_RST_CTRL
 
 // I2C Software Reset Control
 #define slcr_I2C_RST_CTRL_REG 0x224U
-typedef union slcr_I2C_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 30;
-		uint32_t I2C1_CPU1X_RST : 1;
-		uint32_t I2C0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_I2C_RST_CTRL;
-
 #define slcr_I2C_RST_CTRL_RESERVED_0_LSHIFT 2U
 #define slcr_I2C_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
 #define slcr_I2C_RST_CTRL_I2C1_CPU1X_RST_LSHIFT 1U
@@ -1820,19 +1052,6 @@ typedef union slcr_I2C_RST_CTRL
 
 // UART Software Reset Control
 #define slcr_UART_RST_CTRL_REG 0x228U
-typedef union slcr_UART_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t UART1_REF_RST : 1;
-		uint32_t UART0_REF_RST : 1;
-		uint32_t UART1_CPU1X_RST : 1;
-		uint32_t UART0_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_UART_RST_CTRL;
-
 #define slcr_UART_RST_CTRL_RESERVED_0_LSHIFT 4U
 #define slcr_UART_RST_CTRL_RESERVED_0_MASK 0xfffffff0U
 #define slcr_UART_RST_CTRL_UART1_REF_RST_LSHIFT 3U
@@ -1852,16 +1071,6 @@ typedef union slcr_UART_RST_CTRL
 
 // GPIO Software Reset Control
 #define slcr_GPIO_RST_CTRL_REG 0x22cU
-typedef union slcr_GPIO_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t GPIO_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_GPIO_RST_CTRL;
-
 #define slcr_GPIO_RST_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_GPIO_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_GPIO_RST_CTRL_GPIO_CPU1X_RST_LSHIFT 0U
@@ -1872,17 +1081,6 @@ typedef union slcr_GPIO_RST_CTRL
 
 // Quad SPI Software Reset Control
 #define slcr_LQSPI_RST_CTRL_REG 0x230U
-typedef union slcr_LQSPI_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 30;
-		uint32_t QSPI_REF_RST : 1;
-		uint32_t LQSPI_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_LQSPI_RST_CTRL;
-
 #define slcr_LQSPI_RST_CTRL_RESERVED_0_LSHIFT 2U
 #define slcr_LQSPI_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
 #define slcr_LQSPI_RST_CTRL_QSPI_REF_RST_LSHIFT 1U
@@ -1896,17 +1094,6 @@ typedef union slcr_LQSPI_RST_CTRL
 
 // SMC Software Reset Control
 #define slcr_SMC_RST_CTRL_REG 0x234U
-typedef union slcr_SMC_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 30;
-		uint32_t SMC_REF_RST : 1;
-		uint32_t SMC_CPU1X_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_SMC_RST_CTRL;
-
 #define slcr_SMC_RST_CTRL_RESERVED_0_LSHIFT 2U
 #define slcr_SMC_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
 #define slcr_SMC_RST_CTRL_SMC_REF_RST_LSHIFT 1U
@@ -1920,16 +1107,6 @@ typedef union slcr_SMC_RST_CTRL
 
 // OCM Software Reset Control
 #define slcr_OCM_RST_CTRL_REG 0x238U
-typedef union slcr_OCM_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t OCM_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_OCM_RST_CTRL;
-
 #define slcr_OCM_RST_CTRL_RESERVED_0_LSHIFT 1U
 #define slcr_OCM_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_OCM_RST_CTRL_OCM_RST_LSHIFT 0U
@@ -1940,35 +1117,6 @@ typedef union slcr_OCM_RST_CTRL
 
 // FPGA Software Reset Control
 #define slcr_FPGA_RST_CTRL_REG 0x240U
-typedef union slcr_FPGA_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 7;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t RESERVED_3 : 1;
-		uint32_t RESERVED_4 : 1;
-		uint32_t RESERVED_5 : 1;
-		uint32_t RESERVED_6 : 2;
-		uint32_t RESERVED_7 : 1;
-		uint32_t RESERVED_8 : 1;
-		uint32_t RESERVED_9 : 2;
-		uint32_t RESERVED_10 : 1;
-		uint32_t RESERVED_11 : 1;
-		uint32_t RESERVED_12 : 1;
-		uint32_t RESERVED_13 : 1;
-		uint32_t RESERVED_14 : 1;
-		uint32_t RESERVED_15 : 1;
-		uint32_t RESERVED_16 : 4;
-		uint32_t FPGA3_OUT_RST : 1;
-		uint32_t FPGA2_OUT_RST : 1;
-		uint32_t FPGA1_OUT_RST : 1;
-		uint32_t FPGA0_OUT_RST : 1;
-	} fields;
-	uint32_t v;
-} slcr_FPGA_RST_CTRL;
-
 #define slcr_FPGA_RST_CTRL_RESERVED_0_LSHIFT 25U
 #define slcr_FPGA_RST_CTRL_RESERVED_0_MASK 0xfe000000U
 #define slcr_FPGA_RST_CTRL_RESERVED_1_LSHIFT 24U
@@ -2033,22 +1181,6 @@ typedef union slcr_FPGA_RST_CTRL
 
 // CPU Reset and Clock control
 #define slcr_A9_CPU_RST_CTRL_REG 0x244U
-typedef union slcr_A9_CPU_RST_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 23;
-		uint32_t PERI_RST : 1;
-		uint32_t RESERVED_1 : 2;
-		uint32_t A9_CLKSTOP1 : 1;
-		uint32_t A9_CLKSTOP0 : 1;
-		uint32_t RESERVED_2 : 2;
-		uint32_t A9_RST1 : 1;
-		uint32_t A9_RST0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_A9_CPU_RST_CTRL;
-
 #define slcr_A9_CPU_RST_CTRL_RESERVED_0_LSHIFT 9U
 #define slcr_A9_CPU_RST_CTRL_RESERVED_0_MASK 0xfffffe00U
 #define slcr_A9_CPU_RST_CTRL_PERI_RST_LSHIFT 8U
@@ -2075,17 +1207,6 @@ typedef union slcr_A9_CPU_RST_CTRL
 
 // Watchdog Timer Reset Control
 #define slcr_RS_AWDT_CTRL_REG 0x24cU
-typedef union slcr_RS_AWDT_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 30;
-		uint32_t CTRL1 : 1;
-		uint32_t CTRL0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_RS_AWDT_CTRL;
-
 #define slcr_RS_AWDT_CTRL_RESERVED_0_LSHIFT 2U
 #define slcr_RS_AWDT_CTRL_RESERVED_0_MASK 0xfffffffcU
 #define slcr_RS_AWDT_CTRL_CTRL1_LSHIFT 1U
@@ -2099,24 +1220,6 @@ typedef union slcr_RS_AWDT_CTRL
 
 // Reboot Status, persistent
 #define slcr_REBOOT_STATUS_REG 0x258U
-typedef union slcr_REBOOT_STATUS
-{
-	struct
-	{
-		uint32_t REBOOT_STATE : 8;
-		uint32_t RESERVED_0 : 1;
-		uint32_t POR : 1;
-		uint32_t SRST_B : 1;
-		uint32_t DBG_RST : 1;
-		uint32_t SLC_RST : 1;
-		uint32_t AWDT1_RST : 1;
-		uint32_t AWDT0_RST : 1;
-		uint32_t SWDT_RST : 1;
-		uint32_t BOOTROM_ERROR_CODE : 16;
-	} fields;
-	uint32_t v;
-} slcr_REBOOT_STATUS;
-
 #define slcr_REBOOT_STATUS_REBOOT_STATE_LSHIFT 24U
 #define slcr_REBOOT_STATUS_REBOOT_STATE_MASK 0xff000000U
 #define slcr_REBOOT_STATUS_RESERVED_0_LSHIFT 23U
@@ -2148,19 +1251,8 @@ typedef union slcr_REBOOT_STATUS
 #define slcr_REBOOT_STATUS_MASK 0xff7fffffU
 
 
-// Destination Address.                —              ‡p…“4V          P¸…“4V  –˙…“4V                        ∞˘…“4V                        p˙…“4V         rw              –˘…“4V                         2     pH “4V  ¯H “4V  ¯H “4V          !       XDCFG_DMA_DEST_ADDR     !       XDCFG_DMA_SRC_LEN       1       DMA Source Transfer Length.             —               êt…“4V                  ¸…“4V                        ˙…“4V                        ∞˚…“4V         rw              ˚…“4V                          2     @r “4V  Ps “4V  Ps “4V          !       XDCFG_DMA_SRC_LEN       !       XDCFG_DMA_DEST_LEN      —                ˙…“4V                   ˝…“4V                        0¸…“4V                        ¿¸…“4V         rw              Pv…“4V                          $ 2     –A “4V  ‡B “4V  ‡B “4V          !       XDCFG_DMA_DEST_LEN      !       XDCFG_MULTIBOOT_ADDR V  1       Multi-Boot Address Pointer.             —           e  ¿s…“4V  ∞q…“4V  Äu…“4V  `˛…“4V                        @˝…“4V                         ˛…“4V         rw              `˝…“4V                        ,      pv “4V  Äw “4V  Äw “4V          !       XDCFG_MULTIBOOT_ADDR    —           e  Äu…“4V                  ∞˛…“4V         XDCFG_UNLOCK    –˛…“4V         XDCFG_UNLOCK    ˛…“4V         rw              ˇ…“4V         Unlock Control. 4 2     ‡_ “4V  h` “4V  h` “4V          1       mixed x Miscellaneous Control           !       Address Pointer.        —           e  ∞q…“4V                  –ˇ…“4V         XDCFG_MCTRL     ˇ…“4V         XDCFG_MCTRL     Pˇ…“4V                        Äˇ…“4V                        Ä 2     p√ “4V  À “4V  À “4V          —           e  @ “4V                  †  “4V  
+// Destination Address.                —              ‡`U‹vU          PÏU‹vU  –ÍU‹vU                        ∞ÈU‹vU                        pÍU‹vU         rw              –ÈU‹vU                         2     p8V‹vU  ¯8V‹vU  ¯8V‹vU          !       XDCFG_DMA_DEST_ADDR     !       XDCFG_DMA_SRC_LEN       1       DMA Source Transfer Length.             —               êdU‹vU                  ÏU‹vU                        ÍU‹vU                        ∞ÎU‹vU         rw              ÎU‹vU                          2     @bV‹vU  PcV‹vU  PcV‹vU          !       XDCFG_DMA_SRC_LEN       !       XDCFG_DMA_DEST_LEN      —                ÍU‹vU                   ÌU‹vU                        0ÏU‹vU                        ¿ÏU‹vU         rw              PfU‹vU                          $ 2     –1V‹vU  ‡2V‹vU  ‡2V‹vU          !       XDCFG_DMA_DEST_LEN      !       XDCFG_MULTIBOOT_ADDR U  1       Multi-Boot Address Pointer.             —           Ç  ¿cU‹vU  ∞aU‹vU  ÄeU‹vU  `ÓU‹vU                        @ÌU‹vU                         ÓU‹vU         rw              `ÌU‹vU                        ,      pfV‹vU  ÄgV‹vU  ÄgV‹vU          !       XDCFG_MULTIBOOT_ADDR    —           Ç  ÄeU‹vU                  ∞ÓU‹vU         XDCFG_UNLOCK    –ÓU‹vU         XDCFG_UNLOCK    ÓU‹vU         rw              ÔU‹vU         Unlock Control. 4 2     ‡OV‹vU  hPV‹vU  hPV‹vU          1       mixed x Miscellaneous Control           !       Address Pointer.        —           Ç  ∞aU‹vU                  –ÔU‹vU         XDCFG_MCTRL     ÔU‹vU         XDCFG_MCTRL     PÔU‹vU                        ÄÔU‹vU                        Ä 2     p≥V‹vU  ªV‹vU  ªV‹vU          —           Ç  @ÙU‹vU                  †U‹vU  
 #define slcr_BOOT_MODE_REG 0x25cU
-typedef union slcr_BOOT_MODE
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 27;
-		uint32_t PLL_BYPASS : 1;
-		uint32_t BOOT_MODE : 4;
-	} fields;
-	uint32_t v;
-} slcr_BOOT_MODE;
-
 #define slcr_BOOT_MODE_RESERVED_0_LSHIFT 5U
 #define slcr_BOOT_MODE_RESERVED_0_MASK 0xffffffe0U
 #define slcr_BOOT_MODE_PLL_BYPASS_LSHIFT 4U
@@ -2173,17 +1265,6 @@ typedef union slcr_BOOT_MODE
 
 // APU Control
 #define slcr_APU_CTRL_REG 0x300U
-typedef union slcr_APU_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 29;
-		uint32_t CFGSDISABLE : 1;
-		uint32_t CP15SDISABLE : 2;
-	} fields;
-	uint32_t v;
-} slcr_APU_CTRL;
-
 #define slcr_APU_CTRL_RESERVED_0_LSHIFT 3U
 #define slcr_APU_CTRL_RESERVED_0_MASK 0xfffffff8U
 #define slcr_APU_CTRL_CFGSDISABLE_LSHIFT 2U
@@ -2196,16 +1277,6 @@ typedef union slcr_APU_CTRL
 
 // SWDT clock source select
 #define slcr_WDT_CLK_SEL_REG 0x304U
-typedef union slcr_WDT_CLK_SEL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t SEL : 1;
-	} fields;
-	uint32_t v;
-} slcr_WDT_CLK_SEL;
-
 #define slcr_WDT_CLK_SEL_RESERVED_0_LSHIFT 1U
 #define slcr_WDT_CLK_SEL_RESERVED_0_MASK 0xfffffffeU
 #define slcr_WDT_CLK_SEL_SEL_LSHIFT 0U
@@ -2216,16 +1287,6 @@ typedef union slcr_WDT_CLK_SEL
 
 // DMAC TrustZone Config
 #define slcr_TZ_DMA_NS_REG 0x440U
-typedef union slcr_TZ_DMA_NS
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t DMAC_NS : 1;
-	} fields;
-	uint32_t v;
-} slcr_TZ_DMA_NS;
-
 #define slcr_TZ_DMA_NS_RESERVED_0_LSHIFT 1U
 #define slcr_TZ_DMA_NS_RESERVED_0_MASK 0xfffffffeU
 #define slcr_TZ_DMA_NS_DMAC_NS_LSHIFT 0U
@@ -2236,16 +1297,6 @@ typedef union slcr_TZ_DMA_NS
 
 // DMAC TrustZone Config for Interrupts
 #define slcr_TZ_DMA_IRQ_NS_REG 0x444U
-typedef union slcr_TZ_DMA_IRQ_NS
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 16;
-		uint32_t DMA_IRQ_NS : 16;
-	} fields;
-	uint32_t v;
-} slcr_TZ_DMA_IRQ_NS;
-
 #define slcr_TZ_DMA_IRQ_NS_RESERVED_0_LSHIFT 16U
 #define slcr_TZ_DMA_IRQ_NS_RESERVED_0_MASK 0xffff0000U
 #define slcr_TZ_DMA_IRQ_NS_DMA_IRQ_NS_LSHIFT 0U
@@ -2255,16 +1306,6 @@ typedef union slcr_TZ_DMA_IRQ_NS
 
 // DMAC TrustZone Config for Peripherals
 #define slcr_TZ_DMA_PERIPH_NS_REG 0x448U
-typedef union slcr_TZ_DMA_PERIPH_NS
-{
-	struct
-	{
-		uint32_t RESERVED_1 : 28;
-		uint32_t DMAC_PERIPH_NS : 4;
-	} fields;
-	uint32_t v;
-} slcr_TZ_DMA_PERIPH_NS;
-
 #define slcr_TZ_DMA_PERIPH_NS_RESERVED_1_LSHIFT 4U
 #define slcr_TZ_DMA_PERIPH_NS_RESERVED_1_MASK 0xfffffff0U
 #define slcr_TZ_DMA_PERIPH_NS_DMAC_PERIPH_NS_LSHIFT 0U
@@ -2274,20 +1315,6 @@ typedef union slcr_TZ_DMA_PERIPH_NS
 
 // DMAC TrustZone Config for Peripherals
 #define slcr_PSS_IDCODE_REG 0x530U
-typedef union slcr_PSS_IDCODE
-{
-	struct
-	{
-		uint32_t REVISION : 4;
-		uint32_t FAMILY : 7;
-		uint32_t SUBFAMILY : 4;
-		uint32_t DEVICE : 5;
-		uint32_t MANUFACTURER_ID : 11;
-		uint32_t RESERVED_0 : 1;
-	} fields;
-	uint32_t v;
-} slcr_PSS_IDCODE;
-
 #define slcr_PSS_IDCODE_REVISION_LSHIFT 28U
 #define slcr_PSS_IDCODE_REVISION_MASK 0xf0000000U
 #define slcr_PSS_IDCODE_FAMILY_LSHIFT 21U
@@ -2306,23 +1333,6 @@ typedef union slcr_PSS_IDCODE
 
 // DDR Urgent Control
 #define slcr_DDR_URGENT_REG 0x600U
-typedef union slcr_DDR_URGENT
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 24;
-		uint32_t S3_ARURGENT : 1;
-		uint32_t S2_ARURGENT : 1;
-		uint32_t S1_ARURGENT : 1;
-		uint32_t S0_ARURGENT : 1;
-		uint32_t S3_AWURGENT : 1;
-		uint32_t S2_AWURGENT : 1;
-		uint32_t S1_AWURGENT : 1;
-		uint32_t S0_AWURGENT : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_URGENT;
-
 #define slcr_DDR_URGENT_RESERVED_0_LSHIFT 8U
 #define slcr_DDR_URGENT_RESERVED_0_MASK 0xffffff00U
 #define slcr_DDR_URGENT_S3_ARURGENT_LSHIFT 7U
@@ -2354,17 +1364,6 @@ typedef union slcr_DDR_URGENT
 
 // DDR Calibration Start Triggers
 #define slcr_DDR_CAL_START_REG 0x60cU
-typedef union slcr_DDR_CAL_START
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 30;
-		uint32_t START_CAL_DLL : 1;
-		uint32_t START_CAL_SHORT : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_CAL_START;
-
 #define slcr_DDR_CAL_START_RESERVED_0_LSHIFT 2U
 #define slcr_DDR_CAL_START_RESERVED_0_MASK 0xfffffffcU
 #define slcr_DDR_CAL_START_START_CAL_DLL_LSHIFT 1U
@@ -2378,16 +1377,6 @@ typedef union slcr_DDR_CAL_START
 
 // DDR Refresh Start Triggers
 #define slcr_DDR_REF_START_REG 0x614U
-typedef union slcr_DDR_REF_START
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t START_REF : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_REF_START;
-
 #define slcr_DDR_REF_START_RESERVED_0_LSHIFT 1U
 #define slcr_DDR_REF_START_RESERVED_0_MASK 0xfffffffeU
 #define slcr_DDR_REF_START_START_REF_LSHIFT 0U
@@ -2398,16 +1387,6 @@ typedef union slcr_DDR_REF_START
 
 // DDR Command Store Status
 #define slcr_DDR_CMD_STA_REG 0x618U
-typedef union slcr_DDR_CMD_STA
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t CMD_Q_NEMPTY : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_CMD_STA;
-
 #define slcr_DDR_CMD_STA_RESERVED_0_LSHIFT 1U
 #define slcr_DDR_CMD_STA_RESERVED_0_MASK 0xfffffffeU
 #define slcr_DDR_CMD_STA_CMD_Q_NEMPTY_LSHIFT 0U
@@ -2418,23 +1397,6 @@ typedef union slcr_DDR_CMD_STA
 
 // DDR Urgent Select
 #define slcr_DDR_URGENT_SEL_REG 0x61cU
-typedef union slcr_DDR_URGENT_SEL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 16;
-		uint32_t S3_ARQOS_MODE : 2;
-		uint32_t S2_ARQOS_MODE : 2;
-		uint32_t S1_ARQOS_MODE : 2;
-		uint32_t S0_ARQOS_MODE : 2;
-		uint32_t S3_AWQOS_MODE : 2;
-		uint32_t S2_AWQOS_MODE : 2;
-		uint32_t S1_AWQOS_MODE : 2;
-		uint32_t S0_AWQOS_MODE : 2;
-	} fields;
-	uint32_t v;
-} slcr_DDR_URGENT_SEL;
-
 #define slcr_DDR_URGENT_SEL_RESERVED_0_LSHIFT 16U
 #define slcr_DDR_URGENT_SEL_RESERVED_0_MASK 0xffff0000U
 #define slcr_DDR_URGENT_SEL_S3_ARQOS_MODE_LSHIFT 14U
@@ -2458,16 +1420,6 @@ typedef union slcr_DDR_URGENT_SEL
 
 // DDR DFI status
 #define slcr_DDR_DFI_STATUS_REG 0x620U
-typedef union slcr_DDR_DFI_STATUS
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 31;
-		uint32_t DFI_CAL_ST : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDR_DFI_STATUS;
-
 #define slcr_DDR_DFI_STATUS_RESERVED_0_LSHIFT 1U
 #define slcr_DDR_DFI_STATUS_RESERVED_0_MASK 0xfffffffeU
 #define slcr_DDR_DFI_STATUS_DFI_CAL_ST_LSHIFT 0U
@@ -2478,24 +1430,6 @@ typedef union slcr_DDR_DFI_STATUS
 
 // MIO Pin 0 Control
 #define slcr_MIO_PIN_00_REG 0x700U
-typedef union slcr_MIO_PIN_00
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_00;
-
 #define slcr_MIO_PIN_00_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_00_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_00_DisableRcvr_LSHIFT 13U
@@ -2527,24 +1461,6 @@ typedef union slcr_MIO_PIN_00
 
 // MIO Pin 1 Control
 #define slcr_MIO_PIN_01_REG 0x704U
-typedef union slcr_MIO_PIN_01
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_01;
-
 #define slcr_MIO_PIN_01_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_01_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_01_DisableRcvr_LSHIFT 13U
@@ -2576,24 +1492,6 @@ typedef union slcr_MIO_PIN_01
 
 // MIO Pin 2 Control
 #define slcr_MIO_PIN_02_REG 0x708U
-typedef union slcr_MIO_PIN_02
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_02;
-
 #define slcr_MIO_PIN_02_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_02_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_02_DisableRcvr_LSHIFT 13U
@@ -2625,24 +1523,6 @@ typedef union slcr_MIO_PIN_02
 
 // MIO Pin 3 Control
 #define slcr_MIO_PIN_03_REG 0x70cU
-typedef union slcr_MIO_PIN_03
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_03;
-
 #define slcr_MIO_PIN_03_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_03_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_03_DisableRcvr_LSHIFT 13U
@@ -2674,24 +1554,6 @@ typedef union slcr_MIO_PIN_03
 
 // MIO Pin 4 Control
 #define slcr_MIO_PIN_04_REG 0x710U
-typedef union slcr_MIO_PIN_04
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_04;
-
 #define slcr_MIO_PIN_04_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_04_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_04_DisableRcvr_LSHIFT 13U
@@ -2723,24 +1585,6 @@ typedef union slcr_MIO_PIN_04
 
 // MIO Pin 5 Control
 #define slcr_MIO_PIN_05_REG 0x714U
-typedef union slcr_MIO_PIN_05
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_05;
-
 #define slcr_MIO_PIN_05_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_05_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_05_DisableRcvr_LSHIFT 13U
@@ -2772,24 +1616,6 @@ typedef union slcr_MIO_PIN_05
 
 // MIO Pin 6 Control
 #define slcr_MIO_PIN_06_REG 0x718U
-typedef union slcr_MIO_PIN_06
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_06;
-
 #define slcr_MIO_PIN_06_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_06_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_06_DisableRcvr_LSHIFT 13U
@@ -2821,24 +1647,6 @@ typedef union slcr_MIO_PIN_06
 
 // MIO Pin 7 Control
 #define slcr_MIO_PIN_07_REG 0x71cU
-typedef union slcr_MIO_PIN_07
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_07;
-
 #define slcr_MIO_PIN_07_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_07_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_07_DisableRcvr_LSHIFT 13U
@@ -2870,24 +1678,6 @@ typedef union slcr_MIO_PIN_07
 
 // MIO Pin 8 Control
 #define slcr_MIO_PIN_08_REG 0x720U
-typedef union slcr_MIO_PIN_08
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_08;
-
 #define slcr_MIO_PIN_08_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_08_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_08_DisableRcvr_LSHIFT 13U
@@ -2919,24 +1709,6 @@ typedef union slcr_MIO_PIN_08
 
 // MIO Pin 9 Control
 #define slcr_MIO_PIN_09_REG 0x724U
-typedef union slcr_MIO_PIN_09
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_09;
-
 #define slcr_MIO_PIN_09_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_09_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_09_DisableRcvr_LSHIFT 13U
@@ -2968,24 +1740,6 @@ typedef union slcr_MIO_PIN_09
 
 // MIO Pin 10 Control
 #define slcr_MIO_PIN_10_REG 0x728U
-typedef union slcr_MIO_PIN_10
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_10;
-
 #define slcr_MIO_PIN_10_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_10_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_10_DisableRcvr_LSHIFT 13U
@@ -3017,24 +1771,6 @@ typedef union slcr_MIO_PIN_10
 
 // MIO Pin 11 Control
 #define slcr_MIO_PIN_11_REG 0x72cU
-typedef union slcr_MIO_PIN_11
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_11;
-
 #define slcr_MIO_PIN_11_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_11_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_11_DisableRcvr_LSHIFT 13U
@@ -3066,24 +1802,6 @@ typedef union slcr_MIO_PIN_11
 
 // MIO Pin 12 Control
 #define slcr_MIO_PIN_12_REG 0x730U
-typedef union slcr_MIO_PIN_12
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_12;
-
 #define slcr_MIO_PIN_12_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_12_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_12_DisableRcvr_LSHIFT 13U
@@ -3115,24 +1833,6 @@ typedef union slcr_MIO_PIN_12
 
 // MIO Pin 13 Control
 #define slcr_MIO_PIN_13_REG 0x734U
-typedef union slcr_MIO_PIN_13
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_13;
-
 #define slcr_MIO_PIN_13_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_13_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_13_DisableRcvr_LSHIFT 13U
@@ -3164,24 +1864,6 @@ typedef union slcr_MIO_PIN_13
 
 // MIO Pin 14 Control
 #define slcr_MIO_PIN_14_REG 0x738U
-typedef union slcr_MIO_PIN_14
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_14;
-
 #define slcr_MIO_PIN_14_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_14_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_14_DisableRcvr_LSHIFT 13U
@@ -3213,24 +1895,6 @@ typedef union slcr_MIO_PIN_14
 
 // MIO Pin 15 Control
 #define slcr_MIO_PIN_15_REG 0x73cU
-typedef union slcr_MIO_PIN_15
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_15;
-
 #define slcr_MIO_PIN_15_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_15_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_15_DisableRcvr_LSHIFT 13U
@@ -3262,24 +1926,6 @@ typedef union slcr_MIO_PIN_15
 
 // MIO Pin 16 Control
 #define slcr_MIO_PIN_16_REG 0x740U
-typedef union slcr_MIO_PIN_16
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_16;
-
 #define slcr_MIO_PIN_16_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_16_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_16_DisableRcvr_LSHIFT 13U
@@ -3311,24 +1957,6 @@ typedef union slcr_MIO_PIN_16
 
 // MIO Pin 17 Control
 #define slcr_MIO_PIN_17_REG 0x744U
-typedef union slcr_MIO_PIN_17
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_17;
-
 #define slcr_MIO_PIN_17_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_17_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_17_DisableRcvr_LSHIFT 13U
@@ -3360,24 +1988,6 @@ typedef union slcr_MIO_PIN_17
 
 // MIO Pin 18 Control
 #define slcr_MIO_PIN_18_REG 0x748U
-typedef union slcr_MIO_PIN_18
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_18;
-
 #define slcr_MIO_PIN_18_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_18_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_18_DisableRcvr_LSHIFT 13U
@@ -3409,24 +2019,6 @@ typedef union slcr_MIO_PIN_18
 
 // MIO Pin 19 Control
 #define slcr_MIO_PIN_19_REG 0x74cU
-typedef union slcr_MIO_PIN_19
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_19;
-
 #define slcr_MIO_PIN_19_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_19_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_19_DisableRcvr_LSHIFT 13U
@@ -3458,24 +2050,6 @@ typedef union slcr_MIO_PIN_19
 
 // MIO Pin 20 Control
 #define slcr_MIO_PIN_20_REG 0x750U
-typedef union slcr_MIO_PIN_20
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_20;
-
 #define slcr_MIO_PIN_20_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_20_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_20_DisableRcvr_LSHIFT 13U
@@ -3507,24 +2081,6 @@ typedef union slcr_MIO_PIN_20
 
 // MIO Pin 21 Control
 #define slcr_MIO_PIN_21_REG 0x754U
-typedef union slcr_MIO_PIN_21
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_21;
-
 #define slcr_MIO_PIN_21_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_21_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_21_DisableRcvr_LSHIFT 13U
@@ -3556,24 +2112,6 @@ typedef union slcr_MIO_PIN_21
 
 // MIO Pin 22 Control
 #define slcr_MIO_PIN_22_REG 0x758U
-typedef union slcr_MIO_PIN_22
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_22;
-
 #define slcr_MIO_PIN_22_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_22_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_22_DisableRcvr_LSHIFT 13U
@@ -3605,24 +2143,6 @@ typedef union slcr_MIO_PIN_22
 
 // MIO Pin 23 Control
 #define slcr_MIO_PIN_23_REG 0x75cU
-typedef union slcr_MIO_PIN_23
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_23;
-
 #define slcr_MIO_PIN_23_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_23_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_23_DisableRcvr_LSHIFT 13U
@@ -3654,24 +2174,6 @@ typedef union slcr_MIO_PIN_23
 
 // MIO Pin 24 Control
 #define slcr_MIO_PIN_24_REG 0x760U
-typedef union slcr_MIO_PIN_24
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_24;
-
 #define slcr_MIO_PIN_24_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_24_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_24_DisableRcvr_LSHIFT 13U
@@ -3703,24 +2205,6 @@ typedef union slcr_MIO_PIN_24
 
 // MIO Pin 25 Control
 #define slcr_MIO_PIN_25_REG 0x764U
-typedef union slcr_MIO_PIN_25
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_25;
-
 #define slcr_MIO_PIN_25_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_25_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_25_DisableRcvr_LSHIFT 13U
@@ -3752,24 +2236,6 @@ typedef union slcr_MIO_PIN_25
 
 // MIO Pin 26 Control
 #define slcr_MIO_PIN_26_REG 0x768U
-typedef union slcr_MIO_PIN_26
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_26;
-
 #define slcr_MIO_PIN_26_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_26_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_26_DisableRcvr_LSHIFT 13U
@@ -3801,24 +2267,6 @@ typedef union slcr_MIO_PIN_26
 
 // MIO Pin 27 Control
 #define slcr_MIO_PIN_27_REG 0x76cU
-typedef union slcr_MIO_PIN_27
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_27;
-
 #define slcr_MIO_PIN_27_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_27_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_27_DisableRcvr_LSHIFT 13U
@@ -3850,24 +2298,6 @@ typedef union slcr_MIO_PIN_27
 
 // MIO Pin 28 Control
 #define slcr_MIO_PIN_28_REG 0x770U
-typedef union slcr_MIO_PIN_28
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_28;
-
 #define slcr_MIO_PIN_28_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_28_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_28_DisableRcvr_LSHIFT 13U
@@ -3899,24 +2329,6 @@ typedef union slcr_MIO_PIN_28
 
 // MIO Pin 29 Control
 #define slcr_MIO_PIN_29_REG 0x774U
-typedef union slcr_MIO_PIN_29
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_29;
-
 #define slcr_MIO_PIN_29_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_29_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_29_DisableRcvr_LSHIFT 13U
@@ -3948,24 +2360,6 @@ typedef union slcr_MIO_PIN_29
 
 // MIO Pin 30 Control
 #define slcr_MIO_PIN_30_REG 0x778U
-typedef union slcr_MIO_PIN_30
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_30;
-
 #define slcr_MIO_PIN_30_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_30_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_30_DisableRcvr_LSHIFT 13U
@@ -3997,24 +2391,6 @@ typedef union slcr_MIO_PIN_30
 
 // MIO Pin 31 Control
 #define slcr_MIO_PIN_31_REG 0x77cU
-typedef union slcr_MIO_PIN_31
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_31;
-
 #define slcr_MIO_PIN_31_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_31_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_31_DisableRcvr_LSHIFT 13U
@@ -4046,24 +2422,6 @@ typedef union slcr_MIO_PIN_31
 
 // MIO Pin 32 Control
 #define slcr_MIO_PIN_32_REG 0x780U
-typedef union slcr_MIO_PIN_32
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_32;
-
 #define slcr_MIO_PIN_32_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_32_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_32_DisableRcvr_LSHIFT 13U
@@ -4095,24 +2453,6 @@ typedef union slcr_MIO_PIN_32
 
 // MIO Pin 33 Control
 #define slcr_MIO_PIN_33_REG 0x784U
-typedef union slcr_MIO_PIN_33
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_33;
-
 #define slcr_MIO_PIN_33_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_33_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_33_DisableRcvr_LSHIFT 13U
@@ -4144,24 +2484,6 @@ typedef union slcr_MIO_PIN_33
 
 // MIO Pin 34 Control
 #define slcr_MIO_PIN_34_REG 0x788U
-typedef union slcr_MIO_PIN_34
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_34;
-
 #define slcr_MIO_PIN_34_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_34_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_34_DisableRcvr_LSHIFT 13U
@@ -4193,24 +2515,6 @@ typedef union slcr_MIO_PIN_34
 
 // MIO Pin 35 Control
 #define slcr_MIO_PIN_35_REG 0x78cU
-typedef union slcr_MIO_PIN_35
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_35;
-
 #define slcr_MIO_PIN_35_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_35_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_35_DisableRcvr_LSHIFT 13U
@@ -4242,24 +2546,6 @@ typedef union slcr_MIO_PIN_35
 
 // MIO Pin 36 Control
 #define slcr_MIO_PIN_36_REG 0x790U
-typedef union slcr_MIO_PIN_36
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_36;
-
 #define slcr_MIO_PIN_36_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_36_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_36_DisableRcvr_LSHIFT 13U
@@ -4291,24 +2577,6 @@ typedef union slcr_MIO_PIN_36
 
 // MIO Pin 37 Control
 #define slcr_MIO_PIN_37_REG 0x794U
-typedef union slcr_MIO_PIN_37
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_37;
-
 #define slcr_MIO_PIN_37_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_37_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_37_DisableRcvr_LSHIFT 13U
@@ -4340,24 +2608,6 @@ typedef union slcr_MIO_PIN_37
 
 // MIO Pin 38 Control
 #define slcr_MIO_PIN_38_REG 0x798U
-typedef union slcr_MIO_PIN_38
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_38;
-
 #define slcr_MIO_PIN_38_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_38_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_38_DisableRcvr_LSHIFT 13U
@@ -4389,24 +2639,6 @@ typedef union slcr_MIO_PIN_38
 
 // MIO Pin 39 Control
 #define slcr_MIO_PIN_39_REG 0x79cU
-typedef union slcr_MIO_PIN_39
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_39;
-
 #define slcr_MIO_PIN_39_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_39_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_39_DisableRcvr_LSHIFT 13U
@@ -4438,24 +2670,6 @@ typedef union slcr_MIO_PIN_39
 
 // MIO Pin 40 Control
 #define slcr_MIO_PIN_40_REG 0x7a0U
-typedef union slcr_MIO_PIN_40
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_40;
-
 #define slcr_MIO_PIN_40_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_40_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_40_DisableRcvr_LSHIFT 13U
@@ -4487,24 +2701,6 @@ typedef union slcr_MIO_PIN_40
 
 // MIO Pin 41 Control
 #define slcr_MIO_PIN_41_REG 0x7a4U
-typedef union slcr_MIO_PIN_41
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_41;
-
 #define slcr_MIO_PIN_41_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_41_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_41_DisableRcvr_LSHIFT 13U
@@ -4536,24 +2732,6 @@ typedef union slcr_MIO_PIN_41
 
 // MIO Pin 42 Control
 #define slcr_MIO_PIN_42_REG 0x7a8U
-typedef union slcr_MIO_PIN_42
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_42;
-
 #define slcr_MIO_PIN_42_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_42_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_42_DisableRcvr_LSHIFT 13U
@@ -4585,24 +2763,6 @@ typedef union slcr_MIO_PIN_42
 
 // MIO Pin 43 Control
 #define slcr_MIO_PIN_43_REG 0x7acU
-typedef union slcr_MIO_PIN_43
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_43;
-
 #define slcr_MIO_PIN_43_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_43_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_43_DisableRcvr_LSHIFT 13U
@@ -4634,24 +2794,6 @@ typedef union slcr_MIO_PIN_43
 
 // MIO Pin 44 Control
 #define slcr_MIO_PIN_44_REG 0x7b0U
-typedef union slcr_MIO_PIN_44
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_44;
-
 #define slcr_MIO_PIN_44_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_44_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_44_DisableRcvr_LSHIFT 13U
@@ -4683,24 +2825,6 @@ typedef union slcr_MIO_PIN_44
 
 // MIO Pin 45 Control
 #define slcr_MIO_PIN_45_REG 0x7b4U
-typedef union slcr_MIO_PIN_45
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_45;
-
 #define slcr_MIO_PIN_45_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_45_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_45_DisableRcvr_LSHIFT 13U
@@ -4732,24 +2856,6 @@ typedef union slcr_MIO_PIN_45
 
 // MIO Pin 46 Control
 #define slcr_MIO_PIN_46_REG 0x7b8U
-typedef union slcr_MIO_PIN_46
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_46;
-
 #define slcr_MIO_PIN_46_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_46_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_46_DisableRcvr_LSHIFT 13U
@@ -4781,24 +2887,6 @@ typedef union slcr_MIO_PIN_46
 
 // MIO Pin 47 Control
 #define slcr_MIO_PIN_47_REG 0x7bcU
-typedef union slcr_MIO_PIN_47
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_47;
-
 #define slcr_MIO_PIN_47_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_47_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_47_DisableRcvr_LSHIFT 13U
@@ -4830,24 +2918,6 @@ typedef union slcr_MIO_PIN_47
 
 // MIO Pin 48 Control
 #define slcr_MIO_PIN_48_REG 0x7c0U
-typedef union slcr_MIO_PIN_48
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_48;
-
 #define slcr_MIO_PIN_48_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_48_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_48_DisableRcvr_LSHIFT 13U
@@ -4879,24 +2949,6 @@ typedef union slcr_MIO_PIN_48
 
 // MIO Pin 49 Control
 #define slcr_MIO_PIN_49_REG 0x7c4U
-typedef union slcr_MIO_PIN_49
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_49;
-
 #define slcr_MIO_PIN_49_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_49_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_49_DisableRcvr_LSHIFT 13U
@@ -4928,24 +2980,6 @@ typedef union slcr_MIO_PIN_49
 
 // MIO Pin 50 Control
 #define slcr_MIO_PIN_50_REG 0x7c8U
-typedef union slcr_MIO_PIN_50
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_50;
-
 #define slcr_MIO_PIN_50_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_50_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_50_DisableRcvr_LSHIFT 13U
@@ -4977,24 +3011,6 @@ typedef union slcr_MIO_PIN_50
 
 // MIO Pin 51 Control
 #define slcr_MIO_PIN_51_REG 0x7ccU
-typedef union slcr_MIO_PIN_51
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_51;
-
 #define slcr_MIO_PIN_51_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_51_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_51_DisableRcvr_LSHIFT 13U
@@ -5026,24 +3042,6 @@ typedef union slcr_MIO_PIN_51
 
 // MIO Pin 52 Control
 #define slcr_MIO_PIN_52_REG 0x7d0U
-typedef union slcr_MIO_PIN_52
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_52;
-
 #define slcr_MIO_PIN_52_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_52_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_52_DisableRcvr_LSHIFT 13U
@@ -5075,24 +3073,6 @@ typedef union slcr_MIO_PIN_52
 
 // MIO Pin 53 Control
 #define slcr_MIO_PIN_53_REG 0x7d4U
-typedef union slcr_MIO_PIN_53
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DisableRcvr : 1;
-		uint32_t PULLUP : 1;
-		uint32_t IO_Type : 3;
-		uint32_t Speed : 1;
-		uint32_t L3_SEL : 3;
-		uint32_t L2_SEL : 2;
-		uint32_t L1_SEL : 1;
-		uint32_t L0_SEL : 1;
-		uint32_t TRI_ENABLE : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_PIN_53;
-
 #define slcr_MIO_PIN_53_RESERVED_0_LSHIFT 14U
 #define slcr_MIO_PIN_53_RESERVED_0_MASK 0xffffc000U
 #define slcr_MIO_PIN_53_DisableRcvr_LSHIFT 13U
@@ -5124,19 +3104,6 @@ typedef union slcr_MIO_PIN_53
 
 // Loopback function within MIO
 #define slcr_MIO_LOOPBACK_REG 0x804U
-typedef union slcr_MIO_LOOPBACK
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 28;
-		uint32_t I2C0_LOOP_I2C1 : 1;
-		uint32_t CAN0_LOOP_CAN1 : 1;
-		uint32_t UA0_LOOP_UA1 : 1;
-		uint32_t SPI0_LOOP_SPI1 : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_LOOPBACK;
-
 #define slcr_MIO_LOOPBACK_RESERVED_0_LSHIFT 4U
 #define slcr_MIO_LOOPBACK_RESERVED_0_MASK 0xfffffff0U
 #define slcr_MIO_LOOPBACK_I2C0_LOOP_I2C1_LSHIFT 3U
@@ -5156,46 +3123,6 @@ typedef union slcr_MIO_LOOPBACK
 
 // MIO pin Tri-state Enables, 31:0
 #define slcr_MIO_MST_TRI0_REG 0x80cU
-typedef union slcr_MIO_MST_TRI0
-{
-	struct
-	{
-		uint32_t PIN_31_TRI : 1;
-		uint32_t PIN_30_TRI : 1;
-		uint32_t PIN_29_TRI : 1;
-		uint32_t PIN_28_TRI : 1;
-		uint32_t PIN_27_TRI : 1;
-		uint32_t PIN_26_TRI : 1;
-		uint32_t PIN_25_TRI : 1;
-		uint32_t PIN_24_TRI : 1;
-		uint32_t PIN_23_TRI : 1;
-		uint32_t PIN_22_TRI : 1;
-		uint32_t PIN_21_TRI : 1;
-		uint32_t PIN_20_TRI : 1;
-		uint32_t PIN_19_TRI : 1;
-		uint32_t PIN_18_TRI : 1;
-		uint32_t PIN_17_TRI : 1;
-		uint32_t PIN_16_TRI : 1;
-		uint32_t PIN_15_TRI : 1;
-		uint32_t PIN_14_TRI : 1;
-		uint32_t PIN_13_TRI : 1;
-		uint32_t PIN_12_TRI : 1;
-		uint32_t PIN_11_TRI : 1;
-		uint32_t PIN_10_TRI : 1;
-		uint32_t PIN_09_TRI : 1;
-		uint32_t PIN_08_TRI : 1;
-		uint32_t PIN_07_TRI : 1;
-		uint32_t PIN_06_TRI : 1;
-		uint32_t PIN_05_TRI : 1;
-		uint32_t PIN_04_TRI : 1;
-		uint32_t PIN_03_TRI : 1;
-		uint32_t PIN_02_TRI : 1;
-		uint32_t PIN_01_TRI : 1;
-		uint32_t PIN_00_TRI : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_MST_TRI0;
-
 #define slcr_MIO_MST_TRI0_PIN_31_TRI_LSHIFT 31U
 #define slcr_MIO_MST_TRI0_PIN_31_TRI 0x80000000U
 #define slcr_MIO_MST_TRI0_PIN_31_TRI_MASK 0x80000000U
@@ -5297,37 +3224,6 @@ typedef union slcr_MIO_MST_TRI0
 
 // MIO pin Tri-state Enables, 53:32
 #define slcr_MIO_MST_TRI1_REG 0x810U
-typedef union slcr_MIO_MST_TRI1
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 10;
-		uint32_t PIN_53_TRI : 1;
-		uint32_t PIN_52_TRI : 1;
-		uint32_t PIN_51_TRI : 1;
-		uint32_t PIN_50_TRI : 1;
-		uint32_t PIN_49_TRI : 1;
-		uint32_t PIN_48_TRI : 1;
-		uint32_t PIN_47_TRI : 1;
-		uint32_t PIN_46_TRI : 1;
-		uint32_t PIN_45_TRI : 1;
-		uint32_t PIN_44_TRI : 1;
-		uint32_t PIN_43_TRI : 1;
-		uint32_t PIN_42_TRI : 1;
-		uint32_t PIN_41_TRI : 1;
-		uint32_t PIN_40_TRI : 1;
-		uint32_t PIN_39_TRI : 1;
-		uint32_t PIN_38_TRI : 1;
-		uint32_t PIN_37_TRI : 1;
-		uint32_t PIN_36_TRI : 1;
-		uint32_t PIN_35_TRI : 1;
-		uint32_t PIN_34_TRI : 1;
-		uint32_t PIN_33_TRI : 1;
-		uint32_t PIN_32_TRI : 1;
-	} fields;
-	uint32_t v;
-} slcr_MIO_MST_TRI1;
-
 #define slcr_MIO_MST_TRI1_RESERVED_0_LSHIFT 22U
 #define slcr_MIO_MST_TRI1_RESERVED_0_MASK 0xffc00000U
 #define slcr_MIO_MST_TRI1_PIN_53_TRI_LSHIFT 21U
@@ -5401,18 +3297,6 @@ typedef union slcr_MIO_MST_TRI1
 
 // SDIO 0 WP CD select
 #define slcr_SD0_WP_CD_SEL_REG 0x830U
-typedef union slcr_SD0_WP_CD_SEL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 10;
-		uint32_t SDIO0_CD_SEL : 6;
-		uint32_t RESERVED_1 : 10;
-		uint32_t SDIO0_WP_SEL : 6;
-	} fields;
-	uint32_t v;
-} slcr_SD0_WP_CD_SEL;
-
 #define slcr_SD0_WP_CD_SEL_RESERVED_0_LSHIFT 22U
 #define slcr_SD0_WP_CD_SEL_RESERVED_0_MASK 0xffc00000U
 #define slcr_SD0_WP_CD_SEL_SDIO0_CD_SEL_LSHIFT 16U
@@ -5426,18 +3310,6 @@ typedef union slcr_SD0_WP_CD_SEL
 
 // SDIO 1 WP CD select
 #define slcr_SD1_WP_CD_SEL_REG 0x834U
-typedef union slcr_SD1_WP_CD_SEL
-{
-	struct
-	{
-		uint32_t RESERVED_2 : 10;
-		uint32_t SDIO1_CD_SEL : 6;
-		uint32_t RESERVED_3 : 10;
-		uint32_t SDIO1_WP_SEL : 6;
-	} fields;
-	uint32_t v;
-} slcr_SD1_WP_CD_SEL;
-
 #define slcr_SD1_WP_CD_SEL_RESERVED_2_LSHIFT 22U
 #define slcr_SD1_WP_CD_SEL_RESERVED_2_MASK 0xffc00000U
 #define slcr_SD1_WP_CD_SEL_SDIO1_CD_SEL_LSHIFT 16U
@@ -5451,17 +3323,6 @@ typedef union slcr_SD1_WP_CD_SEL
 
 // Level Shifters Enable
 #define slcr_LVL_SHFTR_EN_REG 0x900U
-typedef union slcr_LVL_SHFTR_EN
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 27;
-		uint32_t RESERVED_1 : 1;
-		uint32_t USER_LVL_SHFTR_EN : 4;
-	} fields;
-	uint32_t v;
-} slcr_LVL_SHFTR_EN;
-
 #define slcr_LVL_SHFTR_EN_RESERVED_0_LSHIFT 5U
 #define slcr_LVL_SHFTR_EN_RESERVED_0_MASK 0xffffffe0U
 #define slcr_LVL_SHFTR_EN_RESERVED_1_LSHIFT 4U
@@ -5474,17 +3335,6 @@ typedef union slcr_LVL_SHFTR_EN
 
 // OCM Address Mapping
 #define slcr_OCM_CFG_REG 0x910U
-typedef union slcr_OCM_CFG
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 27;
-		uint32_t SWAP : 1;
-		uint32_t RAM_HI : 4;
-	} fields;
-	uint32_t v;
-} slcr_OCM_CFG;
-
 #define slcr_OCM_CFG_RESERVED_0_LSHIFT 5U
 #define slcr_OCM_CFG_RESERVED_0_MASK 0xffffffe0U
 #define slcr_OCM_CFG_SWAP_LSHIFT 4U
@@ -5501,25 +3351,6 @@ typedef union slcr_OCM_CFG
 
 // PS IO Buffer Control
 #define slcr_GPIOB_CTRL_REG 0xb00U
-typedef union slcr_GPIOB_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t VREF_SW_EN : 1;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t RESERVED_3 : 1;
-		uint32_t RESERVED_4 : 1;
-		uint32_t VREF_SEL : 3;
-		uint32_t RESERVED_5 : 1;
-		uint32_t RESERVED_6 : 1;
-		uint32_t RESERVED_7 : 1;
-		uint32_t VREF_EN : 1;
-	} fields;
-	uint32_t v;
-} slcr_GPIOB_CTRL;
-
 #define slcr_GPIOB_CTRL_RESERVED_0_LSHIFT 12U
 #define slcr_GPIOB_CTRL_RESERVED_0_MASK 0xfffff000U
 #define slcr_GPIOB_CTRL_VREF_SW_EN_LSHIFT 11U
@@ -5556,23 +3387,6 @@ typedef union slcr_GPIOB_CTRL
 
 // MIO GPIOB CMOS 1.8V config
 #define slcr_GPIOB_CFG_CMOS18_REG 0xb04U
-typedef union slcr_GPIOB_CFG_CMOS18
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 4;
-		uint32_t RESERVED_1 : 3;
-		uint32_t RESERVED_2 : 3;
-		uint32_t RESERVED_3 : 3;
-		uint32_t RESERVED_4 : 3;
-		uint32_t RESERVED_5 : 4;
-		uint32_t RESERVED_6 : 4;
-		uint32_t RESERVED_7 : 4;
-		uint32_t RESERVED_8 : 4;
-	} fields;
-	uint32_t v;
-} slcr_GPIOB_CFG_CMOS18;
-
 #define slcr_GPIOB_CFG_CMOS18_RESERVED_0_LSHIFT 28U
 #define slcr_GPIOB_CFG_CMOS18_RESERVED_0_MASK 0xf0000000U
 #define slcr_GPIOB_CFG_CMOS18_RESERVED_1_LSHIFT 25U
@@ -5596,23 +3410,6 @@ typedef union slcr_GPIOB_CFG_CMOS18
 
 // MIO GPIOB CMOS 2.5V config
 #define slcr_GPIOB_CFG_CMOS25_REG 0xb08U
-typedef union slcr_GPIOB_CFG_CMOS25
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 4;
-		uint32_t RESERVED_1 : 3;
-		uint32_t RESERVED_2 : 3;
-		uint32_t RESERVED_3 : 3;
-		uint32_t RESERVED_4 : 3;
-		uint32_t RESERVED_5 : 4;
-		uint32_t RESERVED_6 : 4;
-		uint32_t RESERVED_7 : 4;
-		uint32_t RESERVED_8 : 4;
-	} fields;
-	uint32_t v;
-} slcr_GPIOB_CFG_CMOS25;
-
 #define slcr_GPIOB_CFG_CMOS25_RESERVED_0_LSHIFT 28U
 #define slcr_GPIOB_CFG_CMOS25_RESERVED_0_MASK 0xf0000000U
 #define slcr_GPIOB_CFG_CMOS25_RESERVED_1_LSHIFT 25U
@@ -5636,23 +3433,6 @@ typedef union slcr_GPIOB_CFG_CMOS25
 
 // MIO GPIOB CMOS 3.3V config
 #define slcr_GPIOB_CFG_CMOS33_REG 0xb0cU
-typedef union slcr_GPIOB_CFG_CMOS33
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 4;
-		uint32_t RESERVED_1 : 3;
-		uint32_t RESERVED_2 : 3;
-		uint32_t RESERVED_3 : 3;
-		uint32_t RESERVED_4 : 3;
-		uint32_t RESERVED_5 : 4;
-		uint32_t RESERVED_6 : 4;
-		uint32_t RESERVED_7 : 4;
-		uint32_t RESERVED_8 : 4;
-	} fields;
-	uint32_t v;
-} slcr_GPIOB_CFG_CMOS33;
-
 #define slcr_GPIOB_CFG_CMOS33_RESERVED_0_LSHIFT 28U
 #define slcr_GPIOB_CFG_CMOS33_RESERVED_0_MASK 0xf0000000U
 #define slcr_GPIOB_CFG_CMOS33_RESERVED_1_LSHIFT 25U
@@ -5676,23 +3456,6 @@ typedef union slcr_GPIOB_CFG_CMOS33
 
 // MIO GPIOB HSTL config
 #define slcr_GPIOB_CFG_HSTL_REG 0xb14U
-typedef union slcr_GPIOB_CFG_HSTL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 4;
-		uint32_t RESERVED_1 : 3;
-		uint32_t RESERVED_2 : 3;
-		uint32_t RESERVED_3 : 3;
-		uint32_t RESERVED_4 : 3;
-		uint32_t RESERVED_5 : 4;
-		uint32_t RESERVED_6 : 4;
-		uint32_t RESERVED_7 : 4;
-		uint32_t RESERVED_8 : 4;
-	} fields;
-	uint32_t v;
-} slcr_GPIOB_CFG_HSTL;
-
 #define slcr_GPIOB_CFG_HSTL_RESERVED_0_LSHIFT 28U
 #define slcr_GPIOB_CFG_HSTL_RESERVED_0_MASK 0xf0000000U
 #define slcr_GPIOB_CFG_HSTL_RESERVED_1_LSHIFT 25U
@@ -5716,18 +3479,6 @@ typedef union slcr_GPIOB_CFG_HSTL
 
 // MIO GPIOB Driver Bias Control
 #define slcr_GPIOB_DRVR_BIAS_CTRL_REG 0xb18U
-typedef union slcr_GPIOB_DRVR_BIAS_CTRL
-{
-	struct
-	{
-		uint32_t RB_VCFG : 1;
-		uint32_t RB_DRVR_BIAS : 15;
-		uint32_t LB_VCFG : 1;
-		uint32_t LB_DRVR_BIAS : 15;
-	} fields;
-	uint32_t v;
-} slcr_GPIOB_DRVR_BIAS_CTRL;
-
 #define slcr_GPIOB_DRVR_BIAS_CTRL_RB_VCFG_LSHIFT 31U
 #define slcr_GPIOB_DRVR_BIAS_CTRL_RB_VCFG 0x80000000U
 #define slcr_GPIOB_DRVR_BIAS_CTRL_RB_VCFG_MASK 0x80000000U
@@ -5743,24 +3494,6 @@ typedef union slcr_GPIOB_DRVR_BIAS_CTRL
 
 // DDR IOB Config for A[14:0], CKE and DRST_B
 #define slcr_DDRIOB_ADDR0_REG 0xb40U
-typedef union slcr_DDRIOB_ADDR0
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_ADDR0;
-
 #define slcr_DDRIOB_ADDR0_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_ADDR0_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_ADDR0_PULLUP_EN_LSHIFT 11U
@@ -5792,24 +3525,6 @@ typedef union slcr_DDRIOB_ADDR0
 
 // DDR IOB Config for BA[2:0], ODT, CS_B, WE_B, RAS_B and CAS_B
 #define slcr_DDRIOB_ADDR1_REG 0xb44U
-typedef union slcr_DDRIOB_ADDR1
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_ADDR1;
-
 #define slcr_DDRIOB_ADDR1_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_ADDR1_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_ADDR1_PULLUP_EN_LSHIFT 11U
@@ -5841,24 +3556,6 @@ typedef union slcr_DDRIOB_ADDR1
 
 // DDR IOB Config for Data 15:0
 #define slcr_DDRIOB_DATA0_REG 0xb48U
-typedef union slcr_DDRIOB_DATA0
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DATA0;
-
 #define slcr_DDRIOB_DATA0_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_DATA0_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_DATA0_PULLUP_EN_LSHIFT 11U
@@ -5890,24 +3587,6 @@ typedef union slcr_DDRIOB_DATA0
 
 // DDR IOB Config for Data 31:16
 #define slcr_DDRIOB_DATA1_REG 0xb4cU
-typedef union slcr_DDRIOB_DATA1
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DATA1;
-
 #define slcr_DDRIOB_DATA1_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_DATA1_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_DATA1_PULLUP_EN_LSHIFT 11U
@@ -5939,24 +3618,6 @@ typedef union slcr_DDRIOB_DATA1
 
 // DDR IOB Config for DQS 1:0
 #define slcr_DDRIOB_DIFF0_REG 0xb50U
-typedef union slcr_DDRIOB_DIFF0
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DIFF0;
-
 #define slcr_DDRIOB_DIFF0_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_DIFF0_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_DIFF0_PULLUP_EN_LSHIFT 11U
@@ -5988,24 +3649,6 @@ typedef union slcr_DDRIOB_DIFF0
 
 // DDR IOB Config for DQS 3:2
 #define slcr_DDRIOB_DIFF1_REG 0xb54U
-typedef union slcr_DDRIOB_DIFF1
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DIFF1;
-
 #define slcr_DDRIOB_DIFF1_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_DIFF1_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_DIFF1_PULLUP_EN_LSHIFT 11U
@@ -6037,24 +3680,6 @@ typedef union slcr_DDRIOB_DIFF1
 
 // DDR IOB Config for Clock Output
 #define slcr_DDRIOB_CLOCK_REG 0xb58U
-typedef union slcr_DDRIOB_CLOCK
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t PULLUP_EN : 1;
-		uint32_t OUTPUT_EN : 2;
-		uint32_t TERM_DISABLE_MODE : 1;
-		uint32_t IBUF_DISABLE_MODE : 1;
-		uint32_t DCI_TYPE : 2;
-		uint32_t TERM_EN : 1;
-		uint32_t DCI_UPDATE_B : 1;
-		uint32_t INP_TYPE : 2;
-		uint32_t RESERVED_INP_POWER : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_CLOCK;
-
 #define slcr_DDRIOB_CLOCK_RESERVED_0_LSHIFT 12U
 #define slcr_DDRIOB_CLOCK_RESERVED_0_MASK 0xfffff000U
 #define slcr_DDRIOB_CLOCK_PULLUP_EN_LSHIFT 11U
@@ -6086,20 +3711,6 @@ typedef union slcr_DDRIOB_CLOCK
 
 // Drive and Slew controls for Address and Command pins of the DDR Interface
 #define slcr_DDRIOB_DRIVE_SLEW_ADDR_REG 0xb5cU
-typedef union slcr_DDRIOB_DRIVE_SLEW_ADDR
-{
-	struct
-	{
-		uint32_t RESERVED_RTERM : 5;
-		uint32_t RESERVED_GTL : 3;
-		uint32_t RESERVED_SLEW_N : 5;
-		uint32_t RESERVED_SLEW_P : 5;
-		uint32_t RESERVED_DRIVE_N : 7;
-		uint32_t RESERVED_DRIVE_P : 7;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DRIVE_SLEW_ADDR;
-
 #define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_RTERM_LSHIFT 27U
 #define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_RTERM_MASK 0xf8000000U
 #define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_GTL_LSHIFT 24U
@@ -6117,20 +3728,6 @@ typedef union slcr_DDRIOB_DRIVE_SLEW_ADDR
 
 // Drive and Slew controls for DQ pins of the DDR Interface
 #define slcr_DDRIOB_DRIVE_SLEW_DATA_REG 0xb60U
-typedef union slcr_DDRIOB_DRIVE_SLEW_DATA
-{
-	struct
-	{
-		uint32_t RESERVED_RTERM : 5;
-		uint32_t RESERVED_GTL : 3;
-		uint32_t RESERVED_SLEW_N : 5;
-		uint32_t RESERVED_SLEW_P : 5;
-		uint32_t RESERVED_DRIVE_N : 7;
-		uint32_t RESERVED_DRIVE_P : 7;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DRIVE_SLEW_DATA;
-
 #define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_RTERM_LSHIFT 27U
 #define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_RTERM_MASK 0xf8000000U
 #define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_GTL_LSHIFT 24U
@@ -6148,20 +3745,6 @@ typedef union slcr_DDRIOB_DRIVE_SLEW_DATA
 
 // Drive and Slew controls for DQS pins of the DDR Interface
 #define slcr_DDRIOB_DRIVE_SLEW_DIFF_REG 0xb64U
-typedef union slcr_DDRIOB_DRIVE_SLEW_DIFF
-{
-	struct
-	{
-		uint32_t RESERVED_RTERM : 5;
-		uint32_t RESERVED_GTL : 3;
-		uint32_t RESERVED_SLEW_N : 5;
-		uint32_t RESERVED_SLEW_P : 5;
-		uint32_t RESERVED_DRIVE_N : 7;
-		uint32_t RESERVED_DRIVE_P : 7;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DRIVE_SLEW_DIFF;
-
 #define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_RTERM_LSHIFT 27U
 #define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_RTERM_MASK 0xf8000000U
 #define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_GTL_LSHIFT 24U
@@ -6179,20 +3762,6 @@ typedef union slcr_DDRIOB_DRIVE_SLEW_DIFF
 
 // Drive and Slew controls for Clock pins of the DDR Interface
 #define slcr_DDRIOB_DRIVE_SLEW_CLOCK_REG 0xb68U
-typedef union slcr_DDRIOB_DRIVE_SLEW_CLOCK
-{
-	struct
-	{
-		uint32_t RESERVED_RTERM : 5;
-		uint32_t RESERVED_GTL : 3;
-		uint32_t RESERVED_SLEW_N : 5;
-		uint32_t RESERVED_SLEW_P : 5;
-		uint32_t RESERVED_DRIVE_N : 7;
-		uint32_t RESERVED_DRIVE_P : 7;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DRIVE_SLEW_CLOCK;
-
 #define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_RTERM_LSHIFT 27U
 #define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_RTERM_MASK 0xf8000000U
 #define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_GTL_LSHIFT 24U
@@ -6210,24 +3779,6 @@ typedef union slcr_DDRIOB_DRIVE_SLEW_CLOCK
 
 // DDR IOB Buffer Control Register Name Address Width DDRIOB_DCI_CTRL 0x00000B70 32 rw 0x00000020 DDR IOB DCI Config
 #define slcr_DDRIOB_DDR_CTRL_REG 0xb6cU
-typedef union slcr_DDRIOB_DDR_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 17;
-		uint32_t RESERVED_CKE_PULLUP_EN : 1;
-		uint32_t RESERVED_DRST_B_PULLUP_EN : 1;
-		uint32_t RESERVED_REFIO_PULLUP_EN : 1;
-		uint32_t RESERVED_REFIO_TEST : 2;
-		uint32_t REFIO_EN : 1;
-		uint32_t RESERVED_VREF_PULLUP_EN : 2;
-		uint32_t VREF_EXT_EN : 2;
-		uint32_t VREF_SEL : 4;
-		uint32_t VREF_INT_EN : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DDR_CTRL;
-
 #define slcr_DDRIOB_DDR_CTRL_RESERVED_0_LSHIFT 15U
 #define slcr_DDRIOB_DDR_CTRL_RESERVED_0_MASK 0xffff8000U
 #define slcr_DDRIOB_DDR_CTRL_RESERVED_CKE_PULLUP_EN_LSHIFT 14U
@@ -6258,35 +3809,6 @@ typedef union slcr_DDRIOB_DDR_CTRL
 
 // DDR IOB DCI Config
 #define slcr_DDRIOB_DCI_CTRL_REG 0xb70U
-typedef union slcr_DDRIOB_DCI_CTRL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 4;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_INT_DCI_EN : 1;
-		uint32_t RESERVED_TST_RST : 1;
-		uint32_t RESERVED_TST_HLP : 1;
-		uint32_t RESERVED_TST_HLN : 1;
-		uint32_t RESERVED_TST_CLK : 1;
-		uint32_t RESERVED_INIT_COMPLETE : 1;
-		uint32_t UPDATE_CONTROL : 1;
-		uint32_t PREF_OPT2 : 3;
-		uint32_t RESERVED_8 : 1;
-		uint32_t PREF_OPT1 : 2;
-		uint32_t NREF_OPT4 : 3;
-		uint32_t NREF_OPT2 : 3;
-		uint32_t NREF_OPT1 : 2;
-		uint32_t RESERVED_VRN_OUT : 1;
-		uint32_t RESERVED_VRP_OUT : 1;
-		uint32_t RESERVED_VRN_TRI : 1;
-		uint32_t RESERVED_VRP_TRI : 1;
-		uint32_t ENABLE : 1;
-		uint32_t RESET : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DCI_CTRL;
-
 #define slcr_DDRIOB_DCI_CTRL_RESERVED_0_LSHIFT 28U
 #define slcr_DDRIOB_DCI_CTRL_RESERVED_0_MASK 0xf0000000U
 #define slcr_DDRIOB_DCI_CTRL_RESERVED_1_LSHIFT 27U
@@ -6349,28 +3871,6 @@ typedef union slcr_DDRIOB_DCI_CTRL
 
 // DDR IO Buffer DCI Status
 #define slcr_DDRIOB_DCI_STATUS_REG 0xb74U
-typedef union slcr_DDRIOB_DCI_STATUS
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 18;
-		uint32_t DONE : 1;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t RESERVED_3 : 1;
-		uint32_t RESERVED_4 : 1;
-		uint32_t RESERVED_5 : 1;
-		uint32_t RESERVED_6 : 1;
-		uint32_t RESERVED_7 : 1;
-		uint32_t RESERVED_8 : 1;
-		uint32_t RESERVED_9 : 2;
-		uint32_t RESERVED_10 : 1;
-		uint32_t RESERVED_11 : 1;
-		uint32_t LOCK : 1;
-	} fields;
-	uint32_t v;
-} slcr_DDRIOB_DCI_STATUS;
-
 #define slcr_DDRIOB_DCI_STATUS_RESERVED_0_LSHIFT 14U
 #define slcr_DDRIOB_DCI_STATUS_RESERVED_0_MASK 0xffffc000U
 #define slcr_DDRIOB_DCI_STATUS_DONE_LSHIFT 13U

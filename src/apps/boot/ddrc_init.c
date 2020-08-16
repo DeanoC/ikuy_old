@@ -4,7 +4,6 @@
 #include "ps_init_program.h"
 #include <hw/ddrc.h>
 #include "hw/memory_map.h"
-#include "debug_print.h"
 
 #define REG(reg)(ddrc_##reg##_REG)
 #define MASK(field) (ddrc_##field##_MASK)

@@ -17,5 +17,7 @@ add_executable(${project} ${SRCLIST} ${ASMFILES} ${LINKSCRIPT})
 set_target_properties(${project} PROPERTIES OUTPUT_NAME ${project}.elf)
 target_link_libraries(${project} PUBLIC a9sdk)
 target_link_libraries(${project} PUBLIC core)
-target_link_libraries(${project} PUBLIC serialdebug)
+target_link_libraries(${project} PUBLIC serial_debug)
+target_link_libraries(${project} PUBLIC hw_timers)
+target_link_libraries(${project} PUBLIC system_info)
 

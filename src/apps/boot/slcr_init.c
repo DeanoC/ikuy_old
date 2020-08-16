@@ -241,9 +241,11 @@ static PSI_IWord const slcr_init[] =
  
     // we write to ARM_PLL_CTRL 2 times in a row (not a bug!)
     // and then assert a reset (2 more times)
+
+    // CPU PLL = 50 Mhz * 26 = ARM_PLL 1300Mhz 
     PSI_WRITE_MASKED32(  REG(ARM_PLL_CTRL),                         
                         MASK(ARM_PLL_CTRL_PLL_FDIV),                         
-                        VAL(ARM_PLL_CTRL_PLL_FDIV, 0x1a) ),
+                        VAL(ARM_PLL_CTRL_PLL_FDIV, 0x1A) ),
     PSI_WRITE_MASKED32(  REG(ARM_PLL_CTRL),                         
                         MASK(ARM_PLL_CTRL_PLL_BYPASS_FORCE),                         
                         VAL(ARM_PLL_CTRL_PLL_BYPASS_FORCE, 0x1) ),
@@ -254,7 +256,12 @@ static PSI_IWord const slcr_init[] =
     PSI_WRITE_MASKED32(  REG(ARM_PLL_CTRL),                         
                         MASK(ARM_PLL_CTRL_PLL_BYPASS_FORCE),                         
                         VAL(ARM_PLL_CTRL_PLL_BYPASS_FORCE, 0x0) ),
-    // ARM clocks
+
+    // ARM clocks (6x ratio mode)
+    // CPU 6x4x Clock = 1300Mhz / 2 = 650 Mhz
+    // CPU 1x Clock = 650 Mhz / 6 = 108 Mhz
+    // CPU 2x Clock = 325 Mhz / 2 = 207 Mhz
+    // CPU 3x2x Clock = 650Mhz / 2 = 325 Mhz
     PSI_WRITE_MASKED32(  REG(ARM_CLK_CTRL),                         
                         MASK(ARM_CLK_CTRL_SRCSEL) |
                         MASK(ARM_CLK_CTRL_DIVISOR) |
@@ -265,7 +272,7 @@ static PSI_IWord const slcr_init[] =
                         MASK(ARM_CLK_CTRL_CPU_PERI_CLKACT),
 
                         VAL(ARM_CLK_CTRL_SRCSEL, 0x0) |
-                        VAL(ARM_CLK_CTRL_DIVISOR, 0x2) |
+                        VAL(ARM_CLK_CTRL_DIVISOR, 0x2) | // divide by 2
                         VAL(ARM_CLK_CTRL_CPU_6OR4XCLKACT, 0x1) |
                         VAL(ARM_CLK_CTRL_CPU_3OR2XCLKACT, 0x1) |
                         VAL(ARM_CLK_CTRL_CPU_2XCLKACT, 0x1) |
@@ -282,6 +289,7 @@ static PSI_IWord const slcr_init[] =
                         VAL(DDR_PLL_CFG_PLL_CP, 0x2) |
                         VAL(DDR_PLL_CFG_LOCK_CNT, 0x1DBU) ),
 
+    // DDR PLL = 50 Mhz * 21 = 1050 Mhz
     PSI_WRITE_MASKED32( REG(DDR_PLL_CTRL),
                         MASK(DDR_PLL_CTRL_PLL_FDIV),
                         VAL(DDR_PLL_CTRL_PLL_FDIV, 0x15)),
@@ -295,6 +303,8 @@ static PSI_IWord const slcr_init[] =
                         MASK(DDR_PLL_CTRL_PLL_BYPASS_FORCE),                         
                         VAL(DDR_PLL_CTRL_PLL_BYPASS_FORCE, 0x0) ),
     // DDR clocks
+    // ddr_2x = 1050 Mhz / 3 = 350 Mhz
+    // ddr_3x = 1050 Mhz / 2 = 525 Mhz
     PSI_WRITE_MASKED32(  REG(DDR_CLK_CTRL),                         
                         MASK(DDR_CLK_CTRL_DDR_3XCLKACT) |
                         MASK(DDR_CLK_CTRL_DDR_2XCLKACT) |
@@ -305,6 +315,15 @@ static PSI_IWord const slcr_init[] =
                         VAL(DDR_CLK_CTRL_DDR_2XCLKACT, 0x1) |
                         VAL(DDR_CLK_CTRL_DDR_3XCLK_DIVISOR, 0x2) |
                         VAL(DDR_CLK_CTRL_DDR_2XCLK_DIVISOR, 0x3) ),
+    // DDR DCI = 1050 Mhz / 52 = 20.2 / 2 = 10.1 Mhz
+    PSI_WRITE_MASKED32( REG(DCI_CLK_CTRL),
+                        MASK(DCI_CLK_CTRL_CLKACT) |
+                        MASK(DCI_CLK_CTRL_DIVISOR0) |
+                        MASK(DCI_CLK_CTRL_DIVISOR1),
+                        VAL(DCI_CLK_CTRL_CLKACT, 0x1) |
+                        VAL(DCI_CLK_CTRL_DIVISOR0, 0x34) |
+                        VAL(DCI_CLK_CTRL_DIVISOR1, 0x2) ),
+
     // FINISH DDR PLL INIT
 
     // START IO PLL INIT
@@ -316,6 +335,7 @@ static PSI_IWord const slcr_init[] =
                         VAL(IO_PLL_CFG_PLL_CP, 0x2) |
                         VAL(IO_PLL_CFG_LOCK_CNT, 0x1F4) ),
 
+    // IO PLL 50 Mhz * 20 = 1000 Mhz
     PSI_WRITE_MASKED32( REG(IO_PLL_CTRL),
                         MASK(IO_PLL_CTRL_PLL_FDIV),
                         VAL(IO_PLL_CTRL_PLL_FDIV, 0x14)),
@@ -328,23 +348,17 @@ static PSI_IWord const slcr_init[] =
     PSI_WRITE_MASKED32(  REG(IO_PLL_CTRL),                         
                         MASK(IO_PLL_CTRL_PLL_BYPASS_FORCE),                         
                         VAL(IO_PLL_CTRL_PLL_BYPASS_FORCE, 0x0) ),
-    //---- 
-    // CLOCK
-    //---- 
-    PSI_WRITE_MASKED32( REG(DCI_CLK_CTRL),
-                        MASK(DCI_CLK_CTRL_CLKACT) |
-                        MASK(DCI_CLK_CTRL_DIVISOR0) |
-                        MASK(DCI_CLK_CTRL_DIVISOR1),
-                        VAL(DCI_CLK_CTRL_CLKACT, 0x1) |
-                        VAL(DCI_CLK_CTRL_DIVISOR0, 0x34) |
-                        VAL(DCI_CLK_CTRL_DIVISOR1, 0x2) ),
 
+    // GEM0 (Gigabit Ethernet)
+    // use EMIO clock for recieve
     PSI_WRITE_MASKED32( REG(GEM0_RCLK_CTRL),
                         MASK(GEM0_RCLK_CTRL_CLKACT) |
                         MASK(GEM0_RCLK_CTRL_SRCSEL),
                         VAL(GEM0_RCLK_CTRL_CLKACT, 0x1) |
                         VAL(GEM0_RCLK_CTRL_SRCSEL, 0x0)),
 
+    // use IO PLL (1000 Mhz)
+    // (1000 / 8) = 125 Mhz
     PSI_WRITE_MASKED32( REG(GEM0_CLK_CTRL),
                         MASK(GEM0_CLK_CTRL_CLKACT) |
                         MASK(GEM0_CLK_CTRL_SRCSEL) | 
@@ -355,7 +369,9 @@ static PSI_IWord const slcr_init[] =
                         VAL(GEM0_CLK_CTRL_DIVISOR, 0x8) |
                         VAL(GEM0_CLK_CTRL_DIVISOR1, 0x1)
                         ),
-
+    // Quad SPI 
+    // use IO PLL (10.1 Mhz)
+    // 1000 / 5 = 200 Mhz
     PSI_WRITE_MASKED32( REG(LQSPI_CLK_CTRL),
                         MASK(LQSPI_CLK_CTRL_CLKACT) |
                         MASK(LQSPI_CLK_CTRL_SRCSEL) | 
@@ -364,7 +380,9 @@ static PSI_IWord const slcr_init[] =
                         VAL(LQSPI_CLK_CTRL_SRCSEL, 0x0) |
                         VAL(LQSPI_CLK_CTRL_DIVISOR, 0x5)
                         ),
-
+    // SDIO
+    // uses IO PLL
+    // 1000 / 20 = 50 Mhz 
     PSI_WRITE_MASKED32( REG(SDIO_CLK_CTRL),
                         MASK(SDIO_CLK_CTRL_CLKACT0) |
                         MASK(SDIO_CLK_CTRL_CLKACT1) |
@@ -375,7 +393,9 @@ static PSI_IWord const slcr_init[] =
                         VAL(SDIO_CLK_CTRL_SRCSEL, 0x0) |
                         VAL(SDIO_CLK_CTRL_DIVISOR, 0x14)
                         ),
-
+    // UART0
+    // use IO PLL
+    // 1000 Mhz / 10 = 100 Mhz
     PSI_WRITE_MASKED32( REG(UART_CLK_CTRL),
                         MASK(UART_CLK_CTRL_CLKACT0) |
                         MASK(UART_CLK_CTRL_CLKACT1) |
@@ -386,7 +406,9 @@ static PSI_IWord const slcr_init[] =
                         VAL(UART_CLK_CTRL_SRCSEL, 0x0) |
                         VAL(UART_CLK_CTRL_DIVISOR, 0xa)
                         ),
-
+    // PCAP (FPGA config)
+    // use IO clock
+    // 1000 / 5 = 200 Mhz
     PSI_WRITE_MASKED32( REG(PCAP_CLK_CTRL),
                         MASK(PCAP_CLK_CTRL_CLKACT) |
                         MASK(PCAP_CLK_CTRL_SRCSEL) |
@@ -395,6 +417,9 @@ static PSI_IWord const slcr_init[] =
                         VAL(PCAP_CLK_CTRL_SRCSEL, 0x0) |
                         VAL(PCAP_CLK_CTRL_DIVISOR, 0x5)),
 
+    // FPGA0 clock
+    // use IO Pll
+    // 1000 / 5 = 200 Mhz
     PSI_WRITE_MASKED32( REG(FPGA0_CLK_CTRL),
                         MASK(FPGA0_CLK_CTRL_SRCSEL) | 
                         MASK(FPGA0_CLK_CTRL_DIVISOR0) |
@@ -403,7 +428,7 @@ static PSI_IWord const slcr_init[] =
                         VAL(FPGA0_CLK_CTRL_DIVISOR0, 0x5) |
                         VAL(FPGA0_CLK_CTRL_DIVISOR1, 0x2)
                         ),
-
+    // use 6:3:2:1 ratio for CPU clocks
     PSI_WRITE_MASKED32( REG(CLK_621_TRUE),
                         MASK(CLK_621_TRUE_CLK_621_TRUE),
                         VAL(CLK_621_TRUE_CLK_621_TRUE, 0x1) ),                        

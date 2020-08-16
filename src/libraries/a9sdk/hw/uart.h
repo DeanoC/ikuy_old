@@ -12,24 +12,6 @@
 
 // UART Control Register
 #define uart_CR_REG 0x0U
-typedef union uart_CR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 23;
-		uint32_t STOPBRK : 1;
-		uint32_t STARTBRK : 1;
-		uint32_t TORST : 1;
-		uint32_t TX_DIS : 1;
-		uint32_t TX_EN : 1;
-		uint32_t RX_DIS : 1;
-		uint32_t RX_EN : 1;
-		uint32_t TXRST : 1;
-		uint32_t RXRST : 1;
-	} fields;
-	uint32_t v;
-} uart_CR;
-
 #define uart_CR_RESERVED_0_LSHIFT 9U
 #define uart_CR_RESERVED_0_MASK 0xfffffe00U
 #define uart_CR_STOPBRK_LSHIFT 8U
@@ -64,22 +46,6 @@ typedef union uart_CR
 
 // UART Mode Register
 #define uart_MR_REG 0x4U
-typedef union uart_MR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 20;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t CHMODE : 2;
-		uint32_t NBSTOP : 2;
-		uint32_t PAR : 3;
-		uint32_t CHRL : 2;
-		uint32_t CLKSEL : 1;
-	} fields;
-	uint32_t v;
-} uart_MR;
-
 #define uart_MR_RESERVED_0_LSHIFT 12U
 #define uart_MR_RESERVED_0_MASK 0xfffff000U
 #define uart_MR_RESERVED_1_LSHIFT 11U
@@ -104,28 +70,6 @@ typedef union uart_MR
 
 // Interrupt Enable Register
 #define uart_IER_REG 0x8U
-typedef union uart_IER
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 19;
-		uint32_t TOVR : 1;
-		uint32_t TNFUL : 1;
-		uint32_t TTRIG : 1;
-		uint32_t DMS : 1;
-		uint32_t TOUT : 1;
-		uint32_t PARITY : 1;
-		uint32_t FRAMING : 1;
-		uint32_t OVER : 1;
-		uint32_t TXFULL : 1;
-		uint32_t TXEMPTY : 1;
-		uint32_t RXFULL : 1;
-		uint32_t RXEMPTY : 1;
-		uint32_t RXOVR : 1;
-	} fields;
-	uint32_t v;
-} uart_IER;
-
 #define uart_IER_RESERVED_0_LSHIFT 13U
 #define uart_IER_RESERVED_0_MASK 0xffffe000U
 #define uart_IER_TOVR_LSHIFT 12U
@@ -172,28 +116,6 @@ typedef union uart_IER
 
 // Interrupt Disable Register
 #define uart_IDR_REG 0xcU
-typedef union uart_IDR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 19;
-		uint32_t TOVR : 1;
-		uint32_t TNFUL : 1;
-		uint32_t TTRIG : 1;
-		uint32_t DMS : 1;
-		uint32_t TOUT : 1;
-		uint32_t PARITY : 1;
-		uint32_t FRAMING : 1;
-		uint32_t OVER : 1;
-		uint32_t TXFULL : 1;
-		uint32_t TXEMPTY : 1;
-		uint32_t RXFULL : 1;
-		uint32_t RXEMPTY : 1;
-		uint32_t RXOVR : 1;
-	} fields;
-	uint32_t v;
-} uart_IDR;
-
 #define uart_IDR_RESERVED_0_LSHIFT 13U
 #define uart_IDR_RESERVED_0_MASK 0xffffe000U
 #define uart_IDR_TOVR_LSHIFT 12U
@@ -240,28 +162,6 @@ typedef union uart_IDR
 
 // Interrupt Mask Register
 #define uart_IMR_REG 0x10U
-typedef union uart_IMR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 19;
-		uint32_t TOVR : 1;
-		uint32_t TNFUL : 1;
-		uint32_t TTRIG : 1;
-		uint32_t DMS : 1;
-		uint32_t TOUT : 1;
-		uint32_t PARITY : 1;
-		uint32_t FRAMING : 1;
-		uint32_t OVER : 1;
-		uint32_t TXFULL : 1;
-		uint32_t TXEMPTY : 1;
-		uint32_t RXFULL : 1;
-		uint32_t RXEMPTY : 1;
-		uint32_t RXOVR : 1;
-	} fields;
-	uint32_t v;
-} uart_IMR;
-
 #define uart_IMR_RESERVED_0_LSHIFT 13U
 #define uart_IMR_RESERVED_0_MASK 0xffffe000U
 #define uart_IMR_TOVR_LSHIFT 12U
@@ -308,28 +208,6 @@ typedef union uart_IMR
 
 // Channel Interrupt Status Register
 #define uart_ISR_REG 0x14U
-typedef union uart_ISR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 19;
-		uint32_t TOVR : 1;
-		uint32_t L : 1;
-		uint32_t G : 1;
-		uint32_t DMS : 1;
-		uint32_t TOUT : 1;
-		uint32_t PARITY : 1;
-		uint32_t FRAMING : 1;
-		uint32_t OVER : 1;
-		uint32_t TXFULL : 1;
-		uint32_t TXEMPTY : 1;
-		uint32_t RXFULL : 1;
-		uint32_t RXEMPTY : 1;
-		uint32_t RXOVR : 1;
-	} fields;
-	uint32_t v;
-} uart_ISR;
-
 #define uart_ISR_RESERVED_0_LSHIFT 13U
 #define uart_ISR_RESERVED_0_MASK 0xffffe000U
 #define uart_ISR_TOVR_LSHIFT 12U
@@ -376,16 +254,6 @@ typedef union uart_ISR
 
 // Baud Rate Generator Register.
 #define uart_BAUD_RATE_GENERATOR_REG 0x18U
-typedef union uart_BAUD_RATE_GENERATOR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 16;
-		uint32_t CD : 16;
-	} fields;
-	uint32_t v;
-} uart_BAUD_RATE_GENERATOR;
-
 #define uart_BAUD_RATE_GENERATOR_RESERVED_0_LSHIFT 16U
 #define uart_BAUD_RATE_GENERATOR_RESERVED_0_MASK 0xffff0000U
 #define uart_BAUD_RATE_GENERATOR_CD_LSHIFT 0U
@@ -395,16 +263,6 @@ typedef union uart_BAUD_RATE_GENERATOR
 
 // Receiver Timeout Register
 #define uart_RXTOUT_REG 0x1cU
-typedef union uart_RXTOUT
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 24;
-		uint32_t RTO : 8;
-	} fields;
-	uint32_t v;
-} uart_RXTOUT;
-
 #define uart_RXTOUT_RESERVED_0_LSHIFT 8U
 #define uart_RXTOUT_RESERVED_0_MASK 0xffffff00U
 #define uart_RXTOUT_RTO_LSHIFT 0U
@@ -414,16 +272,6 @@ typedef union uart_RXTOUT
 
 // Receiver FIFO Trigger Level Register
 #define uart_RX_FIFO_TRIGGER_LEVEL_REG 0x20U
-typedef union uart_RX_FIFO_TRIGGER_LEVEL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 26;
-		uint32_t TRIGGER : 6;
-	} fields;
-	uint32_t v;
-} uart_RX_FIFO_TRIGGER_LEVEL;
-
 #define uart_RX_FIFO_TRIGGER_LEVEL_RESERVED_0_LSHIFT 6U
 #define uart_RX_FIFO_TRIGGER_LEVEL_RESERVED_0_MASK 0xffffffc0U
 #define uart_RX_FIFO_TRIGGER_LEVEL_TRIGGER_LSHIFT 0U
@@ -433,19 +281,6 @@ typedef union uart_RX_FIFO_TRIGGER_LEVEL
 
 // Modem Control Register
 #define uart_MODEMCR_REG 0x24U
-typedef union uart_MODEMCR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 26;
-		uint32_t FCM : 1;
-		uint32_t RESERVED_1 : 3;
-		uint32_t RTS : 1;
-		uint32_t DTR : 1;
-	} fields;
-	uint32_t v;
-} uart_MODEMCR;
-
 #define uart_MODEMCR_RESERVED_0_LSHIFT 6U
 #define uart_MODEMCR_RESERVED_0_MASK 0xffffffc0U
 #define uart_MODEMCR_FCM_LSHIFT 5U
@@ -464,24 +299,6 @@ typedef union uart_MODEMCR
 
 // Trigger Level Register
 #define uart_MODEMSR_REG 0x28U
-typedef union uart_MODEMSR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 23;
-		uint32_t FCMS : 1;
-		uint32_t DCD : 1;
-		uint32_t RI : 1;
-		uint32_t DSR : 1;
-		uint32_t CTS : 1;
-		uint32_t MEDEMSR_DCDX : 1;
-		uint32_t MEDEMSR_RIX : 1;
-		uint32_t MEDEMSR_DSRX : 1;
-		uint32_t MEDEMSR_CTSX : 1;
-	} fields;
-	uint32_t v;
-} uart_MODEMSR;
-
 #define uart_MODEMSR_RESERVED_0_LSHIFT 9U
 #define uart_MODEMSR_RESERVED_0_MASK 0xfffffe00U
 #define uart_MODEMSR_FCMS_LSHIFT 8U
@@ -516,30 +333,6 @@ typedef union uart_MODEMSR
 
 // Channel Status Register
 #define uart_SR_REG 0x2cU
-typedef union uart_SR
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 17;
-		uint32_t TNFUL : 1;
-		uint32_t TTRIG : 1;
-		uint32_t FLOWDEL : 1;
-		uint32_t TACTIVE : 1;
-		uint32_t RACTIVE : 1;
-		uint32_t RESERVED_1 : 1;
-		uint32_t RESERVED_2 : 1;
-		uint32_t RESERVED_3 : 1;
-		uint32_t RESERVED_4 : 1;
-		uint32_t RESERVED_5 : 1;
-		uint32_t TXFULL : 1;
-		uint32_t TXEMPTY : 1;
-		uint32_t RXFULL : 1;
-		uint32_t RXEMPTY : 1;
-		uint32_t RXOVR : 1;
-	} fields;
-	uint32_t v;
-} uart_SR;
-
 #define uart_SR_RESERVED_0_LSHIFT 15U
 #define uart_SR_RESERVED_0_MASK 0xffff8000U
 #define uart_SR_TNFUL_LSHIFT 14U
@@ -592,16 +385,6 @@ typedef union uart_SR
 
 // Transmit and Receive FIFO
 #define uart_FIFO_REG 0x30U
-typedef union uart_FIFO
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 24;
-		uint32_t FIFO : 8;
-	} fields;
-	uint32_t v;
-} uart_FIFO;
-
 #define uart_FIFO_RESERVED_0_LSHIFT 8U
 #define uart_FIFO_RESERVED_0_MASK 0xffffff00U
 #define uart_FIFO_FIFO_LSHIFT 0U
@@ -611,16 +394,6 @@ typedef union uart_FIFO
 
 // Baud Rate Divider Register
 #define uart_BAUD_RATE_DIVIDER_REG 0x34U
-typedef union uart_BAUD_RATE_DIVIDER
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 24;
-		uint32_t BDIV : 8;
-	} fields;
-	uint32_t v;
-} uart_BAUD_RATE_DIVIDER;
-
 #define uart_BAUD_RATE_DIVIDER_RESERVED_0_LSHIFT 8U
 #define uart_BAUD_RATE_DIVIDER_RESERVED_0_MASK 0xffffff00U
 #define uart_BAUD_RATE_DIVIDER_BDIV_LSHIFT 0U
@@ -630,16 +403,6 @@ typedef union uart_BAUD_RATE_DIVIDER
 
 // Flow Control Delay Register
 #define uart_FLOW_DELAY_REG 0x38U
-typedef union uart_FLOW_DELAY
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 26;
-		uint32_t FDEL : 6;
-	} fields;
-	uint32_t v;
-} uart_FLOW_DELAY;
-
 #define uart_FLOW_DELAY_RESERVED_0_LSHIFT 6U
 #define uart_FLOW_DELAY_RESERVED_0_MASK 0xffffffc0U
 #define uart_FLOW_DELAY_FDEL_LSHIFT 0U
@@ -649,16 +412,6 @@ typedef union uart_FLOW_DELAY
 
 // Transmitter fifo trigger level
 #define uart_TX_FIFO_TRIGGER_LEVEL_REG 0x44U
-typedef union uart_TX_FIFO_TRIGGER_LEVEL
-{
-	struct
-	{
-		uint32_t RESERVED_0 : 26;
-		uint32_t TRIGGER : 6;
-	} fields;
-	uint32_t v;
-} uart_TX_FIFO_TRIGGER_LEVEL;
-
 #define uart_TX_FIFO_TRIGGER_LEVEL_RESERVED_0_LSHIFT 6U
 #define uart_TX_FIFO_TRIGGER_LEVEL_RESERVED_0_MASK 0xffffffc0U
 #define uart_TX_FIFO_TRIGGER_LEVEL_TRIGGER_LSHIFT 0U

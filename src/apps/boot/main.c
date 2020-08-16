@@ -1,9 +1,11 @@
 #include <hw/devcfg.h>
 #include <hw/uart.h>
-#include <hw/regs.h>
+#include <hw/reg.h>
 
-#include "uart_control.h"
-#include "debug_print.h"
+#include "serial_debug/uart_control.h"
+#include "serial_debug/debug_print.h"
+#include "hw_timers/global.h"
+#include "system_info/cpu.h"
 
 extern void slcrRunInitProgram();
 extern void slcrRunPostDDRInitProgram();
@@ -52,14 +54,28 @@ int main(int argc, char const *argv[])
     ddrcRunInitProgram();
     slcrRunPostDDRInitProgram();
     debug_print(DEBUG_GREEN_PEN "OK\n");
+
+    // reset and kick off the global timer
+    hw_timers_global_reset();
+    uint64_t timeStart = hw_timers_global_get();
+
+    // log clocks 
+    system_info_log_clocks();
+
     debug_print(DEBUG_WHITE_PEN "DDR Early MemTest ");
-    if (ddrEarlyMemTest() == true)
+
+    bool ddrEarlyMemTestOk = ddrEarlyMemTest();
+    uint64_t timeEnd = hw_timers_global_get();
+    if (ddrEarlyMemTestOk)
     {
-        debug_print(DEBUG_GREEN_PEN "OK\n");
+        debug_print(DEBUG_GREEN_PEN "OK ");
     } else 
     {
-        debug_print(DEBUG_RED_PEN "FAIL\n");
+        debug_print(DEBUG_RED_PEN "FAIL ");
     }
+
+    debug_printf(DEBUG_YELLOW_PEN "Time = %lld\n", timeEnd - timeStart);
+
    
     while (1)
     {
