@@ -1,5 +1,5 @@
 #include "ps_init_program.h"
-#include "uart.h"
+#include "hw/uart.h"
 
 #define REG(reg) (uart_##reg##_REG)
 #define MASK(field) (uart_##field##_MASK)

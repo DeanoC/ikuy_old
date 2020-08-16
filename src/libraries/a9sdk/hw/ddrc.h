@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// DDR Memory Controller
+
 // 1 bank of ddrc
 
 #define ddrc_BASE_ADDR 0xf8006000U

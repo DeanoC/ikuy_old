@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// GPIO
+
 // 1 bank of gpio
 
 #define gpio_BASE_ADDR 0xe000a000U
@@ -45,7 +47,7 @@ typedef union gpio_MASK_DATA_0_MSW
 #define gpio_MASK_DATA_0_MSW_MASK 0xffffffffU
 
 
-// 15:0 wo 0x00000000
+// 0x00000B70 32 rw 0x00000020 DDR IOB DCI Config
 #define gpio_MASK_DATA_1_LSW_REG 0x8U
 typedef union gpio_MASK_DATA_1_LSW
 {
@@ -64,7 +66,7 @@ typedef union gpio_MASK_DATA_1_LSW
 #define gpio_MASK_DATA_1_LSW_MASK 0xffffffffU
 
 
-// 15:0 wo 0x00000000
+// 0x00000B70 32 rw 0x00000020 DDR IOB DCI Config
 #define gpio_MASK_DATA_1_MSW_REG 0xcU
 typedef union gpio_MASK_DATA_1_MSW
 {

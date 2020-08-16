@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// SPI
+
 // 2 banks of spi
 
 #define spi0_BASE_ADDR 0xe0006000U

@@ -11,3 +11,5 @@ void debug_set_uart_freq(debug_uart_freq freq);
 
 
 void debug_set_uart_fifo_size(uint32_t size);
+
+void debug_uart_stall_till_transmit_fifo_is_empty();

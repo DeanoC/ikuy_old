@@ -1,9 +1,9 @@
 #include "ps_init_program.h"
-#include "sclr.h"
+#include "hw/slcr.h"
 
-#define REG(reg)(sclr_##reg##_REG)
-#define MASK(field) (sclr_##field##_MASK)
-#define VAL(field, val) (val << sclr_##field##_LSHIFT)
+#define REG(reg)(slcr_##reg##_REG)
+#define MASK(field) (slcr_##field##_MASK)
+#define VAL(field, val) (val << slcr_##field##_LSHIFT)
 
 #define ASSERT_RESET(reg, field) \
     PSI_WRITE_MASKED32(  REG(reg), \
@@ -16,9 +16,9 @@
 #define POLL(reg, mask) PSI_POLL_MASKED32(  REG(reg), MASK(mask) )
 
 // these values are taking from a vitis project.
-static PSI_IWord const sclr_init[] = 
+static PSI_IWord const slcr_init[] = 
 {
-    PSI_SET_REGISTER_BANK(sclr_BASE_ADDR),
+    PSI_SET_REGISTER_BANK(slcr_BASE_ADDR),
 
     PSI_WRITE_32(REG(SLCR_UNLOCK), 0xDF0DU), // unlock
 
@@ -447,35 +447,38 @@ static PSI_IWord const sclr_init[] =
                         VAL(APER_CLK_CTRL_SMC_CPU_1XCLKACT, 0x1)
     ),
 
-    //----
-    // Peripharals
-    //----
-    // just the slcr portion of peripherals setup
-    PSI_MULTI_WRITE_MASKED32(REG(DDRIOB_DATA0), 
-                        4,
-                        MASK(DDRIOB_DATA0_IBUF_DISABLE_MODE) |
-                        MASK(DDRIOB_DATA0_TERM_DISABLE_MODE),
-
-                        VAL(DDRIOB_DATA0_IBUF_DISABLE_MODE, 0x1) |
-                        VAL(DDRIOB_DATA0_TERM_DISABLE_MODE, 0x1),
-
-                        VAL(DDRIOB_DATA1_IBUF_DISABLE_MODE, 0x0) |
-                        VAL(DDRIOB_DATA1_TERM_DISABLE_MODE, 0x0),
-
-                        VAL(DDRIOB_DIFF0_IBUF_DISABLE_MODE, 0x1) |
-                        VAL(DDRIOB_DIFF0_TERM_DISABLE_MODE, 0x1),
-
-                        VAL(DDRIOB_DIFF1_IBUF_DISABLE_MODE, 0x0) |
-                        VAL(DDRIOB_DIFF1_TERM_DISABLE_MODE, 0x0) ),
-
     // lock it back up
     PSI_WRITE_32( REG(SLCR_LOCK), 0x767B ),
 
     PSI_END_PROGRAM
 };
 
-#if DEBUG_WRITES == 1 
-static void GeneratePs7initComparator(uint32_t* array)
+static PSI_IWord const slcr_post_ddr_init[] =
+{
+    PSI_SET_REGISTER_BANK(slcr_BASE_ADDR),
+
+    PSI_WRITE_32(REG(SLCR_UNLOCK), 0xDF0DU), // unlock
+
+    //----
+    // Peripharals
+    //----
+    // just the slcr portion of peripherals setup
+    PSI_MULTI_WRITE_MASKED32(REG(DDRIOB_DATA0),
+                                4,
+                                MASK(DDRIOB_DATA0_IBUF_DISABLE_MODE) | MASK(DDRIOB_DATA0_TERM_DISABLE_MODE),
+                                VAL(DDRIOB_DATA0_IBUF_DISABLE_MODE, 0x1) | VAL(DDRIOB_DATA0_TERM_DISABLE_MODE, 0x1),
+                                VAL(DDRIOB_DATA1_IBUF_DISABLE_MODE, 0x0) | VAL(DDRIOB_DATA1_TERM_DISABLE_MODE, 0x0),
+                                VAL(DDRIOB_DIFF0_IBUF_DISABLE_MODE, 0x1) | VAL(DDRIOB_DIFF0_TERM_DISABLE_MODE, 0x1),
+                                VAL(DDRIOB_DIFF1_IBUF_DISABLE_MODE, 0x0) | VAL(DDRIOB_DIFF1_TERM_DISABLE_MODE, 0x0)),
+
+    // lock it back up
+    PSI_WRITE_32(REG(SLCR_LOCK), 0x767B),
+
+    PSI_END_PROGRAM
+};
+
+#if DEBUG_WRITES == 1
+static void GeneratePs7initComparator(uint32_t * array)
 {
 #define EMIT_WRITE(addr, val) array[(addr & 0x0FFF)/4] = val
 #define EMIT_MASKWRITE(addr, mask, val) array[(addr & 0x0FFF)/4] = (val & mask) | (array[(addr & 0x0FFF)/4] & (~mask))
@@ -599,24 +602,28 @@ static void GeneratePs7initComparator(uint32_t* array)
     // peripherals
     // most of peripherals is in its on module
     // this is just the slcr parts
-    EMIT_WRITE(0XF8000008, 0x0000DF0DU);
-    EMIT_MASKWRITE(0XF8000B48, 0x00000180U ,0x00000180U);
-    EMIT_MASKWRITE(0XF8000B4C, 0x00000180U ,0x00000000U);
-    EMIT_MASKWRITE(0XF8000B50, 0x00000180U ,0x00000180U);
-    EMIT_MASKWRITE(0XF8000B54, 0x00000180U ,0x00000000U);
-    EMIT_WRITE(0XF8000004, 0x0000767BU);
+//    EMIT_WRITE(0XF8000008, 0x0000DF0DU);
+//    EMIT_MASKWRITE(0XF8000B48, 0x00000180U ,0x00000180U);
+//    EMIT_MASKWRITE(0XF8000B4C, 0x00000180U ,0x00000000U);
+//    EMIT_MASKWRITE(0XF8000B50, 0x00000180U ,0x00000180U);
+//    EMIT_MASKWRITE(0XF8000B54, 0x00000180U ,0x00000000U);
+//    EMIT_WRITE(0XF8000004, 0x0000767BU);
 }
 
 void sclrRunInitProgram() 
 {
     uint32_t array[ 0xFFFF ] = {0};
     GeneratePs7initComparator(array);
-    psi_RunProgram(sclr_init, array);
+    psi_RunProgram(slcr_init, array);
 }
 #else
-void sclrRunInitProgram() 
+void slcrRunInitProgram() 
 {
-    psi_RunProgram(sclr_init, 0);
+    psi_RunProgram(slcr_init, 0);
+}
+void slcrRunPostDDRInitProgram()
+{
+    psi_RunProgram(slcr_post_ddr_init, 0);
 }
 #endif
 

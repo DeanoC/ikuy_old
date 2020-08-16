@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// Quad SPI
+
 // 1 bank of qspi
 
 #define qspi_BASE_ADDR 0xe000d000U

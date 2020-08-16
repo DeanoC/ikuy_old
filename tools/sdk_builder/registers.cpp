@@ -28,11 +28,11 @@ const char* devcfgFieldDefs =
 #include "devcfg_fielddef.txt"
 ;
 
-const char* sclrRegisterDefs = 
-#include "sclr_regdef.txt"
+const char* slcrRegisterDefs = 
+#include "slcr_regdef.txt"
 ;
-const char* sclrFieldDefs = 
-#include "sclr_fielddef.txt"
+const char* slcrFieldDefs = 
+#include "slcr_fielddef.txt"
 ;
 
 const char* uartRegisterDefs = 
@@ -76,19 +76,19 @@ const char* scuFieldDefs =
 
 void InitRegisterData() {
 #define BANK_IMPL(name, addr) std::pair{std::string{#name}, addr} 
-#define SINGLE_BANK(name, addr) registerHW.emplace_back( #name, addr, name##RegisterDefs, name##FieldDefs )
-#define MULTI_BANK(bankname, ... ) registerHW.emplace_back( std::vector{ __VA_ARGS__ }, #bankname, bankname##RegisterDefs, bankname##FieldDefs )
+#define SINGLE_BANK(name, description, addr) registerHW.emplace_back( #name, #description, addr, name##RegisterDefs, name##FieldDefs )
+#define MULTI_BANK(bankname, description, ... ) registerHW.emplace_back( std::vector{ __VA_ARGS__ }, #bankname, #description, bankname##RegisterDefs, bankname##FieldDefs )
 
     std::vector<RegisterBankImplementations> registerHW;
 
-    SINGLE_BANK(ddrc, 0xF8006000);
-    SINGLE_BANK(devcfg, 0xF8007000);
-    SINGLE_BANK(sclr, 0xF8000000);
-    MULTI_BANK(uart, BANK_IMPL(uart0, 0xE0000000), BANK_IMPL(uart1, 0xE0001000) );
-    SINGLE_BANK(gpio, 0xE000A000);
-    SINGLE_BANK(qspi, 0xE000D000);
-    MULTI_BANK(spi, BANK_IMPL(spi0, 0xE0006000), BANK_IMPL(spi1, 0xE0007000) );
-    SINGLE_BANK(scu, 0xF8F00000);
+    SINGLE_BANK(ddrc, DDR Memory Controller, 0xF8006000);
+    SINGLE_BANK(devcfg, Device (PL) Config, 0xF8007000);
+    SINGLE_BANK(slcr, System Level Control, 0xF8000000);
+    MULTI_BANK(uart, UART (serial), BANK_IMPL(uart0, 0xE0000000), BANK_IMPL(uart1, 0xE0001000) );
+    SINGLE_BANK(gpio, GPIO, 0xE000A000);
+    SINGLE_BANK(qspi, Quad SPI, 0xE000D000);
+    MULTI_BANK(spi, SPI, BANK_IMPL(spi0, 0xE0006000), BANK_IMPL(spi1, 0xE0007000) );
+    SINGLE_BANK(scu, CPU Configuration (mpcore), 0xF8F00000);
 
     for (auto &&i : registerHW)
     {

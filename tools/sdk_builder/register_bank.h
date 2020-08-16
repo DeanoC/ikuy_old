@@ -9,9 +9,10 @@ struct XilinxRegisterInfo;
 
 struct RegisterBank 
 {
-    RegisterBank( std::string const & name_,
-                const char * xilinxRegisterTxt,
-                const char * xilinxFieldTxt);
+    RegisterBank(   std::string const & name_,
+                    std::string const & description_,
+                    const char * xilinxRegisterTxt,
+                    const char * xilinxFieldTxt);
     void ParseRegisterText(const char * xilinxRegisterTxt);
 
     void ParseFieldText(const char * xilinxFieldTxt);
@@ -22,6 +23,7 @@ struct RegisterBank
 
     std::vector<MMIORegister> registersAsSortedVector() const;
     std::string name;
+    std::string description;
 
     std::map<std::string, MMIORegister> registers;
 };

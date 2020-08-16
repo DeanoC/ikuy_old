@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// CPU Configuration (mpcore)
+
 // 1 bank of scu
 
 #define scu_BASE_ADDR 0xf8f00000U

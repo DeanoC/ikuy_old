@@ -1,0 +1,6416 @@
+#pragma once
+#include <stdint.h>
+
+// System Level Control
+
+// 1 bank of slcr
+
+#define slcr_BASE_ADDR 0xf8000000U
+
+// Registers
+
+// Secure Configuration Lock
+#define slcr_SCL_REG 0x0U
+typedef union slcr_SCL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t LOCK : 1;
+	} fields;
+	uint32_t v;
+} slcr_SCL;
+
+#define slcr_SCL_RESERVED_0_LSHIFT 1U
+#define slcr_SCL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_SCL_LOCK_LSHIFT 0U
+#define slcr_SCL_LOCK 0x1U
+#define slcr_SCL_LOCK_MASK 0x1U
+#define slcr_SCL_MASK 0x1U
+
+
+// SLCR Write Protection Lock
+#define slcr_SLCR_LOCK_REG 0x4U
+typedef union slcr_SLCR_LOCK
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 16;
+		uint32_t LOCK_KEY : 16;
+	} fields;
+	uint32_t v;
+} slcr_SLCR_LOCK;
+
+#define slcr_SLCR_LOCK_RESERVED_0_LSHIFT 16U
+#define slcr_SLCR_LOCK_RESERVED_0_MASK 0xffff0000U
+#define slcr_SLCR_LOCK_LOCK_KEY_LSHIFT 0U
+#define slcr_SLCR_LOCK_LOCK_KEY_MASK 0xffffU
+#define slcr_SLCR_LOCK_MASK 0xffffU
+
+
+// SLCR Write Protection Unlock
+#define slcr_SLCR_UNLOCK_REG 0x8U
+typedef union slcr_SLCR_UNLOCK
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 16;
+		uint32_t UNLOCK_KEY : 16;
+	} fields;
+	uint32_t v;
+} slcr_SLCR_UNLOCK;
+
+#define slcr_SLCR_UNLOCK_RESERVED_0_LSHIFT 16U
+#define slcr_SLCR_UNLOCK_RESERVED_0_MASK 0xffff0000U
+#define slcr_SLCR_UNLOCK_UNLOCK_KEY_LSHIFT 0U
+#define slcr_SLCR_UNLOCK_UNLOCK_KEY_MASK 0xffffU
+#define slcr_SLCR_UNLOCK_MASK 0xffffU
+
+
+// SLCR Write Protection Status
+#define slcr_SLCR_LOCKSTA_REG 0xcU
+typedef union slcr_SLCR_LOCKSTA
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t LOCK_STATUS : 1;
+	} fields;
+	uint32_t v;
+} slcr_SLCR_LOCKSTA;
+
+#define slcr_SLCR_LOCKSTA_RESERVED_0_LSHIFT 1U
+#define slcr_SLCR_LOCKSTA_RESERVED_0_MASK 0xfffffffeU
+#define slcr_SLCR_LOCKSTA_LOCK_STATUS_LSHIFT 0U
+#define slcr_SLCR_LOCKSTA_LOCK_STATUS 0x1U
+#define slcr_SLCR_LOCKSTA_LOCK_STATUS_MASK 0x1U
+#define slcr_SLCR_LOCKSTA_MASK 0x1U
+
+
+// ARM PLL Control
+#define slcr_ARM_PLL_CTRL_REG 0x100U
+typedef union slcr_ARM_PLL_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 13;
+		uint32_t PLL_FDIV : 7;
+		uint32_t RESERVED_1 : 7;
+		uint32_t PLL_BYPASS_FORCE : 1;
+		uint32_t PLL_BYPASS_QUAL : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t PLL_PWRDWN : 1;
+		uint32_t PLL_RESET : 1;
+	} fields;
+	uint32_t v;
+} slcr_ARM_PLL_CTRL;
+
+#define slcr_ARM_PLL_CTRL_RESERVED_0_LSHIFT 19U
+#define slcr_ARM_PLL_CTRL_RESERVED_0_MASK 0xfff80000U
+#define slcr_ARM_PLL_CTRL_PLL_FDIV_LSHIFT 12U
+#define slcr_ARM_PLL_CTRL_PLL_FDIV_MASK 0x7f000U
+#define slcr_ARM_PLL_CTRL_RESERVED_1_LSHIFT 5U
+#define slcr_ARM_PLL_CTRL_RESERVED_1_MASK 0xfe0U
+#define slcr_ARM_PLL_CTRL_PLL_BYPASS_FORCE_LSHIFT 4U
+#define slcr_ARM_PLL_CTRL_PLL_BYPASS_FORCE 0x10U
+#define slcr_ARM_PLL_CTRL_PLL_BYPASS_FORCE_MASK 0x10U
+#define slcr_ARM_PLL_CTRL_PLL_BYPASS_QUAL_LSHIFT 3U
+#define slcr_ARM_PLL_CTRL_PLL_BYPASS_QUAL 0x8U
+#define slcr_ARM_PLL_CTRL_PLL_BYPASS_QUAL_MASK 0x8U
+#define slcr_ARM_PLL_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_ARM_PLL_CTRL_RESERVED_2 0x4U
+#define slcr_ARM_PLL_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_ARM_PLL_CTRL_PLL_PWRDWN_LSHIFT 1U
+#define slcr_ARM_PLL_CTRL_PLL_PWRDWN 0x2U
+#define slcr_ARM_PLL_CTRL_PLL_PWRDWN_MASK 0x2U
+#define slcr_ARM_PLL_CTRL_PLL_RESET_LSHIFT 0U
+#define slcr_ARM_PLL_CTRL_PLL_RESET 0x1U
+#define slcr_ARM_PLL_CTRL_PLL_RESET_MASK 0x1U
+#define slcr_ARM_PLL_CTRL_MASK 0x7f01bU
+
+
+// DDR PLL Control
+#define slcr_DDR_PLL_CTRL_REG 0x104U
+typedef union slcr_DDR_PLL_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 13;
+		uint32_t PLL_FDIV : 7;
+		uint32_t RESERVED_1 : 7;
+		uint32_t PLL_BYPASS_FORCE : 1;
+		uint32_t PLL_BYPASS_QUAL : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t PLL_PWRDWN : 1;
+		uint32_t PLL_RESET : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_PLL_CTRL;
+
+#define slcr_DDR_PLL_CTRL_RESERVED_0_LSHIFT 19U
+#define slcr_DDR_PLL_CTRL_RESERVED_0_MASK 0xfff80000U
+#define slcr_DDR_PLL_CTRL_PLL_FDIV_LSHIFT 12U
+#define slcr_DDR_PLL_CTRL_PLL_FDIV_MASK 0x7f000U
+#define slcr_DDR_PLL_CTRL_RESERVED_1_LSHIFT 5U
+#define slcr_DDR_PLL_CTRL_RESERVED_1_MASK 0xfe0U
+#define slcr_DDR_PLL_CTRL_PLL_BYPASS_FORCE_LSHIFT 4U
+#define slcr_DDR_PLL_CTRL_PLL_BYPASS_FORCE 0x10U
+#define slcr_DDR_PLL_CTRL_PLL_BYPASS_FORCE_MASK 0x10U
+#define slcr_DDR_PLL_CTRL_PLL_BYPASS_QUAL_LSHIFT 3U
+#define slcr_DDR_PLL_CTRL_PLL_BYPASS_QUAL 0x8U
+#define slcr_DDR_PLL_CTRL_PLL_BYPASS_QUAL_MASK 0x8U
+#define slcr_DDR_PLL_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_DDR_PLL_CTRL_RESERVED_2 0x4U
+#define slcr_DDR_PLL_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_DDR_PLL_CTRL_PLL_PWRDWN_LSHIFT 1U
+#define slcr_DDR_PLL_CTRL_PLL_PWRDWN 0x2U
+#define slcr_DDR_PLL_CTRL_PLL_PWRDWN_MASK 0x2U
+#define slcr_DDR_PLL_CTRL_PLL_RESET_LSHIFT 0U
+#define slcr_DDR_PLL_CTRL_PLL_RESET 0x1U
+#define slcr_DDR_PLL_CTRL_PLL_RESET_MASK 0x1U
+#define slcr_DDR_PLL_CTRL_MASK 0x7f01bU
+
+
+// IO PLL Control
+#define slcr_IO_PLL_CTRL_REG 0x108U
+typedef union slcr_IO_PLL_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 13;
+		uint32_t PLL_FDIV : 7;
+		uint32_t RESERVED_1 : 7;
+		uint32_t PLL_BYPASS_FORCE : 1;
+		uint32_t PLL_BYPASS_QUAL : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t PLL_PWRDWN : 1;
+		uint32_t PLL_RESET : 1;
+	} fields;
+	uint32_t v;
+} slcr_IO_PLL_CTRL;
+
+#define slcr_IO_PLL_CTRL_RESERVED_0_LSHIFT 19U
+#define slcr_IO_PLL_CTRL_RESERVED_0_MASK 0xfff80000U
+#define slcr_IO_PLL_CTRL_PLL_FDIV_LSHIFT 12U
+#define slcr_IO_PLL_CTRL_PLL_FDIV_MASK 0x7f000U
+#define slcr_IO_PLL_CTRL_RESERVED_1_LSHIFT 5U
+#define slcr_IO_PLL_CTRL_RESERVED_1_MASK 0xfe0U
+#define slcr_IO_PLL_CTRL_PLL_BYPASS_FORCE_LSHIFT 4U
+#define slcr_IO_PLL_CTRL_PLL_BYPASS_FORCE 0x10U
+#define slcr_IO_PLL_CTRL_PLL_BYPASS_FORCE_MASK 0x10U
+#define slcr_IO_PLL_CTRL_PLL_BYPASS_QUAL_LSHIFT 3U
+#define slcr_IO_PLL_CTRL_PLL_BYPASS_QUAL 0x8U
+#define slcr_IO_PLL_CTRL_PLL_BYPASS_QUAL_MASK 0x8U
+#define slcr_IO_PLL_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_IO_PLL_CTRL_RESERVED_2 0x4U
+#define slcr_IO_PLL_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_IO_PLL_CTRL_PLL_PWRDWN_LSHIFT 1U
+#define slcr_IO_PLL_CTRL_PLL_PWRDWN 0x2U
+#define slcr_IO_PLL_CTRL_PLL_PWRDWN_MASK 0x2U
+#define slcr_IO_PLL_CTRL_PLL_RESET_LSHIFT 0U
+#define slcr_IO_PLL_CTRL_PLL_RESET 0x1U
+#define slcr_IO_PLL_CTRL_PLL_RESET_MASK 0x1U
+#define slcr_IO_PLL_CTRL_MASK 0x7f01bU
+
+
+// PLL Status
+#define slcr_PLL_STATUS_REG 0x10cU
+typedef union slcr_PLL_STATUS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 26;
+		uint32_t IO_PLL_STABLE : 1;
+		uint32_t DDR_PLL_STABLE : 1;
+		uint32_t ARM_PLL_STABLE : 1;
+		uint32_t IO_PLL_LOCK : 1;
+		uint32_t DDR_PLL_LOCK : 1;
+		uint32_t ARM_PLL_LOCK : 1;
+	} fields;
+	uint32_t v;
+} slcr_PLL_STATUS;
+
+#define slcr_PLL_STATUS_RESERVED_0_LSHIFT 6U
+#define slcr_PLL_STATUS_RESERVED_0_MASK 0xffffffc0U
+#define slcr_PLL_STATUS_IO_PLL_STABLE_LSHIFT 5U
+#define slcr_PLL_STATUS_IO_PLL_STABLE 0x20U
+#define slcr_PLL_STATUS_IO_PLL_STABLE_MASK 0x20U
+#define slcr_PLL_STATUS_DDR_PLL_STABLE_LSHIFT 4U
+#define slcr_PLL_STATUS_DDR_PLL_STABLE 0x10U
+#define slcr_PLL_STATUS_DDR_PLL_STABLE_MASK 0x10U
+#define slcr_PLL_STATUS_ARM_PLL_STABLE_LSHIFT 3U
+#define slcr_PLL_STATUS_ARM_PLL_STABLE 0x8U
+#define slcr_PLL_STATUS_ARM_PLL_STABLE_MASK 0x8U
+#define slcr_PLL_STATUS_IO_PLL_LOCK_LSHIFT 2U
+#define slcr_PLL_STATUS_IO_PLL_LOCK 0x4U
+#define slcr_PLL_STATUS_IO_PLL_LOCK_MASK 0x4U
+#define slcr_PLL_STATUS_DDR_PLL_LOCK_LSHIFT 1U
+#define slcr_PLL_STATUS_DDR_PLL_LOCK 0x2U
+#define slcr_PLL_STATUS_DDR_PLL_LOCK_MASK 0x2U
+#define slcr_PLL_STATUS_ARM_PLL_LOCK_LSHIFT 0U
+#define slcr_PLL_STATUS_ARM_PLL_LOCK 0x1U
+#define slcr_PLL_STATUS_ARM_PLL_LOCK_MASK 0x1U
+#define slcr_PLL_STATUS_MASK 0x3fU
+
+
+// ARM PLL Configuration
+#define slcr_ARM_PLL_CFG_REG 0x110U
+typedef union slcr_ARM_PLL_CFG
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 10;
+		uint32_t LOCK_CNT : 10;
+		uint32_t PLL_CP : 4;
+		uint32_t PLL_RES : 4;
+		uint32_t RESERVED_1 : 4;
+	} fields;
+	uint32_t v;
+} slcr_ARM_PLL_CFG;
+
+#define slcr_ARM_PLL_CFG_RESERVED_0_LSHIFT 22U
+#define slcr_ARM_PLL_CFG_RESERVED_0_MASK 0xffc00000U
+#define slcr_ARM_PLL_CFG_LOCK_CNT_LSHIFT 12U
+#define slcr_ARM_PLL_CFG_LOCK_CNT_MASK 0x3ff000U
+#define slcr_ARM_PLL_CFG_PLL_CP_LSHIFT 8U
+#define slcr_ARM_PLL_CFG_PLL_CP_MASK 0xf00U
+#define slcr_ARM_PLL_CFG_PLL_RES_LSHIFT 4U
+#define slcr_ARM_PLL_CFG_PLL_RES_MASK 0xf0U
+#define slcr_ARM_PLL_CFG_RESERVED_1_LSHIFT 0U
+#define slcr_ARM_PLL_CFG_RESERVED_1_MASK 0xfU
+#define slcr_ARM_PLL_CFG_MASK 0x3ffff0U
+
+
+// DDR PLL Configuration
+#define slcr_DDR_PLL_CFG_REG 0x114U
+typedef union slcr_DDR_PLL_CFG
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 10;
+		uint32_t LOCK_CNT : 10;
+		uint32_t PLL_CP : 4;
+		uint32_t PLL_RES : 4;
+		uint32_t RESERVED_1 : 4;
+	} fields;
+	uint32_t v;
+} slcr_DDR_PLL_CFG;
+
+#define slcr_DDR_PLL_CFG_RESERVED_0_LSHIFT 22U
+#define slcr_DDR_PLL_CFG_RESERVED_0_MASK 0xffc00000U
+#define slcr_DDR_PLL_CFG_LOCK_CNT_LSHIFT 12U
+#define slcr_DDR_PLL_CFG_LOCK_CNT_MASK 0x3ff000U
+#define slcr_DDR_PLL_CFG_PLL_CP_LSHIFT 8U
+#define slcr_DDR_PLL_CFG_PLL_CP_MASK 0xf00U
+#define slcr_DDR_PLL_CFG_PLL_RES_LSHIFT 4U
+#define slcr_DDR_PLL_CFG_PLL_RES_MASK 0xf0U
+#define slcr_DDR_PLL_CFG_RESERVED_1_LSHIFT 0U
+#define slcr_DDR_PLL_CFG_RESERVED_1_MASK 0xfU
+#define slcr_DDR_PLL_CFG_MASK 0x3ffff0U
+
+
+// IO PLL Configuration
+#define slcr_IO_PLL_CFG_REG 0x118U
+typedef union slcr_IO_PLL_CFG
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 10;
+		uint32_t LOCK_CNT : 10;
+		uint32_t PLL_CP : 4;
+		uint32_t PLL_RES : 4;
+		uint32_t RESERVED_1 : 4;
+	} fields;
+	uint32_t v;
+} slcr_IO_PLL_CFG;
+
+#define slcr_IO_PLL_CFG_RESERVED_0_LSHIFT 22U
+#define slcr_IO_PLL_CFG_RESERVED_0_MASK 0xffc00000U
+#define slcr_IO_PLL_CFG_LOCK_CNT_LSHIFT 12U
+#define slcr_IO_PLL_CFG_LOCK_CNT_MASK 0x3ff000U
+#define slcr_IO_PLL_CFG_PLL_CP_LSHIFT 8U
+#define slcr_IO_PLL_CFG_PLL_CP_MASK 0xf00U
+#define slcr_IO_PLL_CFG_PLL_RES_LSHIFT 4U
+#define slcr_IO_PLL_CFG_PLL_RES_MASK 0xf0U
+#define slcr_IO_PLL_CFG_RESERVED_1_LSHIFT 0U
+#define slcr_IO_PLL_CFG_RESERVED_1_MASK 0xfU
+#define slcr_IO_PLL_CFG_MASK 0x3ffff0U
+
+
+// CPU Clock Control
+#define slcr_ARM_CLK_CTRL_REG 0x120U
+typedef union slcr_ARM_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 3;
+		uint32_t CPU_PERI_CLKACT : 1;
+		uint32_t CPU_1XCLKACT : 1;
+		uint32_t CPU_2XCLKACT : 1;
+		uint32_t CPU_3OR2XCLKACT : 1;
+		uint32_t CPU_6OR4XCLKACT : 1;
+		uint32_t RESERVED_1 : 10;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_2 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_3 : 4;
+	} fields;
+	uint32_t v;
+} slcr_ARM_CLK_CTRL;
+
+#define slcr_ARM_CLK_CTRL_RESERVED_0_LSHIFT 29U
+#define slcr_ARM_CLK_CTRL_RESERVED_0_MASK 0xe0000000U
+#define slcr_ARM_CLK_CTRL_CPU_PERI_CLKACT_LSHIFT 28U
+#define slcr_ARM_CLK_CTRL_CPU_PERI_CLKACT 0x10000000U
+#define slcr_ARM_CLK_CTRL_CPU_PERI_CLKACT_MASK 0x10000000U
+#define slcr_ARM_CLK_CTRL_CPU_1XCLKACT_LSHIFT 27U
+#define slcr_ARM_CLK_CTRL_CPU_1XCLKACT 0x8000000U
+#define slcr_ARM_CLK_CTRL_CPU_1XCLKACT_MASK 0x8000000U
+#define slcr_ARM_CLK_CTRL_CPU_2XCLKACT_LSHIFT 26U
+#define slcr_ARM_CLK_CTRL_CPU_2XCLKACT 0x4000000U
+#define slcr_ARM_CLK_CTRL_CPU_2XCLKACT_MASK 0x4000000U
+#define slcr_ARM_CLK_CTRL_CPU_3OR2XCLKACT_LSHIFT 25U
+#define slcr_ARM_CLK_CTRL_CPU_3OR2XCLKACT 0x2000000U
+#define slcr_ARM_CLK_CTRL_CPU_3OR2XCLKACT_MASK 0x2000000U
+#define slcr_ARM_CLK_CTRL_CPU_6OR4XCLKACT_LSHIFT 24U
+#define slcr_ARM_CLK_CTRL_CPU_6OR4XCLKACT 0x1000000U
+#define slcr_ARM_CLK_CTRL_CPU_6OR4XCLKACT_MASK 0x1000000U
+#define slcr_ARM_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_ARM_CLK_CTRL_RESERVED_1_MASK 0xffc000U
+#define slcr_ARM_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_ARM_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_ARM_CLK_CTRL_RESERVED_2_LSHIFT 6U
+#define slcr_ARM_CLK_CTRL_RESERVED_2_MASK 0xc0U
+#define slcr_ARM_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_ARM_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_ARM_CLK_CTRL_RESERVED_3_LSHIFT 0U
+#define slcr_ARM_CLK_CTRL_RESERVED_3_MASK 0xfU
+#define slcr_ARM_CLK_CTRL_MASK 0x1f003f30U
+
+
+// DDR Clock Control
+#define slcr_DDR_CLK_CTRL_REG 0x124U
+typedef union slcr_DDR_CLK_CTRL
+{
+	struct
+	{
+		uint32_t DDR_2XCLK_DIVISOR : 6;
+		uint32_t DDR_3XCLK_DIVISOR : 6;
+		uint32_t RESERVED_0 : 18;
+		uint32_t DDR_2XCLKACT : 1;
+		uint32_t DDR_3XCLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_CLK_CTRL;
+
+#define slcr_DDR_CLK_CTRL_DDR_2XCLK_DIVISOR_LSHIFT 26U
+#define slcr_DDR_CLK_CTRL_DDR_2XCLK_DIVISOR_MASK 0xfc000000U
+#define slcr_DDR_CLK_CTRL_DDR_3XCLK_DIVISOR_LSHIFT 20U
+#define slcr_DDR_CLK_CTRL_DDR_3XCLK_DIVISOR_MASK 0x3f00000U
+#define slcr_DDR_CLK_CTRL_RESERVED_0_LSHIFT 2U
+#define slcr_DDR_CLK_CTRL_RESERVED_0_MASK 0xffffcU
+#define slcr_DDR_CLK_CTRL_DDR_2XCLKACT_LSHIFT 1U
+#define slcr_DDR_CLK_CTRL_DDR_2XCLKACT 0x2U
+#define slcr_DDR_CLK_CTRL_DDR_2XCLKACT_MASK 0x2U
+#define slcr_DDR_CLK_CTRL_DDR_3XCLKACT_LSHIFT 0U
+#define slcr_DDR_CLK_CTRL_DDR_3XCLKACT 0x1U
+#define slcr_DDR_CLK_CTRL_DDR_3XCLKACT_MASK 0x1U
+#define slcr_DDR_CLK_CTRL_MASK 0xfff00003U
+
+
+// DCI clock control
+#define slcr_DCI_CLK_CTRL_REG 0x128U
+typedef union slcr_DCI_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR0 : 6;
+		uint32_t RESERVED_2 : 7;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_DCI_CLK_CTRL;
+
+#define slcr_DCI_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_DCI_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_DCI_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_DCI_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_DCI_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_DCI_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_DCI_CLK_CTRL_DIVISOR0_LSHIFT 8U
+#define slcr_DCI_CLK_CTRL_DIVISOR0_MASK 0x3f00U
+#define slcr_DCI_CLK_CTRL_RESERVED_2_LSHIFT 1U
+#define slcr_DCI_CLK_CTRL_RESERVED_2_MASK 0xfeU
+#define slcr_DCI_CLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_DCI_CLK_CTRL_CLKACT 0x1U
+#define slcr_DCI_CLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_DCI_CLK_CTRL_MASK 0x3f03f01U
+
+
+// AMBA Peripheral Clock Control
+#define slcr_APER_CLK_CTRL_REG 0x12cU
+typedef union slcr_APER_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 7;
+		uint32_t SMC_CPU_1XCLKACT : 1;
+		uint32_t LQSPI_CPU_1XCLKACT : 1;
+		uint32_t GPIO_CPU_1XCLKACT : 1;
+		uint32_t UART1_CPU_1XCLKACT : 1;
+		uint32_t UART0_CPU_1XCLKACT : 1;
+		uint32_t I2C1_CPU_1XCLKACT : 1;
+		uint32_t I2C0_CPU_1XCLKACT : 1;
+		uint32_t CAN1_CPU_1XCLKACT : 1;
+		uint32_t CAN0_CPU_1XCLKACT : 1;
+		uint32_t SPI1_CPU_1XCLKACT : 1;
+		uint32_t SPI0_CPU_1XCLKACT : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t SDI1_CPU_1XCLKACT : 1;
+		uint32_t SDI0_CPU_1XCLKACT : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+		uint32_t GEM1_CPU_1XCLKACT : 1;
+		uint32_t GEM0_CPU_1XCLKACT : 1;
+		uint32_t RESERVED_5 : 1;
+		uint32_t RESERVED_6 : 1;
+		uint32_t USB1_CPU_1XCLKACT : 1;
+		uint32_t USB0_CPU_1XCLKACT : 1;
+		uint32_t RESERVED_7 : 1;
+		uint32_t DMA_CPU_2XCLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_APER_CLK_CTRL;
+
+#define slcr_APER_CLK_CTRL_RESERVED_0_LSHIFT 25U
+#define slcr_APER_CLK_CTRL_RESERVED_0_MASK 0xfe000000U
+#define slcr_APER_CLK_CTRL_SMC_CPU_1XCLKACT_LSHIFT 24U
+#define slcr_APER_CLK_CTRL_SMC_CPU_1XCLKACT 0x1000000U
+#define slcr_APER_CLK_CTRL_SMC_CPU_1XCLKACT_MASK 0x1000000U
+#define slcr_APER_CLK_CTRL_LQSPI_CPU_1XCLKACT_LSHIFT 23U
+#define slcr_APER_CLK_CTRL_LQSPI_CPU_1XCLKACT 0x800000U
+#define slcr_APER_CLK_CTRL_LQSPI_CPU_1XCLKACT_MASK 0x800000U
+#define slcr_APER_CLK_CTRL_GPIO_CPU_1XCLKACT_LSHIFT 22U
+#define slcr_APER_CLK_CTRL_GPIO_CPU_1XCLKACT 0x400000U
+#define slcr_APER_CLK_CTRL_GPIO_CPU_1XCLKACT_MASK 0x400000U
+#define slcr_APER_CLK_CTRL_UART1_CPU_1XCLKACT_LSHIFT 21U
+#define slcr_APER_CLK_CTRL_UART1_CPU_1XCLKACT 0x200000U
+#define slcr_APER_CLK_CTRL_UART1_CPU_1XCLKACT_MASK 0x200000U
+#define slcr_APER_CLK_CTRL_UART0_CPU_1XCLKACT_LSHIFT 20U
+#define slcr_APER_CLK_CTRL_UART0_CPU_1XCLKACT 0x100000U
+#define slcr_APER_CLK_CTRL_UART0_CPU_1XCLKACT_MASK 0x100000U
+#define slcr_APER_CLK_CTRL_I2C1_CPU_1XCLKACT_LSHIFT 19U
+#define slcr_APER_CLK_CTRL_I2C1_CPU_1XCLKACT 0x80000U
+#define slcr_APER_CLK_CTRL_I2C1_CPU_1XCLKACT_MASK 0x80000U
+#define slcr_APER_CLK_CTRL_I2C0_CPU_1XCLKACT_LSHIFT 18U
+#define slcr_APER_CLK_CTRL_I2C0_CPU_1XCLKACT 0x40000U
+#define slcr_APER_CLK_CTRL_I2C0_CPU_1XCLKACT_MASK 0x40000U
+#define slcr_APER_CLK_CTRL_CAN1_CPU_1XCLKACT_LSHIFT 17U
+#define slcr_APER_CLK_CTRL_CAN1_CPU_1XCLKACT 0x20000U
+#define slcr_APER_CLK_CTRL_CAN1_CPU_1XCLKACT_MASK 0x20000U
+#define slcr_APER_CLK_CTRL_CAN0_CPU_1XCLKACT_LSHIFT 16U
+#define slcr_APER_CLK_CTRL_CAN0_CPU_1XCLKACT 0x10000U
+#define slcr_APER_CLK_CTRL_CAN0_CPU_1XCLKACT_MASK 0x10000U
+#define slcr_APER_CLK_CTRL_SPI1_CPU_1XCLKACT_LSHIFT 15U
+#define slcr_APER_CLK_CTRL_SPI1_CPU_1XCLKACT 0x8000U
+#define slcr_APER_CLK_CTRL_SPI1_CPU_1XCLKACT_MASK 0x8000U
+#define slcr_APER_CLK_CTRL_SPI0_CPU_1XCLKACT_LSHIFT 14U
+#define slcr_APER_CLK_CTRL_SPI0_CPU_1XCLKACT 0x4000U
+#define slcr_APER_CLK_CTRL_SPI0_CPU_1XCLKACT_MASK 0x4000U
+#define slcr_APER_CLK_CTRL_RESERVED_1_LSHIFT 13U
+#define slcr_APER_CLK_CTRL_RESERVED_1 0x2000U
+#define slcr_APER_CLK_CTRL_RESERVED_1_MASK 0x2000U
+#define slcr_APER_CLK_CTRL_RESERVED_2_LSHIFT 12U
+#define slcr_APER_CLK_CTRL_RESERVED_2 0x1000U
+#define slcr_APER_CLK_CTRL_RESERVED_2_MASK 0x1000U
+#define slcr_APER_CLK_CTRL_SDI1_CPU_1XCLKACT_LSHIFT 11U
+#define slcr_APER_CLK_CTRL_SDI1_CPU_1XCLKACT 0x800U
+#define slcr_APER_CLK_CTRL_SDI1_CPU_1XCLKACT_MASK 0x800U
+#define slcr_APER_CLK_CTRL_SDI0_CPU_1XCLKACT_LSHIFT 10U
+#define slcr_APER_CLK_CTRL_SDI0_CPU_1XCLKACT 0x400U
+#define slcr_APER_CLK_CTRL_SDI0_CPU_1XCLKACT_MASK 0x400U
+#define slcr_APER_CLK_CTRL_RESERVED_3_LSHIFT 9U
+#define slcr_APER_CLK_CTRL_RESERVED_3 0x200U
+#define slcr_APER_CLK_CTRL_RESERVED_3_MASK 0x200U
+#define slcr_APER_CLK_CTRL_RESERVED_4_LSHIFT 8U
+#define slcr_APER_CLK_CTRL_RESERVED_4 0x100U
+#define slcr_APER_CLK_CTRL_RESERVED_4_MASK 0x100U
+#define slcr_APER_CLK_CTRL_GEM1_CPU_1XCLKACT_LSHIFT 7U
+#define slcr_APER_CLK_CTRL_GEM1_CPU_1XCLKACT 0x80U
+#define slcr_APER_CLK_CTRL_GEM1_CPU_1XCLKACT_MASK 0x80U
+#define slcr_APER_CLK_CTRL_GEM0_CPU_1XCLKACT_LSHIFT 6U
+#define slcr_APER_CLK_CTRL_GEM0_CPU_1XCLKACT 0x40U
+#define slcr_APER_CLK_CTRL_GEM0_CPU_1XCLKACT_MASK 0x40U
+#define slcr_APER_CLK_CTRL_RESERVED_5_LSHIFT 5U
+#define slcr_APER_CLK_CTRL_RESERVED_5 0x20U
+#define slcr_APER_CLK_CTRL_RESERVED_5_MASK 0x20U
+#define slcr_APER_CLK_CTRL_RESERVED_6_LSHIFT 4U
+#define slcr_APER_CLK_CTRL_RESERVED_6 0x10U
+#define slcr_APER_CLK_CTRL_RESERVED_6_MASK 0x10U
+#define slcr_APER_CLK_CTRL_USB1_CPU_1XCLKACT_LSHIFT 3U
+#define slcr_APER_CLK_CTRL_USB1_CPU_1XCLKACT 0x8U
+#define slcr_APER_CLK_CTRL_USB1_CPU_1XCLKACT_MASK 0x8U
+#define slcr_APER_CLK_CTRL_USB0_CPU_1XCLKACT_LSHIFT 2U
+#define slcr_APER_CLK_CTRL_USB0_CPU_1XCLKACT 0x4U
+#define slcr_APER_CLK_CTRL_USB0_CPU_1XCLKACT_MASK 0x4U
+#define slcr_APER_CLK_CTRL_RESERVED_7_LSHIFT 1U
+#define slcr_APER_CLK_CTRL_RESERVED_7 0x2U
+#define slcr_APER_CLK_CTRL_RESERVED_7_MASK 0x2U
+#define slcr_APER_CLK_CTRL_DMA_CPU_2XCLKACT_LSHIFT 0U
+#define slcr_APER_CLK_CTRL_DMA_CPU_2XCLKACT 0x1U
+#define slcr_APER_CLK_CTRL_DMA_CPU_2XCLKACT_MASK 0x1U
+#define slcr_APER_CLK_CTRL_MASK 0x1ffcccdU
+
+
+// USB 0 ULPI Clock Control
+#define slcr_USB0_CLK_CTRL_REG 0x130U
+typedef union slcr_USB0_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t RESERVED_2 : 6;
+		uint32_t RESERVED_3 : 6;
+		uint32_t RESERVED_4 : 1;
+		uint32_t SRCSEL : 3;
+		uint32_t RESERVED_5 : 3;
+		uint32_t RESERVED_6 : 1;
+	} fields;
+	uint32_t v;
+} slcr_USB0_CLK_CTRL;
+
+#define slcr_USB0_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_USB0_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_USB0_CLK_CTRL_RESERVED_1_LSHIFT 20U
+#define slcr_USB0_CLK_CTRL_RESERVED_1_MASK 0x3f00000U
+#define slcr_USB0_CLK_CTRL_RESERVED_2_LSHIFT 14U
+#define slcr_USB0_CLK_CTRL_RESERVED_2_MASK 0xfc000U
+#define slcr_USB0_CLK_CTRL_RESERVED_3_LSHIFT 8U
+#define slcr_USB0_CLK_CTRL_RESERVED_3_MASK 0x3f00U
+#define slcr_USB0_CLK_CTRL_RESERVED_4_LSHIFT 7U
+#define slcr_USB0_CLK_CTRL_RESERVED_4 0x80U
+#define slcr_USB0_CLK_CTRL_RESERVED_4_MASK 0x80U
+#define slcr_USB0_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_USB0_CLK_CTRL_SRCSEL_MASK 0x70U
+#define slcr_USB0_CLK_CTRL_RESERVED_5_LSHIFT 1U
+#define slcr_USB0_CLK_CTRL_RESERVED_5_MASK 0xeU
+#define slcr_USB0_CLK_CTRL_RESERVED_6_LSHIFT 0U
+#define slcr_USB0_CLK_CTRL_RESERVED_6 0x1U
+#define slcr_USB0_CLK_CTRL_RESERVED_6_MASK 0x1U
+#define slcr_USB0_CLK_CTRL_MASK 0x70U
+
+
+// USB 1 ULPI Clock Control
+#define slcr_USB1_CLK_CTRL_REG 0x134U
+typedef union slcr_USB1_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t RESERVED_2 : 6;
+		uint32_t RESERVED_3 : 6;
+		uint32_t RESERVED_4 : 1;
+		uint32_t SRCSEL : 3;
+		uint32_t RESERVED_5 : 3;
+		uint32_t RESERVED_6 : 1;
+	} fields;
+	uint32_t v;
+} slcr_USB1_CLK_CTRL;
+
+#define slcr_USB1_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_USB1_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_USB1_CLK_CTRL_RESERVED_1_LSHIFT 20U
+#define slcr_USB1_CLK_CTRL_RESERVED_1_MASK 0x3f00000U
+#define slcr_USB1_CLK_CTRL_RESERVED_2_LSHIFT 14U
+#define slcr_USB1_CLK_CTRL_RESERVED_2_MASK 0xfc000U
+#define slcr_USB1_CLK_CTRL_RESERVED_3_LSHIFT 8U
+#define slcr_USB1_CLK_CTRL_RESERVED_3_MASK 0x3f00U
+#define slcr_USB1_CLK_CTRL_RESERVED_4_LSHIFT 7U
+#define slcr_USB1_CLK_CTRL_RESERVED_4 0x80U
+#define slcr_USB1_CLK_CTRL_RESERVED_4_MASK 0x80U
+#define slcr_USB1_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_USB1_CLK_CTRL_SRCSEL_MASK 0x70U
+#define slcr_USB1_CLK_CTRL_RESERVED_5_LSHIFT 1U
+#define slcr_USB1_CLK_CTRL_RESERVED_5_MASK 0xeU
+#define slcr_USB1_CLK_CTRL_RESERVED_6_LSHIFT 0U
+#define slcr_USB1_CLK_CTRL_RESERVED_6 0x1U
+#define slcr_USB1_CLK_CTRL_RESERVED_6_MASK 0x1U
+#define slcr_USB1_CLK_CTRL_MASK 0x70U
+
+
+// GigE 0 Rx Clock and Rx Signals Select
+#define slcr_GEM0_RCLK_CTRL_REG 0x138U
+typedef union slcr_GEM0_RCLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t SRCSEL : 1;
+		uint32_t RESERVED_1 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_GEM0_RCLK_CTRL;
+
+#define slcr_GEM0_RCLK_CTRL_RESERVED_0_LSHIFT 5U
+#define slcr_GEM0_RCLK_CTRL_RESERVED_0_MASK 0xffffffe0U
+#define slcr_GEM0_RCLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_GEM0_RCLK_CTRL_SRCSEL 0x10U
+#define slcr_GEM0_RCLK_CTRL_SRCSEL_MASK 0x10U
+#define slcr_GEM0_RCLK_CTRL_RESERVED_1_LSHIFT 1U
+#define slcr_GEM0_RCLK_CTRL_RESERVED_1_MASK 0xeU
+#define slcr_GEM0_RCLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_GEM0_RCLK_CTRL_CLKACT 0x1U
+#define slcr_GEM0_RCLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_GEM0_RCLK_CTRL_MASK 0x11U
+
+
+// GigE 1 Rx Clock and Rx Signals Select
+#define slcr_GEM1_RCLK_CTRL_REG 0x13cU
+typedef union slcr_GEM1_RCLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t SRCSEL : 1;
+		uint32_t RESERVED_1 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_GEM1_RCLK_CTRL;
+
+#define slcr_GEM1_RCLK_CTRL_RESERVED_0_LSHIFT 5U
+#define slcr_GEM1_RCLK_CTRL_RESERVED_0_MASK 0xffffffe0U
+#define slcr_GEM1_RCLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_GEM1_RCLK_CTRL_SRCSEL 0x10U
+#define slcr_GEM1_RCLK_CTRL_SRCSEL_MASK 0x10U
+#define slcr_GEM1_RCLK_CTRL_RESERVED_1_LSHIFT 1U
+#define slcr_GEM1_RCLK_CTRL_RESERVED_1_MASK 0xeU
+#define slcr_GEM1_RCLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_GEM1_RCLK_CTRL_CLKACT 0x1U
+#define slcr_GEM1_RCLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_GEM1_RCLK_CTRL_MASK 0x11U
+
+
+// GigE 0 Ref Clock Control
+#define slcr_GEM0_CLK_CTRL_REG 0x140U
+typedef union slcr_GEM0_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_2 : 1;
+		uint32_t SRCSEL : 3;
+		uint32_t RESERVED_3 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_GEM0_CLK_CTRL;
+
+#define slcr_GEM0_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_GEM0_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_GEM0_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_GEM0_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_GEM0_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_GEM0_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_GEM0_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_GEM0_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_GEM0_CLK_CTRL_RESERVED_2_LSHIFT 7U
+#define slcr_GEM0_CLK_CTRL_RESERVED_2 0x80U
+#define slcr_GEM0_CLK_CTRL_RESERVED_2_MASK 0x80U
+#define slcr_GEM0_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_GEM0_CLK_CTRL_SRCSEL_MASK 0x70U
+#define slcr_GEM0_CLK_CTRL_RESERVED_3_LSHIFT 1U
+#define slcr_GEM0_CLK_CTRL_RESERVED_3_MASK 0xeU
+#define slcr_GEM0_CLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_GEM0_CLK_CTRL_CLKACT 0x1U
+#define slcr_GEM0_CLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_GEM0_CLK_CTRL_MASK 0x3f03f71U
+
+
+// GigE 1 Ref Clock Control
+#define slcr_GEM1_CLK_CTRL_REG 0x144U
+typedef union slcr_GEM1_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_2 : 1;
+		uint32_t SRCSEL : 3;
+		uint32_t RESERVED_3 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_GEM1_CLK_CTRL;
+
+#define slcr_GEM1_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_GEM1_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_GEM1_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_GEM1_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_GEM1_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_GEM1_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_GEM1_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_GEM1_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_GEM1_CLK_CTRL_RESERVED_2_LSHIFT 7U
+#define slcr_GEM1_CLK_CTRL_RESERVED_2 0x80U
+#define slcr_GEM1_CLK_CTRL_RESERVED_2_MASK 0x80U
+#define slcr_GEM1_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_GEM1_CLK_CTRL_SRCSEL_MASK 0x70U
+#define slcr_GEM1_CLK_CTRL_RESERVED_3_LSHIFT 1U
+#define slcr_GEM1_CLK_CTRL_RESERVED_3_MASK 0xeU
+#define slcr_GEM1_CLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_GEM1_CLK_CTRL_CLKACT 0x1U
+#define slcr_GEM1_CLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_GEM1_CLK_CTRL_MASK 0x3f03f71U
+
+
+// SMC Ref Clock Control
+#define slcr_SMC_CLK_CTRL_REG 0x148U
+typedef union slcr_SMC_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_2 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_SMC_CLK_CTRL;
+
+#define slcr_SMC_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_SMC_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_SMC_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_SMC_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_SMC_CLK_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_SMC_CLK_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_SMC_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_SMC_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_SMC_CLK_CTRL_RESERVED_2_LSHIFT 1U
+#define slcr_SMC_CLK_CTRL_RESERVED_2_MASK 0xeU
+#define slcr_SMC_CLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_SMC_CLK_CTRL_CLKACT 0x1U
+#define slcr_SMC_CLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_SMC_CLK_CTRL_MASK 0x3f31U
+
+
+// Quad SPI Ref Clock Control
+#define slcr_LQSPI_CLK_CTRL_REG 0x14cU
+typedef union slcr_LQSPI_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_2 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_LQSPI_CLK_CTRL;
+
+#define slcr_LQSPI_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_LQSPI_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_LQSPI_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_LQSPI_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_LQSPI_CLK_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_LQSPI_CLK_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_LQSPI_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_LQSPI_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_LQSPI_CLK_CTRL_RESERVED_2_LSHIFT 1U
+#define slcr_LQSPI_CLK_CTRL_RESERVED_2_MASK 0xeU
+#define slcr_LQSPI_CLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_LQSPI_CLK_CTRL_CLKACT 0x1U
+#define slcr_LQSPI_CLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_LQSPI_CLK_CTRL_MASK 0x3f31U
+
+
+// SDIO Ref Clock Control
+#define slcr_SDIO_CLK_CTRL_REG 0x150U
+typedef union slcr_SDIO_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_2 : 2;
+		uint32_t CLKACT1 : 1;
+		uint32_t CLKACT0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_SDIO_CLK_CTRL;
+
+#define slcr_SDIO_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_SDIO_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_SDIO_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_SDIO_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_SDIO_CLK_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_SDIO_CLK_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_SDIO_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_SDIO_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_SDIO_CLK_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_SDIO_CLK_CTRL_RESERVED_2_MASK 0xcU
+#define slcr_SDIO_CLK_CTRL_CLKACT1_LSHIFT 1U
+#define slcr_SDIO_CLK_CTRL_CLKACT1 0x2U
+#define slcr_SDIO_CLK_CTRL_CLKACT1_MASK 0x2U
+#define slcr_SDIO_CLK_CTRL_CLKACT0_LSHIFT 0U
+#define slcr_SDIO_CLK_CTRL_CLKACT0 0x1U
+#define slcr_SDIO_CLK_CTRL_CLKACT0_MASK 0x1U
+#define slcr_SDIO_CLK_CTRL_MASK 0x3f33U
+
+
+// UART Ref Clock Control
+#define slcr_UART_CLK_CTRL_REG 0x154U
+typedef union slcr_UART_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_2 : 2;
+		uint32_t CLKACT1 : 1;
+		uint32_t CLKACT0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_UART_CLK_CTRL;
+
+#define slcr_UART_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_UART_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_UART_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_UART_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_UART_CLK_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_UART_CLK_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_UART_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_UART_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_UART_CLK_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_UART_CLK_CTRL_RESERVED_2_MASK 0xcU
+#define slcr_UART_CLK_CTRL_CLKACT1_LSHIFT 1U
+#define slcr_UART_CLK_CTRL_CLKACT1 0x2U
+#define slcr_UART_CLK_CTRL_CLKACT1_MASK 0x2U
+#define slcr_UART_CLK_CTRL_CLKACT0_LSHIFT 0U
+#define slcr_UART_CLK_CTRL_CLKACT0 0x1U
+#define slcr_UART_CLK_CTRL_CLKACT0_MASK 0x1U
+#define slcr_UART_CLK_CTRL_MASK 0x3f33U
+
+
+// SPI Ref Clock Control
+#define slcr_SPI_CLK_CTRL_REG 0x158U
+typedef union slcr_SPI_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_2 : 2;
+		uint32_t CLKACT1 : 1;
+		uint32_t CLKACT0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_SPI_CLK_CTRL;
+
+#define slcr_SPI_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_SPI_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_SPI_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_SPI_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_SPI_CLK_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_SPI_CLK_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_SPI_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_SPI_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_SPI_CLK_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_SPI_CLK_CTRL_RESERVED_2_MASK 0xcU
+#define slcr_SPI_CLK_CTRL_CLKACT1_LSHIFT 1U
+#define slcr_SPI_CLK_CTRL_CLKACT1 0x2U
+#define slcr_SPI_CLK_CTRL_CLKACT1_MASK 0x2U
+#define slcr_SPI_CLK_CTRL_CLKACT0_LSHIFT 0U
+#define slcr_SPI_CLK_CTRL_CLKACT0 0x1U
+#define slcr_SPI_CLK_CTRL_CLKACT0_MASK 0x1U
+#define slcr_SPI_CLK_CTRL_MASK 0x3f33U
+
+
+// CAN Ref Clock Control
+#define slcr_CAN_CLK_CTRL_REG 0x15cU
+typedef union slcr_CAN_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR0 : 6;
+		uint32_t RESERVED_2 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_3 : 2;
+		uint32_t CLKACT1 : 1;
+		uint32_t CLKACT0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_CAN_CLK_CTRL;
+
+#define slcr_CAN_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_CAN_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_CAN_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_CAN_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_CAN_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_CAN_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_CAN_CLK_CTRL_DIVISOR0_LSHIFT 8U
+#define slcr_CAN_CLK_CTRL_DIVISOR0_MASK 0x3f00U
+#define slcr_CAN_CLK_CTRL_RESERVED_2_LSHIFT 6U
+#define slcr_CAN_CLK_CTRL_RESERVED_2_MASK 0xc0U
+#define slcr_CAN_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_CAN_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_CAN_CLK_CTRL_RESERVED_3_LSHIFT 2U
+#define slcr_CAN_CLK_CTRL_RESERVED_3_MASK 0xcU
+#define slcr_CAN_CLK_CTRL_CLKACT1_LSHIFT 1U
+#define slcr_CAN_CLK_CTRL_CLKACT1 0x2U
+#define slcr_CAN_CLK_CTRL_CLKACT1_MASK 0x2U
+#define slcr_CAN_CLK_CTRL_CLKACT0_LSHIFT 0U
+#define slcr_CAN_CLK_CTRL_CLKACT0 0x1U
+#define slcr_CAN_CLK_CTRL_CLKACT0_MASK 0x1U
+#define slcr_CAN_CLK_CTRL_MASK 0x3f03f33U
+
+
+// CAN MIO Clock Control
+#define slcr_CAN_MIOCLK_CTRL_REG 0x160U
+typedef union slcr_CAN_MIOCLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 9;
+		uint32_t CAN1_REF_SEL : 1;
+		uint32_t CAN1_MUX : 6;
+		uint32_t RESERVED_1 : 9;
+		uint32_t CAN0_REF_SEL : 1;
+		uint32_t CAN0_MUX : 6;
+	} fields;
+	uint32_t v;
+} slcr_CAN_MIOCLK_CTRL;
+
+#define slcr_CAN_MIOCLK_CTRL_RESERVED_0_LSHIFT 23U
+#define slcr_CAN_MIOCLK_CTRL_RESERVED_0_MASK 0xff800000U
+#define slcr_CAN_MIOCLK_CTRL_CAN1_REF_SEL_LSHIFT 22U
+#define slcr_CAN_MIOCLK_CTRL_CAN1_REF_SEL 0x400000U
+#define slcr_CAN_MIOCLK_CTRL_CAN1_REF_SEL_MASK 0x400000U
+#define slcr_CAN_MIOCLK_CTRL_CAN1_MUX_LSHIFT 16U
+#define slcr_CAN_MIOCLK_CTRL_CAN1_MUX_MASK 0x3f0000U
+#define slcr_CAN_MIOCLK_CTRL_RESERVED_1_LSHIFT 7U
+#define slcr_CAN_MIOCLK_CTRL_RESERVED_1_MASK 0xff80U
+#define slcr_CAN_MIOCLK_CTRL_CAN0_REF_SEL_LSHIFT 6U
+#define slcr_CAN_MIOCLK_CTRL_CAN0_REF_SEL 0x40U
+#define slcr_CAN_MIOCLK_CTRL_CAN0_REF_SEL_MASK 0x40U
+#define slcr_CAN_MIOCLK_CTRL_CAN0_MUX_LSHIFT 0U
+#define slcr_CAN_MIOCLK_CTRL_CAN0_MUX_MASK 0x3fU
+#define slcr_CAN_MIOCLK_CTRL_MASK 0x7f007fU
+
+
+// SoC Debug Clock Control
+#define slcr_DBG_CLK_CTRL_REG 0x164U
+typedef union slcr_DBG_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 1;
+		uint32_t SRCSEL : 3;
+		uint32_t RESERVED_2 : 2;
+		uint32_t CPU_1XCLKACT : 1;
+		uint32_t CLKACT_TRC : 1;
+	} fields;
+	uint32_t v;
+} slcr_DBG_CLK_CTRL;
+
+#define slcr_DBG_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_DBG_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_DBG_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_DBG_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_DBG_CLK_CTRL_RESERVED_1_LSHIFT 7U
+#define slcr_DBG_CLK_CTRL_RESERVED_1 0x80U
+#define slcr_DBG_CLK_CTRL_RESERVED_1_MASK 0x80U
+#define slcr_DBG_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_DBG_CLK_CTRL_SRCSEL_MASK 0x70U
+#define slcr_DBG_CLK_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_DBG_CLK_CTRL_RESERVED_2_MASK 0xcU
+#define slcr_DBG_CLK_CTRL_CPU_1XCLKACT_LSHIFT 1U
+#define slcr_DBG_CLK_CTRL_CPU_1XCLKACT 0x2U
+#define slcr_DBG_CLK_CTRL_CPU_1XCLKACT_MASK 0x2U
+#define slcr_DBG_CLK_CTRL_CLKACT_TRC_LSHIFT 0U
+#define slcr_DBG_CLK_CTRL_CLKACT_TRC 0x1U
+#define slcr_DBG_CLK_CTRL_CLKACT_TRC_MASK 0x1U
+#define slcr_DBG_CLK_CTRL_MASK 0x3f73U
+
+
+// PCAP Clock Control
+#define slcr_PCAP_CLK_CTRL_REG 0x168U
+typedef union slcr_PCAP_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DIVISOR : 6;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_2 : 3;
+		uint32_t CLKACT : 1;
+	} fields;
+	uint32_t v;
+} slcr_PCAP_CLK_CTRL;
+
+#define slcr_PCAP_CLK_CTRL_RESERVED_0_LSHIFT 14U
+#define slcr_PCAP_CLK_CTRL_RESERVED_0_MASK 0xffffc000U
+#define slcr_PCAP_CLK_CTRL_DIVISOR_LSHIFT 8U
+#define slcr_PCAP_CLK_CTRL_DIVISOR_MASK 0x3f00U
+#define slcr_PCAP_CLK_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_PCAP_CLK_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_PCAP_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_PCAP_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_PCAP_CLK_CTRL_RESERVED_2_LSHIFT 1U
+#define slcr_PCAP_CLK_CTRL_RESERVED_2_MASK 0xeU
+#define slcr_PCAP_CLK_CTRL_CLKACT_LSHIFT 0U
+#define slcr_PCAP_CLK_CTRL_CLKACT 0x1U
+#define slcr_PCAP_CLK_CTRL_CLKACT_MASK 0x1U
+#define slcr_PCAP_CLK_CTRL_MASK 0x3f31U
+
+
+// Central Interconnect Clock Control
+#define slcr_TOPSW_CLK_CTRL_REG 0x16cU
+typedef union slcr_TOPSW_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t CLK_DIS : 1;
+	} fields;
+	uint32_t v;
+} slcr_TOPSW_CLK_CTRL;
+
+#define slcr_TOPSW_CLK_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_TOPSW_CLK_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_TOPSW_CLK_CTRL_CLK_DIS_LSHIFT 0U
+#define slcr_TOPSW_CLK_CTRL_CLK_DIS 0x1U
+#define slcr_TOPSW_CLK_CTRL_CLK_DIS_MASK 0x1U
+#define slcr_TOPSW_CLK_CTRL_MASK 0x1U
+
+
+// PL Clock 0 Output control
+#define slcr_FPGA0_CLK_CTRL_REG 0x170U
+typedef union slcr_FPGA0_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR0 : 6;
+		uint32_t RESERVED_2 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_3 : 4;
+	} fields;
+	uint32_t v;
+} slcr_FPGA0_CLK_CTRL;
+
+#define slcr_FPGA0_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_FPGA0_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_FPGA0_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_FPGA0_CLK_CTRL_DIVISOR0_LSHIFT 8U
+#define slcr_FPGA0_CLK_CTRL_DIVISOR0_MASK 0x3f00U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_2_LSHIFT 6U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_2_MASK 0xc0U
+#define slcr_FPGA0_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_FPGA0_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_3_LSHIFT 0U
+#define slcr_FPGA0_CLK_CTRL_RESERVED_3_MASK 0xfU
+#define slcr_FPGA0_CLK_CTRL_MASK 0x3f03f30U
+
+
+// PL Clock 0 Throttle control
+#define slcr_FPGA0_THR_CTRL_REG 0x174U
+typedef union slcr_FPGA0_THR_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t CNT_RST : 1;
+		uint32_t CPU_START : 1;
+	} fields;
+	uint32_t v;
+} slcr_FPGA0_THR_CTRL;
+
+#define slcr_FPGA0_THR_CTRL_RESERVED_0_LSHIFT 4U
+#define slcr_FPGA0_THR_CTRL_RESERVED_0_MASK 0xfffffff0U
+#define slcr_FPGA0_THR_CTRL_RESERVED_1_LSHIFT 3U
+#define slcr_FPGA0_THR_CTRL_RESERVED_1 0x8U
+#define slcr_FPGA0_THR_CTRL_RESERVED_1_MASK 0x8U
+#define slcr_FPGA0_THR_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_FPGA0_THR_CTRL_RESERVED_2 0x4U
+#define slcr_FPGA0_THR_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_FPGA0_THR_CTRL_CNT_RST_LSHIFT 1U
+#define slcr_FPGA0_THR_CTRL_CNT_RST 0x2U
+#define slcr_FPGA0_THR_CTRL_CNT_RST_MASK 0x2U
+#define slcr_FPGA0_THR_CTRL_CPU_START_LSHIFT 0U
+#define slcr_FPGA0_THR_CTRL_CPU_START 0x1U
+#define slcr_FPGA0_THR_CTRL_CPU_START_MASK 0x1U
+#define slcr_FPGA0_THR_CTRL_MASK 0x3U
+
+
+// PL Clock 0 Throttle Count control
+#define slcr_FPGA0_THR_CNT_REG 0x178U
+typedef union slcr_FPGA0_THR_CNT
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 12;
+		uint32_t RESERVED_1 : 4;
+		uint32_t LAST_CNT : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA0_THR_CNT;
+
+#define slcr_FPGA0_THR_CNT_RESERVED_0_LSHIFT 20U
+#define slcr_FPGA0_THR_CNT_RESERVED_0_MASK 0xfff00000U
+#define slcr_FPGA0_THR_CNT_RESERVED_1_LSHIFT 16U
+#define slcr_FPGA0_THR_CNT_RESERVED_1_MASK 0xf0000U
+#define slcr_FPGA0_THR_CNT_LAST_CNT_LSHIFT 0U
+#define slcr_FPGA0_THR_CNT_LAST_CNT_MASK 0xffffU
+#define slcr_FPGA0_THR_CNT_MASK 0xffffU
+
+
+// PL Clock 0 Throttle Status read
+#define slcr_FPGA0_THR_STA_REG 0x17cU
+typedef union slcr_FPGA0_THR_STA
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 15;
+		uint32_t RUNNING : 1;
+		uint32_t CURR_VAL : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA0_THR_STA;
+
+#define slcr_FPGA0_THR_STA_RESERVED_0_LSHIFT 17U
+#define slcr_FPGA0_THR_STA_RESERVED_0_MASK 0xfffe0000U
+#define slcr_FPGA0_THR_STA_RUNNING_LSHIFT 16U
+#define slcr_FPGA0_THR_STA_RUNNING 0x10000U
+#define slcr_FPGA0_THR_STA_RUNNING_MASK 0x10000U
+#define slcr_FPGA0_THR_STA_CURR_VAL_LSHIFT 0U
+#define slcr_FPGA0_THR_STA_CURR_VAL_MASK 0xffffU
+#define slcr_FPGA0_THR_STA_MASK 0x1ffffU
+
+
+// PL Clock 1 Output control
+#define slcr_FPGA1_CLK_CTRL_REG 0x180U
+typedef union slcr_FPGA1_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR0 : 6;
+		uint32_t RESERVED_2 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_3 : 4;
+	} fields;
+	uint32_t v;
+} slcr_FPGA1_CLK_CTRL;
+
+#define slcr_FPGA1_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_FPGA1_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_FPGA1_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_FPGA1_CLK_CTRL_DIVISOR0_LSHIFT 8U
+#define slcr_FPGA1_CLK_CTRL_DIVISOR0_MASK 0x3f00U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_2_LSHIFT 6U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_2_MASK 0xc0U
+#define slcr_FPGA1_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_FPGA1_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_3_LSHIFT 0U
+#define slcr_FPGA1_CLK_CTRL_RESERVED_3_MASK 0xfU
+#define slcr_FPGA1_CLK_CTRL_MASK 0x3f03f30U
+
+
+// PL Clock 1 Throttle control
+#define slcr_FPGA1_THR_CTRL_REG 0x184U
+typedef union slcr_FPGA1_THR_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t CNT_RST : 1;
+		uint32_t CPU_START : 1;
+	} fields;
+	uint32_t v;
+} slcr_FPGA1_THR_CTRL;
+
+#define slcr_FPGA1_THR_CTRL_RESERVED_0_LSHIFT 4U
+#define slcr_FPGA1_THR_CTRL_RESERVED_0_MASK 0xfffffff0U
+#define slcr_FPGA1_THR_CTRL_RESERVED_1_LSHIFT 3U
+#define slcr_FPGA1_THR_CTRL_RESERVED_1 0x8U
+#define slcr_FPGA1_THR_CTRL_RESERVED_1_MASK 0x8U
+#define slcr_FPGA1_THR_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_FPGA1_THR_CTRL_RESERVED_2 0x4U
+#define slcr_FPGA1_THR_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_FPGA1_THR_CTRL_CNT_RST_LSHIFT 1U
+#define slcr_FPGA1_THR_CTRL_CNT_RST 0x2U
+#define slcr_FPGA1_THR_CTRL_CNT_RST_MASK 0x2U
+#define slcr_FPGA1_THR_CTRL_CPU_START_LSHIFT 0U
+#define slcr_FPGA1_THR_CTRL_CPU_START 0x1U
+#define slcr_FPGA1_THR_CTRL_CPU_START_MASK 0x1U
+#define slcr_FPGA1_THR_CTRL_MASK 0x3U
+
+
+// PL Clock 1 Throttle Count
+#define slcr_FPGA1_THR_CNT_REG 0x188U
+typedef union slcr_FPGA1_THR_CNT
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 12;
+		uint32_t RESERVED_1 : 4;
+		uint32_t LAST_CNT : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA1_THR_CNT;
+
+#define slcr_FPGA1_THR_CNT_RESERVED_0_LSHIFT 20U
+#define slcr_FPGA1_THR_CNT_RESERVED_0_MASK 0xfff00000U
+#define slcr_FPGA1_THR_CNT_RESERVED_1_LSHIFT 16U
+#define slcr_FPGA1_THR_CNT_RESERVED_1_MASK 0xf0000U
+#define slcr_FPGA1_THR_CNT_LAST_CNT_LSHIFT 0U
+#define slcr_FPGA1_THR_CNT_LAST_CNT_MASK 0xffffU
+#define slcr_FPGA1_THR_CNT_MASK 0xffffU
+
+
+// PL Clock 1 Throttle Status control
+#define slcr_FPGA1_THR_STA_REG 0x18cU
+typedef union slcr_FPGA1_THR_STA
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 15;
+		uint32_t RUNNING : 1;
+		uint32_t CURR_VAL : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA1_THR_STA;
+
+#define slcr_FPGA1_THR_STA_RESERVED_0_LSHIFT 17U
+#define slcr_FPGA1_THR_STA_RESERVED_0_MASK 0xfffe0000U
+#define slcr_FPGA1_THR_STA_RUNNING_LSHIFT 16U
+#define slcr_FPGA1_THR_STA_RUNNING 0x10000U
+#define slcr_FPGA1_THR_STA_RUNNING_MASK 0x10000U
+#define slcr_FPGA1_THR_STA_CURR_VAL_LSHIFT 0U
+#define slcr_FPGA1_THR_STA_CURR_VAL_MASK 0xffffU
+#define slcr_FPGA1_THR_STA_MASK 0x1ffffU
+
+
+// PL Clock 2 output control
+#define slcr_FPGA2_CLK_CTRL_REG 0x190U
+typedef union slcr_FPGA2_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR0 : 6;
+		uint32_t RESERVED_2 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_3 : 4;
+	} fields;
+	uint32_t v;
+} slcr_FPGA2_CLK_CTRL;
+
+#define slcr_FPGA2_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_FPGA2_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_FPGA2_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_FPGA2_CLK_CTRL_DIVISOR0_LSHIFT 8U
+#define slcr_FPGA2_CLK_CTRL_DIVISOR0_MASK 0x3f00U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_2_LSHIFT 6U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_2_MASK 0xc0U
+#define slcr_FPGA2_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_FPGA2_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_3_LSHIFT 0U
+#define slcr_FPGA2_CLK_CTRL_RESERVED_3_MASK 0xfU
+#define slcr_FPGA2_CLK_CTRL_MASK 0x3f03f30U
+
+
+// PL Clock 2 Throttle Control
+#define slcr_FPGA2_THR_CTRL_REG 0x194U
+typedef union slcr_FPGA2_THR_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t CNT_RST : 1;
+		uint32_t CPU_START : 1;
+	} fields;
+	uint32_t v;
+} slcr_FPGA2_THR_CTRL;
+
+#define slcr_FPGA2_THR_CTRL_RESERVED_0_LSHIFT 4U
+#define slcr_FPGA2_THR_CTRL_RESERVED_0_MASK 0xfffffff0U
+#define slcr_FPGA2_THR_CTRL_RESERVED_1_LSHIFT 3U
+#define slcr_FPGA2_THR_CTRL_RESERVED_1 0x8U
+#define slcr_FPGA2_THR_CTRL_RESERVED_1_MASK 0x8U
+#define slcr_FPGA2_THR_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_FPGA2_THR_CTRL_RESERVED_2 0x4U
+#define slcr_FPGA2_THR_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_FPGA2_THR_CTRL_CNT_RST_LSHIFT 1U
+#define slcr_FPGA2_THR_CTRL_CNT_RST 0x2U
+#define slcr_FPGA2_THR_CTRL_CNT_RST_MASK 0x2U
+#define slcr_FPGA2_THR_CTRL_CPU_START_LSHIFT 0U
+#define slcr_FPGA2_THR_CTRL_CPU_START 0x1U
+#define slcr_FPGA2_THR_CTRL_CPU_START_MASK 0x1U
+#define slcr_FPGA2_THR_CTRL_MASK 0x3U
+
+
+// PL Clock 2 Throttle Count
+#define slcr_FPGA2_THR_CNT_REG 0x198U
+typedef union slcr_FPGA2_THR_CNT
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 12;
+		uint32_t RESERVED_1 : 4;
+		uint32_t LAST_CNT : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA2_THR_CNT;
+
+#define slcr_FPGA2_THR_CNT_RESERVED_0_LSHIFT 20U
+#define slcr_FPGA2_THR_CNT_RESERVED_0_MASK 0xfff00000U
+#define slcr_FPGA2_THR_CNT_RESERVED_1_LSHIFT 16U
+#define slcr_FPGA2_THR_CNT_RESERVED_1_MASK 0xf0000U
+#define slcr_FPGA2_THR_CNT_LAST_CNT_LSHIFT 0U
+#define slcr_FPGA2_THR_CNT_LAST_CNT_MASK 0xffffU
+#define slcr_FPGA2_THR_CNT_MASK 0xffffU
+
+
+// PL Clock 2 Throttle Status
+#define slcr_FPGA2_THR_STA_REG 0x19cU
+typedef union slcr_FPGA2_THR_STA
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 15;
+		uint32_t RUNNING : 1;
+		uint32_t CURR_VAL : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA2_THR_STA;
+
+#define slcr_FPGA2_THR_STA_RESERVED_0_LSHIFT 17U
+#define slcr_FPGA2_THR_STA_RESERVED_0_MASK 0xfffe0000U
+#define slcr_FPGA2_THR_STA_RUNNING_LSHIFT 16U
+#define slcr_FPGA2_THR_STA_RUNNING 0x10000U
+#define slcr_FPGA2_THR_STA_RUNNING_MASK 0x10000U
+#define slcr_FPGA2_THR_STA_CURR_VAL_LSHIFT 0U
+#define slcr_FPGA2_THR_STA_CURR_VAL_MASK 0xffffU
+#define slcr_FPGA2_THR_STA_MASK 0x1ffffU
+
+
+// PL Clock 3 output control
+#define slcr_FPGA3_CLK_CTRL_REG 0x1a0U
+typedef union slcr_FPGA3_CLK_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 6;
+		uint32_t DIVISOR1 : 6;
+		uint32_t RESERVED_1 : 6;
+		uint32_t DIVISOR0 : 6;
+		uint32_t RESERVED_2 : 2;
+		uint32_t SRCSEL : 2;
+		uint32_t RESERVED_3 : 4;
+	} fields;
+	uint32_t v;
+} slcr_FPGA3_CLK_CTRL;
+
+#define slcr_FPGA3_CLK_CTRL_RESERVED_0_LSHIFT 26U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_0_MASK 0xfc000000U
+#define slcr_FPGA3_CLK_CTRL_DIVISOR1_LSHIFT 20U
+#define slcr_FPGA3_CLK_CTRL_DIVISOR1_MASK 0x3f00000U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_1_LSHIFT 14U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_1_MASK 0xfc000U
+#define slcr_FPGA3_CLK_CTRL_DIVISOR0_LSHIFT 8U
+#define slcr_FPGA3_CLK_CTRL_DIVISOR0_MASK 0x3f00U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_2_LSHIFT 6U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_2_MASK 0xc0U
+#define slcr_FPGA3_CLK_CTRL_SRCSEL_LSHIFT 4U
+#define slcr_FPGA3_CLK_CTRL_SRCSEL_MASK 0x30U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_3_LSHIFT 0U
+#define slcr_FPGA3_CLK_CTRL_RESERVED_3_MASK 0xfU
+#define slcr_FPGA3_CLK_CTRL_MASK 0x3f03f30U
+
+
+// PL Clock 3 Throttle Control
+#define slcr_FPGA3_THR_CTRL_REG 0x1a4U
+
+
+// PL Clock 3 Throttle Count
+#define slcr_FPGA3_THR_CNT_REG 0x1a8U
+typedef union slcr_FPGA3_THR_CNT
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 12;
+		uint32_t RESERVED_1 : 4;
+		uint32_t LAST_CNT : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA3_THR_CNT;
+
+#define slcr_FPGA3_THR_CNT_RESERVED_0_LSHIFT 20U
+#define slcr_FPGA3_THR_CNT_RESERVED_0_MASK 0xfff00000U
+#define slcr_FPGA3_THR_CNT_RESERVED_1_LSHIFT 16U
+#define slcr_FPGA3_THR_CNT_RESERVED_1_MASK 0xf0000U
+#define slcr_FPGA3_THR_CNT_LAST_CNT_LSHIFT 0U
+#define slcr_FPGA3_THR_CNT_LAST_CNT_MASK 0xffffU
+#define slcr_FPGA3_THR_CNT_MASK 0xffffU
+
+
+// PL Clock 3 Throttle Status
+#define slcr_FPGA3_THR_STA_REG 0x1acU
+typedef union slcr_FPGA3_THR_STA
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 15;
+		uint32_t RUNNING : 1;
+		uint32_t CURR_VAL : 16;
+	} fields;
+	uint32_t v;
+} slcr_FPGA3_THR_STA;
+
+#define slcr_FPGA3_THR_STA_RESERVED_0_LSHIFT 17U
+#define slcr_FPGA3_THR_STA_RESERVED_0_MASK 0xfffe0000U
+#define slcr_FPGA3_THR_STA_RUNNING_LSHIFT 16U
+#define slcr_FPGA3_THR_STA_RUNNING 0x10000U
+#define slcr_FPGA3_THR_STA_RUNNING_MASK 0x10000U
+#define slcr_FPGA3_THR_STA_CURR_VAL_LSHIFT 0U
+#define slcr_FPGA3_THR_STA_CURR_VAL_MASK 0xffffU
+#define slcr_FPGA3_THR_STA_MASK 0x1ffffU
+
+
+// CPU Clock Ratio Mode select
+#define slcr_CLK_621_TRUE_REG 0x1c4U
+typedef union slcr_CLK_621_TRUE
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t CLK_621_TRUE : 1;
+	} fields;
+	uint32_t v;
+} slcr_CLK_621_TRUE;
+
+#define slcr_CLK_621_TRUE_RESERVED_0_LSHIFT 1U
+#define slcr_CLK_621_TRUE_RESERVED_0_MASK 0xfffffffeU
+#define slcr_CLK_621_TRUE_CLK_621_TRUE_LSHIFT 0U
+#define slcr_CLK_621_TRUE_CLK_621_TRUE 0x1U
+#define slcr_CLK_621_TRUE_CLK_621_TRUE_MASK 0x1U
+#define slcr_CLK_621_TRUE_MASK 0x1U
+
+
+// PS Software Reset Control
+#define slcr_PSS_RST_CTRL_REG 0x200U
+typedef union slcr_PSS_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t SOFT_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_PSS_RST_CTRL;
+
+#define slcr_PSS_RST_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_PSS_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_PSS_RST_CTRL_SOFT_RST_LSHIFT 0U
+#define slcr_PSS_RST_CTRL_SOFT_RST 0x1U
+#define slcr_PSS_RST_CTRL_SOFT_RST_MASK 0x1U
+#define slcr_PSS_RST_CTRL_MASK 0x1U
+
+
+// DDR Software Reset Control
+#define slcr_DDR_RST_CTRL_REG 0x204U
+typedef union slcr_DDR_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t DDR_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_RST_CTRL;
+
+#define slcr_DDR_RST_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_DDR_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_DDR_RST_CTRL_DDR_RST_LSHIFT 0U
+#define slcr_DDR_RST_CTRL_DDR_RST 0x1U
+#define slcr_DDR_RST_CTRL_DDR_RST_MASK 0x1U
+#define slcr_DDR_RST_CTRL_MASK 0x1U
+
+
+// Central Interconnect Reset Control
+#define slcr_TOPSW_RST_CTRL_REG 0x208U
+typedef union slcr_TOPSW_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t TOPSW_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_TOPSW_RST_CTRL;
+
+#define slcr_TOPSW_RST_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_TOPSW_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_TOPSW_RST_CTRL_TOPSW_RST_LSHIFT 0U
+#define slcr_TOPSW_RST_CTRL_TOPSW_RST 0x1U
+#define slcr_TOPSW_RST_CTRL_TOPSW_RST_MASK 0x1U
+#define slcr_TOPSW_RST_CTRL_MASK 0x1U
+
+
+// DMAC Software Reset Control
+#define slcr_DMAC_RST_CTRL_REG 0x20cU
+typedef union slcr_DMAC_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t DMAC_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_DMAC_RST_CTRL;
+
+#define slcr_DMAC_RST_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_DMAC_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_DMAC_RST_CTRL_DMAC_RST_LSHIFT 0U
+#define slcr_DMAC_RST_CTRL_DMAC_RST 0x1U
+#define slcr_DMAC_RST_CTRL_DMAC_RST_MASK 0x1U
+#define slcr_DMAC_RST_CTRL_MASK 0x1U
+
+
+// USB Software Reset Control
+#define slcr_USB_RST_CTRL_REG 0x210U
+typedef union slcr_USB_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 30;
+		uint32_t USB1_CPU1X_RST : 1;
+		uint32_t USB0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_USB_RST_CTRL;
+
+#define slcr_USB_RST_CTRL_RESERVED_0_LSHIFT 2U
+#define slcr_USB_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
+#define slcr_USB_RST_CTRL_USB1_CPU1X_RST_LSHIFT 1U
+#define slcr_USB_RST_CTRL_USB1_CPU1X_RST 0x2U
+#define slcr_USB_RST_CTRL_USB1_CPU1X_RST_MASK 0x2U
+#define slcr_USB_RST_CTRL_USB0_CPU1X_RST_LSHIFT 0U
+#define slcr_USB_RST_CTRL_USB0_CPU1X_RST 0x1U
+#define slcr_USB_RST_CTRL_USB0_CPU1X_RST_MASK 0x1U
+#define slcr_USB_RST_CTRL_MASK 0x3U
+
+
+// Gigabit Ethernet SW Reset Control
+#define slcr_GEM_RST_CTRL_REG 0x214U
+typedef union slcr_GEM_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 24;
+		uint32_t GEM1_REF_RST : 1;
+		uint32_t GEM0_REF_RST : 1;
+		uint32_t GEM1_RX_RST : 1;
+		uint32_t GEM0_RX_RST : 1;
+		uint32_t RESERVED_1 : 2;
+		uint32_t GEM1_CPU1X_RST : 1;
+		uint32_t GEM0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_GEM_RST_CTRL;
+
+#define slcr_GEM_RST_CTRL_RESERVED_0_LSHIFT 8U
+#define slcr_GEM_RST_CTRL_RESERVED_0_MASK 0xffffff00U
+#define slcr_GEM_RST_CTRL_GEM1_REF_RST_LSHIFT 7U
+#define slcr_GEM_RST_CTRL_GEM1_REF_RST 0x80U
+#define slcr_GEM_RST_CTRL_GEM1_REF_RST_MASK 0x80U
+#define slcr_GEM_RST_CTRL_GEM0_REF_RST_LSHIFT 6U
+#define slcr_GEM_RST_CTRL_GEM0_REF_RST 0x40U
+#define slcr_GEM_RST_CTRL_GEM0_REF_RST_MASK 0x40U
+#define slcr_GEM_RST_CTRL_GEM1_RX_RST_LSHIFT 5U
+#define slcr_GEM_RST_CTRL_GEM1_RX_RST 0x20U
+#define slcr_GEM_RST_CTRL_GEM1_RX_RST_MASK 0x20U
+#define slcr_GEM_RST_CTRL_GEM0_RX_RST_LSHIFT 4U
+#define slcr_GEM_RST_CTRL_GEM0_RX_RST 0x10U
+#define slcr_GEM_RST_CTRL_GEM0_RX_RST_MASK 0x10U
+#define slcr_GEM_RST_CTRL_RESERVED_1_LSHIFT 2U
+#define slcr_GEM_RST_CTRL_RESERVED_1_MASK 0xcU
+#define slcr_GEM_RST_CTRL_GEM1_CPU1X_RST_LSHIFT 1U
+#define slcr_GEM_RST_CTRL_GEM1_CPU1X_RST 0x2U
+#define slcr_GEM_RST_CTRL_GEM1_CPU1X_RST_MASK 0x2U
+#define slcr_GEM_RST_CTRL_GEM0_CPU1X_RST_LSHIFT 0U
+#define slcr_GEM_RST_CTRL_GEM0_CPU1X_RST 0x1U
+#define slcr_GEM_RST_CTRL_GEM0_CPU1X_RST_MASK 0x1U
+#define slcr_GEM_RST_CTRL_MASK 0xf3U
+
+
+// SDIO Software Reset Control
+#define slcr_SDIO_RST_CTRL_REG 0x218U
+typedef union slcr_SDIO_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 26;
+		uint32_t SDIO1_REF_RST : 1;
+		uint32_t SDIO0_REF_RST : 1;
+		uint32_t RESERVED_1 : 2;
+		uint32_t SDIO1_CPU1X_RST : 1;
+		uint32_t SDIO0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_SDIO_RST_CTRL;
+
+#define slcr_SDIO_RST_CTRL_RESERVED_0_LSHIFT 6U
+#define slcr_SDIO_RST_CTRL_RESERVED_0_MASK 0xffffffc0U
+#define slcr_SDIO_RST_CTRL_SDIO1_REF_RST_LSHIFT 5U
+#define slcr_SDIO_RST_CTRL_SDIO1_REF_RST 0x20U
+#define slcr_SDIO_RST_CTRL_SDIO1_REF_RST_MASK 0x20U
+#define slcr_SDIO_RST_CTRL_SDIO0_REF_RST_LSHIFT 4U
+#define slcr_SDIO_RST_CTRL_SDIO0_REF_RST 0x10U
+#define slcr_SDIO_RST_CTRL_SDIO0_REF_RST_MASK 0x10U
+#define slcr_SDIO_RST_CTRL_RESERVED_1_LSHIFT 2U
+#define slcr_SDIO_RST_CTRL_RESERVED_1_MASK 0xcU
+#define slcr_SDIO_RST_CTRL_SDIO1_CPU1X_RST_LSHIFT 1U
+#define slcr_SDIO_RST_CTRL_SDIO1_CPU1X_RST 0x2U
+#define slcr_SDIO_RST_CTRL_SDIO1_CPU1X_RST_MASK 0x2U
+#define slcr_SDIO_RST_CTRL_SDIO0_CPU1X_RST_LSHIFT 0U
+#define slcr_SDIO_RST_CTRL_SDIO0_CPU1X_RST 0x1U
+#define slcr_SDIO_RST_CTRL_SDIO0_CPU1X_RST_MASK 0x1U
+#define slcr_SDIO_RST_CTRL_MASK 0x33U
+
+
+// SPI Software Reset Control
+#define slcr_SPI_RST_CTRL_REG 0x21cU
+typedef union slcr_SPI_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t SPI1_REF_RST : 1;
+		uint32_t SPI0_REF_RST : 1;
+		uint32_t SPI1_CPU1X_RST : 1;
+		uint32_t SPI0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_SPI_RST_CTRL;
+
+#define slcr_SPI_RST_CTRL_RESERVED_0_LSHIFT 4U
+#define slcr_SPI_RST_CTRL_RESERVED_0_MASK 0xfffffff0U
+#define slcr_SPI_RST_CTRL_SPI1_REF_RST_LSHIFT 3U
+#define slcr_SPI_RST_CTRL_SPI1_REF_RST 0x8U
+#define slcr_SPI_RST_CTRL_SPI1_REF_RST_MASK 0x8U
+#define slcr_SPI_RST_CTRL_SPI0_REF_RST_LSHIFT 2U
+#define slcr_SPI_RST_CTRL_SPI0_REF_RST 0x4U
+#define slcr_SPI_RST_CTRL_SPI0_REF_RST_MASK 0x4U
+#define slcr_SPI_RST_CTRL_SPI1_CPU1X_RST_LSHIFT 1U
+#define slcr_SPI_RST_CTRL_SPI1_CPU1X_RST 0x2U
+#define slcr_SPI_RST_CTRL_SPI1_CPU1X_RST_MASK 0x2U
+#define slcr_SPI_RST_CTRL_SPI0_CPU1X_RST_LSHIFT 0U
+#define slcr_SPI_RST_CTRL_SPI0_CPU1X_RST 0x1U
+#define slcr_SPI_RST_CTRL_SPI0_CPU1X_RST_MASK 0x1U
+#define slcr_SPI_RST_CTRL_MASK 0xfU
+
+
+// CAN Software Reset Control
+#define slcr_CAN_RST_CTRL_REG 0x220U
+typedef union slcr_CAN_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t CAN1_CPU1X_RST : 1;
+		uint32_t CAN0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_CAN_RST_CTRL;
+
+#define slcr_CAN_RST_CTRL_RESERVED_0_LSHIFT 4U
+#define slcr_CAN_RST_CTRL_RESERVED_0_MASK 0xfffffff0U
+#define slcr_CAN_RST_CTRL_RESERVED_1_LSHIFT 3U
+#define slcr_CAN_RST_CTRL_RESERVED_1 0x8U
+#define slcr_CAN_RST_CTRL_RESERVED_1_MASK 0x8U
+#define slcr_CAN_RST_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_CAN_RST_CTRL_RESERVED_2 0x4U
+#define slcr_CAN_RST_CTRL_RESERVED_2_MASK 0x4U
+#define slcr_CAN_RST_CTRL_CAN1_CPU1X_RST_LSHIFT 1U
+#define slcr_CAN_RST_CTRL_CAN1_CPU1X_RST 0x2U
+#define slcr_CAN_RST_CTRL_CAN1_CPU1X_RST_MASK 0x2U
+#define slcr_CAN_RST_CTRL_CAN0_CPU1X_RST_LSHIFT 0U
+#define slcr_CAN_RST_CTRL_CAN0_CPU1X_RST 0x1U
+#define slcr_CAN_RST_CTRL_CAN0_CPU1X_RST_MASK 0x1U
+#define slcr_CAN_RST_CTRL_MASK 0x3U
+
+
+// I2C Software Reset Control
+#define slcr_I2C_RST_CTRL_REG 0x224U
+typedef union slcr_I2C_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 30;
+		uint32_t I2C1_CPU1X_RST : 1;
+		uint32_t I2C0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_I2C_RST_CTRL;
+
+#define slcr_I2C_RST_CTRL_RESERVED_0_LSHIFT 2U
+#define slcr_I2C_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
+#define slcr_I2C_RST_CTRL_I2C1_CPU1X_RST_LSHIFT 1U
+#define slcr_I2C_RST_CTRL_I2C1_CPU1X_RST 0x2U
+#define slcr_I2C_RST_CTRL_I2C1_CPU1X_RST_MASK 0x2U
+#define slcr_I2C_RST_CTRL_I2C0_CPU1X_RST_LSHIFT 0U
+#define slcr_I2C_RST_CTRL_I2C0_CPU1X_RST 0x1U
+#define slcr_I2C_RST_CTRL_I2C0_CPU1X_RST_MASK 0x1U
+#define slcr_I2C_RST_CTRL_MASK 0x3U
+
+
+// UART Software Reset Control
+#define slcr_UART_RST_CTRL_REG 0x228U
+typedef union slcr_UART_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t UART1_REF_RST : 1;
+		uint32_t UART0_REF_RST : 1;
+		uint32_t UART1_CPU1X_RST : 1;
+		uint32_t UART0_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_UART_RST_CTRL;
+
+#define slcr_UART_RST_CTRL_RESERVED_0_LSHIFT 4U
+#define slcr_UART_RST_CTRL_RESERVED_0_MASK 0xfffffff0U
+#define slcr_UART_RST_CTRL_UART1_REF_RST_LSHIFT 3U
+#define slcr_UART_RST_CTRL_UART1_REF_RST 0x8U
+#define slcr_UART_RST_CTRL_UART1_REF_RST_MASK 0x8U
+#define slcr_UART_RST_CTRL_UART0_REF_RST_LSHIFT 2U
+#define slcr_UART_RST_CTRL_UART0_REF_RST 0x4U
+#define slcr_UART_RST_CTRL_UART0_REF_RST_MASK 0x4U
+#define slcr_UART_RST_CTRL_UART1_CPU1X_RST_LSHIFT 1U
+#define slcr_UART_RST_CTRL_UART1_CPU1X_RST 0x2U
+#define slcr_UART_RST_CTRL_UART1_CPU1X_RST_MASK 0x2U
+#define slcr_UART_RST_CTRL_UART0_CPU1X_RST_LSHIFT 0U
+#define slcr_UART_RST_CTRL_UART0_CPU1X_RST 0x1U
+#define slcr_UART_RST_CTRL_UART0_CPU1X_RST_MASK 0x1U
+#define slcr_UART_RST_CTRL_MASK 0xfU
+
+
+// GPIO Software Reset Control
+#define slcr_GPIO_RST_CTRL_REG 0x22cU
+typedef union slcr_GPIO_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t GPIO_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_GPIO_RST_CTRL;
+
+#define slcr_GPIO_RST_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_GPIO_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_GPIO_RST_CTRL_GPIO_CPU1X_RST_LSHIFT 0U
+#define slcr_GPIO_RST_CTRL_GPIO_CPU1X_RST 0x1U
+#define slcr_GPIO_RST_CTRL_GPIO_CPU1X_RST_MASK 0x1U
+#define slcr_GPIO_RST_CTRL_MASK 0x1U
+
+
+// Quad SPI Software Reset Control
+#define slcr_LQSPI_RST_CTRL_REG 0x230U
+typedef union slcr_LQSPI_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 30;
+		uint32_t QSPI_REF_RST : 1;
+		uint32_t LQSPI_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_LQSPI_RST_CTRL;
+
+#define slcr_LQSPI_RST_CTRL_RESERVED_0_LSHIFT 2U
+#define slcr_LQSPI_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
+#define slcr_LQSPI_RST_CTRL_QSPI_REF_RST_LSHIFT 1U
+#define slcr_LQSPI_RST_CTRL_QSPI_REF_RST 0x2U
+#define slcr_LQSPI_RST_CTRL_QSPI_REF_RST_MASK 0x2U
+#define slcr_LQSPI_RST_CTRL_LQSPI_CPU1X_RST_LSHIFT 0U
+#define slcr_LQSPI_RST_CTRL_LQSPI_CPU1X_RST 0x1U
+#define slcr_LQSPI_RST_CTRL_LQSPI_CPU1X_RST_MASK 0x1U
+#define slcr_LQSPI_RST_CTRL_MASK 0x3U
+
+
+// SMC Software Reset Control
+#define slcr_SMC_RST_CTRL_REG 0x234U
+typedef union slcr_SMC_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 30;
+		uint32_t SMC_REF_RST : 1;
+		uint32_t SMC_CPU1X_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_SMC_RST_CTRL;
+
+#define slcr_SMC_RST_CTRL_RESERVED_0_LSHIFT 2U
+#define slcr_SMC_RST_CTRL_RESERVED_0_MASK 0xfffffffcU
+#define slcr_SMC_RST_CTRL_SMC_REF_RST_LSHIFT 1U
+#define slcr_SMC_RST_CTRL_SMC_REF_RST 0x2U
+#define slcr_SMC_RST_CTRL_SMC_REF_RST_MASK 0x2U
+#define slcr_SMC_RST_CTRL_SMC_CPU1X_RST_LSHIFT 0U
+#define slcr_SMC_RST_CTRL_SMC_CPU1X_RST 0x1U
+#define slcr_SMC_RST_CTRL_SMC_CPU1X_RST_MASK 0x1U
+#define slcr_SMC_RST_CTRL_MASK 0x3U
+
+
+// OCM Software Reset Control
+#define slcr_OCM_RST_CTRL_REG 0x238U
+typedef union slcr_OCM_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t OCM_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_OCM_RST_CTRL;
+
+#define slcr_OCM_RST_CTRL_RESERVED_0_LSHIFT 1U
+#define slcr_OCM_RST_CTRL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_OCM_RST_CTRL_OCM_RST_LSHIFT 0U
+#define slcr_OCM_RST_CTRL_OCM_RST 0x1U
+#define slcr_OCM_RST_CTRL_OCM_RST_MASK 0x1U
+#define slcr_OCM_RST_CTRL_MASK 0x1U
+
+
+// FPGA Software Reset Control
+#define slcr_FPGA_RST_CTRL_REG 0x240U
+typedef union slcr_FPGA_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 7;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+		uint32_t RESERVED_5 : 1;
+		uint32_t RESERVED_6 : 2;
+		uint32_t RESERVED_7 : 1;
+		uint32_t RESERVED_8 : 1;
+		uint32_t RESERVED_9 : 2;
+		uint32_t RESERVED_10 : 1;
+		uint32_t RESERVED_11 : 1;
+		uint32_t RESERVED_12 : 1;
+		uint32_t RESERVED_13 : 1;
+		uint32_t RESERVED_14 : 1;
+		uint32_t RESERVED_15 : 1;
+		uint32_t RESERVED_16 : 4;
+		uint32_t FPGA3_OUT_RST : 1;
+		uint32_t FPGA2_OUT_RST : 1;
+		uint32_t FPGA1_OUT_RST : 1;
+		uint32_t FPGA0_OUT_RST : 1;
+	} fields;
+	uint32_t v;
+} slcr_FPGA_RST_CTRL;
+
+#define slcr_FPGA_RST_CTRL_RESERVED_0_LSHIFT 25U
+#define slcr_FPGA_RST_CTRL_RESERVED_0_MASK 0xfe000000U
+#define slcr_FPGA_RST_CTRL_RESERVED_1_LSHIFT 24U
+#define slcr_FPGA_RST_CTRL_RESERVED_1 0x1000000U
+#define slcr_FPGA_RST_CTRL_RESERVED_1_MASK 0x1000000U
+#define slcr_FPGA_RST_CTRL_RESERVED_2_LSHIFT 23U
+#define slcr_FPGA_RST_CTRL_RESERVED_2 0x800000U
+#define slcr_FPGA_RST_CTRL_RESERVED_2_MASK 0x800000U
+#define slcr_FPGA_RST_CTRL_RESERVED_3_LSHIFT 22U
+#define slcr_FPGA_RST_CTRL_RESERVED_3 0x400000U
+#define slcr_FPGA_RST_CTRL_RESERVED_3_MASK 0x400000U
+#define slcr_FPGA_RST_CTRL_RESERVED_4_LSHIFT 21U
+#define slcr_FPGA_RST_CTRL_RESERVED_4 0x200000U
+#define slcr_FPGA_RST_CTRL_RESERVED_4_MASK 0x200000U
+#define slcr_FPGA_RST_CTRL_RESERVED_5_LSHIFT 20U
+#define slcr_FPGA_RST_CTRL_RESERVED_5 0x100000U
+#define slcr_FPGA_RST_CTRL_RESERVED_5_MASK 0x100000U
+#define slcr_FPGA_RST_CTRL_RESERVED_6_LSHIFT 18U
+#define slcr_FPGA_RST_CTRL_RESERVED_6_MASK 0xc0000U
+#define slcr_FPGA_RST_CTRL_RESERVED_7_LSHIFT 17U
+#define slcr_FPGA_RST_CTRL_RESERVED_7 0x20000U
+#define slcr_FPGA_RST_CTRL_RESERVED_7_MASK 0x20000U
+#define slcr_FPGA_RST_CTRL_RESERVED_8_LSHIFT 16U
+#define slcr_FPGA_RST_CTRL_RESERVED_8 0x10000U
+#define slcr_FPGA_RST_CTRL_RESERVED_8_MASK 0x10000U
+#define slcr_FPGA_RST_CTRL_RESERVED_9_LSHIFT 14U
+#define slcr_FPGA_RST_CTRL_RESERVED_9_MASK 0xc000U
+#define slcr_FPGA_RST_CTRL_RESERVED_10_LSHIFT 13U
+#define slcr_FPGA_RST_CTRL_RESERVED_10 0x2000U
+#define slcr_FPGA_RST_CTRL_RESERVED_10_MASK 0x2000U
+#define slcr_FPGA_RST_CTRL_RESERVED_11_LSHIFT 12U
+#define slcr_FPGA_RST_CTRL_RESERVED_11 0x1000U
+#define slcr_FPGA_RST_CTRL_RESERVED_11_MASK 0x1000U
+#define slcr_FPGA_RST_CTRL_RESERVED_12_LSHIFT 11U
+#define slcr_FPGA_RST_CTRL_RESERVED_12 0x800U
+#define slcr_FPGA_RST_CTRL_RESERVED_12_MASK 0x800U
+#define slcr_FPGA_RST_CTRL_RESERVED_13_LSHIFT 10U
+#define slcr_FPGA_RST_CTRL_RESERVED_13 0x400U
+#define slcr_FPGA_RST_CTRL_RESERVED_13_MASK 0x400U
+#define slcr_FPGA_RST_CTRL_RESERVED_14_LSHIFT 9U
+#define slcr_FPGA_RST_CTRL_RESERVED_14 0x200U
+#define slcr_FPGA_RST_CTRL_RESERVED_14_MASK 0x200U
+#define slcr_FPGA_RST_CTRL_RESERVED_15_LSHIFT 8U
+#define slcr_FPGA_RST_CTRL_RESERVED_15 0x100U
+#define slcr_FPGA_RST_CTRL_RESERVED_15_MASK 0x100U
+#define slcr_FPGA_RST_CTRL_RESERVED_16_LSHIFT 4U
+#define slcr_FPGA_RST_CTRL_RESERVED_16_MASK 0xf0U
+#define slcr_FPGA_RST_CTRL_FPGA3_OUT_RST_LSHIFT 3U
+#define slcr_FPGA_RST_CTRL_FPGA3_OUT_RST 0x8U
+#define slcr_FPGA_RST_CTRL_FPGA3_OUT_RST_MASK 0x8U
+#define slcr_FPGA_RST_CTRL_FPGA2_OUT_RST_LSHIFT 2U
+#define slcr_FPGA_RST_CTRL_FPGA2_OUT_RST 0x4U
+#define slcr_FPGA_RST_CTRL_FPGA2_OUT_RST_MASK 0x4U
+#define slcr_FPGA_RST_CTRL_FPGA1_OUT_RST_LSHIFT 1U
+#define slcr_FPGA_RST_CTRL_FPGA1_OUT_RST 0x2U
+#define slcr_FPGA_RST_CTRL_FPGA1_OUT_RST_MASK 0x2U
+#define slcr_FPGA_RST_CTRL_FPGA0_OUT_RST_LSHIFT 0U
+#define slcr_FPGA_RST_CTRL_FPGA0_OUT_RST 0x1U
+#define slcr_FPGA_RST_CTRL_FPGA0_OUT_RST_MASK 0x1U
+#define slcr_FPGA_RST_CTRL_MASK 0xfU
+
+
+// CPU Reset and Clock control
+#define slcr_A9_CPU_RST_CTRL_REG 0x244U
+typedef union slcr_A9_CPU_RST_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 23;
+		uint32_t PERI_RST : 1;
+		uint32_t RESERVED_1 : 2;
+		uint32_t A9_CLKSTOP1 : 1;
+		uint32_t A9_CLKSTOP0 : 1;
+		uint32_t RESERVED_2 : 2;
+		uint32_t A9_RST1 : 1;
+		uint32_t A9_RST0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_A9_CPU_RST_CTRL;
+
+#define slcr_A9_CPU_RST_CTRL_RESERVED_0_LSHIFT 9U
+#define slcr_A9_CPU_RST_CTRL_RESERVED_0_MASK 0xfffffe00U
+#define slcr_A9_CPU_RST_CTRL_PERI_RST_LSHIFT 8U
+#define slcr_A9_CPU_RST_CTRL_PERI_RST 0x100U
+#define slcr_A9_CPU_RST_CTRL_PERI_RST_MASK 0x100U
+#define slcr_A9_CPU_RST_CTRL_RESERVED_1_LSHIFT 6U
+#define slcr_A9_CPU_RST_CTRL_RESERVED_1_MASK 0xc0U
+#define slcr_A9_CPU_RST_CTRL_A9_CLKSTOP1_LSHIFT 5U
+#define slcr_A9_CPU_RST_CTRL_A9_CLKSTOP1 0x20U
+#define slcr_A9_CPU_RST_CTRL_A9_CLKSTOP1_MASK 0x20U
+#define slcr_A9_CPU_RST_CTRL_A9_CLKSTOP0_LSHIFT 4U
+#define slcr_A9_CPU_RST_CTRL_A9_CLKSTOP0 0x10U
+#define slcr_A9_CPU_RST_CTRL_A9_CLKSTOP0_MASK 0x10U
+#define slcr_A9_CPU_RST_CTRL_RESERVED_2_LSHIFT 2U
+#define slcr_A9_CPU_RST_CTRL_RESERVED_2_MASK 0xcU
+#define slcr_A9_CPU_RST_CTRL_A9_RST1_LSHIFT 1U
+#define slcr_A9_CPU_RST_CTRL_A9_RST1 0x2U
+#define slcr_A9_CPU_RST_CTRL_A9_RST1_MASK 0x2U
+#define slcr_A9_CPU_RST_CTRL_A9_RST0_LSHIFT 0U
+#define slcr_A9_CPU_RST_CTRL_A9_RST0 0x1U
+#define slcr_A9_CPU_RST_CTRL_A9_RST0_MASK 0x1U
+#define slcr_A9_CPU_RST_CTRL_MASK 0x133U
+
+
+// Watchdog Timer Reset Control
+#define slcr_RS_AWDT_CTRL_REG 0x24cU
+typedef union slcr_RS_AWDT_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 30;
+		uint32_t CTRL1 : 1;
+		uint32_t CTRL0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_RS_AWDT_CTRL;
+
+#define slcr_RS_AWDT_CTRL_RESERVED_0_LSHIFT 2U
+#define slcr_RS_AWDT_CTRL_RESERVED_0_MASK 0xfffffffcU
+#define slcr_RS_AWDT_CTRL_CTRL1_LSHIFT 1U
+#define slcr_RS_AWDT_CTRL_CTRL1 0x2U
+#define slcr_RS_AWDT_CTRL_CTRL1_MASK 0x2U
+#define slcr_RS_AWDT_CTRL_CTRL0_LSHIFT 0U
+#define slcr_RS_AWDT_CTRL_CTRL0 0x1U
+#define slcr_RS_AWDT_CTRL_CTRL0_MASK 0x1U
+#define slcr_RS_AWDT_CTRL_MASK 0x3U
+
+
+// Reboot Status, persistent
+#define slcr_REBOOT_STATUS_REG 0x258U
+typedef union slcr_REBOOT_STATUS
+{
+	struct
+	{
+		uint32_t REBOOT_STATE : 8;
+		uint32_t RESERVED_0 : 1;
+		uint32_t POR : 1;
+		uint32_t SRST_B : 1;
+		uint32_t DBG_RST : 1;
+		uint32_t SLC_RST : 1;
+		uint32_t AWDT1_RST : 1;
+		uint32_t AWDT0_RST : 1;
+		uint32_t SWDT_RST : 1;
+		uint32_t BOOTROM_ERROR_CODE : 16;
+	} fields;
+	uint32_t v;
+} slcr_REBOOT_STATUS;
+
+#define slcr_REBOOT_STATUS_REBOOT_STATE_LSHIFT 24U
+#define slcr_REBOOT_STATUS_REBOOT_STATE_MASK 0xff000000U
+#define slcr_REBOOT_STATUS_RESERVED_0_LSHIFT 23U
+#define slcr_REBOOT_STATUS_RESERVED_0 0x800000U
+#define slcr_REBOOT_STATUS_RESERVED_0_MASK 0x800000U
+#define slcr_REBOOT_STATUS_POR_LSHIFT 22U
+#define slcr_REBOOT_STATUS_POR 0x400000U
+#define slcr_REBOOT_STATUS_POR_MASK 0x400000U
+#define slcr_REBOOT_STATUS_SRST_B_LSHIFT 21U
+#define slcr_REBOOT_STATUS_SRST_B 0x200000U
+#define slcr_REBOOT_STATUS_SRST_B_MASK 0x200000U
+#define slcr_REBOOT_STATUS_DBG_RST_LSHIFT 20U
+#define slcr_REBOOT_STATUS_DBG_RST 0x100000U
+#define slcr_REBOOT_STATUS_DBG_RST_MASK 0x100000U
+#define slcr_REBOOT_STATUS_SLC_RST_LSHIFT 19U
+#define slcr_REBOOT_STATUS_SLC_RST 0x80000U
+#define slcr_REBOOT_STATUS_SLC_RST_MASK 0x80000U
+#define slcr_REBOOT_STATUS_AWDT1_RST_LSHIFT 18U
+#define slcr_REBOOT_STATUS_AWDT1_RST 0x40000U
+#define slcr_REBOOT_STATUS_AWDT1_RST_MASK 0x40000U
+#define slcr_REBOOT_STATUS_AWDT0_RST_LSHIFT 17U
+#define slcr_REBOOT_STATUS_AWDT0_RST 0x20000U
+#define slcr_REBOOT_STATUS_AWDT0_RST_MASK 0x20000U
+#define slcr_REBOOT_STATUS_SWDT_RST_LSHIFT 16U
+#define slcr_REBOOT_STATUS_SWDT_RST 0x10000U
+#define slcr_REBOOT_STATUS_SWDT_RST_MASK 0x10000U
+#define slcr_REBOOT_STATUS_BOOTROM_ERROR_CODE_LSHIFT 0U
+#define slcr_REBOOT_STATUS_BOOTROM_ERROR_CODE_MASK 0xffffU
+#define slcr_REBOOT_STATUS_MASK 0xff7fffffU
+
+
+// Destination Address.                —              ‡p…“4V          P¸…“4V  –˙…“4V                        ∞˘…“4V                        p˙…“4V         rw              –˘…“4V                         2     pH “4V  ¯H “4V  ¯H “4V          !       XDCFG_DMA_DEST_ADDR     !       XDCFG_DMA_SRC_LEN       1       DMA Source Transfer Length.             —               êt…“4V                  ¸…“4V                        ˙…“4V                        ∞˚…“4V         rw              ˚…“4V                          2     @r “4V  Ps “4V  Ps “4V          !       XDCFG_DMA_SRC_LEN       !       XDCFG_DMA_DEST_LEN      —                ˙…“4V                   ˝…“4V                        0¸…“4V                        ¿¸…“4V         rw              Pv…“4V                          $ 2     –A “4V  ‡B “4V  ‡B “4V          !       XDCFG_DMA_DEST_LEN      !       XDCFG_MULTIBOOT_ADDR V  1       Multi-Boot Address Pointer.             —           e  ¿s…“4V  ∞q…“4V  Äu…“4V  `˛…“4V                        @˝…“4V                         ˛…“4V         rw              `˝…“4V                        ,      pv “4V  Äw “4V  Äw “4V          !       XDCFG_MULTIBOOT_ADDR    —           e  Äu…“4V                  ∞˛…“4V         XDCFG_UNLOCK    –˛…“4V         XDCFG_UNLOCK    ˛…“4V         rw              ˇ…“4V         Unlock Control. 4 2     ‡_ “4V  h` “4V  h` “4V          1       mixed x Miscellaneous Control           !       Address Pointer.        —           e  ∞q…“4V                  –ˇ…“4V         XDCFG_MCTRL     ˇ…“4V         XDCFG_MCTRL     Pˇ…“4V                        Äˇ…“4V                        Ä 2     p√ “4V  À “4V  À “4V          —           e  @ “4V                  †  “4V  
+#define slcr_BOOT_MODE_REG 0x25cU
+typedef union slcr_BOOT_MODE
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t PLL_BYPASS : 1;
+		uint32_t BOOT_MODE : 4;
+	} fields;
+	uint32_t v;
+} slcr_BOOT_MODE;
+
+#define slcr_BOOT_MODE_RESERVED_0_LSHIFT 5U
+#define slcr_BOOT_MODE_RESERVED_0_MASK 0xffffffe0U
+#define slcr_BOOT_MODE_PLL_BYPASS_LSHIFT 4U
+#define slcr_BOOT_MODE_PLL_BYPASS 0x10U
+#define slcr_BOOT_MODE_PLL_BYPASS_MASK 0x10U
+#define slcr_BOOT_MODE_BOOT_MODE_LSHIFT 0U
+#define slcr_BOOT_MODE_BOOT_MODE_MASK 0xfU
+#define slcr_BOOT_MODE_MASK 0x1fU
+
+
+// APU Control
+#define slcr_APU_CTRL_REG 0x300U
+typedef union slcr_APU_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 29;
+		uint32_t CFGSDISABLE : 1;
+		uint32_t CP15SDISABLE : 2;
+	} fields;
+	uint32_t v;
+} slcr_APU_CTRL;
+
+#define slcr_APU_CTRL_RESERVED_0_LSHIFT 3U
+#define slcr_APU_CTRL_RESERVED_0_MASK 0xfffffff8U
+#define slcr_APU_CTRL_CFGSDISABLE_LSHIFT 2U
+#define slcr_APU_CTRL_CFGSDISABLE 0x4U
+#define slcr_APU_CTRL_CFGSDISABLE_MASK 0x4U
+#define slcr_APU_CTRL_CP15SDISABLE_LSHIFT 0U
+#define slcr_APU_CTRL_CP15SDISABLE_MASK 0x3U
+#define slcr_APU_CTRL_MASK 0x7U
+
+
+// SWDT clock source select
+#define slcr_WDT_CLK_SEL_REG 0x304U
+typedef union slcr_WDT_CLK_SEL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t SEL : 1;
+	} fields;
+	uint32_t v;
+} slcr_WDT_CLK_SEL;
+
+#define slcr_WDT_CLK_SEL_RESERVED_0_LSHIFT 1U
+#define slcr_WDT_CLK_SEL_RESERVED_0_MASK 0xfffffffeU
+#define slcr_WDT_CLK_SEL_SEL_LSHIFT 0U
+#define slcr_WDT_CLK_SEL_SEL 0x1U
+#define slcr_WDT_CLK_SEL_SEL_MASK 0x1U
+#define slcr_WDT_CLK_SEL_MASK 0x1U
+
+
+// DMAC TrustZone Config
+#define slcr_TZ_DMA_NS_REG 0x440U
+typedef union slcr_TZ_DMA_NS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t DMAC_NS : 1;
+	} fields;
+	uint32_t v;
+} slcr_TZ_DMA_NS;
+
+#define slcr_TZ_DMA_NS_RESERVED_0_LSHIFT 1U
+#define slcr_TZ_DMA_NS_RESERVED_0_MASK 0xfffffffeU
+#define slcr_TZ_DMA_NS_DMAC_NS_LSHIFT 0U
+#define slcr_TZ_DMA_NS_DMAC_NS 0x1U
+#define slcr_TZ_DMA_NS_DMAC_NS_MASK 0x1U
+#define slcr_TZ_DMA_NS_MASK 0x1U
+
+
+// DMAC TrustZone Config for Interrupts
+#define slcr_TZ_DMA_IRQ_NS_REG 0x444U
+typedef union slcr_TZ_DMA_IRQ_NS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 16;
+		uint32_t DMA_IRQ_NS : 16;
+	} fields;
+	uint32_t v;
+} slcr_TZ_DMA_IRQ_NS;
+
+#define slcr_TZ_DMA_IRQ_NS_RESERVED_0_LSHIFT 16U
+#define slcr_TZ_DMA_IRQ_NS_RESERVED_0_MASK 0xffff0000U
+#define slcr_TZ_DMA_IRQ_NS_DMA_IRQ_NS_LSHIFT 0U
+#define slcr_TZ_DMA_IRQ_NS_DMA_IRQ_NS_MASK 0xffffU
+#define slcr_TZ_DMA_IRQ_NS_MASK 0xffffU
+
+
+// DMAC TrustZone Config for Peripherals
+#define slcr_TZ_DMA_PERIPH_NS_REG 0x448U
+typedef union slcr_TZ_DMA_PERIPH_NS
+{
+	struct
+	{
+		uint32_t RESERVED_1 : 28;
+		uint32_t DMAC_PERIPH_NS : 4;
+	} fields;
+	uint32_t v;
+} slcr_TZ_DMA_PERIPH_NS;
+
+#define slcr_TZ_DMA_PERIPH_NS_RESERVED_1_LSHIFT 4U
+#define slcr_TZ_DMA_PERIPH_NS_RESERVED_1_MASK 0xfffffff0U
+#define slcr_TZ_DMA_PERIPH_NS_DMAC_PERIPH_NS_LSHIFT 0U
+#define slcr_TZ_DMA_PERIPH_NS_DMAC_PERIPH_NS_MASK 0xfU
+#define slcr_TZ_DMA_PERIPH_NS_MASK 0xfU
+
+
+// DMAC TrustZone Config for Peripherals
+#define slcr_PSS_IDCODE_REG 0x530U
+typedef union slcr_PSS_IDCODE
+{
+	struct
+	{
+		uint32_t REVISION : 4;
+		uint32_t FAMILY : 7;
+		uint32_t SUBFAMILY : 4;
+		uint32_t DEVICE : 5;
+		uint32_t MANUFACTURER_ID : 11;
+		uint32_t RESERVED_0 : 1;
+	} fields;
+	uint32_t v;
+} slcr_PSS_IDCODE;
+
+#define slcr_PSS_IDCODE_REVISION_LSHIFT 28U
+#define slcr_PSS_IDCODE_REVISION_MASK 0xf0000000U
+#define slcr_PSS_IDCODE_FAMILY_LSHIFT 21U
+#define slcr_PSS_IDCODE_FAMILY_MASK 0xfe00000U
+#define slcr_PSS_IDCODE_SUBFAMILY_LSHIFT 17U
+#define slcr_PSS_IDCODE_SUBFAMILY_MASK 0x1e0000U
+#define slcr_PSS_IDCODE_DEVICE_LSHIFT 12U
+#define slcr_PSS_IDCODE_DEVICE_MASK 0x1f000U
+#define slcr_PSS_IDCODE_MANUFACTURER_ID_LSHIFT 1U
+#define slcr_PSS_IDCODE_MANUFACTURER_ID_MASK 0xffeU
+#define slcr_PSS_IDCODE_RESERVED_0_LSHIFT 0U
+#define slcr_PSS_IDCODE_RESERVED_0 0x1U
+#define slcr_PSS_IDCODE_RESERVED_0_MASK 0x1U
+#define slcr_PSS_IDCODE_MASK 0xfffffffeU
+
+
+// DDR Urgent Control
+#define slcr_DDR_URGENT_REG 0x600U
+typedef union slcr_DDR_URGENT
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 24;
+		uint32_t S3_ARURGENT : 1;
+		uint32_t S2_ARURGENT : 1;
+		uint32_t S1_ARURGENT : 1;
+		uint32_t S0_ARURGENT : 1;
+		uint32_t S3_AWURGENT : 1;
+		uint32_t S2_AWURGENT : 1;
+		uint32_t S1_AWURGENT : 1;
+		uint32_t S0_AWURGENT : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_URGENT;
+
+#define slcr_DDR_URGENT_RESERVED_0_LSHIFT 8U
+#define slcr_DDR_URGENT_RESERVED_0_MASK 0xffffff00U
+#define slcr_DDR_URGENT_S3_ARURGENT_LSHIFT 7U
+#define slcr_DDR_URGENT_S3_ARURGENT 0x80U
+#define slcr_DDR_URGENT_S3_ARURGENT_MASK 0x80U
+#define slcr_DDR_URGENT_S2_ARURGENT_LSHIFT 6U
+#define slcr_DDR_URGENT_S2_ARURGENT 0x40U
+#define slcr_DDR_URGENT_S2_ARURGENT_MASK 0x40U
+#define slcr_DDR_URGENT_S1_ARURGENT_LSHIFT 5U
+#define slcr_DDR_URGENT_S1_ARURGENT 0x20U
+#define slcr_DDR_URGENT_S1_ARURGENT_MASK 0x20U
+#define slcr_DDR_URGENT_S0_ARURGENT_LSHIFT 4U
+#define slcr_DDR_URGENT_S0_ARURGENT 0x10U
+#define slcr_DDR_URGENT_S0_ARURGENT_MASK 0x10U
+#define slcr_DDR_URGENT_S3_AWURGENT_LSHIFT 3U
+#define slcr_DDR_URGENT_S3_AWURGENT 0x8U
+#define slcr_DDR_URGENT_S3_AWURGENT_MASK 0x8U
+#define slcr_DDR_URGENT_S2_AWURGENT_LSHIFT 2U
+#define slcr_DDR_URGENT_S2_AWURGENT 0x4U
+#define slcr_DDR_URGENT_S2_AWURGENT_MASK 0x4U
+#define slcr_DDR_URGENT_S1_AWURGENT_LSHIFT 1U
+#define slcr_DDR_URGENT_S1_AWURGENT 0x2U
+#define slcr_DDR_URGENT_S1_AWURGENT_MASK 0x2U
+#define slcr_DDR_URGENT_S0_AWURGENT_LSHIFT 0U
+#define slcr_DDR_URGENT_S0_AWURGENT 0x1U
+#define slcr_DDR_URGENT_S0_AWURGENT_MASK 0x1U
+#define slcr_DDR_URGENT_MASK 0xffU
+
+
+// DDR Calibration Start Triggers
+#define slcr_DDR_CAL_START_REG 0x60cU
+typedef union slcr_DDR_CAL_START
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 30;
+		uint32_t START_CAL_DLL : 1;
+		uint32_t START_CAL_SHORT : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_CAL_START;
+
+#define slcr_DDR_CAL_START_RESERVED_0_LSHIFT 2U
+#define slcr_DDR_CAL_START_RESERVED_0_MASK 0xfffffffcU
+#define slcr_DDR_CAL_START_START_CAL_DLL_LSHIFT 1U
+#define slcr_DDR_CAL_START_START_CAL_DLL 0x2U
+#define slcr_DDR_CAL_START_START_CAL_DLL_MASK 0x2U
+#define slcr_DDR_CAL_START_START_CAL_SHORT_LSHIFT 0U
+#define slcr_DDR_CAL_START_START_CAL_SHORT 0x1U
+#define slcr_DDR_CAL_START_START_CAL_SHORT_MASK 0x1U
+#define slcr_DDR_CAL_START_MASK 0x3U
+
+
+// DDR Refresh Start Triggers
+#define slcr_DDR_REF_START_REG 0x614U
+typedef union slcr_DDR_REF_START
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t START_REF : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_REF_START;
+
+#define slcr_DDR_REF_START_RESERVED_0_LSHIFT 1U
+#define slcr_DDR_REF_START_RESERVED_0_MASK 0xfffffffeU
+#define slcr_DDR_REF_START_START_REF_LSHIFT 0U
+#define slcr_DDR_REF_START_START_REF 0x1U
+#define slcr_DDR_REF_START_START_REF_MASK 0x1U
+#define slcr_DDR_REF_START_MASK 0x1U
+
+
+// DDR Command Store Status
+#define slcr_DDR_CMD_STA_REG 0x618U
+typedef union slcr_DDR_CMD_STA
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t CMD_Q_NEMPTY : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_CMD_STA;
+
+#define slcr_DDR_CMD_STA_RESERVED_0_LSHIFT 1U
+#define slcr_DDR_CMD_STA_RESERVED_0_MASK 0xfffffffeU
+#define slcr_DDR_CMD_STA_CMD_Q_NEMPTY_LSHIFT 0U
+#define slcr_DDR_CMD_STA_CMD_Q_NEMPTY 0x1U
+#define slcr_DDR_CMD_STA_CMD_Q_NEMPTY_MASK 0x1U
+#define slcr_DDR_CMD_STA_MASK 0x1U
+
+
+// DDR Urgent Select
+#define slcr_DDR_URGENT_SEL_REG 0x61cU
+typedef union slcr_DDR_URGENT_SEL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 16;
+		uint32_t S3_ARQOS_MODE : 2;
+		uint32_t S2_ARQOS_MODE : 2;
+		uint32_t S1_ARQOS_MODE : 2;
+		uint32_t S0_ARQOS_MODE : 2;
+		uint32_t S3_AWQOS_MODE : 2;
+		uint32_t S2_AWQOS_MODE : 2;
+		uint32_t S1_AWQOS_MODE : 2;
+		uint32_t S0_AWQOS_MODE : 2;
+	} fields;
+	uint32_t v;
+} slcr_DDR_URGENT_SEL;
+
+#define slcr_DDR_URGENT_SEL_RESERVED_0_LSHIFT 16U
+#define slcr_DDR_URGENT_SEL_RESERVED_0_MASK 0xffff0000U
+#define slcr_DDR_URGENT_SEL_S3_ARQOS_MODE_LSHIFT 14U
+#define slcr_DDR_URGENT_SEL_S3_ARQOS_MODE_MASK 0xc000U
+#define slcr_DDR_URGENT_SEL_S2_ARQOS_MODE_LSHIFT 12U
+#define slcr_DDR_URGENT_SEL_S2_ARQOS_MODE_MASK 0x3000U
+#define slcr_DDR_URGENT_SEL_S1_ARQOS_MODE_LSHIFT 10U
+#define slcr_DDR_URGENT_SEL_S1_ARQOS_MODE_MASK 0xc00U
+#define slcr_DDR_URGENT_SEL_S0_ARQOS_MODE_LSHIFT 8U
+#define slcr_DDR_URGENT_SEL_S0_ARQOS_MODE_MASK 0x300U
+#define slcr_DDR_URGENT_SEL_S3_AWQOS_MODE_LSHIFT 6U
+#define slcr_DDR_URGENT_SEL_S3_AWQOS_MODE_MASK 0xc0U
+#define slcr_DDR_URGENT_SEL_S2_AWQOS_MODE_LSHIFT 4U
+#define slcr_DDR_URGENT_SEL_S2_AWQOS_MODE_MASK 0x30U
+#define slcr_DDR_URGENT_SEL_S1_AWQOS_MODE_LSHIFT 2U
+#define slcr_DDR_URGENT_SEL_S1_AWQOS_MODE_MASK 0xcU
+#define slcr_DDR_URGENT_SEL_S0_AWQOS_MODE_LSHIFT 0U
+#define slcr_DDR_URGENT_SEL_S0_AWQOS_MODE_MASK 0x3U
+#define slcr_DDR_URGENT_SEL_MASK 0xffffU
+
+
+// DDR DFI status
+#define slcr_DDR_DFI_STATUS_REG 0x620U
+typedef union slcr_DDR_DFI_STATUS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 31;
+		uint32_t DFI_CAL_ST : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDR_DFI_STATUS;
+
+#define slcr_DDR_DFI_STATUS_RESERVED_0_LSHIFT 1U
+#define slcr_DDR_DFI_STATUS_RESERVED_0_MASK 0xfffffffeU
+#define slcr_DDR_DFI_STATUS_DFI_CAL_ST_LSHIFT 0U
+#define slcr_DDR_DFI_STATUS_DFI_CAL_ST 0x1U
+#define slcr_DDR_DFI_STATUS_DFI_CAL_ST_MASK 0x1U
+#define slcr_DDR_DFI_STATUS_MASK 0x1U
+
+
+// MIO Pin 0 Control
+#define slcr_MIO_PIN_00_REG 0x700U
+typedef union slcr_MIO_PIN_00
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_00;
+
+#define slcr_MIO_PIN_00_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_00_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_00_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_00_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_00_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_00_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_00_PULLUP 0x1000U
+#define slcr_MIO_PIN_00_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_00_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_00_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_00_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_00_Speed 0x100U
+#define slcr_MIO_PIN_00_Speed_MASK 0x100U
+#define slcr_MIO_PIN_00_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_00_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_00_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_00_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_00_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_00_L1_SEL 0x4U
+#define slcr_MIO_PIN_00_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_00_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_00_L0_SEL 0x2U
+#define slcr_MIO_PIN_00_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_00_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_00_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_00_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_00_MASK 0x3fffU
+
+
+// MIO Pin 1 Control
+#define slcr_MIO_PIN_01_REG 0x704U
+typedef union slcr_MIO_PIN_01
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_01;
+
+#define slcr_MIO_PIN_01_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_01_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_01_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_01_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_01_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_01_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_01_PULLUP 0x1000U
+#define slcr_MIO_PIN_01_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_01_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_01_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_01_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_01_Speed 0x100U
+#define slcr_MIO_PIN_01_Speed_MASK 0x100U
+#define slcr_MIO_PIN_01_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_01_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_01_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_01_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_01_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_01_L1_SEL 0x4U
+#define slcr_MIO_PIN_01_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_01_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_01_L0_SEL 0x2U
+#define slcr_MIO_PIN_01_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_01_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_01_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_01_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_01_MASK 0x3fffU
+
+
+// MIO Pin 2 Control
+#define slcr_MIO_PIN_02_REG 0x708U
+typedef union slcr_MIO_PIN_02
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_02;
+
+#define slcr_MIO_PIN_02_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_02_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_02_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_02_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_02_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_02_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_02_PULLUP 0x1000U
+#define slcr_MIO_PIN_02_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_02_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_02_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_02_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_02_Speed 0x100U
+#define slcr_MIO_PIN_02_Speed_MASK 0x100U
+#define slcr_MIO_PIN_02_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_02_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_02_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_02_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_02_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_02_L1_SEL 0x4U
+#define slcr_MIO_PIN_02_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_02_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_02_L0_SEL 0x2U
+#define slcr_MIO_PIN_02_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_02_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_02_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_02_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_02_MASK 0x3fffU
+
+
+// MIO Pin 3 Control
+#define slcr_MIO_PIN_03_REG 0x70cU
+typedef union slcr_MIO_PIN_03
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_03;
+
+#define slcr_MIO_PIN_03_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_03_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_03_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_03_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_03_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_03_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_03_PULLUP 0x1000U
+#define slcr_MIO_PIN_03_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_03_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_03_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_03_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_03_Speed 0x100U
+#define slcr_MIO_PIN_03_Speed_MASK 0x100U
+#define slcr_MIO_PIN_03_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_03_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_03_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_03_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_03_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_03_L1_SEL 0x4U
+#define slcr_MIO_PIN_03_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_03_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_03_L0_SEL 0x2U
+#define slcr_MIO_PIN_03_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_03_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_03_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_03_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_03_MASK 0x3fffU
+
+
+// MIO Pin 4 Control
+#define slcr_MIO_PIN_04_REG 0x710U
+typedef union slcr_MIO_PIN_04
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_04;
+
+#define slcr_MIO_PIN_04_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_04_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_04_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_04_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_04_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_04_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_04_PULLUP 0x1000U
+#define slcr_MIO_PIN_04_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_04_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_04_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_04_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_04_Speed 0x100U
+#define slcr_MIO_PIN_04_Speed_MASK 0x100U
+#define slcr_MIO_PIN_04_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_04_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_04_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_04_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_04_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_04_L1_SEL 0x4U
+#define slcr_MIO_PIN_04_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_04_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_04_L0_SEL 0x2U
+#define slcr_MIO_PIN_04_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_04_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_04_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_04_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_04_MASK 0x3fffU
+
+
+// MIO Pin 5 Control
+#define slcr_MIO_PIN_05_REG 0x714U
+typedef union slcr_MIO_PIN_05
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_05;
+
+#define slcr_MIO_PIN_05_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_05_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_05_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_05_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_05_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_05_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_05_PULLUP 0x1000U
+#define slcr_MIO_PIN_05_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_05_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_05_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_05_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_05_Speed 0x100U
+#define slcr_MIO_PIN_05_Speed_MASK 0x100U
+#define slcr_MIO_PIN_05_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_05_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_05_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_05_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_05_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_05_L1_SEL 0x4U
+#define slcr_MIO_PIN_05_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_05_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_05_L0_SEL 0x2U
+#define slcr_MIO_PIN_05_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_05_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_05_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_05_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_05_MASK 0x3fffU
+
+
+// MIO Pin 6 Control
+#define slcr_MIO_PIN_06_REG 0x718U
+typedef union slcr_MIO_PIN_06
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_06;
+
+#define slcr_MIO_PIN_06_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_06_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_06_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_06_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_06_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_06_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_06_PULLUP 0x1000U
+#define slcr_MIO_PIN_06_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_06_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_06_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_06_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_06_Speed 0x100U
+#define slcr_MIO_PIN_06_Speed_MASK 0x100U
+#define slcr_MIO_PIN_06_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_06_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_06_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_06_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_06_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_06_L1_SEL 0x4U
+#define slcr_MIO_PIN_06_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_06_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_06_L0_SEL 0x2U
+#define slcr_MIO_PIN_06_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_06_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_06_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_06_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_06_MASK 0x3fffU
+
+
+// MIO Pin 7 Control
+#define slcr_MIO_PIN_07_REG 0x71cU
+typedef union slcr_MIO_PIN_07
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_07;
+
+#define slcr_MIO_PIN_07_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_07_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_07_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_07_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_07_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_07_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_07_PULLUP 0x1000U
+#define slcr_MIO_PIN_07_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_07_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_07_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_07_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_07_Speed 0x100U
+#define slcr_MIO_PIN_07_Speed_MASK 0x100U
+#define slcr_MIO_PIN_07_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_07_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_07_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_07_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_07_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_07_L1_SEL 0x4U
+#define slcr_MIO_PIN_07_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_07_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_07_L0_SEL 0x2U
+#define slcr_MIO_PIN_07_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_07_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_07_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_07_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_07_MASK 0x3fffU
+
+
+// MIO Pin 8 Control
+#define slcr_MIO_PIN_08_REG 0x720U
+typedef union slcr_MIO_PIN_08
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_08;
+
+#define slcr_MIO_PIN_08_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_08_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_08_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_08_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_08_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_08_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_08_PULLUP 0x1000U
+#define slcr_MIO_PIN_08_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_08_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_08_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_08_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_08_Speed 0x100U
+#define slcr_MIO_PIN_08_Speed_MASK 0x100U
+#define slcr_MIO_PIN_08_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_08_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_08_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_08_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_08_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_08_L1_SEL 0x4U
+#define slcr_MIO_PIN_08_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_08_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_08_L0_SEL 0x2U
+#define slcr_MIO_PIN_08_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_08_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_08_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_08_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_08_MASK 0x3fffU
+
+
+// MIO Pin 9 Control
+#define slcr_MIO_PIN_09_REG 0x724U
+typedef union slcr_MIO_PIN_09
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_09;
+
+#define slcr_MIO_PIN_09_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_09_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_09_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_09_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_09_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_09_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_09_PULLUP 0x1000U
+#define slcr_MIO_PIN_09_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_09_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_09_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_09_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_09_Speed 0x100U
+#define slcr_MIO_PIN_09_Speed_MASK 0x100U
+#define slcr_MIO_PIN_09_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_09_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_09_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_09_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_09_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_09_L1_SEL 0x4U
+#define slcr_MIO_PIN_09_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_09_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_09_L0_SEL 0x2U
+#define slcr_MIO_PIN_09_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_09_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_09_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_09_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_09_MASK 0x3fffU
+
+
+// MIO Pin 10 Control
+#define slcr_MIO_PIN_10_REG 0x728U
+typedef union slcr_MIO_PIN_10
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_10;
+
+#define slcr_MIO_PIN_10_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_10_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_10_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_10_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_10_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_10_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_10_PULLUP 0x1000U
+#define slcr_MIO_PIN_10_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_10_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_10_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_10_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_10_Speed 0x100U
+#define slcr_MIO_PIN_10_Speed_MASK 0x100U
+#define slcr_MIO_PIN_10_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_10_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_10_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_10_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_10_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_10_L1_SEL 0x4U
+#define slcr_MIO_PIN_10_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_10_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_10_L0_SEL 0x2U
+#define slcr_MIO_PIN_10_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_10_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_10_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_10_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_10_MASK 0x3fffU
+
+
+// MIO Pin 11 Control
+#define slcr_MIO_PIN_11_REG 0x72cU
+typedef union slcr_MIO_PIN_11
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_11;
+
+#define slcr_MIO_PIN_11_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_11_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_11_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_11_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_11_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_11_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_11_PULLUP 0x1000U
+#define slcr_MIO_PIN_11_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_11_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_11_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_11_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_11_Speed 0x100U
+#define slcr_MIO_PIN_11_Speed_MASK 0x100U
+#define slcr_MIO_PIN_11_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_11_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_11_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_11_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_11_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_11_L1_SEL 0x4U
+#define slcr_MIO_PIN_11_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_11_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_11_L0_SEL 0x2U
+#define slcr_MIO_PIN_11_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_11_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_11_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_11_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_11_MASK 0x3fffU
+
+
+// MIO Pin 12 Control
+#define slcr_MIO_PIN_12_REG 0x730U
+typedef union slcr_MIO_PIN_12
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_12;
+
+#define slcr_MIO_PIN_12_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_12_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_12_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_12_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_12_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_12_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_12_PULLUP 0x1000U
+#define slcr_MIO_PIN_12_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_12_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_12_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_12_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_12_Speed 0x100U
+#define slcr_MIO_PIN_12_Speed_MASK 0x100U
+#define slcr_MIO_PIN_12_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_12_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_12_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_12_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_12_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_12_L1_SEL 0x4U
+#define slcr_MIO_PIN_12_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_12_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_12_L0_SEL 0x2U
+#define slcr_MIO_PIN_12_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_12_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_12_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_12_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_12_MASK 0x3fffU
+
+
+// MIO Pin 13 Control
+#define slcr_MIO_PIN_13_REG 0x734U
+typedef union slcr_MIO_PIN_13
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_13;
+
+#define slcr_MIO_PIN_13_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_13_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_13_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_13_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_13_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_13_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_13_PULLUP 0x1000U
+#define slcr_MIO_PIN_13_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_13_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_13_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_13_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_13_Speed 0x100U
+#define slcr_MIO_PIN_13_Speed_MASK 0x100U
+#define slcr_MIO_PIN_13_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_13_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_13_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_13_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_13_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_13_L1_SEL 0x4U
+#define slcr_MIO_PIN_13_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_13_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_13_L0_SEL 0x2U
+#define slcr_MIO_PIN_13_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_13_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_13_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_13_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_13_MASK 0x3fffU
+
+
+// MIO Pin 14 Control
+#define slcr_MIO_PIN_14_REG 0x738U
+typedef union slcr_MIO_PIN_14
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_14;
+
+#define slcr_MIO_PIN_14_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_14_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_14_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_14_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_14_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_14_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_14_PULLUP 0x1000U
+#define slcr_MIO_PIN_14_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_14_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_14_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_14_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_14_Speed 0x100U
+#define slcr_MIO_PIN_14_Speed_MASK 0x100U
+#define slcr_MIO_PIN_14_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_14_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_14_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_14_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_14_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_14_L1_SEL 0x4U
+#define slcr_MIO_PIN_14_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_14_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_14_L0_SEL 0x2U
+#define slcr_MIO_PIN_14_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_14_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_14_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_14_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_14_MASK 0x3fffU
+
+
+// MIO Pin 15 Control
+#define slcr_MIO_PIN_15_REG 0x73cU
+typedef union slcr_MIO_PIN_15
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_15;
+
+#define slcr_MIO_PIN_15_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_15_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_15_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_15_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_15_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_15_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_15_PULLUP 0x1000U
+#define slcr_MIO_PIN_15_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_15_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_15_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_15_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_15_Speed 0x100U
+#define slcr_MIO_PIN_15_Speed_MASK 0x100U
+#define slcr_MIO_PIN_15_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_15_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_15_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_15_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_15_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_15_L1_SEL 0x4U
+#define slcr_MIO_PIN_15_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_15_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_15_L0_SEL 0x2U
+#define slcr_MIO_PIN_15_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_15_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_15_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_15_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_15_MASK 0x3fffU
+
+
+// MIO Pin 16 Control
+#define slcr_MIO_PIN_16_REG 0x740U
+typedef union slcr_MIO_PIN_16
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_16;
+
+#define slcr_MIO_PIN_16_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_16_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_16_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_16_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_16_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_16_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_16_PULLUP 0x1000U
+#define slcr_MIO_PIN_16_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_16_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_16_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_16_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_16_Speed 0x100U
+#define slcr_MIO_PIN_16_Speed_MASK 0x100U
+#define slcr_MIO_PIN_16_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_16_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_16_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_16_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_16_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_16_L1_SEL 0x4U
+#define slcr_MIO_PIN_16_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_16_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_16_L0_SEL 0x2U
+#define slcr_MIO_PIN_16_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_16_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_16_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_16_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_16_MASK 0x3fffU
+
+
+// MIO Pin 17 Control
+#define slcr_MIO_PIN_17_REG 0x744U
+typedef union slcr_MIO_PIN_17
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_17;
+
+#define slcr_MIO_PIN_17_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_17_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_17_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_17_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_17_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_17_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_17_PULLUP 0x1000U
+#define slcr_MIO_PIN_17_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_17_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_17_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_17_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_17_Speed 0x100U
+#define slcr_MIO_PIN_17_Speed_MASK 0x100U
+#define slcr_MIO_PIN_17_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_17_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_17_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_17_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_17_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_17_L1_SEL 0x4U
+#define slcr_MIO_PIN_17_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_17_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_17_L0_SEL 0x2U
+#define slcr_MIO_PIN_17_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_17_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_17_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_17_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_17_MASK 0x3fffU
+
+
+// MIO Pin 18 Control
+#define slcr_MIO_PIN_18_REG 0x748U
+typedef union slcr_MIO_PIN_18
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_18;
+
+#define slcr_MIO_PIN_18_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_18_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_18_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_18_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_18_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_18_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_18_PULLUP 0x1000U
+#define slcr_MIO_PIN_18_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_18_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_18_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_18_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_18_Speed 0x100U
+#define slcr_MIO_PIN_18_Speed_MASK 0x100U
+#define slcr_MIO_PIN_18_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_18_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_18_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_18_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_18_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_18_L1_SEL 0x4U
+#define slcr_MIO_PIN_18_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_18_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_18_L0_SEL 0x2U
+#define slcr_MIO_PIN_18_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_18_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_18_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_18_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_18_MASK 0x3fffU
+
+
+// MIO Pin 19 Control
+#define slcr_MIO_PIN_19_REG 0x74cU
+typedef union slcr_MIO_PIN_19
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_19;
+
+#define slcr_MIO_PIN_19_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_19_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_19_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_19_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_19_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_19_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_19_PULLUP 0x1000U
+#define slcr_MIO_PIN_19_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_19_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_19_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_19_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_19_Speed 0x100U
+#define slcr_MIO_PIN_19_Speed_MASK 0x100U
+#define slcr_MIO_PIN_19_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_19_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_19_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_19_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_19_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_19_L1_SEL 0x4U
+#define slcr_MIO_PIN_19_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_19_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_19_L0_SEL 0x2U
+#define slcr_MIO_PIN_19_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_19_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_19_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_19_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_19_MASK 0x3fffU
+
+
+// MIO Pin 20 Control
+#define slcr_MIO_PIN_20_REG 0x750U
+typedef union slcr_MIO_PIN_20
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_20;
+
+#define slcr_MIO_PIN_20_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_20_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_20_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_20_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_20_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_20_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_20_PULLUP 0x1000U
+#define slcr_MIO_PIN_20_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_20_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_20_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_20_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_20_Speed 0x100U
+#define slcr_MIO_PIN_20_Speed_MASK 0x100U
+#define slcr_MIO_PIN_20_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_20_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_20_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_20_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_20_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_20_L1_SEL 0x4U
+#define slcr_MIO_PIN_20_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_20_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_20_L0_SEL 0x2U
+#define slcr_MIO_PIN_20_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_20_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_20_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_20_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_20_MASK 0x3fffU
+
+
+// MIO Pin 21 Control
+#define slcr_MIO_PIN_21_REG 0x754U
+typedef union slcr_MIO_PIN_21
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_21;
+
+#define slcr_MIO_PIN_21_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_21_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_21_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_21_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_21_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_21_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_21_PULLUP 0x1000U
+#define slcr_MIO_PIN_21_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_21_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_21_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_21_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_21_Speed 0x100U
+#define slcr_MIO_PIN_21_Speed_MASK 0x100U
+#define slcr_MIO_PIN_21_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_21_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_21_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_21_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_21_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_21_L1_SEL 0x4U
+#define slcr_MIO_PIN_21_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_21_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_21_L0_SEL 0x2U
+#define slcr_MIO_PIN_21_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_21_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_21_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_21_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_21_MASK 0x3fffU
+
+
+// MIO Pin 22 Control
+#define slcr_MIO_PIN_22_REG 0x758U
+typedef union slcr_MIO_PIN_22
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_22;
+
+#define slcr_MIO_PIN_22_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_22_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_22_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_22_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_22_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_22_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_22_PULLUP 0x1000U
+#define slcr_MIO_PIN_22_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_22_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_22_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_22_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_22_Speed 0x100U
+#define slcr_MIO_PIN_22_Speed_MASK 0x100U
+#define slcr_MIO_PIN_22_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_22_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_22_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_22_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_22_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_22_L1_SEL 0x4U
+#define slcr_MIO_PIN_22_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_22_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_22_L0_SEL 0x2U
+#define slcr_MIO_PIN_22_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_22_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_22_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_22_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_22_MASK 0x3fffU
+
+
+// MIO Pin 23 Control
+#define slcr_MIO_PIN_23_REG 0x75cU
+typedef union slcr_MIO_PIN_23
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_23;
+
+#define slcr_MIO_PIN_23_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_23_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_23_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_23_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_23_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_23_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_23_PULLUP 0x1000U
+#define slcr_MIO_PIN_23_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_23_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_23_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_23_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_23_Speed 0x100U
+#define slcr_MIO_PIN_23_Speed_MASK 0x100U
+#define slcr_MIO_PIN_23_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_23_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_23_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_23_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_23_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_23_L1_SEL 0x4U
+#define slcr_MIO_PIN_23_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_23_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_23_L0_SEL 0x2U
+#define slcr_MIO_PIN_23_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_23_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_23_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_23_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_23_MASK 0x3fffU
+
+
+// MIO Pin 24 Control
+#define slcr_MIO_PIN_24_REG 0x760U
+typedef union slcr_MIO_PIN_24
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_24;
+
+#define slcr_MIO_PIN_24_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_24_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_24_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_24_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_24_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_24_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_24_PULLUP 0x1000U
+#define slcr_MIO_PIN_24_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_24_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_24_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_24_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_24_Speed 0x100U
+#define slcr_MIO_PIN_24_Speed_MASK 0x100U
+#define slcr_MIO_PIN_24_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_24_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_24_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_24_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_24_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_24_L1_SEL 0x4U
+#define slcr_MIO_PIN_24_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_24_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_24_L0_SEL 0x2U
+#define slcr_MIO_PIN_24_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_24_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_24_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_24_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_24_MASK 0x3fffU
+
+
+// MIO Pin 25 Control
+#define slcr_MIO_PIN_25_REG 0x764U
+typedef union slcr_MIO_PIN_25
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_25;
+
+#define slcr_MIO_PIN_25_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_25_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_25_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_25_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_25_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_25_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_25_PULLUP 0x1000U
+#define slcr_MIO_PIN_25_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_25_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_25_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_25_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_25_Speed 0x100U
+#define slcr_MIO_PIN_25_Speed_MASK 0x100U
+#define slcr_MIO_PIN_25_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_25_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_25_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_25_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_25_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_25_L1_SEL 0x4U
+#define slcr_MIO_PIN_25_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_25_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_25_L0_SEL 0x2U
+#define slcr_MIO_PIN_25_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_25_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_25_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_25_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_25_MASK 0x3fffU
+
+
+// MIO Pin 26 Control
+#define slcr_MIO_PIN_26_REG 0x768U
+typedef union slcr_MIO_PIN_26
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_26;
+
+#define slcr_MIO_PIN_26_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_26_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_26_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_26_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_26_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_26_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_26_PULLUP 0x1000U
+#define slcr_MIO_PIN_26_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_26_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_26_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_26_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_26_Speed 0x100U
+#define slcr_MIO_PIN_26_Speed_MASK 0x100U
+#define slcr_MIO_PIN_26_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_26_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_26_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_26_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_26_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_26_L1_SEL 0x4U
+#define slcr_MIO_PIN_26_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_26_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_26_L0_SEL 0x2U
+#define slcr_MIO_PIN_26_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_26_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_26_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_26_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_26_MASK 0x3fffU
+
+
+// MIO Pin 27 Control
+#define slcr_MIO_PIN_27_REG 0x76cU
+typedef union slcr_MIO_PIN_27
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_27;
+
+#define slcr_MIO_PIN_27_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_27_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_27_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_27_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_27_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_27_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_27_PULLUP 0x1000U
+#define slcr_MIO_PIN_27_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_27_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_27_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_27_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_27_Speed 0x100U
+#define slcr_MIO_PIN_27_Speed_MASK 0x100U
+#define slcr_MIO_PIN_27_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_27_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_27_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_27_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_27_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_27_L1_SEL 0x4U
+#define slcr_MIO_PIN_27_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_27_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_27_L0_SEL 0x2U
+#define slcr_MIO_PIN_27_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_27_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_27_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_27_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_27_MASK 0x3fffU
+
+
+// MIO Pin 28 Control
+#define slcr_MIO_PIN_28_REG 0x770U
+typedef union slcr_MIO_PIN_28
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_28;
+
+#define slcr_MIO_PIN_28_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_28_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_28_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_28_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_28_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_28_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_28_PULLUP 0x1000U
+#define slcr_MIO_PIN_28_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_28_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_28_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_28_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_28_Speed 0x100U
+#define slcr_MIO_PIN_28_Speed_MASK 0x100U
+#define slcr_MIO_PIN_28_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_28_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_28_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_28_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_28_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_28_L1_SEL 0x4U
+#define slcr_MIO_PIN_28_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_28_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_28_L0_SEL 0x2U
+#define slcr_MIO_PIN_28_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_28_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_28_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_28_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_28_MASK 0x3fffU
+
+
+// MIO Pin 29 Control
+#define slcr_MIO_PIN_29_REG 0x774U
+typedef union slcr_MIO_PIN_29
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_29;
+
+#define slcr_MIO_PIN_29_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_29_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_29_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_29_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_29_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_29_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_29_PULLUP 0x1000U
+#define slcr_MIO_PIN_29_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_29_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_29_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_29_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_29_Speed 0x100U
+#define slcr_MIO_PIN_29_Speed_MASK 0x100U
+#define slcr_MIO_PIN_29_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_29_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_29_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_29_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_29_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_29_L1_SEL 0x4U
+#define slcr_MIO_PIN_29_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_29_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_29_L0_SEL 0x2U
+#define slcr_MIO_PIN_29_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_29_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_29_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_29_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_29_MASK 0x3fffU
+
+
+// MIO Pin 30 Control
+#define slcr_MIO_PIN_30_REG 0x778U
+typedef union slcr_MIO_PIN_30
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_30;
+
+#define slcr_MIO_PIN_30_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_30_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_30_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_30_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_30_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_30_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_30_PULLUP 0x1000U
+#define slcr_MIO_PIN_30_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_30_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_30_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_30_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_30_Speed 0x100U
+#define slcr_MIO_PIN_30_Speed_MASK 0x100U
+#define slcr_MIO_PIN_30_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_30_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_30_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_30_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_30_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_30_L1_SEL 0x4U
+#define slcr_MIO_PIN_30_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_30_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_30_L0_SEL 0x2U
+#define slcr_MIO_PIN_30_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_30_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_30_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_30_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_30_MASK 0x3fffU
+
+
+// MIO Pin 31 Control
+#define slcr_MIO_PIN_31_REG 0x77cU
+typedef union slcr_MIO_PIN_31
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_31;
+
+#define slcr_MIO_PIN_31_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_31_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_31_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_31_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_31_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_31_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_31_PULLUP 0x1000U
+#define slcr_MIO_PIN_31_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_31_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_31_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_31_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_31_Speed 0x100U
+#define slcr_MIO_PIN_31_Speed_MASK 0x100U
+#define slcr_MIO_PIN_31_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_31_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_31_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_31_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_31_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_31_L1_SEL 0x4U
+#define slcr_MIO_PIN_31_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_31_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_31_L0_SEL 0x2U
+#define slcr_MIO_PIN_31_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_31_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_31_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_31_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_31_MASK 0x3fffU
+
+
+// MIO Pin 32 Control
+#define slcr_MIO_PIN_32_REG 0x780U
+typedef union slcr_MIO_PIN_32
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_32;
+
+#define slcr_MIO_PIN_32_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_32_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_32_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_32_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_32_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_32_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_32_PULLUP 0x1000U
+#define slcr_MIO_PIN_32_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_32_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_32_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_32_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_32_Speed 0x100U
+#define slcr_MIO_PIN_32_Speed_MASK 0x100U
+#define slcr_MIO_PIN_32_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_32_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_32_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_32_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_32_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_32_L1_SEL 0x4U
+#define slcr_MIO_PIN_32_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_32_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_32_L0_SEL 0x2U
+#define slcr_MIO_PIN_32_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_32_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_32_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_32_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_32_MASK 0x3fffU
+
+
+// MIO Pin 33 Control
+#define slcr_MIO_PIN_33_REG 0x784U
+typedef union slcr_MIO_PIN_33
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_33;
+
+#define slcr_MIO_PIN_33_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_33_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_33_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_33_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_33_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_33_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_33_PULLUP 0x1000U
+#define slcr_MIO_PIN_33_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_33_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_33_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_33_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_33_Speed 0x100U
+#define slcr_MIO_PIN_33_Speed_MASK 0x100U
+#define slcr_MIO_PIN_33_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_33_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_33_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_33_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_33_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_33_L1_SEL 0x4U
+#define slcr_MIO_PIN_33_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_33_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_33_L0_SEL 0x2U
+#define slcr_MIO_PIN_33_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_33_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_33_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_33_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_33_MASK 0x3fffU
+
+
+// MIO Pin 34 Control
+#define slcr_MIO_PIN_34_REG 0x788U
+typedef union slcr_MIO_PIN_34
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_34;
+
+#define slcr_MIO_PIN_34_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_34_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_34_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_34_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_34_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_34_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_34_PULLUP 0x1000U
+#define slcr_MIO_PIN_34_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_34_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_34_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_34_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_34_Speed 0x100U
+#define slcr_MIO_PIN_34_Speed_MASK 0x100U
+#define slcr_MIO_PIN_34_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_34_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_34_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_34_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_34_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_34_L1_SEL 0x4U
+#define slcr_MIO_PIN_34_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_34_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_34_L0_SEL 0x2U
+#define slcr_MIO_PIN_34_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_34_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_34_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_34_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_34_MASK 0x3fffU
+
+
+// MIO Pin 35 Control
+#define slcr_MIO_PIN_35_REG 0x78cU
+typedef union slcr_MIO_PIN_35
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_35;
+
+#define slcr_MIO_PIN_35_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_35_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_35_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_35_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_35_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_35_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_35_PULLUP 0x1000U
+#define slcr_MIO_PIN_35_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_35_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_35_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_35_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_35_Speed 0x100U
+#define slcr_MIO_PIN_35_Speed_MASK 0x100U
+#define slcr_MIO_PIN_35_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_35_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_35_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_35_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_35_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_35_L1_SEL 0x4U
+#define slcr_MIO_PIN_35_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_35_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_35_L0_SEL 0x2U
+#define slcr_MIO_PIN_35_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_35_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_35_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_35_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_35_MASK 0x3fffU
+
+
+// MIO Pin 36 Control
+#define slcr_MIO_PIN_36_REG 0x790U
+typedef union slcr_MIO_PIN_36
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_36;
+
+#define slcr_MIO_PIN_36_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_36_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_36_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_36_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_36_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_36_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_36_PULLUP 0x1000U
+#define slcr_MIO_PIN_36_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_36_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_36_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_36_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_36_Speed 0x100U
+#define slcr_MIO_PIN_36_Speed_MASK 0x100U
+#define slcr_MIO_PIN_36_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_36_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_36_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_36_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_36_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_36_L1_SEL 0x4U
+#define slcr_MIO_PIN_36_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_36_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_36_L0_SEL 0x2U
+#define slcr_MIO_PIN_36_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_36_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_36_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_36_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_36_MASK 0x3fffU
+
+
+// MIO Pin 37 Control
+#define slcr_MIO_PIN_37_REG 0x794U
+typedef union slcr_MIO_PIN_37
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_37;
+
+#define slcr_MIO_PIN_37_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_37_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_37_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_37_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_37_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_37_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_37_PULLUP 0x1000U
+#define slcr_MIO_PIN_37_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_37_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_37_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_37_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_37_Speed 0x100U
+#define slcr_MIO_PIN_37_Speed_MASK 0x100U
+#define slcr_MIO_PIN_37_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_37_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_37_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_37_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_37_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_37_L1_SEL 0x4U
+#define slcr_MIO_PIN_37_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_37_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_37_L0_SEL 0x2U
+#define slcr_MIO_PIN_37_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_37_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_37_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_37_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_37_MASK 0x3fffU
+
+
+// MIO Pin 38 Control
+#define slcr_MIO_PIN_38_REG 0x798U
+typedef union slcr_MIO_PIN_38
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_38;
+
+#define slcr_MIO_PIN_38_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_38_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_38_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_38_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_38_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_38_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_38_PULLUP 0x1000U
+#define slcr_MIO_PIN_38_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_38_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_38_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_38_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_38_Speed 0x100U
+#define slcr_MIO_PIN_38_Speed_MASK 0x100U
+#define slcr_MIO_PIN_38_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_38_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_38_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_38_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_38_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_38_L1_SEL 0x4U
+#define slcr_MIO_PIN_38_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_38_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_38_L0_SEL 0x2U
+#define slcr_MIO_PIN_38_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_38_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_38_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_38_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_38_MASK 0x3fffU
+
+
+// MIO Pin 39 Control
+#define slcr_MIO_PIN_39_REG 0x79cU
+typedef union slcr_MIO_PIN_39
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_39;
+
+#define slcr_MIO_PIN_39_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_39_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_39_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_39_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_39_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_39_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_39_PULLUP 0x1000U
+#define slcr_MIO_PIN_39_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_39_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_39_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_39_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_39_Speed 0x100U
+#define slcr_MIO_PIN_39_Speed_MASK 0x100U
+#define slcr_MIO_PIN_39_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_39_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_39_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_39_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_39_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_39_L1_SEL 0x4U
+#define slcr_MIO_PIN_39_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_39_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_39_L0_SEL 0x2U
+#define slcr_MIO_PIN_39_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_39_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_39_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_39_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_39_MASK 0x3fffU
+
+
+// MIO Pin 40 Control
+#define slcr_MIO_PIN_40_REG 0x7a0U
+typedef union slcr_MIO_PIN_40
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_40;
+
+#define slcr_MIO_PIN_40_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_40_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_40_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_40_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_40_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_40_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_40_PULLUP 0x1000U
+#define slcr_MIO_PIN_40_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_40_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_40_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_40_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_40_Speed 0x100U
+#define slcr_MIO_PIN_40_Speed_MASK 0x100U
+#define slcr_MIO_PIN_40_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_40_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_40_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_40_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_40_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_40_L1_SEL 0x4U
+#define slcr_MIO_PIN_40_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_40_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_40_L0_SEL 0x2U
+#define slcr_MIO_PIN_40_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_40_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_40_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_40_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_40_MASK 0x3fffU
+
+
+// MIO Pin 41 Control
+#define slcr_MIO_PIN_41_REG 0x7a4U
+typedef union slcr_MIO_PIN_41
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_41;
+
+#define slcr_MIO_PIN_41_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_41_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_41_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_41_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_41_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_41_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_41_PULLUP 0x1000U
+#define slcr_MIO_PIN_41_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_41_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_41_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_41_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_41_Speed 0x100U
+#define slcr_MIO_PIN_41_Speed_MASK 0x100U
+#define slcr_MIO_PIN_41_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_41_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_41_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_41_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_41_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_41_L1_SEL 0x4U
+#define slcr_MIO_PIN_41_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_41_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_41_L0_SEL 0x2U
+#define slcr_MIO_PIN_41_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_41_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_41_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_41_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_41_MASK 0x3fffU
+
+
+// MIO Pin 42 Control
+#define slcr_MIO_PIN_42_REG 0x7a8U
+typedef union slcr_MIO_PIN_42
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_42;
+
+#define slcr_MIO_PIN_42_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_42_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_42_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_42_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_42_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_42_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_42_PULLUP 0x1000U
+#define slcr_MIO_PIN_42_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_42_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_42_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_42_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_42_Speed 0x100U
+#define slcr_MIO_PIN_42_Speed_MASK 0x100U
+#define slcr_MIO_PIN_42_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_42_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_42_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_42_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_42_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_42_L1_SEL 0x4U
+#define slcr_MIO_PIN_42_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_42_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_42_L0_SEL 0x2U
+#define slcr_MIO_PIN_42_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_42_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_42_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_42_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_42_MASK 0x3fffU
+
+
+// MIO Pin 43 Control
+#define slcr_MIO_PIN_43_REG 0x7acU
+typedef union slcr_MIO_PIN_43
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_43;
+
+#define slcr_MIO_PIN_43_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_43_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_43_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_43_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_43_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_43_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_43_PULLUP 0x1000U
+#define slcr_MIO_PIN_43_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_43_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_43_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_43_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_43_Speed 0x100U
+#define slcr_MIO_PIN_43_Speed_MASK 0x100U
+#define slcr_MIO_PIN_43_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_43_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_43_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_43_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_43_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_43_L1_SEL 0x4U
+#define slcr_MIO_PIN_43_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_43_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_43_L0_SEL 0x2U
+#define slcr_MIO_PIN_43_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_43_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_43_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_43_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_43_MASK 0x3fffU
+
+
+// MIO Pin 44 Control
+#define slcr_MIO_PIN_44_REG 0x7b0U
+typedef union slcr_MIO_PIN_44
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_44;
+
+#define slcr_MIO_PIN_44_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_44_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_44_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_44_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_44_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_44_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_44_PULLUP 0x1000U
+#define slcr_MIO_PIN_44_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_44_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_44_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_44_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_44_Speed 0x100U
+#define slcr_MIO_PIN_44_Speed_MASK 0x100U
+#define slcr_MIO_PIN_44_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_44_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_44_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_44_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_44_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_44_L1_SEL 0x4U
+#define slcr_MIO_PIN_44_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_44_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_44_L0_SEL 0x2U
+#define slcr_MIO_PIN_44_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_44_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_44_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_44_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_44_MASK 0x3fffU
+
+
+// MIO Pin 45 Control
+#define slcr_MIO_PIN_45_REG 0x7b4U
+typedef union slcr_MIO_PIN_45
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_45;
+
+#define slcr_MIO_PIN_45_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_45_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_45_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_45_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_45_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_45_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_45_PULLUP 0x1000U
+#define slcr_MIO_PIN_45_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_45_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_45_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_45_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_45_Speed 0x100U
+#define slcr_MIO_PIN_45_Speed_MASK 0x100U
+#define slcr_MIO_PIN_45_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_45_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_45_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_45_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_45_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_45_L1_SEL 0x4U
+#define slcr_MIO_PIN_45_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_45_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_45_L0_SEL 0x2U
+#define slcr_MIO_PIN_45_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_45_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_45_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_45_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_45_MASK 0x3fffU
+
+
+// MIO Pin 46 Control
+#define slcr_MIO_PIN_46_REG 0x7b8U
+typedef union slcr_MIO_PIN_46
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_46;
+
+#define slcr_MIO_PIN_46_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_46_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_46_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_46_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_46_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_46_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_46_PULLUP 0x1000U
+#define slcr_MIO_PIN_46_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_46_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_46_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_46_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_46_Speed 0x100U
+#define slcr_MIO_PIN_46_Speed_MASK 0x100U
+#define slcr_MIO_PIN_46_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_46_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_46_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_46_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_46_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_46_L1_SEL 0x4U
+#define slcr_MIO_PIN_46_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_46_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_46_L0_SEL 0x2U
+#define slcr_MIO_PIN_46_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_46_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_46_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_46_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_46_MASK 0x3fffU
+
+
+// MIO Pin 47 Control
+#define slcr_MIO_PIN_47_REG 0x7bcU
+typedef union slcr_MIO_PIN_47
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_47;
+
+#define slcr_MIO_PIN_47_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_47_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_47_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_47_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_47_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_47_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_47_PULLUP 0x1000U
+#define slcr_MIO_PIN_47_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_47_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_47_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_47_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_47_Speed 0x100U
+#define slcr_MIO_PIN_47_Speed_MASK 0x100U
+#define slcr_MIO_PIN_47_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_47_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_47_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_47_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_47_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_47_L1_SEL 0x4U
+#define slcr_MIO_PIN_47_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_47_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_47_L0_SEL 0x2U
+#define slcr_MIO_PIN_47_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_47_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_47_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_47_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_47_MASK 0x3fffU
+
+
+// MIO Pin 48 Control
+#define slcr_MIO_PIN_48_REG 0x7c0U
+typedef union slcr_MIO_PIN_48
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_48;
+
+#define slcr_MIO_PIN_48_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_48_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_48_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_48_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_48_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_48_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_48_PULLUP 0x1000U
+#define slcr_MIO_PIN_48_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_48_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_48_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_48_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_48_Speed 0x100U
+#define slcr_MIO_PIN_48_Speed_MASK 0x100U
+#define slcr_MIO_PIN_48_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_48_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_48_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_48_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_48_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_48_L1_SEL 0x4U
+#define slcr_MIO_PIN_48_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_48_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_48_L0_SEL 0x2U
+#define slcr_MIO_PIN_48_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_48_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_48_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_48_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_48_MASK 0x3fffU
+
+
+// MIO Pin 49 Control
+#define slcr_MIO_PIN_49_REG 0x7c4U
+typedef union slcr_MIO_PIN_49
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_49;
+
+#define slcr_MIO_PIN_49_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_49_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_49_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_49_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_49_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_49_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_49_PULLUP 0x1000U
+#define slcr_MIO_PIN_49_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_49_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_49_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_49_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_49_Speed 0x100U
+#define slcr_MIO_PIN_49_Speed_MASK 0x100U
+#define slcr_MIO_PIN_49_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_49_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_49_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_49_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_49_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_49_L1_SEL 0x4U
+#define slcr_MIO_PIN_49_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_49_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_49_L0_SEL 0x2U
+#define slcr_MIO_PIN_49_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_49_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_49_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_49_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_49_MASK 0x3fffU
+
+
+// MIO Pin 50 Control
+#define slcr_MIO_PIN_50_REG 0x7c8U
+typedef union slcr_MIO_PIN_50
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_50;
+
+#define slcr_MIO_PIN_50_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_50_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_50_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_50_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_50_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_50_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_50_PULLUP 0x1000U
+#define slcr_MIO_PIN_50_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_50_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_50_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_50_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_50_Speed 0x100U
+#define slcr_MIO_PIN_50_Speed_MASK 0x100U
+#define slcr_MIO_PIN_50_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_50_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_50_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_50_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_50_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_50_L1_SEL 0x4U
+#define slcr_MIO_PIN_50_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_50_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_50_L0_SEL 0x2U
+#define slcr_MIO_PIN_50_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_50_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_50_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_50_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_50_MASK 0x3fffU
+
+
+// MIO Pin 51 Control
+#define slcr_MIO_PIN_51_REG 0x7ccU
+typedef union slcr_MIO_PIN_51
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_51;
+
+#define slcr_MIO_PIN_51_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_51_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_51_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_51_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_51_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_51_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_51_PULLUP 0x1000U
+#define slcr_MIO_PIN_51_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_51_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_51_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_51_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_51_Speed 0x100U
+#define slcr_MIO_PIN_51_Speed_MASK 0x100U
+#define slcr_MIO_PIN_51_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_51_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_51_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_51_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_51_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_51_L1_SEL 0x4U
+#define slcr_MIO_PIN_51_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_51_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_51_L0_SEL 0x2U
+#define slcr_MIO_PIN_51_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_51_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_51_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_51_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_51_MASK 0x3fffU
+
+
+// MIO Pin 52 Control
+#define slcr_MIO_PIN_52_REG 0x7d0U
+typedef union slcr_MIO_PIN_52
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_52;
+
+#define slcr_MIO_PIN_52_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_52_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_52_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_52_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_52_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_52_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_52_PULLUP 0x1000U
+#define slcr_MIO_PIN_52_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_52_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_52_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_52_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_52_Speed 0x100U
+#define slcr_MIO_PIN_52_Speed_MASK 0x100U
+#define slcr_MIO_PIN_52_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_52_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_52_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_52_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_52_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_52_L1_SEL 0x4U
+#define slcr_MIO_PIN_52_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_52_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_52_L0_SEL 0x2U
+#define slcr_MIO_PIN_52_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_52_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_52_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_52_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_52_MASK 0x3fffU
+
+
+// MIO Pin 53 Control
+#define slcr_MIO_PIN_53_REG 0x7d4U
+typedef union slcr_MIO_PIN_53
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DisableRcvr : 1;
+		uint32_t PULLUP : 1;
+		uint32_t IO_Type : 3;
+		uint32_t Speed : 1;
+		uint32_t L3_SEL : 3;
+		uint32_t L2_SEL : 2;
+		uint32_t L1_SEL : 1;
+		uint32_t L0_SEL : 1;
+		uint32_t TRI_ENABLE : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_PIN_53;
+
+#define slcr_MIO_PIN_53_RESERVED_0_LSHIFT 14U
+#define slcr_MIO_PIN_53_RESERVED_0_MASK 0xffffc000U
+#define slcr_MIO_PIN_53_DisableRcvr_LSHIFT 13U
+#define slcr_MIO_PIN_53_DisableRcvr 0x2000U
+#define slcr_MIO_PIN_53_DisableRcvr_MASK 0x2000U
+#define slcr_MIO_PIN_53_PULLUP_LSHIFT 12U
+#define slcr_MIO_PIN_53_PULLUP 0x1000U
+#define slcr_MIO_PIN_53_PULLUP_MASK 0x1000U
+#define slcr_MIO_PIN_53_IO_Type_LSHIFT 9U
+#define slcr_MIO_PIN_53_IO_Type_MASK 0xe00U
+#define slcr_MIO_PIN_53_Speed_LSHIFT 8U
+#define slcr_MIO_PIN_53_Speed 0x100U
+#define slcr_MIO_PIN_53_Speed_MASK 0x100U
+#define slcr_MIO_PIN_53_L3_SEL_LSHIFT 5U
+#define slcr_MIO_PIN_53_L3_SEL_MASK 0xe0U
+#define slcr_MIO_PIN_53_L2_SEL_LSHIFT 3U
+#define slcr_MIO_PIN_53_L2_SEL_MASK 0x18U
+#define slcr_MIO_PIN_53_L1_SEL_LSHIFT 2U
+#define slcr_MIO_PIN_53_L1_SEL 0x4U
+#define slcr_MIO_PIN_53_L1_SEL_MASK 0x4U
+#define slcr_MIO_PIN_53_L0_SEL_LSHIFT 1U
+#define slcr_MIO_PIN_53_L0_SEL 0x2U
+#define slcr_MIO_PIN_53_L0_SEL_MASK 0x2U
+#define slcr_MIO_PIN_53_TRI_ENABLE_LSHIFT 0U
+#define slcr_MIO_PIN_53_TRI_ENABLE 0x1U
+#define slcr_MIO_PIN_53_TRI_ENABLE_MASK 0x1U
+#define slcr_MIO_PIN_53_MASK 0x3fffU
+
+
+// Loopback function within MIO
+#define slcr_MIO_LOOPBACK_REG 0x804U
+typedef union slcr_MIO_LOOPBACK
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 28;
+		uint32_t I2C0_LOOP_I2C1 : 1;
+		uint32_t CAN0_LOOP_CAN1 : 1;
+		uint32_t UA0_LOOP_UA1 : 1;
+		uint32_t SPI0_LOOP_SPI1 : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_LOOPBACK;
+
+#define slcr_MIO_LOOPBACK_RESERVED_0_LSHIFT 4U
+#define slcr_MIO_LOOPBACK_RESERVED_0_MASK 0xfffffff0U
+#define slcr_MIO_LOOPBACK_I2C0_LOOP_I2C1_LSHIFT 3U
+#define slcr_MIO_LOOPBACK_I2C0_LOOP_I2C1 0x8U
+#define slcr_MIO_LOOPBACK_I2C0_LOOP_I2C1_MASK 0x8U
+#define slcr_MIO_LOOPBACK_CAN0_LOOP_CAN1_LSHIFT 2U
+#define slcr_MIO_LOOPBACK_CAN0_LOOP_CAN1 0x4U
+#define slcr_MIO_LOOPBACK_CAN0_LOOP_CAN1_MASK 0x4U
+#define slcr_MIO_LOOPBACK_UA0_LOOP_UA1_LSHIFT 1U
+#define slcr_MIO_LOOPBACK_UA0_LOOP_UA1 0x2U
+#define slcr_MIO_LOOPBACK_UA0_LOOP_UA1_MASK 0x2U
+#define slcr_MIO_LOOPBACK_SPI0_LOOP_SPI1_LSHIFT 0U
+#define slcr_MIO_LOOPBACK_SPI0_LOOP_SPI1 0x1U
+#define slcr_MIO_LOOPBACK_SPI0_LOOP_SPI1_MASK 0x1U
+#define slcr_MIO_LOOPBACK_MASK 0xfU
+
+
+// MIO pin Tri-state Enables, 31:0
+#define slcr_MIO_MST_TRI0_REG 0x80cU
+typedef union slcr_MIO_MST_TRI0
+{
+	struct
+	{
+		uint32_t PIN_31_TRI : 1;
+		uint32_t PIN_30_TRI : 1;
+		uint32_t PIN_29_TRI : 1;
+		uint32_t PIN_28_TRI : 1;
+		uint32_t PIN_27_TRI : 1;
+		uint32_t PIN_26_TRI : 1;
+		uint32_t PIN_25_TRI : 1;
+		uint32_t PIN_24_TRI : 1;
+		uint32_t PIN_23_TRI : 1;
+		uint32_t PIN_22_TRI : 1;
+		uint32_t PIN_21_TRI : 1;
+		uint32_t PIN_20_TRI : 1;
+		uint32_t PIN_19_TRI : 1;
+		uint32_t PIN_18_TRI : 1;
+		uint32_t PIN_17_TRI : 1;
+		uint32_t PIN_16_TRI : 1;
+		uint32_t PIN_15_TRI : 1;
+		uint32_t PIN_14_TRI : 1;
+		uint32_t PIN_13_TRI : 1;
+		uint32_t PIN_12_TRI : 1;
+		uint32_t PIN_11_TRI : 1;
+		uint32_t PIN_10_TRI : 1;
+		uint32_t PIN_09_TRI : 1;
+		uint32_t PIN_08_TRI : 1;
+		uint32_t PIN_07_TRI : 1;
+		uint32_t PIN_06_TRI : 1;
+		uint32_t PIN_05_TRI : 1;
+		uint32_t PIN_04_TRI : 1;
+		uint32_t PIN_03_TRI : 1;
+		uint32_t PIN_02_TRI : 1;
+		uint32_t PIN_01_TRI : 1;
+		uint32_t PIN_00_TRI : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_MST_TRI0;
+
+#define slcr_MIO_MST_TRI0_PIN_31_TRI_LSHIFT 31U
+#define slcr_MIO_MST_TRI0_PIN_31_TRI 0x80000000U
+#define slcr_MIO_MST_TRI0_PIN_31_TRI_MASK 0x80000000U
+#define slcr_MIO_MST_TRI0_PIN_30_TRI_LSHIFT 30U
+#define slcr_MIO_MST_TRI0_PIN_30_TRI 0x40000000U
+#define slcr_MIO_MST_TRI0_PIN_30_TRI_MASK 0x40000000U
+#define slcr_MIO_MST_TRI0_PIN_29_TRI_LSHIFT 29U
+#define slcr_MIO_MST_TRI0_PIN_29_TRI 0x20000000U
+#define slcr_MIO_MST_TRI0_PIN_29_TRI_MASK 0x20000000U
+#define slcr_MIO_MST_TRI0_PIN_28_TRI_LSHIFT 28U
+#define slcr_MIO_MST_TRI0_PIN_28_TRI 0x10000000U
+#define slcr_MIO_MST_TRI0_PIN_28_TRI_MASK 0x10000000U
+#define slcr_MIO_MST_TRI0_PIN_27_TRI_LSHIFT 27U
+#define slcr_MIO_MST_TRI0_PIN_27_TRI 0x8000000U
+#define slcr_MIO_MST_TRI0_PIN_27_TRI_MASK 0x8000000U
+#define slcr_MIO_MST_TRI0_PIN_26_TRI_LSHIFT 26U
+#define slcr_MIO_MST_TRI0_PIN_26_TRI 0x4000000U
+#define slcr_MIO_MST_TRI0_PIN_26_TRI_MASK 0x4000000U
+#define slcr_MIO_MST_TRI0_PIN_25_TRI_LSHIFT 25U
+#define slcr_MIO_MST_TRI0_PIN_25_TRI 0x2000000U
+#define slcr_MIO_MST_TRI0_PIN_25_TRI_MASK 0x2000000U
+#define slcr_MIO_MST_TRI0_PIN_24_TRI_LSHIFT 24U
+#define slcr_MIO_MST_TRI0_PIN_24_TRI 0x1000000U
+#define slcr_MIO_MST_TRI0_PIN_24_TRI_MASK 0x1000000U
+#define slcr_MIO_MST_TRI0_PIN_23_TRI_LSHIFT 23U
+#define slcr_MIO_MST_TRI0_PIN_23_TRI 0x800000U
+#define slcr_MIO_MST_TRI0_PIN_23_TRI_MASK 0x800000U
+#define slcr_MIO_MST_TRI0_PIN_22_TRI_LSHIFT 22U
+#define slcr_MIO_MST_TRI0_PIN_22_TRI 0x400000U
+#define slcr_MIO_MST_TRI0_PIN_22_TRI_MASK 0x400000U
+#define slcr_MIO_MST_TRI0_PIN_21_TRI_LSHIFT 21U
+#define slcr_MIO_MST_TRI0_PIN_21_TRI 0x200000U
+#define slcr_MIO_MST_TRI0_PIN_21_TRI_MASK 0x200000U
+#define slcr_MIO_MST_TRI0_PIN_20_TRI_LSHIFT 20U
+#define slcr_MIO_MST_TRI0_PIN_20_TRI 0x100000U
+#define slcr_MIO_MST_TRI0_PIN_20_TRI_MASK 0x100000U
+#define slcr_MIO_MST_TRI0_PIN_19_TRI_LSHIFT 19U
+#define slcr_MIO_MST_TRI0_PIN_19_TRI 0x80000U
+#define slcr_MIO_MST_TRI0_PIN_19_TRI_MASK 0x80000U
+#define slcr_MIO_MST_TRI0_PIN_18_TRI_LSHIFT 18U
+#define slcr_MIO_MST_TRI0_PIN_18_TRI 0x40000U
+#define slcr_MIO_MST_TRI0_PIN_18_TRI_MASK 0x40000U
+#define slcr_MIO_MST_TRI0_PIN_17_TRI_LSHIFT 17U
+#define slcr_MIO_MST_TRI0_PIN_17_TRI 0x20000U
+#define slcr_MIO_MST_TRI0_PIN_17_TRI_MASK 0x20000U
+#define slcr_MIO_MST_TRI0_PIN_16_TRI_LSHIFT 16U
+#define slcr_MIO_MST_TRI0_PIN_16_TRI 0x10000U
+#define slcr_MIO_MST_TRI0_PIN_16_TRI_MASK 0x10000U
+#define slcr_MIO_MST_TRI0_PIN_15_TRI_LSHIFT 15U
+#define slcr_MIO_MST_TRI0_PIN_15_TRI 0x8000U
+#define slcr_MIO_MST_TRI0_PIN_15_TRI_MASK 0x8000U
+#define slcr_MIO_MST_TRI0_PIN_14_TRI_LSHIFT 14U
+#define slcr_MIO_MST_TRI0_PIN_14_TRI 0x4000U
+#define slcr_MIO_MST_TRI0_PIN_14_TRI_MASK 0x4000U
+#define slcr_MIO_MST_TRI0_PIN_13_TRI_LSHIFT 13U
+#define slcr_MIO_MST_TRI0_PIN_13_TRI 0x2000U
+#define slcr_MIO_MST_TRI0_PIN_13_TRI_MASK 0x2000U
+#define slcr_MIO_MST_TRI0_PIN_12_TRI_LSHIFT 12U
+#define slcr_MIO_MST_TRI0_PIN_12_TRI 0x1000U
+#define slcr_MIO_MST_TRI0_PIN_12_TRI_MASK 0x1000U
+#define slcr_MIO_MST_TRI0_PIN_11_TRI_LSHIFT 11U
+#define slcr_MIO_MST_TRI0_PIN_11_TRI 0x800U
+#define slcr_MIO_MST_TRI0_PIN_11_TRI_MASK 0x800U
+#define slcr_MIO_MST_TRI0_PIN_10_TRI_LSHIFT 10U
+#define slcr_MIO_MST_TRI0_PIN_10_TRI 0x400U
+#define slcr_MIO_MST_TRI0_PIN_10_TRI_MASK 0x400U
+#define slcr_MIO_MST_TRI0_PIN_09_TRI_LSHIFT 9U
+#define slcr_MIO_MST_TRI0_PIN_09_TRI 0x200U
+#define slcr_MIO_MST_TRI0_PIN_09_TRI_MASK 0x200U
+#define slcr_MIO_MST_TRI0_PIN_08_TRI_LSHIFT 8U
+#define slcr_MIO_MST_TRI0_PIN_08_TRI 0x100U
+#define slcr_MIO_MST_TRI0_PIN_08_TRI_MASK 0x100U
+#define slcr_MIO_MST_TRI0_PIN_07_TRI_LSHIFT 7U
+#define slcr_MIO_MST_TRI0_PIN_07_TRI 0x80U
+#define slcr_MIO_MST_TRI0_PIN_07_TRI_MASK 0x80U
+#define slcr_MIO_MST_TRI0_PIN_06_TRI_LSHIFT 6U
+#define slcr_MIO_MST_TRI0_PIN_06_TRI 0x40U
+#define slcr_MIO_MST_TRI0_PIN_06_TRI_MASK 0x40U
+#define slcr_MIO_MST_TRI0_PIN_05_TRI_LSHIFT 5U
+#define slcr_MIO_MST_TRI0_PIN_05_TRI 0x20U
+#define slcr_MIO_MST_TRI0_PIN_05_TRI_MASK 0x20U
+#define slcr_MIO_MST_TRI0_PIN_04_TRI_LSHIFT 4U
+#define slcr_MIO_MST_TRI0_PIN_04_TRI 0x10U
+#define slcr_MIO_MST_TRI0_PIN_04_TRI_MASK 0x10U
+#define slcr_MIO_MST_TRI0_PIN_03_TRI_LSHIFT 3U
+#define slcr_MIO_MST_TRI0_PIN_03_TRI 0x8U
+#define slcr_MIO_MST_TRI0_PIN_03_TRI_MASK 0x8U
+#define slcr_MIO_MST_TRI0_PIN_02_TRI_LSHIFT 2U
+#define slcr_MIO_MST_TRI0_PIN_02_TRI 0x4U
+#define slcr_MIO_MST_TRI0_PIN_02_TRI_MASK 0x4U
+#define slcr_MIO_MST_TRI0_PIN_01_TRI_LSHIFT 1U
+#define slcr_MIO_MST_TRI0_PIN_01_TRI 0x2U
+#define slcr_MIO_MST_TRI0_PIN_01_TRI_MASK 0x2U
+#define slcr_MIO_MST_TRI0_PIN_00_TRI_LSHIFT 0U
+#define slcr_MIO_MST_TRI0_PIN_00_TRI 0x1U
+#define slcr_MIO_MST_TRI0_PIN_00_TRI_MASK 0x1U
+#define slcr_MIO_MST_TRI0_MASK 0xffffffffU
+
+
+// MIO pin Tri-state Enables, 53:32
+#define slcr_MIO_MST_TRI1_REG 0x810U
+typedef union slcr_MIO_MST_TRI1
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 10;
+		uint32_t PIN_53_TRI : 1;
+		uint32_t PIN_52_TRI : 1;
+		uint32_t PIN_51_TRI : 1;
+		uint32_t PIN_50_TRI : 1;
+		uint32_t PIN_49_TRI : 1;
+		uint32_t PIN_48_TRI : 1;
+		uint32_t PIN_47_TRI : 1;
+		uint32_t PIN_46_TRI : 1;
+		uint32_t PIN_45_TRI : 1;
+		uint32_t PIN_44_TRI : 1;
+		uint32_t PIN_43_TRI : 1;
+		uint32_t PIN_42_TRI : 1;
+		uint32_t PIN_41_TRI : 1;
+		uint32_t PIN_40_TRI : 1;
+		uint32_t PIN_39_TRI : 1;
+		uint32_t PIN_38_TRI : 1;
+		uint32_t PIN_37_TRI : 1;
+		uint32_t PIN_36_TRI : 1;
+		uint32_t PIN_35_TRI : 1;
+		uint32_t PIN_34_TRI : 1;
+		uint32_t PIN_33_TRI : 1;
+		uint32_t PIN_32_TRI : 1;
+	} fields;
+	uint32_t v;
+} slcr_MIO_MST_TRI1;
+
+#define slcr_MIO_MST_TRI1_RESERVED_0_LSHIFT 22U
+#define slcr_MIO_MST_TRI1_RESERVED_0_MASK 0xffc00000U
+#define slcr_MIO_MST_TRI1_PIN_53_TRI_LSHIFT 21U
+#define slcr_MIO_MST_TRI1_PIN_53_TRI 0x200000U
+#define slcr_MIO_MST_TRI1_PIN_53_TRI_MASK 0x200000U
+#define slcr_MIO_MST_TRI1_PIN_52_TRI_LSHIFT 20U
+#define slcr_MIO_MST_TRI1_PIN_52_TRI 0x100000U
+#define slcr_MIO_MST_TRI1_PIN_52_TRI_MASK 0x100000U
+#define slcr_MIO_MST_TRI1_PIN_51_TRI_LSHIFT 19U
+#define slcr_MIO_MST_TRI1_PIN_51_TRI 0x80000U
+#define slcr_MIO_MST_TRI1_PIN_51_TRI_MASK 0x80000U
+#define slcr_MIO_MST_TRI1_PIN_50_TRI_LSHIFT 18U
+#define slcr_MIO_MST_TRI1_PIN_50_TRI 0x40000U
+#define slcr_MIO_MST_TRI1_PIN_50_TRI_MASK 0x40000U
+#define slcr_MIO_MST_TRI1_PIN_49_TRI_LSHIFT 17U
+#define slcr_MIO_MST_TRI1_PIN_49_TRI 0x20000U
+#define slcr_MIO_MST_TRI1_PIN_49_TRI_MASK 0x20000U
+#define slcr_MIO_MST_TRI1_PIN_48_TRI_LSHIFT 16U
+#define slcr_MIO_MST_TRI1_PIN_48_TRI 0x10000U
+#define slcr_MIO_MST_TRI1_PIN_48_TRI_MASK 0x10000U
+#define slcr_MIO_MST_TRI1_PIN_47_TRI_LSHIFT 15U
+#define slcr_MIO_MST_TRI1_PIN_47_TRI 0x8000U
+#define slcr_MIO_MST_TRI1_PIN_47_TRI_MASK 0x8000U
+#define slcr_MIO_MST_TRI1_PIN_46_TRI_LSHIFT 14U
+#define slcr_MIO_MST_TRI1_PIN_46_TRI 0x4000U
+#define slcr_MIO_MST_TRI1_PIN_46_TRI_MASK 0x4000U
+#define slcr_MIO_MST_TRI1_PIN_45_TRI_LSHIFT 13U
+#define slcr_MIO_MST_TRI1_PIN_45_TRI 0x2000U
+#define slcr_MIO_MST_TRI1_PIN_45_TRI_MASK 0x2000U
+#define slcr_MIO_MST_TRI1_PIN_44_TRI_LSHIFT 12U
+#define slcr_MIO_MST_TRI1_PIN_44_TRI 0x1000U
+#define slcr_MIO_MST_TRI1_PIN_44_TRI_MASK 0x1000U
+#define slcr_MIO_MST_TRI1_PIN_43_TRI_LSHIFT 11U
+#define slcr_MIO_MST_TRI1_PIN_43_TRI 0x800U
+#define slcr_MIO_MST_TRI1_PIN_43_TRI_MASK 0x800U
+#define slcr_MIO_MST_TRI1_PIN_42_TRI_LSHIFT 10U
+#define slcr_MIO_MST_TRI1_PIN_42_TRI 0x400U
+#define slcr_MIO_MST_TRI1_PIN_42_TRI_MASK 0x400U
+#define slcr_MIO_MST_TRI1_PIN_41_TRI_LSHIFT 9U
+#define slcr_MIO_MST_TRI1_PIN_41_TRI 0x200U
+#define slcr_MIO_MST_TRI1_PIN_41_TRI_MASK 0x200U
+#define slcr_MIO_MST_TRI1_PIN_40_TRI_LSHIFT 8U
+#define slcr_MIO_MST_TRI1_PIN_40_TRI 0x100U
+#define slcr_MIO_MST_TRI1_PIN_40_TRI_MASK 0x100U
+#define slcr_MIO_MST_TRI1_PIN_39_TRI_LSHIFT 7U
+#define slcr_MIO_MST_TRI1_PIN_39_TRI 0x80U
+#define slcr_MIO_MST_TRI1_PIN_39_TRI_MASK 0x80U
+#define slcr_MIO_MST_TRI1_PIN_38_TRI_LSHIFT 6U
+#define slcr_MIO_MST_TRI1_PIN_38_TRI 0x40U
+#define slcr_MIO_MST_TRI1_PIN_38_TRI_MASK 0x40U
+#define slcr_MIO_MST_TRI1_PIN_37_TRI_LSHIFT 5U
+#define slcr_MIO_MST_TRI1_PIN_37_TRI 0x20U
+#define slcr_MIO_MST_TRI1_PIN_37_TRI_MASK 0x20U
+#define slcr_MIO_MST_TRI1_PIN_36_TRI_LSHIFT 4U
+#define slcr_MIO_MST_TRI1_PIN_36_TRI 0x10U
+#define slcr_MIO_MST_TRI1_PIN_36_TRI_MASK 0x10U
+#define slcr_MIO_MST_TRI1_PIN_35_TRI_LSHIFT 3U
+#define slcr_MIO_MST_TRI1_PIN_35_TRI 0x8U
+#define slcr_MIO_MST_TRI1_PIN_35_TRI_MASK 0x8U
+#define slcr_MIO_MST_TRI1_PIN_34_TRI_LSHIFT 2U
+#define slcr_MIO_MST_TRI1_PIN_34_TRI 0x4U
+#define slcr_MIO_MST_TRI1_PIN_34_TRI_MASK 0x4U
+#define slcr_MIO_MST_TRI1_PIN_33_TRI_LSHIFT 1U
+#define slcr_MIO_MST_TRI1_PIN_33_TRI 0x2U
+#define slcr_MIO_MST_TRI1_PIN_33_TRI_MASK 0x2U
+#define slcr_MIO_MST_TRI1_PIN_32_TRI_LSHIFT 0U
+#define slcr_MIO_MST_TRI1_PIN_32_TRI 0x1U
+#define slcr_MIO_MST_TRI1_PIN_32_TRI_MASK 0x1U
+#define slcr_MIO_MST_TRI1_MASK 0x3fffffU
+
+
+// SDIO 0 WP CD select
+#define slcr_SD0_WP_CD_SEL_REG 0x830U
+typedef union slcr_SD0_WP_CD_SEL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 10;
+		uint32_t SDIO0_CD_SEL : 6;
+		uint32_t RESERVED_1 : 10;
+		uint32_t SDIO0_WP_SEL : 6;
+	} fields;
+	uint32_t v;
+} slcr_SD0_WP_CD_SEL;
+
+#define slcr_SD0_WP_CD_SEL_RESERVED_0_LSHIFT 22U
+#define slcr_SD0_WP_CD_SEL_RESERVED_0_MASK 0xffc00000U
+#define slcr_SD0_WP_CD_SEL_SDIO0_CD_SEL_LSHIFT 16U
+#define slcr_SD0_WP_CD_SEL_SDIO0_CD_SEL_MASK 0x3f0000U
+#define slcr_SD0_WP_CD_SEL_RESERVED_1_LSHIFT 6U
+#define slcr_SD0_WP_CD_SEL_RESERVED_1_MASK 0xffc0U
+#define slcr_SD0_WP_CD_SEL_SDIO0_WP_SEL_LSHIFT 0U
+#define slcr_SD0_WP_CD_SEL_SDIO0_WP_SEL_MASK 0x3fU
+#define slcr_SD0_WP_CD_SEL_MASK 0x3f003fU
+
+
+// SDIO 1 WP CD select
+#define slcr_SD1_WP_CD_SEL_REG 0x834U
+typedef union slcr_SD1_WP_CD_SEL
+{
+	struct
+	{
+		uint32_t RESERVED_2 : 10;
+		uint32_t SDIO1_CD_SEL : 6;
+		uint32_t RESERVED_3 : 10;
+		uint32_t SDIO1_WP_SEL : 6;
+	} fields;
+	uint32_t v;
+} slcr_SD1_WP_CD_SEL;
+
+#define slcr_SD1_WP_CD_SEL_RESERVED_2_LSHIFT 22U
+#define slcr_SD1_WP_CD_SEL_RESERVED_2_MASK 0xffc00000U
+#define slcr_SD1_WP_CD_SEL_SDIO1_CD_SEL_LSHIFT 16U
+#define slcr_SD1_WP_CD_SEL_SDIO1_CD_SEL_MASK 0x3f0000U
+#define slcr_SD1_WP_CD_SEL_RESERVED_3_LSHIFT 6U
+#define slcr_SD1_WP_CD_SEL_RESERVED_3_MASK 0xffc0U
+#define slcr_SD1_WP_CD_SEL_SDIO1_WP_SEL_LSHIFT 0U
+#define slcr_SD1_WP_CD_SEL_SDIO1_WP_SEL_MASK 0x3fU
+#define slcr_SD1_WP_CD_SEL_MASK 0x3f003fU
+
+
+// Level Shifters Enable
+#define slcr_LVL_SHFTR_EN_REG 0x900U
+typedef union slcr_LVL_SHFTR_EN
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t RESERVED_1 : 1;
+		uint32_t USER_LVL_SHFTR_EN : 4;
+	} fields;
+	uint32_t v;
+} slcr_LVL_SHFTR_EN;
+
+#define slcr_LVL_SHFTR_EN_RESERVED_0_LSHIFT 5U
+#define slcr_LVL_SHFTR_EN_RESERVED_0_MASK 0xffffffe0U
+#define slcr_LVL_SHFTR_EN_RESERVED_1_LSHIFT 4U
+#define slcr_LVL_SHFTR_EN_RESERVED_1 0x10U
+#define slcr_LVL_SHFTR_EN_RESERVED_1_MASK 0x10U
+#define slcr_LVL_SHFTR_EN_USER_LVL_SHFTR_EN_LSHIFT 0U
+#define slcr_LVL_SHFTR_EN_USER_LVL_SHFTR_EN_MASK 0xfU
+#define slcr_LVL_SHFTR_EN_MASK 0xfU
+
+
+// OCM Address Mapping
+#define slcr_OCM_CFG_REG 0x910U
+typedef union slcr_OCM_CFG
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 27;
+		uint32_t SWAP : 1;
+		uint32_t RAM_HI : 4;
+	} fields;
+	uint32_t v;
+} slcr_OCM_CFG;
+
+#define slcr_OCM_CFG_RESERVED_0_LSHIFT 5U
+#define slcr_OCM_CFG_RESERVED_0_MASK 0xffffffe0U
+#define slcr_OCM_CFG_SWAP_LSHIFT 4U
+#define slcr_OCM_CFG_SWAP 0x10U
+#define slcr_OCM_CFG_SWAP_MASK 0x10U
+#define slcr_OCM_CFG_RAM_HI_LSHIFT 0U
+#define slcr_OCM_CFG_RAM_HI_MASK 0xfU
+#define slcr_OCM_CFG_MASK 0x1fU
+
+
+// Reserved
+#define slcr_Reserved_REG 0xa1cU
+
+
+// PS IO Buffer Control
+#define slcr_GPIOB_CTRL_REG 0xb00U
+typedef union slcr_GPIOB_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t VREF_SW_EN : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+		uint32_t VREF_SEL : 3;
+		uint32_t RESERVED_5 : 1;
+		uint32_t RESERVED_6 : 1;
+		uint32_t RESERVED_7 : 1;
+		uint32_t VREF_EN : 1;
+	} fields;
+	uint32_t v;
+} slcr_GPIOB_CTRL;
+
+#define slcr_GPIOB_CTRL_RESERVED_0_LSHIFT 12U
+#define slcr_GPIOB_CTRL_RESERVED_0_MASK 0xfffff000U
+#define slcr_GPIOB_CTRL_VREF_SW_EN_LSHIFT 11U
+#define slcr_GPIOB_CTRL_VREF_SW_EN 0x800U
+#define slcr_GPIOB_CTRL_VREF_SW_EN_MASK 0x800U
+#define slcr_GPIOB_CTRL_RESERVED_1_LSHIFT 10U
+#define slcr_GPIOB_CTRL_RESERVED_1 0x400U
+#define slcr_GPIOB_CTRL_RESERVED_1_MASK 0x400U
+#define slcr_GPIOB_CTRL_RESERVED_2_LSHIFT 9U
+#define slcr_GPIOB_CTRL_RESERVED_2 0x200U
+#define slcr_GPIOB_CTRL_RESERVED_2_MASK 0x200U
+#define slcr_GPIOB_CTRL_RESERVED_3_LSHIFT 8U
+#define slcr_GPIOB_CTRL_RESERVED_3 0x100U
+#define slcr_GPIOB_CTRL_RESERVED_3_MASK 0x100U
+#define slcr_GPIOB_CTRL_RESERVED_4_LSHIFT 7U
+#define slcr_GPIOB_CTRL_RESERVED_4 0x80U
+#define slcr_GPIOB_CTRL_RESERVED_4_MASK 0x80U
+#define slcr_GPIOB_CTRL_VREF_SEL_LSHIFT 4U
+#define slcr_GPIOB_CTRL_VREF_SEL_MASK 0x70U
+#define slcr_GPIOB_CTRL_RESERVED_5_LSHIFT 3U
+#define slcr_GPIOB_CTRL_RESERVED_5 0x8U
+#define slcr_GPIOB_CTRL_RESERVED_5_MASK 0x8U
+#define slcr_GPIOB_CTRL_RESERVED_6_LSHIFT 2U
+#define slcr_GPIOB_CTRL_RESERVED_6 0x4U
+#define slcr_GPIOB_CTRL_RESERVED_6_MASK 0x4U
+#define slcr_GPIOB_CTRL_RESERVED_7_LSHIFT 1U
+#define slcr_GPIOB_CTRL_RESERVED_7 0x2U
+#define slcr_GPIOB_CTRL_RESERVED_7_MASK 0x2U
+#define slcr_GPIOB_CTRL_VREF_EN_LSHIFT 0U
+#define slcr_GPIOB_CTRL_VREF_EN 0x1U
+#define slcr_GPIOB_CTRL_VREF_EN_MASK 0x1U
+#define slcr_GPIOB_CTRL_MASK 0x871U
+
+
+// MIO GPIOB CMOS 1.8V config
+#define slcr_GPIOB_CFG_CMOS18_REG 0xb04U
+typedef union slcr_GPIOB_CFG_CMOS18
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 4;
+		uint32_t RESERVED_1 : 3;
+		uint32_t RESERVED_2 : 3;
+		uint32_t RESERVED_3 : 3;
+		uint32_t RESERVED_4 : 3;
+		uint32_t RESERVED_5 : 4;
+		uint32_t RESERVED_6 : 4;
+		uint32_t RESERVED_7 : 4;
+		uint32_t RESERVED_8 : 4;
+	} fields;
+	uint32_t v;
+} slcr_GPIOB_CFG_CMOS18;
+
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_0_LSHIFT 28U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_0_MASK 0xf0000000U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_1_LSHIFT 25U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_1_MASK 0xe000000U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_2_LSHIFT 22U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_2_MASK 0x1c00000U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_3_LSHIFT 19U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_3_MASK 0x380000U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_4_LSHIFT 16U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_4_MASK 0x70000U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_5_LSHIFT 12U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_5_MASK 0xf000U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_6_LSHIFT 8U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_6_MASK 0xf00U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_7_LSHIFT 4U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_7_MASK 0xf0U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_8_LSHIFT 0U
+#define slcr_GPIOB_CFG_CMOS18_RESERVED_8_MASK 0xfU
+#define slcr_GPIOB_CFG_CMOS18_MASK 0x0U
+
+
+// MIO GPIOB CMOS 2.5V config
+#define slcr_GPIOB_CFG_CMOS25_REG 0xb08U
+typedef union slcr_GPIOB_CFG_CMOS25
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 4;
+		uint32_t RESERVED_1 : 3;
+		uint32_t RESERVED_2 : 3;
+		uint32_t RESERVED_3 : 3;
+		uint32_t RESERVED_4 : 3;
+		uint32_t RESERVED_5 : 4;
+		uint32_t RESERVED_6 : 4;
+		uint32_t RESERVED_7 : 4;
+		uint32_t RESERVED_8 : 4;
+	} fields;
+	uint32_t v;
+} slcr_GPIOB_CFG_CMOS25;
+
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_0_LSHIFT 28U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_0_MASK 0xf0000000U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_1_LSHIFT 25U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_1_MASK 0xe000000U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_2_LSHIFT 22U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_2_MASK 0x1c00000U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_3_LSHIFT 19U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_3_MASK 0x380000U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_4_LSHIFT 16U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_4_MASK 0x70000U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_5_LSHIFT 12U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_5_MASK 0xf000U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_6_LSHIFT 8U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_6_MASK 0xf00U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_7_LSHIFT 4U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_7_MASK 0xf0U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_8_LSHIFT 0U
+#define slcr_GPIOB_CFG_CMOS25_RESERVED_8_MASK 0xfU
+#define slcr_GPIOB_CFG_CMOS25_MASK 0x0U
+
+
+// MIO GPIOB CMOS 3.3V config
+#define slcr_GPIOB_CFG_CMOS33_REG 0xb0cU
+typedef union slcr_GPIOB_CFG_CMOS33
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 4;
+		uint32_t RESERVED_1 : 3;
+		uint32_t RESERVED_2 : 3;
+		uint32_t RESERVED_3 : 3;
+		uint32_t RESERVED_4 : 3;
+		uint32_t RESERVED_5 : 4;
+		uint32_t RESERVED_6 : 4;
+		uint32_t RESERVED_7 : 4;
+		uint32_t RESERVED_8 : 4;
+	} fields;
+	uint32_t v;
+} slcr_GPIOB_CFG_CMOS33;
+
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_0_LSHIFT 28U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_0_MASK 0xf0000000U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_1_LSHIFT 25U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_1_MASK 0xe000000U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_2_LSHIFT 22U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_2_MASK 0x1c00000U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_3_LSHIFT 19U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_3_MASK 0x380000U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_4_LSHIFT 16U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_4_MASK 0x70000U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_5_LSHIFT 12U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_5_MASK 0xf000U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_6_LSHIFT 8U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_6_MASK 0xf00U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_7_LSHIFT 4U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_7_MASK 0xf0U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_8_LSHIFT 0U
+#define slcr_GPIOB_CFG_CMOS33_RESERVED_8_MASK 0xfU
+#define slcr_GPIOB_CFG_CMOS33_MASK 0x0U
+
+
+// MIO GPIOB HSTL config
+#define slcr_GPIOB_CFG_HSTL_REG 0xb14U
+typedef union slcr_GPIOB_CFG_HSTL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 4;
+		uint32_t RESERVED_1 : 3;
+		uint32_t RESERVED_2 : 3;
+		uint32_t RESERVED_3 : 3;
+		uint32_t RESERVED_4 : 3;
+		uint32_t RESERVED_5 : 4;
+		uint32_t RESERVED_6 : 4;
+		uint32_t RESERVED_7 : 4;
+		uint32_t RESERVED_8 : 4;
+	} fields;
+	uint32_t v;
+} slcr_GPIOB_CFG_HSTL;
+
+#define slcr_GPIOB_CFG_HSTL_RESERVED_0_LSHIFT 28U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_0_MASK 0xf0000000U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_1_LSHIFT 25U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_1_MASK 0xe000000U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_2_LSHIFT 22U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_2_MASK 0x1c00000U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_3_LSHIFT 19U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_3_MASK 0x380000U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_4_LSHIFT 16U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_4_MASK 0x70000U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_5_LSHIFT 12U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_5_MASK 0xf000U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_6_LSHIFT 8U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_6_MASK 0xf00U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_7_LSHIFT 4U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_7_MASK 0xf0U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_8_LSHIFT 0U
+#define slcr_GPIOB_CFG_HSTL_RESERVED_8_MASK 0xfU
+#define slcr_GPIOB_CFG_HSTL_MASK 0x0U
+
+
+// MIO GPIOB Driver Bias Control
+#define slcr_GPIOB_DRVR_BIAS_CTRL_REG 0xb18U
+typedef union slcr_GPIOB_DRVR_BIAS_CTRL
+{
+	struct
+	{
+		uint32_t RB_VCFG : 1;
+		uint32_t RB_DRVR_BIAS : 15;
+		uint32_t LB_VCFG : 1;
+		uint32_t LB_DRVR_BIAS : 15;
+	} fields;
+	uint32_t v;
+} slcr_GPIOB_DRVR_BIAS_CTRL;
+
+#define slcr_GPIOB_DRVR_BIAS_CTRL_RB_VCFG_LSHIFT 31U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_RB_VCFG 0x80000000U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_RB_VCFG_MASK 0x80000000U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_RB_DRVR_BIAS_LSHIFT 16U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_RB_DRVR_BIAS_MASK 0x7fff0000U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_LB_VCFG_LSHIFT 15U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_LB_VCFG 0x8000U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_LB_VCFG_MASK 0x8000U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_LB_DRVR_BIAS_LSHIFT 0U
+#define slcr_GPIOB_DRVR_BIAS_CTRL_LB_DRVR_BIAS_MASK 0x7fffU
+#define slcr_GPIOB_DRVR_BIAS_CTRL_MASK 0xffffffffU
+
+
+// DDR IOB Config for A[14:0], CKE and DRST_B
+#define slcr_DDRIOB_ADDR0_REG 0xb40U
+typedef union slcr_DDRIOB_ADDR0
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_ADDR0;
+
+#define slcr_DDRIOB_ADDR0_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_ADDR0_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_ADDR0_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_ADDR0_PULLUP_EN 0x800U
+#define slcr_DDRIOB_ADDR0_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_ADDR0_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_ADDR0_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_ADDR0_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_ADDR0_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_ADDR0_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_ADDR0_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_ADDR0_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_ADDR0_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_ADDR0_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_ADDR0_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_ADDR0_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_ADDR0_TERM_EN 0x10U
+#define slcr_DDRIOB_ADDR0_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_ADDR0_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_ADDR0_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_ADDR0_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_ADDR0_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_ADDR0_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_ADDR0_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_ADDR0_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_ADDR0_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_ADDR0_MASK 0xffeU
+
+
+// DDR IOB Config for BA[2:0], ODT, CS_B, WE_B, RAS_B and CAS_B
+#define slcr_DDRIOB_ADDR1_REG 0xb44U
+typedef union slcr_DDRIOB_ADDR1
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_ADDR1;
+
+#define slcr_DDRIOB_ADDR1_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_ADDR1_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_ADDR1_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_ADDR1_PULLUP_EN 0x800U
+#define slcr_DDRIOB_ADDR1_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_ADDR1_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_ADDR1_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_ADDR1_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_ADDR1_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_ADDR1_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_ADDR1_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_ADDR1_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_ADDR1_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_ADDR1_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_ADDR1_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_ADDR1_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_ADDR1_TERM_EN 0x10U
+#define slcr_DDRIOB_ADDR1_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_ADDR1_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_ADDR1_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_ADDR1_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_ADDR1_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_ADDR1_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_ADDR1_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_ADDR1_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_ADDR1_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_ADDR1_MASK 0xffeU
+
+
+// DDR IOB Config for Data 15:0
+#define slcr_DDRIOB_DATA0_REG 0xb48U
+typedef union slcr_DDRIOB_DATA0
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DATA0;
+
+#define slcr_DDRIOB_DATA0_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_DATA0_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_DATA0_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_DATA0_PULLUP_EN 0x800U
+#define slcr_DDRIOB_DATA0_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_DATA0_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_DATA0_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_DATA0_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_DATA0_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_DATA0_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_DATA0_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_DATA0_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_DATA0_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_DATA0_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_DATA0_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_DATA0_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_DATA0_TERM_EN 0x10U
+#define slcr_DDRIOB_DATA0_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_DATA0_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_DATA0_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_DATA0_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_DATA0_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_DATA0_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_DATA0_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_DATA0_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_DATA0_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_DATA0_MASK 0xffeU
+
+
+// DDR IOB Config for Data 31:16
+#define slcr_DDRIOB_DATA1_REG 0xb4cU
+typedef union slcr_DDRIOB_DATA1
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DATA1;
+
+#define slcr_DDRIOB_DATA1_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_DATA1_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_DATA1_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_DATA1_PULLUP_EN 0x800U
+#define slcr_DDRIOB_DATA1_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_DATA1_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_DATA1_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_DATA1_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_DATA1_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_DATA1_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_DATA1_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_DATA1_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_DATA1_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_DATA1_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_DATA1_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_DATA1_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_DATA1_TERM_EN 0x10U
+#define slcr_DDRIOB_DATA1_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_DATA1_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_DATA1_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_DATA1_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_DATA1_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_DATA1_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_DATA1_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_DATA1_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_DATA1_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_DATA1_MASK 0xffeU
+
+
+// DDR IOB Config for DQS 1:0
+#define slcr_DDRIOB_DIFF0_REG 0xb50U
+typedef union slcr_DDRIOB_DIFF0
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DIFF0;
+
+#define slcr_DDRIOB_DIFF0_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_DIFF0_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_DIFF0_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_DIFF0_PULLUP_EN 0x800U
+#define slcr_DDRIOB_DIFF0_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_DIFF0_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_DIFF0_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_DIFF0_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_DIFF0_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_DIFF0_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_DIFF0_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_DIFF0_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_DIFF0_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_DIFF0_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_DIFF0_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_DIFF0_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_DIFF0_TERM_EN 0x10U
+#define slcr_DDRIOB_DIFF0_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_DIFF0_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_DIFF0_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_DIFF0_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_DIFF0_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_DIFF0_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_DIFF0_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_DIFF0_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_DIFF0_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_DIFF0_MASK 0xffeU
+
+
+// DDR IOB Config for DQS 3:2
+#define slcr_DDRIOB_DIFF1_REG 0xb54U
+typedef union slcr_DDRIOB_DIFF1
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DIFF1;
+
+#define slcr_DDRIOB_DIFF1_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_DIFF1_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_DIFF1_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_DIFF1_PULLUP_EN 0x800U
+#define slcr_DDRIOB_DIFF1_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_DIFF1_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_DIFF1_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_DIFF1_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_DIFF1_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_DIFF1_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_DIFF1_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_DIFF1_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_DIFF1_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_DIFF1_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_DIFF1_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_DIFF1_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_DIFF1_TERM_EN 0x10U
+#define slcr_DDRIOB_DIFF1_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_DIFF1_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_DIFF1_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_DIFF1_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_DIFF1_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_DIFF1_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_DIFF1_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_DIFF1_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_DIFF1_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_DIFF1_MASK 0xffeU
+
+
+// DDR IOB Config for Clock Output
+#define slcr_DDRIOB_CLOCK_REG 0xb58U
+typedef union slcr_DDRIOB_CLOCK
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 20;
+		uint32_t PULLUP_EN : 1;
+		uint32_t OUTPUT_EN : 2;
+		uint32_t TERM_DISABLE_MODE : 1;
+		uint32_t IBUF_DISABLE_MODE : 1;
+		uint32_t DCI_TYPE : 2;
+		uint32_t TERM_EN : 1;
+		uint32_t DCI_UPDATE_B : 1;
+		uint32_t INP_TYPE : 2;
+		uint32_t RESERVED_INP_POWER : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_CLOCK;
+
+#define slcr_DDRIOB_CLOCK_RESERVED_0_LSHIFT 12U
+#define slcr_DDRIOB_CLOCK_RESERVED_0_MASK 0xfffff000U
+#define slcr_DDRIOB_CLOCK_PULLUP_EN_LSHIFT 11U
+#define slcr_DDRIOB_CLOCK_PULLUP_EN 0x800U
+#define slcr_DDRIOB_CLOCK_PULLUP_EN_MASK 0x800U
+#define slcr_DDRIOB_CLOCK_OUTPUT_EN_LSHIFT 9U
+#define slcr_DDRIOB_CLOCK_OUTPUT_EN_MASK 0x600U
+#define slcr_DDRIOB_CLOCK_TERM_DISABLE_MODE_LSHIFT 8U
+#define slcr_DDRIOB_CLOCK_TERM_DISABLE_MODE 0x100U
+#define slcr_DDRIOB_CLOCK_TERM_DISABLE_MODE_MASK 0x100U
+#define slcr_DDRIOB_CLOCK_IBUF_DISABLE_MODE_LSHIFT 7U
+#define slcr_DDRIOB_CLOCK_IBUF_DISABLE_MODE 0x80U
+#define slcr_DDRIOB_CLOCK_IBUF_DISABLE_MODE_MASK 0x80U
+#define slcr_DDRIOB_CLOCK_DCI_TYPE_LSHIFT 5U
+#define slcr_DDRIOB_CLOCK_DCI_TYPE_MASK 0x60U
+#define slcr_DDRIOB_CLOCK_TERM_EN_LSHIFT 4U
+#define slcr_DDRIOB_CLOCK_TERM_EN 0x10U
+#define slcr_DDRIOB_CLOCK_TERM_EN_MASK 0x10U
+#define slcr_DDRIOB_CLOCK_DCI_UPDATE_B_LSHIFT 3U
+#define slcr_DDRIOB_CLOCK_DCI_UPDATE_B 0x8U
+#define slcr_DDRIOB_CLOCK_DCI_UPDATE_B_MASK 0x8U
+#define slcr_DDRIOB_CLOCK_INP_TYPE_LSHIFT 1U
+#define slcr_DDRIOB_CLOCK_INP_TYPE_MASK 0x6U
+#define slcr_DDRIOB_CLOCK_RESERVED_INP_POWER_LSHIFT 0U
+#define slcr_DDRIOB_CLOCK_RESERVED_INP_POWER 0x1U
+#define slcr_DDRIOB_CLOCK_RESERVED_INP_POWER_MASK 0x1U
+#define slcr_DDRIOB_CLOCK_MASK 0xffeU
+
+
+// Drive and Slew controls for Address and Command pins of the DDR Interface
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_REG 0xb5cU
+typedef union slcr_DDRIOB_DRIVE_SLEW_ADDR
+{
+	struct
+	{
+		uint32_t RESERVED_RTERM : 5;
+		uint32_t RESERVED_GTL : 3;
+		uint32_t RESERVED_SLEW_N : 5;
+		uint32_t RESERVED_SLEW_P : 5;
+		uint32_t RESERVED_DRIVE_N : 7;
+		uint32_t RESERVED_DRIVE_P : 7;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DRIVE_SLEW_ADDR;
+
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_RTERM_LSHIFT 27U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_RTERM_MASK 0xf8000000U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_GTL_LSHIFT 24U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_GTL_MASK 0x7000000U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_SLEW_N_LSHIFT 19U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_SLEW_N_MASK 0xf80000U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_SLEW_P_LSHIFT 14U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_SLEW_P_MASK 0x7c000U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_DRIVE_N_LSHIFT 7U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_DRIVE_N_MASK 0x3f80U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_DRIVE_P_LSHIFT 0U
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_RESERVED_DRIVE_P_MASK 0x7fU
+#define slcr_DDRIOB_DRIVE_SLEW_ADDR_MASK 0x0U
+
+
+// Drive and Slew controls for DQ pins of the DDR Interface
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_REG 0xb60U
+typedef union slcr_DDRIOB_DRIVE_SLEW_DATA
+{
+	struct
+	{
+		uint32_t RESERVED_RTERM : 5;
+		uint32_t RESERVED_GTL : 3;
+		uint32_t RESERVED_SLEW_N : 5;
+		uint32_t RESERVED_SLEW_P : 5;
+		uint32_t RESERVED_DRIVE_N : 7;
+		uint32_t RESERVED_DRIVE_P : 7;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DRIVE_SLEW_DATA;
+
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_RTERM_LSHIFT 27U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_RTERM_MASK 0xf8000000U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_GTL_LSHIFT 24U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_GTL_MASK 0x7000000U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_SLEW_N_LSHIFT 19U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_SLEW_N_MASK 0xf80000U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_SLEW_P_LSHIFT 14U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_SLEW_P_MASK 0x7c000U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_DRIVE_N_LSHIFT 7U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_DRIVE_N_MASK 0x3f80U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_DRIVE_P_LSHIFT 0U
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_RESERVED_DRIVE_P_MASK 0x7fU
+#define slcr_DDRIOB_DRIVE_SLEW_DATA_MASK 0x0U
+
+
+// Drive and Slew controls for DQS pins of the DDR Interface
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_REG 0xb64U
+typedef union slcr_DDRIOB_DRIVE_SLEW_DIFF
+{
+	struct
+	{
+		uint32_t RESERVED_RTERM : 5;
+		uint32_t RESERVED_GTL : 3;
+		uint32_t RESERVED_SLEW_N : 5;
+		uint32_t RESERVED_SLEW_P : 5;
+		uint32_t RESERVED_DRIVE_N : 7;
+		uint32_t RESERVED_DRIVE_P : 7;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DRIVE_SLEW_DIFF;
+
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_RTERM_LSHIFT 27U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_RTERM_MASK 0xf8000000U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_GTL_LSHIFT 24U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_GTL_MASK 0x7000000U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_SLEW_N_LSHIFT 19U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_SLEW_N_MASK 0xf80000U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_SLEW_P_LSHIFT 14U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_SLEW_P_MASK 0x7c000U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_DRIVE_N_LSHIFT 7U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_DRIVE_N_MASK 0x3f80U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_DRIVE_P_LSHIFT 0U
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_RESERVED_DRIVE_P_MASK 0x7fU
+#define slcr_DDRIOB_DRIVE_SLEW_DIFF_MASK 0x0U
+
+
+// Drive and Slew controls for Clock pins of the DDR Interface
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_REG 0xb68U
+typedef union slcr_DDRIOB_DRIVE_SLEW_CLOCK
+{
+	struct
+	{
+		uint32_t RESERVED_RTERM : 5;
+		uint32_t RESERVED_GTL : 3;
+		uint32_t RESERVED_SLEW_N : 5;
+		uint32_t RESERVED_SLEW_P : 5;
+		uint32_t RESERVED_DRIVE_N : 7;
+		uint32_t RESERVED_DRIVE_P : 7;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DRIVE_SLEW_CLOCK;
+
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_RTERM_LSHIFT 27U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_RTERM_MASK 0xf8000000U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_GTL_LSHIFT 24U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_GTL_MASK 0x7000000U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_SLEW_N_LSHIFT 19U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_SLEW_N_MASK 0xf80000U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_SLEW_P_LSHIFT 14U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_SLEW_P_MASK 0x7c000U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_DRIVE_N_LSHIFT 7U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_DRIVE_N_MASK 0x3f80U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_DRIVE_P_LSHIFT 0U
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_RESERVED_DRIVE_P_MASK 0x7fU
+#define slcr_DDRIOB_DRIVE_SLEW_CLOCK_MASK 0x0U
+
+
+// DDR IOB Buffer Control Register Name Address Width DDRIOB_DCI_CTRL 0x00000B70 32 rw 0x00000020 DDR IOB DCI Config
+#define slcr_DDRIOB_DDR_CTRL_REG 0xb6cU
+typedef union slcr_DDRIOB_DDR_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 17;
+		uint32_t RESERVED_CKE_PULLUP_EN : 1;
+		uint32_t RESERVED_DRST_B_PULLUP_EN : 1;
+		uint32_t RESERVED_REFIO_PULLUP_EN : 1;
+		uint32_t RESERVED_REFIO_TEST : 2;
+		uint32_t REFIO_EN : 1;
+		uint32_t RESERVED_VREF_PULLUP_EN : 2;
+		uint32_t VREF_EXT_EN : 2;
+		uint32_t VREF_SEL : 4;
+		uint32_t VREF_INT_EN : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DDR_CTRL;
+
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_0_LSHIFT 15U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_0_MASK 0xffff8000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_CKE_PULLUP_EN_LSHIFT 14U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_CKE_PULLUP_EN 0x4000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_CKE_PULLUP_EN_MASK 0x4000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_DRST_B_PULLUP_EN_LSHIFT 13U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_DRST_B_PULLUP_EN 0x2000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_DRST_B_PULLUP_EN_MASK 0x2000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_REFIO_PULLUP_EN_LSHIFT 12U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_REFIO_PULLUP_EN 0x1000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_REFIO_PULLUP_EN_MASK 0x1000U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_REFIO_TEST_LSHIFT 10U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_REFIO_TEST_MASK 0xc00U
+#define slcr_DDRIOB_DDR_CTRL_REFIO_EN_LSHIFT 9U
+#define slcr_DDRIOB_DDR_CTRL_REFIO_EN 0x200U
+#define slcr_DDRIOB_DDR_CTRL_REFIO_EN_MASK 0x200U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_VREF_PULLUP_EN_LSHIFT 7U
+#define slcr_DDRIOB_DDR_CTRL_RESERVED_VREF_PULLUP_EN_MASK 0x180U
+#define slcr_DDRIOB_DDR_CTRL_VREF_EXT_EN_LSHIFT 5U
+#define slcr_DDRIOB_DDR_CTRL_VREF_EXT_EN_MASK 0x60U
+#define slcr_DDRIOB_DDR_CTRL_VREF_SEL_LSHIFT 1U
+#define slcr_DDRIOB_DDR_CTRL_VREF_SEL_MASK 0x1eU
+#define slcr_DDRIOB_DDR_CTRL_VREF_INT_EN_LSHIFT 0U
+#define slcr_DDRIOB_DDR_CTRL_VREF_INT_EN 0x1U
+#define slcr_DDRIOB_DDR_CTRL_VREF_INT_EN_MASK 0x1U
+#define slcr_DDRIOB_DDR_CTRL_MASK 0x27fU
+
+
+// DDR IOB DCI Config
+#define slcr_DDRIOB_DCI_CTRL_REG 0xb70U
+typedef union slcr_DDRIOB_DCI_CTRL
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 4;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_INT_DCI_EN : 1;
+		uint32_t RESERVED_TST_RST : 1;
+		uint32_t RESERVED_TST_HLP : 1;
+		uint32_t RESERVED_TST_HLN : 1;
+		uint32_t RESERVED_TST_CLK : 1;
+		uint32_t RESERVED_INIT_COMPLETE : 1;
+		uint32_t UPDATE_CONTROL : 1;
+		uint32_t PREF_OPT2 : 3;
+		uint32_t RESERVED_8 : 1;
+		uint32_t PREF_OPT1 : 2;
+		uint32_t NREF_OPT4 : 3;
+		uint32_t NREF_OPT2 : 3;
+		uint32_t NREF_OPT1 : 2;
+		uint32_t RESERVED_VRN_OUT : 1;
+		uint32_t RESERVED_VRP_OUT : 1;
+		uint32_t RESERVED_VRN_TRI : 1;
+		uint32_t RESERVED_VRP_TRI : 1;
+		uint32_t ENABLE : 1;
+		uint32_t RESET : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DCI_CTRL;
+
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_0_LSHIFT 28U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_0_MASK 0xf0000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_1_LSHIFT 27U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_1 0x8000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_1_MASK 0x8000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_INT_DCI_EN_LSHIFT 26U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_INT_DCI_EN 0x4000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_INT_DCI_EN_MASK 0x4000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_RST_LSHIFT 25U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_RST 0x2000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_RST_MASK 0x2000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_HLP_LSHIFT 24U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_HLP 0x1000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_HLP_MASK 0x1000000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_HLN_LSHIFT 23U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_HLN 0x800000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_HLN_MASK 0x800000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_CLK_LSHIFT 22U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_CLK 0x400000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_TST_CLK_MASK 0x400000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_INIT_COMPLETE_LSHIFT 21U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_INIT_COMPLETE 0x200000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_INIT_COMPLETE_MASK 0x200000U
+#define slcr_DDRIOB_DCI_CTRL_UPDATE_CONTROL_LSHIFT 20U
+#define slcr_DDRIOB_DCI_CTRL_UPDATE_CONTROL 0x100000U
+#define slcr_DDRIOB_DCI_CTRL_UPDATE_CONTROL_MASK 0x100000U
+#define slcr_DDRIOB_DCI_CTRL_PREF_OPT2_LSHIFT 17U
+#define slcr_DDRIOB_DCI_CTRL_PREF_OPT2_MASK 0xe0000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_8_LSHIFT 16U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_8 0x10000U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_8_MASK 0x10000U
+#define slcr_DDRIOB_DCI_CTRL_PREF_OPT1_LSHIFT 14U
+#define slcr_DDRIOB_DCI_CTRL_PREF_OPT1_MASK 0xc000U
+#define slcr_DDRIOB_DCI_CTRL_NREF_OPT4_LSHIFT 11U
+#define slcr_DDRIOB_DCI_CTRL_NREF_OPT4_MASK 0x3800U
+#define slcr_DDRIOB_DCI_CTRL_NREF_OPT2_LSHIFT 8U
+#define slcr_DDRIOB_DCI_CTRL_NREF_OPT2_MASK 0x700U
+#define slcr_DDRIOB_DCI_CTRL_NREF_OPT1_LSHIFT 6U
+#define slcr_DDRIOB_DCI_CTRL_NREF_OPT1_MASK 0xc0U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRN_OUT_LSHIFT 5U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRN_OUT 0x20U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRN_OUT_MASK 0x20U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRP_OUT_LSHIFT 4U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRP_OUT 0x10U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRP_OUT_MASK 0x10U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRN_TRI_LSHIFT 3U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRN_TRI 0x8U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRN_TRI_MASK 0x8U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRP_TRI_LSHIFT 2U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRP_TRI 0x4U
+#define slcr_DDRIOB_DCI_CTRL_RESERVED_VRP_TRI_MASK 0x4U
+#define slcr_DDRIOB_DCI_CTRL_ENABLE_LSHIFT 1U
+#define slcr_DDRIOB_DCI_CTRL_ENABLE 0x2U
+#define slcr_DDRIOB_DCI_CTRL_ENABLE_MASK 0x2U
+#define slcr_DDRIOB_DCI_CTRL_RESET_LSHIFT 0U
+#define slcr_DDRIOB_DCI_CTRL_RESET 0x1U
+#define slcr_DDRIOB_DCI_CTRL_RESET_MASK 0x1U
+#define slcr_DDRIOB_DCI_CTRL_MASK 0x1effc3U
+
+
+// DDR IO Buffer DCI Status
+#define slcr_DDRIOB_DCI_STATUS_REG 0xb74U
+typedef union slcr_DDRIOB_DCI_STATUS
+{
+	struct
+	{
+		uint32_t RESERVED_0 : 18;
+		uint32_t DONE : 1;
+		uint32_t RESERVED_1 : 1;
+		uint32_t RESERVED_2 : 1;
+		uint32_t RESERVED_3 : 1;
+		uint32_t RESERVED_4 : 1;
+		uint32_t RESERVED_5 : 1;
+		uint32_t RESERVED_6 : 1;
+		uint32_t RESERVED_7 : 1;
+		uint32_t RESERVED_8 : 1;
+		uint32_t RESERVED_9 : 2;
+		uint32_t RESERVED_10 : 1;
+		uint32_t RESERVED_11 : 1;
+		uint32_t LOCK : 1;
+	} fields;
+	uint32_t v;
+} slcr_DDRIOB_DCI_STATUS;
+
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_0_LSHIFT 14U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_0_MASK 0xffffc000U
+#define slcr_DDRIOB_DCI_STATUS_DONE_LSHIFT 13U
+#define slcr_DDRIOB_DCI_STATUS_DONE 0x2000U
+#define slcr_DDRIOB_DCI_STATUS_DONE_MASK 0x2000U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_1_LSHIFT 12U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_1 0x1000U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_1_MASK 0x1000U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_2_LSHIFT 11U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_2 0x800U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_2_MASK 0x800U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_3_LSHIFT 10U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_3 0x400U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_3_MASK 0x400U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_4_LSHIFT 9U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_4 0x200U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_4_MASK 0x200U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_5_LSHIFT 8U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_5 0x100U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_5_MASK 0x100U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_6_LSHIFT 7U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_6 0x80U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_6_MASK 0x80U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_7_LSHIFT 6U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_7 0x40U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_7_MASK 0x40U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_8_LSHIFT 5U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_8 0x20U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_8_MASK 0x20U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_9_LSHIFT 3U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_9_MASK 0x18U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_10_LSHIFT 2U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_10 0x4U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_10_MASK 0x4U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_11_LSHIFT 1U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_11 0x2U
+#define slcr_DDRIOB_DCI_STATUS_RESERVED_11_MASK 0x2U
+#define slcr_DDRIOB_DCI_STATUS_LOCK_LSHIFT 0U
+#define slcr_DDRIOB_DCI_STATUS_LOCK 0x1U
+#define slcr_DDRIOB_DCI_STATUS_LOCK_MASK 0x1U
+#define slcr_DDRIOB_DCI_STATUS_MASK 0x2001U
+
+

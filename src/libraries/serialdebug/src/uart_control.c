@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "uart_control.h"
-#include "uart.h"
-#include "hw_regs.h"
+#include "hw/uart.h"
+#include "hw/regs.h"
 
 void debug_set_uart_freq(debug_uart_freq freq)
 {
@@ -43,4 +43,15 @@ void debug_set_uart_fifo_size(uint32_t size)
         *HW_MB_REG(uart, 0, RX_FIFO_TRIGGER_LEVEL) = size;
         *HW_MB_REG(uart, 0, TX_FIFO_TRIGGER_LEVEL) = size;
     }
+}
+
+#define IsTransmitEmpty() ((*HW_MB_REG(uart, 0, SR) & uart_SR_TXEMPTY_MASK) == uart_SR_TXEMPTY_MASK)
+
+void debug_uart_stall_till_transmit_fifo_is_empty()
+{
+    while (!IsTransmitEmpty())
+    {
+        // do nothing
+    }
+    
 }

@@ -17,10 +17,13 @@
 #define STOUL_HEX(str, a) STOUL(str, a, 16)
 
 
-RegisterBank::RegisterBank( std::string const & name_,
+RegisterBank::RegisterBank( 
+                std::string const & name_,
+                std::string const & description_,
                 const char * xilinxRegisterTxt,
                 const char * xilinxFieldTxt) : 
-    name(name_)
+    name(name_),
+    description(description_)
 {
     ParseRegisterText(xilinxRegisterTxt);
     ParseFieldText(xilinxFieldTxt);

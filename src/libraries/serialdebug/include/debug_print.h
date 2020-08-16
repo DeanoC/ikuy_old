@@ -27,6 +27,11 @@
 #define DEBUG_CLR_LINE_CURSOR_TO_BEGIN "\x1b[1dK"
 #define DEBUG_CLR_LINE_CURSOR_TO_END "\x1b[0dK"
 
+#define DEBUG_CURSOR_UP "\x1b[1A"
+#define DEBUG_CURSOR_DOWN "\x1b[1B"
+#define DEBUG_CURSOR_LEFT "\x1b[1C"
+#define DEBUG_CURSOR_RIGHT "\x1b[1D"
+
 void debug_print(char const * const text);
 void debug_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 

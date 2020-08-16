@@ -20,7 +20,7 @@ CXXFLAGS   := -Wall -Wextra \
 			  -DGIT_VERSION=u\"$(GIT_VERSION)\" \
 			  -std=c++2a 
 
-IMM_DIR	   :=$(GEN_DIR)/software/$(PACKAGE)
+IMM_DIR	   :=$(GEN_DIR)/sdk
 OBJ_DIR    := $(IMM_DIR)/obj
 
 CSOURCES   := $(wildcard $(SRC_DIR)/*.c)
@@ -34,7 +34,7 @@ VPATH      := $(SRC_DIR)
 QUIET      := @
 
 ALL        := all
-TARGET     := $(GEN_DIR)/sdk/bin/$(PACKAGE)
+TARGET     := $(GEN_DIR)/sdk/$(PACKAGE)
 CLEAN      := clean
 
 $(ALL): $(TARGET)
@@ -61,11 +61,13 @@ clean:
 	-$(QUIET) $(RM) $(TARGET)
 
 generate-sdk: ${ALL} 
-	-$(QUIET) $(TARGET)
+	$(QUIET) mkdir -p $(SDK_DIR)
+	$(QUIET) mkdir -p $(SDK_DIR)/hw
+	$(QUIET) $(TARGET)
 	$(MAKE) copy_headers 
 
 copy_headers:
-	-$(QUIET) $(COPY) $(wildcard $(GEN_DIR)/sdk/*.h) $(SDK_DIR)
+	-$(QUIET) $(COPY) $(wildcard $(GEN_DIR)/sdk/*.h) $(SDK_DIR)/hw
 
 
 include $(wildcard $(OBJ_DIR)/*.d)

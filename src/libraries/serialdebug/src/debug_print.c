@@ -1,6 +1,6 @@
 #include <stdint.h>
-#include <uart.h>
-#include <hw_regs.h>
+#include <hw/uart.h>
+#include <hw/regs.h>
 #include "snprintf.h"
 
 #define IsTransmitFull() ((*HW_MB_REG(uart, 0, SR) & uart_SR_TXFULL_MASK) == uart_SR_TXFULL_MASK)

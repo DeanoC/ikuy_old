@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// Device (PL) Config
+
 // 1 bank of devcfg
 
 #define devcfg_BASE_ADDR 0xf8007000U

@@ -1,5 +1,10 @@
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "ps_init_program.h"
-#include <ddrc.h>
+#include <hw/ddrc.h>
+#include "hw/memory_map.h"
+#include "debug_print.h"
 
 #define REG(reg)(ddrc_##reg##_REG)
 #define MASK(field) (ddrc_##field##_MASK)
@@ -256,3 +261,33 @@ void ddrcRunInitProgram()
 }
 #endif
 
+bool ddrEarlyMemTest()
+{
+    // the early test just does a MB as we the CPU might be 
+    // throttled down at this point
+
+    uint32_t const TEST_AMOUNT = (1024 * 1024 * 1);
+
+    uint8_t *addr = (uint8_t *)MEM_MAP_DDR_START;
+    for (uint32_t i = 0; i < TEST_AMOUNT;++i)
+    {
+        *addr = 0xdc;
+        if ((*addr) != 0xdc)
+        {
+            return false;
+        }
+        addr++;
+    }
+
+    addr = (uint8_t*)MEM_MAP_DDR_START;
+    for (uint32_t i = 0; i < TEST_AMOUNT; ++i)
+    {
+        if((*addr) != 0xdc) 
+        {
+            return false;
+        }
+        addr++;
+    }
+
+    return true;
+}

@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+// UART (serial)
+
 // 2 banks of uart
 
 #define uart0_BASE_ADDR 0xe0000000U

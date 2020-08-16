@@ -40,6 +40,8 @@ void RegisterBankImplementations::GenerateRegisterStructures()
     s << "#pragma once\n";
     s << "#include <stdint.h>\n";
 
+
+    s << "\n// " << bank.description << "\n";
     s << "\n// " << hw.size() << " bank" << (hw.size() > 1 ? "s" : "") << " of " << bank.name << "\n\n";
 
 
