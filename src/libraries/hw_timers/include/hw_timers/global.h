@@ -6,3 +6,5 @@
 void hw_timers_global_reset();
 
 uint64_t hw_timers_global_get();
+
+float hw_timers_global_get_elapsed(uint64_t start, uint64_t end);

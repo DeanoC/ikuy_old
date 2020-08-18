@@ -2,22 +2,23 @@ OUTPUT_FORMAT("elf32-littlearm", "elf32-littlearm", "elf32-littlearm")
 OUTPUT_ARCH(arm)
 
 _SVC_STACK_SIZE = DEFINED(_SVC_STACK_SIZE) ? _SVC_STACK_SIZE : 0x1000; /* 4K stack */
-_IRQ_STACK_SIZE = DEFINED(_IRQ_STACK_SIZE) ? _IRQ_STACK_SIZE : 0x0400; /* 1K stack */
-_FIQ_STACK_SIZE = DEFINED(_FIQ_STACK_SIZE) ? _FIQ_STACK_SIZE : 0x0400; /* 1K stack */
+_IRQ_STACK_SIZE = DEFINED(_IRQ_STACK_SIZE) ? _IRQ_STACK_SIZE : 0x0800; /* 2K stack */
+_FIQ_STACK_SIZE = DEFINED(_FIQ_STACK_SIZE) ? _FIQ_STACK_SIZE : 0x0800; /* 2K stack */
+_ABORT_STACK_SIZE = DEFINED(_ABORT_STACK_SIZE) ? _ABORT_STACK_SIZE : 0x0800; /* 2K stack */
 
-ENTRY(_Reset)
+ENTRY(_reset)
 
 /* At boot znyq use the OCM as its only RAM, 
     192K is mapped low
     64K is mapped high (minus a small bit)
 
     code and data live in the low chunk
-    6K (by default) of stack lives in the top chunk 
+    10K (by default) of stack lives in the top chunk 
 */
 MEMORY
 {
    ps7_ram_0_S_AXI_BASEADDR : ORIGIN = 0x00000000, LENGTH = 192K
-   ps7_ram_1_S_AXI_BASEADDR : ORIGIN = 0xFFFF0000, LENGTH = 0x0000FE00
+   ps7_ram_1_S_AXI_BASEADDR : ORIGIN = 0xFFFF0000, LENGTH = 65024 /* not 64K to leave space for cpu1 jump*/
 }
 
 SECTIONS
@@ -46,6 +47,7 @@ SECTIONS
         _bss_end = .;
     } > ps7_ram_0_S_AXI_BASEADDR
 
+
     .stack (NOLOAD) : 
     {
         . = ALIGN(16);
@@ -60,7 +62,10 @@ SECTIONS
         . += _FIQ_STACK_SIZE;
         . = ALIGN(16);
         _fiq_stack_start = .;
+        _abort_stack_end = .;
+        . += _ABORT_STACK_SIZE;
+        . = ALIGN(16);
+        _abort_stack_start = .;
+
     } > ps7_ram_1_S_AXI_BASEADDR
 }
-
-ENTRY(_Reset)

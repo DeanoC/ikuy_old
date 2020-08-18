@@ -1,5 +1,6 @@
 #include "hw_timers/global.h"
 #include "hw/scu.h"
+#include "hw/slcr.h"
 #include "hw/reg.h"
 
 void hw_timers_global_reset()
@@ -24,4 +25,16 @@ redo:
 
     uint64_t counter = ((uint64_t)hi) << 32UL | ((uint64_t)lo);
     return counter;
+}
+
+float hw_timers_global_get_elapsed(uint64_t start, uint64_t end)
+{
+    uint32_t const refClock = 50 * 1024 * 1024;
+    uint32_t const armPllMul = HW_REG_GET_FIELD(slcr,ARM_PLL_CTRL, PLL_FDIV);
+    uint32_t const armClockDiv = HW_REG_GET_FIELD(slcr, ARM_CLK_CTRL, DIVISOR);
+
+    // global clock works at half cpu clock speed
+    float elapsed =(float)(end - start);
+    float time = elapsed / ((float)((refClock * armPllMul) / (armClockDiv * 2)));
+    return time;
 }

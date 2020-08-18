@@ -9,7 +9,7 @@ set(CMAKE_ASM_COMPILER "arm-none-eabi-as")
 set(CMAKE_OBJCOPY "arm-none-eabi-objcopy")
 
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -ggdb")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostartfiles -nostdlib -nostdinc -Wall -ggdb -Wno-builtin-declaration-mismatch -lgcc")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fpic -nostartfiles -nostdlib -nostdinc -Wall -ggdb -Wno-builtin-declaration-mismatch -lgcc")
 include_directories(libraries/a9sdk SYSTEM)
 
 project(ikuy C)

@@ -1,4 +1,7 @@
 #pragma once
+// Copyright Deano Calver
+// SPDX-License-Identifier: MIT
+
 #include <stdint.h>
 
 // GPIO
