@@ -20,31 +20,32 @@ extern void ddrcRunInitProgram();
 extern void uartRunInitProgram();
 
 extern void move_ocm_high(void);
+extern void ready_cpu1(void);
 
 bool ddrEarlyMemTest();
 
 
 void software_interrupt()
 {
-    debug_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
     while (1)
     {
+        debug_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
     }
 }
 
 void irq_interrupt()
 {
-    debug_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
     while (1)
     {
+        debug_print(DEBUG_RED_PEN "IRQ INTERRUPT\n");
     }
 }
 
 void fiq_interrupt()
 {
-    debug_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
     while (1)
     {
+        debug_print(DEBUG_RED_PEN "FIQ INTERRUPT\n");
     }
 }
 
@@ -105,13 +106,23 @@ int main(int argc, char const *argv[])
 
     debug_printf(DEBUG_WHITE_PEN "Moving boot low OCM to DDR ");
     move_ocm_high();
-    // low ocm doesn't exist now and we are running from DDR   
- 
     debug_print(DEBUG_GREEN_PEN "OK\n");
+    // low ocm doesn't exist now and we are running from DDR   
 /*
     uint32_t v = arm_cop_main_id();
     debug_printf("main id 0x%.08x\n", v);
 */
+
+    while (1)
+    {
+//        debug_print(".");
+        // infinite loop
+    }
+}
+
+void cpu1_main()
+{
+    debug_print("cpu1 up");
     while (1)
     {
         // infinite loop
@@ -120,6 +131,8 @@ int main(int argc, char const *argv[])
 
 void abort_exception(uint32_t type, uint32_t lr)
 {
+    while(1)
+    {
+    }
     debug_print(DEBUG_RED_PEN "ABORT EXCEPTION\n");
-    while(1){}
 }

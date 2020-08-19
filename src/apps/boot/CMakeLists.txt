@@ -2,7 +2,9 @@ set(project boot)
 project(${project} C ASM)
 
 file(GLOB LINKSCRIPT boot.ld)
-set(ASMFILES startup.s)
+set(ASMFILES startup.S
+    mmu_table.S
+)
 set(SRCLIST main.c
             ps_init_program.c
             slcr_init.c
