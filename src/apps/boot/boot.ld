@@ -30,6 +30,9 @@ SECTIONS
         *(.vector_table)
         *(.text*)
         *(.rodata*)
+        *(.igot.plt)
+        *(.got.plt)
+        *(.got)
      } > ps7_ram_0_S_AXI_BASEADDR
     _text_end = .;
     
@@ -40,6 +43,12 @@ SECTIONS
         . = ALIGN(8);
         _data_end = .;
     } > ps7_ram_0_S_AXI_BASEADDR
+
+    .arm : AT(ADDR(.data) + SIZEOF(.data))
+    {
+        . = ALIGN(8);
+        *(.ARM.exidx)
+    }  > ps7_ram_0_S_AXI_BASEADDR
     
     .bss : 
     {
@@ -49,11 +58,21 @@ SECTIONS
         _bss_end = .;
     } > ps7_ram_0_S_AXI_BASEADDR
 
+    .hi_ocm_data :
+    {
+        _mmu_start = .;
+        *(.mmu_tbl)
+        _mmu_end = .;
+    } > ps7_ram_1_S_AXI_BASEADDR
 
-    .stack (NOLOAD) : 
+    .stack (NOLOAD) : AT(ADDR(.hi_ocm_data) + SIZEOF(.hi_ocm_data))
     {
         . = ALIGN(16);
         _cpu1_wait_resume = .;
+        . += 4;
+        debug_uart_lock = .;
+        . += 4;
+        ddr_reserved_top = .; /* highest ddr address not used */
         . += 4;
         . = ALIGN(16);
         _svc_stack_end = .;

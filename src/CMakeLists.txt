@@ -16,7 +16,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostartfiles -nostdlib -nostdinc")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -ggdb -Wno-builtin-declaration-mismatch")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lgcc")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcpu=cortex-a9")
-include_directories(libraries/a9sdk SYSTEM)
+include_directories(libraries/a9sdk/include SYSTEM)
 
 project(ikuy C)
 

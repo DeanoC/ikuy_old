@@ -22,6 +22,10 @@
 .global move_ocm_high 
 .global abort_exception
 .global cpu1_wait_loop
+.global get_core_id
+.global wake_cpu1
+.global own_uart
+.global release_uart
 
 _reset:
     b _asm_start
@@ -34,6 +38,7 @@ _reset:
     b fiq_interrupt /* 0x1C FIQ */
 
     .section .text
+.set CRValMmuCac,	0b0100000000000001	/* Enable IDC, and MMU */
 
 _asm_start:
     ldr r0, =_cpu1_wait_resume
@@ -41,12 +46,15 @@ _asm_start:
     str r1, [r0]
 
     // if cpu 1 get here jump to cpu_setup
-	mrc	p15,0,r1,c0,c0,5
-	and	r1, r1, #0xf
-    cmp	r1, #1
+	mrc	p15,0,r0,c0,c0,5
+	and	r0, r0, #0xf
+    cmp	r0, #1
     beq cpu1_wait_loop
 
     // if we got here we are cpu 0   
+    ldr r0, = debug_uart_lock
+    mov r1, #0
+    str r1, [r0]
 
 clear_ocm_stacks:
     // clear all stack memory to 0xDCDCDCDC
@@ -72,7 +80,6 @@ clear_stack_loop:
     // our 'real' stack (SUPERVISOR mode)
     msr cpsr_c, MODE_SVC       
     ldr sp, =_svc_stack_start
-    
     /* Start copying data */
     ldr r0, =_text_end
     ldr r1, =_data_start
@@ -162,9 +169,44 @@ ocmlo_loop:
     ldr r1, =#0x0000767B
     str r1, [r0]
 
+    // set the ddr reserve top to 0
+    ldr r0, =ddr_reserved_top
+    mov r1, #0
+    str r1, [r0]
+
     // at this point OCM is now mapped high (low OCM addresses are now 
     // exceptions). the stacks are still mapped into the top of
     // OCM high and CPU1 is waiting for a wake up event there as well.
+
+	// set scu enable bit in scu
+	ldr	r1, =0xf8f00000
+	ldr	r0, [r1]
+	orr	r0, r0, #0x1
+	str	r0, [r1]
+
+    // enable smp mode for both cores
+	ldr	r1, =0xf8f00004
+	ldr	r0, [r1]
+	orr	r0, r0, #0x30
+	str	r0, [r1]
+
+	// enable MMU
+	ldr	r0,=MMUTable			// Load MMU translation table base */
+	orr	r0, r0, #0x5B			// Outer-cacheable, WB */
+	mcr	15, 0, r0, c2, c0, 0	// TTB0
+	mvn	r0,#0				    // Load MMU domains -- all ones=manager
+	mcr	p15,0,r0, c3, c0,0
+	ldr	r0,=#0x1                // mmu only
+	mcr	p15,0,r0,c1,c0,0		
+	dsb					        // dsb	allow the MMU to start up
+	isb					        // isb	flush prefetch buffer
+
+	/* Write to ACTLR */
+	mrc	p15, 0, r0, c1, c0, 1		// Read ACTLR
+	orr	r0, r0, #(0x01 << 6)		// set SMP bit
+	orr	r0, r0, #(0x01 )		    // Cache/TLB maintenance broadcast
+	mcr	p15, 0, r0, c1, c0, 1		// Write ACTLR
+
     bx lr
 
     // called from cpu0 to move cpu1 out of the bootrom wait area on
@@ -193,6 +235,23 @@ cpu1_setup:
     ldr	r0, =#DDR_START
 	mcr	p15, 0, r0, c12, c0, 0
 
+	// enable MMU
+	ldr	r0,=MMUTable			// Load MMU translation table base */
+	orr	r0, r0, #0x5B			// Outer-cacheable, WB */
+	mcr	15, 0, r0, c2, c0, 0	// TTB0
+	mvn	r0,#0				    // Load MMU domains -- all ones=manager
+	mcr	p15,0,r0, c3, c0,0
+	ldr	r0,=#0x1                // mmu only
+	mcr	p15,0,r0,c1,c0,0		
+	dsb					        // dsb	allow the MMU to start up
+	isb					        // isb	flush prefetch buffer
+
+	/* Write to ACTLR */
+	mrc	p15, 0, r0, c1, c0, 1		// Read ACTLR
+	orr	r0, r0, #(0x01 << 6)		// set SMP bit
+	orr	r0, r0, #(0x01 )		    // Cache/TLB maintenance broadcast
+	mcr	p15, 0, r0, c1, c0, 1		// Write ACTLR
+
     bl cpu_init
     sev
 cpu1_wait_loop:
@@ -204,6 +263,52 @@ cpu1_wait_loop:
     b cpu1_wait_loop
 cpu1_jump:
     bx r0
+
+get_core_id:
+	mrc	p15,0,r0,c0,c0,5
+	and	r0, r0, #0xf
+    bx lr
+
+
+// r0 address of routine to wake and run
+wake_cpu1:
+    ldr r0, =cpu1_main
+    ldr	r1, =#DDR_START
+    add r0, r1
+    ldr r2, =_cpu1_wait_resume 
+    str r0, [r2]                
+    sev
+    bx lr
+
+own_uart:
+    MOV r1, #0x0                // free at the moment
+    MOV r3, #0x1                // some one owns it
+uart_lock:
+    ldr r2, =debug_uart_lock
+uart_lock_retry:
+    LDREX r0, [r2]              // fetch with tag
+    CMP r0, r1                  // is the lock free?
+    BNE uart_lock_retry
+    STREXEQ r0, r3, [r2]        // try and claim the lock
+    CMPEQ r0, #0                // did this succeed?
+    BNE uart_lock_retry         // no – try again
+    dsb
+    bx lr
+
+release_uart:
+    MOV r1, #0x1                // we own it                
+    MOV r3, #0x0                // free again
+rel_uart_lock:
+    ldr r2, =debug_uart_lock
+rel_uart_lock_retry:
+    LDREX r0, [r2]              // fetch with tag
+    CMP r0, r1                  // is the lock free?
+    BNE rel_uart_lock_retry
+    STREXEQ r0, r3, [r2]        // try and claim the lock
+    CMPEQ r0, #0                // did this succeed?
+    BNE rel_uart_lock_retry         // no – try again
+    dsb
+    bx lr
 
 one_infinite_loop:
     b one_infinite_loop

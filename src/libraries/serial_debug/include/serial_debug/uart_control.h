@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdint.h>
 typedef enum debug_uart_freq
 {
     DUF_BAUD_9600,
@@ -8,7 +9,6 @@ typedef enum debug_uart_freq
 } debug_uart_freq;
 
 void debug_set_uart_freq(debug_uart_freq freq);
-
 
 void debug_set_uart_fifo_size(uint32_t size);
 

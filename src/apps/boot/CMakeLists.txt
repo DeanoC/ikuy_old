@@ -3,13 +3,13 @@ project(${project} C ASM)
 
 file(GLOB LINKSCRIPT boot.ld)
 set(ASMFILES startup.S
-    mmu_table.S
+            mmu_table.S
 )
 set(SRCLIST main.c
             ps_init_program.c
             slcr_init.c
             ddrc_init.c
-            uart_init.c            
+            uart_init.c
             ${LINKSCRIPT}
 )
 
