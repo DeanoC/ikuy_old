@@ -2,15 +2,8 @@ set(project hw_timers)
 
 project(${project} C ASM)
 
-set(SRCLIST 
-        src/global.c
-        src/private.c
-)
-set(HEADERLIST 
-        include/${project}/global.h
-        include/${project}/private.h
-)
-
+file(GLOB_RECURSE SRCLIST CONFIGURE_DEPENDS src/*.c )
+file(GLOB_RECURSE HEADERLIST CONFIGURE_DEPENDS include/*.h )
 
 add_library(${project} ${SRCLIST} ${HEADERLIST})
 target_include_directories(${project} PUBLIC include)

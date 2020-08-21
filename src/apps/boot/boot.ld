@@ -44,12 +44,6 @@ SECTIONS
         _data_end = .;
     } > ps7_ram_0_S_AXI_BASEADDR
 
-    .arm : AT(ADDR(.data) + SIZEOF(.data))
-    {
-        . = ALIGN(8);
-        *(.ARM.exidx)
-    }  > ps7_ram_0_S_AXI_BASEADDR
-    
     .bss : 
     {
         _bss_start = .;
@@ -96,4 +90,12 @@ SECTIONS
         _cpu1_abort_stack_start = .;
 
     } > ps7_ram_1_S_AXI_BASEADDR
+
+
+    /DISCARD/ :
+    {
+        *(.ARM.exidx)
+    }
+    
+
 }

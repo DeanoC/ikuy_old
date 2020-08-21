@@ -292,7 +292,6 @@ uart_lock_retry:
     STREXEQ r0, r3, [r2]        // try and claim the lock
     CMPEQ r0, #0                // did this succeed?
     BNE uart_lock_retry         // no – try again
-    dsb
     bx lr
 
 release_uart:
@@ -307,7 +306,6 @@ rel_uart_lock_retry:
     STREXEQ r0, r3, [r2]        // try and claim the lock
     CMPEQ r0, #0                // did this succeed?
     BNE rel_uart_lock_retry         // no – try again
-    dsb
     bx lr
 
 one_infinite_loop:

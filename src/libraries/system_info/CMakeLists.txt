@@ -2,12 +2,8 @@ set(project system_info)
 
 project(${project} C ASM)
 
-set(SRCLIST 
-        src/cpu.c
-)
-set(HEADERLIST 
-        include/${project}/cpu.h
-)
+file(GLOB_RECURSE SRCLIST CONFIGURE_DEPENDS src/*.c )
+file(GLOB_RECURSE HEADERLIST CONFIGURE_DEPENDS include/*.h )
 
 
 add_library(${project} ${SRCLIST} ${HEADERLIST})

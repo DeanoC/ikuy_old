@@ -6,6 +6,8 @@
 #define HW_REG_GET_FIELD(type, regname, fieldname) ((*HW_REG(type, regname)) & (type##_##regname##_##fieldname##_MASK)) >> type##_##regname##_##fieldname##_LSHIFT
 #define HW_REG_SET_BIT(type, regname, fieldname) *HW_REG(type, regname) = (((*HW_REG(type, regname)) & ~(type##_##regname##_##fieldname##_MASK)) | (type##_##regname##_##fieldname))
 #define HW_REG_CLR_BIT(type, regname, fieldname) *HW_REG(type, regname) = ((*HW_REG(type, regname)) & ~(type##_##regname##_##fieldname##_MASK))
+#define HW_REG_GET_BIT(type, regname, fieldname) (!!((*HW_REG(type, regname)) & (type##_##regname##_##fieldname##_MASK)))
+
 #define HW_REG_MERGE(type,  regname, mask, value) \
     *(HW_REG(type, regname)) = ((*HW_REG(type, regname)) & ~(mask)) | ((value) & (mask))
 #define HW_REG_MERGE_FIELD(type,  regname, field, value) \
