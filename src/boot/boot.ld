@@ -2,7 +2,7 @@ OUTPUT_FORMAT("elf32-littlearm", "elf32-littlearm", "elf32-littlearm")
 OUTPUT_ARCH(arm)
 
 /* all stack sizes should be aligned to 16 bytes*/
-_SVC_STACK_SIZE = DEFINED(_SVC_STACK_SIZE) ? _SVC_STACK_SIZE : 0x1000; /* 4K stack */
+_SVC_STACK_SIZE = DEFINED(_SVC_STACK_SIZE) ? _SVC_STACK_SIZE : 0x2000; /* 8K stack */
 _IRQ_STACK_SIZE = DEFINED(_IRQ_STACK_SIZE) ? _IRQ_STACK_SIZE : 0x0800; /* 2K stack */
 _FIQ_STACK_SIZE = DEFINED(_FIQ_STACK_SIZE) ? _FIQ_STACK_SIZE : 0x0800; /* 2K stack */
 _ABORT_STACK_SIZE = DEFINED(_ABORT_STACK_SIZE) ? _ABORT_STACK_SIZE : 0x0800; /* 2K stack */
@@ -66,7 +66,9 @@ SECTIONS
         . += 4;
         debug_uart_lock = .;
         . += 4;
-        ddr_reserved_top = .; /* highest ddr address not used */
+        app_cpu0_address = .;
+        . += 4;
+        app_cpu1_address = .;
         . += 4;
         . = ALIGN(16);
         _svc_stack_end = .;

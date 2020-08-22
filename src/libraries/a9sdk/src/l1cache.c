@@ -102,7 +102,10 @@ void l1cache_data_enable(bool enable)
 	uint32_t sysCtrl = arma9_cop_get_SCTLR();
 
 	// already in the state we are requesting?
-	if (((sysCtrl & arma9_cop_SCTLR_DCACHE) != 0) == enable)
+	if ( (sysCtrl & arma9_cop_SCTLR_DCACHE) && enable)
+	{
+		return;
+	} else if ( !(sysCtrl & arma9_cop_SCTLR_DCACHE) && !enable)
 	{
 		return;
 	}

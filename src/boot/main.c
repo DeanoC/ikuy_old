@@ -2,7 +2,6 @@
 
 #include "serial_debug/uart_control.h"
 #include "serial_debug/debug_print.h"
-#include "hw_fpga/pcap.h"
 #include "hw_timers/global.h"
 #include "system_info/cpu.h"
 
@@ -24,6 +23,9 @@ extern void mmuInit(void);
 
 extern void move_ocm_high(void);
 extern void wake_cpu1();
+extern void* check_app_cpu0_loaded();
+extern void* check_app_cpu1_loaded();
+
 
 void cpu1_main();
 
@@ -105,44 +107,35 @@ int main(int argc, char const *argv[])
 
     debug_unsafe_print(DEBUG_WHITE_PEN "CPU1 being woken\n");
     wake_cpu1();
+    debug_unsafe_printf(DEBUG_GREEN_PEN "GO GO GO\n");
 
-    debug_unsafe_print(DEBUG_WHITE_PEN "CPU L1 I and D cache enable\n");
-    l1cache_instruction_enable(true);
-    l1cache_data_enable(true);
-    debug_print(DEBUG_GREEN_PEN "OK\n");
-
-    // log clocks 
-    system_info_log_clocks();
-    hw_fpga_pcap_log_registers();
-
-    hw_fpga_pcap_upload_bitstream(0x0);
-
-    hw_fpga_pcap_log_registers();
-
-    debug_printf(DEBUG_GREEN_PEN "GO GO GO\n");
     while (1)
     {
-//        debug_print(".");
-        // infinite loop
+        void (*jumpaddr)() = check_app_cpu0_loaded();
+        if( jumpaddr != 0)
+        {
+            jumpaddr();
+        }
     }
 }
 
 void cpu1_main()
 {
-    l1cache_instruction_enable(true);
-    l1cache_data_enable(true);
-
-    debug_print("cpu1 up\n");
+    debug_unsafe_printf("cpu1 up\n");
     while (1)
     {
-        // infinite loop
+        void (*jumpaddr)() = check_app_cpu1_loaded();
+        if( jumpaddr != 0)
+        {
+            jumpaddr();
+        }
     }
 }
 
 void abort_exception(uint32_t type, uint32_t lr)
 {
+    debug_unsafe_printf(DEBUG_RED_PEN "ABORT EXCEPTION %u at 0x%.8x\n", type, lr);
     while(1)
     {
     }
-    debug_print(DEBUG_RED_PEN "ABORT EXCEPTION\n");
 }

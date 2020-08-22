@@ -1,0 +1,9 @@
+XC7A35T Xilinx Artix7 FPGA
+Slices: 5,200
+       SLICEM : 1,600
+       SLICEL : 3,600  
+LUTs (6 input): 20,800
+DSP Slices: 90
+Memory: 50 36Kib BRAM = 1,800 Kbits totals
+      : 313 Kb distributed RAM (if all SLICEM LUTS used as RAM)
+      : 157 Kb Shift Register RAM (if all SLICEM LUTs used as SRR)

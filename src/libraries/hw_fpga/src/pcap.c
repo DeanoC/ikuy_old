@@ -8,7 +8,10 @@
 #include "serial_debug/debug_print.h"
 
 // full bitstreams are fixed size depending on FPGA size. z7020 are 4MB (32Mb)
-#define BITSTREAM_SIZE (4 * 1024 * 1024)
+//#define BITSTREAM_SIZE (4 * 1024 * 1024)
+// for some reason vivado is preducming binart bitstream of this size/
+// a little short of the 4MB is mean to be??
+#define BITSTREAM_SIZE 4045564
 
 #define LOG_PCAP_REGISTER(reg) \
 	debug_printf(DEBUG_WHITE_PEN "devcfg_" #reg ": " DEBUG_GREEN_PEN "0x%08x\n", *HW_REG(devcfg, reg));

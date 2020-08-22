@@ -5,7 +5,7 @@ file(GLOB LINKSCRIPT CONFIGURE_DEPENDS boot.ld)
 file(GLOB ASMFILES CONFIGURE_DEPENDS *.S)
 file(GLOB SRCLIST CONFIGURE_DEPENDS *.c )
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-M=output.map -T ${LINKSCRIPT}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}  -Wl,-M=${project}.map -T ${LINKSCRIPT}")
 
 add_executable(${project} ${SRCLIST} ${ASMFILES} ${LINKSCRIPT})
 set_target_properties(${project} PROPERTIES OUTPUT_NAME ${project}.elf)

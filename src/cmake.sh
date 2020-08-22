@@ -1,3 +1,3 @@
 #! /usr/bin/bash
 
-cmake -G Ninja -B ../generated/software $1
+cmake -G Ninja -B ../build $1

@@ -26,6 +26,8 @@
 .global wake_cpu1
 .global own_uart
 .global release_uart
+.global check_app_cpu0_loaded
+.global check_app_cpu1_loaded
 
 _reset:
     b _asm_start
@@ -169,9 +171,11 @@ ocmlo_loop:
     ldr r1, =#0x0000767B
     str r1, [r0]
 
-    // set the ddr reserve top to 0
-    ldr r0, =ddr_reserved_top
+    // set the app addresses to 0
+    ldr r0, =app_cpu0_address
     mov r1, #0
+    str r1, [r0]
+    ldr r0, =app_cpu1_address
     str r1, [r0]
 
     // at this point OCM is now mapped high (low OCM addresses are now 
@@ -347,3 +351,12 @@ prefetch_abort_exception:
     ldmfd sp!, {r0-r12, lr}
     b one_infinite_loop
    
+check_app_cpu0_loaded:
+    ldr r0, =app_cpu0_address
+    ldr r0, [r0]
+    bx lr
+
+check_app_cpu1_loaded:
+    ldr r0, =app_cpu1_address
+    ldr r0, [r0]
+    bx lr
