@@ -79,6 +79,7 @@ void l1cache_data_invalidate_all(void)
 	}
 
 	// Wait for L1 invalidate to complete
+	arma9_isb();
 	arma9_dsb();
 	// restore interrupts
 	arma9_set_CPSR(currmask);
@@ -88,6 +89,7 @@ void l1cache_instruction_invalidate_all(void)
 {
 	arma9_cop_set_CSSELR(arma9_cop_CSSELR_L1 | arma9_cop_CSSELR_INSTRUCTION);
 	arma9_cop_set_ICIALLU();
+	arma9_isb();
 	arma9_dsb();
 }
 

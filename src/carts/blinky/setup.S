@@ -5,6 +5,8 @@
 .global release_uart
 .global cpu0_main
 .global cpu1_main
+.global get_bitstream_start_address
+.global get_bitstream_end_address
 
 .section .text
 start0: b elf_setup
@@ -35,6 +37,7 @@ own_uart:
     MOV r1, #0x0                // free at the moment
     MOV r3, #0x1                // some one owns it
 uart_lock:
+    bx lr
     ldr r2, =debug_uart_lock
 uart_lock_retry:
     LDREX r0, [r2]              // fetch with tag
@@ -49,6 +52,7 @@ release_uart:
     MOV r1, #0x1                // we own it                
     MOV r3, #0x0                // free again
 rel_uart_lock:
+    bx lr
     ldr r2, =debug_uart_lock
 rel_uart_lock_retry:
     LDREX r0, [r2]              // fetch with tag
@@ -57,4 +61,10 @@ rel_uart_lock_retry:
     STREXEQ r0, r3, [r2]        // try and claim the lock
     CMPEQ r0, #0                // did this succeed?
     BNE rel_uart_lock_retry         // no – try again
+    bx lr
+get_bitstream_start_address:
+    ldr r0, =_bitstream_start
+    bx lr
+get_bitstream_end_address:
+    ldr r0, =_bitstream_end
     bx lr

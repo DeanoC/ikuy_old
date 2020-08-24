@@ -71,25 +71,27 @@ SECTIONS
         app_cpu1_address = .;
         . += 4;
         . = ALIGN(16);
-        _svc_stack_end = .;
-        . += _SVC_STACK_SIZE;
-        _svc_stack_start = .;
+
         . += _IRQ_STACK_SIZE;
         _irq_stack_start = .;
         . += _FIQ_STACK_SIZE;
         _fiq_stack_start = .;
         . += _ABORT_STACK_SIZE;
         _abort_stack_start = .;
-
-        _cpu1_svc_stack_end = .;
+        _svc_stack_end = .;
         . += _SVC_STACK_SIZE;
-        _cpu1_svc_stack_start = .;
+        _svc_stack_start = .;
+
         . += _IRQ_STACK_SIZE;
         _cpu1_irq_stack_start = .;
         . += _FIQ_STACK_SIZE;
         _cpu1_fiq_stack_start = .;
         . += _ABORT_STACK_SIZE;
         _cpu1_abort_stack_start = .;
+
+        _cpu1_svc_stack_end = .;
+        . += _SVC_STACK_SIZE;
+        _cpu1_svc_stack_start = .;
 
     } > ps7_ram_1_S_AXI_BASEADDR
 

@@ -8,5 +8,6 @@ module main(
     always @(posedge sysclk)
     counter <= counter + 1'b1;
     assign led[0] = counter[25];
+    assign led[1] = 1'b1;
 
 endmodule

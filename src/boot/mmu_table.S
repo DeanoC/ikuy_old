@@ -112,7 +112,7 @@ MMUTable:
 #define SUPER_SECTION(attributes) ((attributes) | 0x4002)
 
 #define FaultAttributes AP_FAULT
-#define OcmAttributes SECTION(SHAREABLE | OUTER_NON_CACHED | AP_FULL | INNER_WB)
+#define OcmAttributes SECTION(SHAREABLE | OUTER_NON_CACHED | AP_FULL | INNER_NON_CACHED)
 #define DdrAttributes SECTION(SHAREABLE | OUTER_WB_WA | AP_FULL | INNER_WB_WA | DOMAIN(0xF))
 
 //                            /* 1st MB  */

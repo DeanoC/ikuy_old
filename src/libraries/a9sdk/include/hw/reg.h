@@ -17,6 +17,8 @@
 
 #define HW_REG_MB_SET_BIT(type, banknum, regname, fieldname) *HW_REG_MB(type, banknum, regname) = ((*HW_REG_MB(type, banknum, regname)) & ~(type##_##regname##_##fieldname##_MASK)) | (type##_##regname##_##fieldname##_LSHIFT)
 #define HW_REG_MB_CLR_BIT(type, banknum, regname, fieldname) *HW_REG_MB(type, banknum, regname) = (*HW_REG_MB(type, banknum, regname)) & ~(type##_##regname##_##fieldname##_MASK)
+#define HW_REG_MB_GET_BIT(type, banknum, regname, fieldname) (!!((*HW_REG_MB(type, banknum, regname)) & (type##_##regname##_##fieldname##_MASK)))
+
 #define HW_REG_MB_MERGE(type, banknum, regname, mask, value) \
     *(HW_REG_MB(type, banknum, regname)) = ((*HW_REG_MB(type, banknum, regname)) & ~(mask)) | ((value) & (mask))
 

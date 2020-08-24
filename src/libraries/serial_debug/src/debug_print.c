@@ -3,7 +3,7 @@
 #include <hw/reg.h>
 #include "snprintf.h"
 #include "serial_debug/debug_print.h"
-#define IsTransmitFull() ((*HW_REG_MB(uart, 0, SR) & uart_SR_TXFULL_MASK) == uart_SR_TXFULL_MASK)
+#define IsTransmitFull() (HW_REG_MB_GET_BIT(uart, 0, SR, TXFULL))
 
 extern void own_uart(void);
 extern void release_uart(void);

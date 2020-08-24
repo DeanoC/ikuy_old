@@ -17,9 +17,11 @@
 
 extern void slcrRunInitProgram(void);
 extern void slcrRunPostDDRInitProgram(void);
+extern void debugRunInitProgram(void);
 extern void ddrcRunInitProgram(void);
 extern void uartRunInitProgram(void);
 extern void mmuInit(void);
+int ps7_init(void);
 
 extern void move_ocm_high(void);
 extern void wake_cpu1();
@@ -34,30 +36,31 @@ bool ddrEarlyMemTest();
 
 void software_interrupt()
 {
+    debug_unsafe_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
     while (1)
     {
-        debug_unsafe_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
     }
 }
 
 void irq_interrupt()
 {
+    debug_unsafe_print(DEBUG_RED_PEN "IRQ INTERRUPT\n");
     while (1)
     {
-        debug_unsafe_print(DEBUG_RED_PEN "IRQ INTERRUPT\n");
     }
 }
 
 void fiq_interrupt()
 {
+    debug_unsafe_print(DEBUG_RED_PEN "FIQ INTERRUPT\n");
     while (1)
     {
-        debug_unsafe_print(DEBUG_RED_PEN "FIQ INTERRUPT\n");
     }
 }
 
 int main(int argc, char const *argv[])
 {
+    ps7_init();
     // init uart early for debugging
     uartRunInitProgram();
 
@@ -70,7 +73,7 @@ int main(int argc, char const *argv[])
     debug_unsafe_print(DEBUG_WHITE_PEN "** ikuy booting **\n");
 
     // System Level Control Registers
-    debug_unsafe_print(DEBUG_WHITE_PEN "System Level Configuration Init ");
+/*    debug_unsafe_print(DEBUG_WHITE_PEN "System Level Configuration Init ");
     // slcr requires the uart tx fifo is empty
     debug_uart_stall_till_transmit_fifo_is_empty();
 
@@ -99,7 +102,7 @@ int main(int argc, char const *argv[])
         debug_unsafe_print(DEBUG_RED_PEN "FAIL ");
     }
     debug_unsafe_printf(DEBUG_YELLOW_PEN "Time = %fs\n", hw_timers_global_get_elapsed(timeStart, timeEnd));
-
+*/
     debug_unsafe_print(DEBUG_WHITE_PEN "Moving boot low OCM to DDR ");
     move_ocm_high();
     debug_unsafe_print(DEBUG_GREEN_PEN "OK\n");
@@ -108,6 +111,8 @@ int main(int argc, char const *argv[])
     debug_unsafe_print(DEBUG_WHITE_PEN "CPU1 being woken\n");
     wake_cpu1();
     debug_unsafe_printf(DEBUG_GREEN_PEN "GO GO GO\n");
+
+    debug_uart_stall_till_transmit_fifo_is_empty();
 
     while (1)
     {
@@ -122,6 +127,7 @@ int main(int argc, char const *argv[])
 void cpu1_main()
 {
     debug_unsafe_printf("cpu1 up\n");
+    debug_uart_stall_till_transmit_fifo_is_empty();
     while (1)
     {
         void (*jumpaddr)() = check_app_cpu1_loaded();

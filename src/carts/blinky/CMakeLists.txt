@@ -18,7 +18,7 @@ target_link_libraries(${project} PUBLIC serial_debug)
 target_link_libraries(${project} PUBLIC hw_fpga)
 target_link_libraries(${project} PUBLIC hw_timers)
 target_link_libraries(${project} PUBLIC system_info)
-add_dependencies(${project} blinky_hw)
+add_dependencies(${project} ${project}_hw)
 
 add_custom_command(
     TARGET ${project} PRE_LINK
@@ -27,4 +27,5 @@ add_custom_command(
                 --set-section-flags .bitstream=load,readonly
                 --add-symbol bitstream=.bitstream:0
                 CMakeFiles/blinky.dir/main.c.obj CMakeFiles/blinky.dir/main.c.obj
+    DEPENDS ${project}_hw
 )   

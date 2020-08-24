@@ -12,6 +12,14 @@
 #include "register_bank.h"
 #include "register_bank_implementations.h"
 
+const char* ctiRegisterDefs = 
+#include "cti_regdef.txt"
+;
+
+const char* ctiFieldDefs = 
+#include "cti_fielddef.txt"
+;
+
 const char* ddrcRegisterDefs = 
 #include "ddrc_regdef.txt"
 ;
@@ -81,6 +89,11 @@ void InitRegisterData() {
 
     std::vector<RegisterBankImplementations> registerHW;
 
+    MULTI_BANK(cti, CoreSight Cross Trigger Interface, 
+                BANK_IMPL(debug_cpu_cti0,       0xF8898000 ), 
+                BANK_IMPL(debug_cpu_cti1,       0xF8899000 ),
+                BANK_IMPL(debug_cti_etb_tpiu,   0xF8802000 ),
+                BANK_IMPL(debug_cti_ftm,        0xF8809000 ) );
     SINGLE_BANK(ddrc, DDR Memory Controller, 0xF8006000);
     SINGLE_BANK(devcfg, Device (PL) Config, 0xF8007000);
     SINGLE_BANK(slcr, System Level Control, 0xF8000000);

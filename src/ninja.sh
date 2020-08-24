@@ -1,3 +1,3 @@
 #! /usr/bin/bash
 
-ninja -C ../build/software
+ninja -C ../build

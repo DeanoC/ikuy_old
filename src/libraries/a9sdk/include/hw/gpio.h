@@ -30,7 +30,7 @@
 #define gpio_MASK_DATA_0_MSW_MASK 0xffffffffU
 
 
-// 0x00000B70 32 rw 0x00000020 DDR IOB DCI Config
+// 15:0 wo 0x00000000
 #define gpio_MASK_DATA_1_LSW_REG 0x8U
 #define gpio_MASK_DATA_1_LSW_MASK_LSHIFT 16U
 #define gpio_MASK_DATA_1_LSW_MASK_MASK 0xffff0000U
@@ -39,7 +39,7 @@
 #define gpio_MASK_DATA_1_LSW_MASK 0xffffffffU
 
 
-// 0x00000B70 32 rw 0x00000020 DDR IOB DCI Config
+// 15:0 wo 0x00000000
 #define gpio_MASK_DATA_1_MSW_REG 0xcU
 #define gpio_MASK_DATA_1_MSW_MASK_LSHIFT 16U
 #define gpio_MASK_DATA_1_MSW_MASK_MASK 0xffff0000U
