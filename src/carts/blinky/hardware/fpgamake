@@ -1,5 +1,0 @@
-#! /usr/bin/bash
-
-source /opt/Xilinx/Vivado/2020.1/settings64.sh
-/usr/share/fpgamake/fpgamake --debug --verbose -B $1 -p $2 --constraints $3 -o $4/Makefile -v $5 -t main 
-make --directory $4

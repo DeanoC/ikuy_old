@@ -23,9 +23,8 @@ add_dependencies(${project} ${project}_hw)
 add_custom_command(
     TARGET ${project} PRE_LINK
     COMMAND ${CMAKE_OBJCOPY} 
-                --add-section .bitstream=hardware/mkTop.bin
+                --add-section .bitstream=${CMAKE_CURRENT_BINARY_DIR}/hardware/${project}_hw.bin
                 --set-section-flags .bitstream=load,readonly
-                --add-symbol bitstream=.bitstream:0
                 CMakeFiles/blinky.dir/main.c.obj CMakeFiles/blinky.dir/main.c.obj
-    DEPENDS ${project}_hw
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/hardware/${project}_hw.bin CMakeFiles/blinky.dir/main.c.obj 
 )   

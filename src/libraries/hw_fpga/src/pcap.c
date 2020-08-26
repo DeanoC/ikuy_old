@@ -227,14 +227,10 @@ bool FabricInit(void)
 	uint64_t tEnd = 0;
 
 
-	/*
-	 * Set Level Shifters DT618760 - PS to PL enabling
-	 */
-    *HW_REG(slcr, LVL_SHFTR_EN) = 0x0000000A;
+	// Set Level Shifters to PS to PL only (DT618760 and TRM say to do so)
+    *HW_REG(slcr, LVL_SHFTR_EN) = 0x000000A;
 
-	/*
-	 * Check the PL power status
-	 */
+	// Check the PL is powered up
     if(!HW_REG_GET_BIT(devcfg, XDCFG_MCTRL, PCFG_POR_B) )
     {
         debug_print("Fabric not powered up\n");
@@ -362,21 +358,6 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
         return false;
     }
 */
-    // temp hack endianswap TODO do as cart attach process 
-    uint8_t* ptr = (uint8_t*)addr;
-    for(int i=0;i < BITSTREAM_WORD_LEN;++i)
-    {
-        uint8_t a = ptr[0];
-        uint8_t b = ptr[1];
-        uint8_t c = ptr[2];
-        uint8_t d = ptr[3];
-        ptr[0] = d;
-        ptr[1] = c;
-        ptr[2] = b;
-        ptr[3] = a;
-        ptr+=4;
-    }
-
     if (!ClearPcapStatus()) {
 		debug_printf(DEBUG_RED_PEN "PCAP_CLEAR_STATUS_FAIL\n");
 		return false;
@@ -450,6 +431,8 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
 		debug_printf("PCAP_FPGA_DONE_FAIL\r\n");
 		return false;
 	}
+    // level shifter to both directions
+    *HW_REG(slcr, LVL_SHFTR_EN) = 0x000000A;
 
 /*    dma_time_start = hw_timers_global_get();
     do

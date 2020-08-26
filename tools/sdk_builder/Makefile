@@ -6,7 +6,7 @@ PATH_SEP   := /
 
 BASE_DIR   := .
 SRC_DIR    := .
-GEN_DIR    := ../../generated
+GEN_DIR    := ../../build/tools/
 SDK_DIR    := ../../src/libraries/a9sdk
 
 ADD_CFLAGS :=

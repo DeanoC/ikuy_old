@@ -1,0 +1,9 @@
+7z020 Xilinx Zynq7 SoC with FPGA Programmable Logic
+Slices: 13,300
+       SLICEM : 4,350
+       SLICEL : 8,950  
+LUTs (6 input): 53,200
+DSP Slices: 220
+Memory: 150 36Kib BRAM = 5,040 Kbits (560KB) totals
+      : 1,088 Kb distributed RAM (if all SLICEM LUTS used as RAM)
+      : 544 Kb Shift Register RAM (if all SLICEM LUTs used as SRR)
