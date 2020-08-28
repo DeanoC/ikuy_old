@@ -1,268 +1,89 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
-// 
-// This file contains confidential and proprietary information
-// of Xilinx, Inc. and is protected under U.S. and
-// international copyright and other intellectual property
-// laws.
-// 
-// DISCLAIMER
-// This disclaimer is not a license and does not grant any
-// rights to the materials distributed herewith. Except as
-// otherwise provided in a valid license issued to you by
-// Xilinx, and to the maximum extent permitted by applicable
-// law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
-// WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
-// AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
-// BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
-// INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
-// (2) Xilinx shall not be liable (whether in contract or tort,
-// including negligence, or under any other theory of
-// liability) for any loss or damage of any kind or nature
-// related to, arising under or in connection with these
-// materials, including for any direct, or any indirect,
-// special, incidental, or consequential loss or damage
-// (including loss of data, profits, goodwill, or any type of
-// loss or damage suffered as a result of any action brought
-// by a third party) even if such damage or loss was
-// reasonably foreseeable or Xilinx had been advised of the
-// possibility of the same.
-// 
-// CRITICAL APPLICATIONS
-// Xilinx products are not designed or intended to be fail-
-// safe, or for use in any application requiring fail-safe
-// performance, such as life-support or safety devices or
-// systems, Class III medical devices, nuclear facilities,
-// applications related to the deployment of airbags, or any
-// other applications that could lead to death, personal
-// injury, or severe property or environmental damage
-// (individually and collectively, "Critical
-// Applications"). Customer assumes the sole risk and
-// liability of any use of Xilinx products in Critical
-// Applications, subject only to applicable laws and
-// regulations governing limitations on product liability.
-// 
-// THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
-// PART OF THIS FILE AT ALL TIMES.
-// 
-// DO NOT MODIFY THIS FILE.
-
-
-// IP VLNV: xilinx.com:ip:processing_system7:5.5
-// IP Revision: 6
-
-(* X_CORE_INFO = "processing_system7_v5_5_processing_system7,Vivado 2020.1" *)
-(* CHECK_LICENSE_TYPE = "ps7_lo_wrapper,processing_system7_v5_5_processing_system7,{}" *)
-(* CORE_GENERATION_INFO = "ps7_lo_wrapper,processing_system7_v5_5_processing_system7,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=processing_system7,x_ipVersion=5.5,x_ipCoreRevision=6,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_EN_EMIO_PJTAG=0,C_EN_EMIO_ENET0=0,C_EN_EMIO_ENET1=0,C_EN_EMIO_TRACE=0,C_INCLUDE_TRACE_BUFFER=0,C_TRACE_BUFFER_FIFO_SIZE=128,USE_TRACE_DATA_EDGE_DETECTOR=0,C_TRACE_PIPELINE_WIDTH=8,C_TRACE_BUFFER_CLOCK_DELAY=12,C_EMIO_GPIO_WIDTH=64,C_INCLUDE_ACP_TRANS_CHE\
-CK=0,C_USE_DEFAULT_ACP_USER_VAL=0,C_S_AXI_ACP_ARUSER_VAL=31,C_S_AXI_ACP_AWUSER_VAL=31,C_M_AXI_GP0_ID_WIDTH=12,C_M_AXI_GP0_ENABLE_STATIC_REMAP=0,C_M_AXI_GP1_ID_WIDTH=12,C_M_AXI_GP1_ENABLE_STATIC_REMAP=0,C_S_AXI_GP0_ID_WIDTH=6,C_S_AXI_GP1_ID_WIDTH=6,C_S_AXI_ACP_ID_WIDTH=3,C_S_AXI_HP0_ID_WIDTH=6,C_S_AXI_HP0_DATA_WIDTH=64,C_S_AXI_HP1_ID_WIDTH=6,C_S_AXI_HP1_DATA_WIDTH=64,C_S_AXI_HP2_ID_WIDTH=6,C_S_AXI_HP2_DATA_WIDTH=64,C_S_AXI_HP3_ID_WIDTH=6,C_S_AXI_HP3_DATA_WIDTH=64,C_M_AXI_GP0_THREAD_ID_WIDTH=12,C_\
-M_AXI_GP1_THREAD_ID_WIDTH=12,C_NUM_F2P_INTR_INPUTS=1,C_IRQ_F2P_MODE=DIRECT,C_DQ_WIDTH=32,C_DQS_WIDTH=4,C_DM_WIDTH=4,C_MIO_PRIMITIVE=54,C_TRACE_INTERNAL_WIDTH=2,C_USE_AXI_NONSECURE=0,C_USE_M_AXI_GP0=1,C_USE_M_AXI_GP1=0,C_USE_S_AXI_GP0=0,C_USE_S_AXI_GP1=0,C_USE_S_AXI_HP0=0,C_USE_S_AXI_HP1=0,C_USE_S_AXI_HP2=0,C_USE_S_AXI_HP3=0,C_USE_S_AXI_ACP=0,C_PS7_SI_REV=PRODUCTION,C_FCLK_CLK0_BUF=TRUE,C_FCLK_CLK1_BUF=FALSE,C_FCLK_CLK2_BUF=FALSE,C_FCLK_CLK3_BUF=FALSE,C_PACKAGE_NAME=clg400,C_GP0_EN_MODIFIABLE_TXN\
-=1,C_GP1_EN_MODIFIABLE_TXN=1}" *)
-(* DowngradeIPIdentifiedWarnings = "yes" *)
 module ps7_lo_wrapper (
-  USB0_PORT_INDCTL,
-  USB0_VBUS_PWRSELECT,
-  USB0_VBUS_PWRFAULT,
-  M_AXI_GP0_ARVALID,
-  M_AXI_GP0_AWVALID,
-  M_AXI_GP0_BREADY,
-  M_AXI_GP0_RREADY,
-  M_AXI_GP0_WLAST,
-  M_AXI_GP0_WVALID,
-  M_AXI_GP0_ARID,
-  M_AXI_GP0_AWID,
-  M_AXI_GP0_WID,
-  M_AXI_GP0_ARBURST,
-  M_AXI_GP0_ARLOCK,
-  M_AXI_GP0_ARSIZE,
-  M_AXI_GP0_AWBURST,
-  M_AXI_GP0_AWLOCK,
-  M_AXI_GP0_AWSIZE,
-  M_AXI_GP0_ARPROT,
-  M_AXI_GP0_AWPROT,
-  M_AXI_GP0_ARADDR,
-  M_AXI_GP0_AWADDR,
-  M_AXI_GP0_WDATA,
-  M_AXI_GP0_ARCACHE,
-  M_AXI_GP0_ARLEN,
-  M_AXI_GP0_ARQOS,
-  M_AXI_GP0_AWCACHE,
-  M_AXI_GP0_AWLEN,
-  M_AXI_GP0_AWQOS,
-  M_AXI_GP0_WSTRB,
-  M_AXI_GP0_ACLK,
-  M_AXI_GP0_ARREADY,
-  M_AXI_GP0_AWREADY,
-  M_AXI_GP0_BVALID,
-  M_AXI_GP0_RLAST,
-  M_AXI_GP0_RVALID,
-  M_AXI_GP0_WREADY,
-  M_AXI_GP0_BID,
-  M_AXI_GP0_RID,
-  M_AXI_GP0_BRESP,
-  M_AXI_GP0_RRESP,
-  M_AXI_GP0_RDATA,
-  FCLK_CLK0,
-  FCLK_RESET0_N,
-  MIO,
-  DDR_CAS_n,
-  DDR_CKE,
-  DDR_Clk_n,
-  DDR_Clk,
-  DDR_CS_n,
-  DDR_DRSTB,
-  DDR_ODT,
-  DDR_RAS_n,
-  DDR_WEB,
-  DDR_BankAddr,
-  DDR_Addr,
-  DDR_VRN,
-  DDR_VRP,
-  DDR_DM,
-  DDR_DQ,
-  DDR_DQS_n,
-  DDR_DQS,
-  PS_SRSTB,
-  PS_CLK,
-  PS_PORB
+  output wire [1 : 0] USB0_PORT_INDCTL,
+  output wire USB0_VBUS_PWRSELECT,
+  input wire USB0_VBUS_PWRFAULT,
+
+  input wire M_AXI_GP0_ACLK,
+  output wire M_AXI_GP0_ARESETN,
+  output wire M_AXI_GP0_ARVALID,
+  output wire M_AXI_GP0_AWVALID,
+  output wire M_AXI_GP0_BREADY,
+  output wire M_AXI_GP0_RREADY,
+  output wire M_AXI_GP0_WLAST,
+  output wire M_AXI_GP0_WVALID,
+  output wire [11 : 0] M_AXI_GP0_ARID,
+  output wire [11 : 0] M_AXI_GP0_AWID,
+  output wire [11 : 0] M_AXI_GP0_WID,
+  output wire [1 : 0] M_AXI_GP0_ARBURST,
+  output wire [1 : 0] M_AXI_GP0_ARLOCK,
+  output wire [2 : 0] M_AXI_GP0_ARSIZE,
+  output wire [1 : 0] M_AXI_GP0_AWBURST,
+  output wire [1 : 0] M_AXI_GP0_AWLOCK,
+  output wire [2 : 0] M_AXI_GP0_AWSIZE,
+  output wire [2 : 0] M_AXI_GP0_ARPROT,
+  output wire [2 : 0] M_AXI_GP0_AWPROT,
+  output wire [31 : 0] M_AXI_GP0_ARADDR,
+  output wire [31 : 0] M_AXI_GP0_AWADDR,
+  output wire [31 : 0] M_AXI_GP0_WDATA,
+  output wire [3 : 0] M_AXI_GP0_ARCACHE,
+  output wire [3 : 0] M_AXI_GP0_ARLEN,
+  output wire [3 : 0] M_AXI_GP0_ARQOS,
+  output wire [3 : 0] M_AXI_GP0_AWCACHE,
+  output wire [3 : 0] M_AXI_GP0_AWLEN,
+  output wire [3 : 0] M_AXI_GP0_AWQOS,
+  output wire [3 : 0] M_AXI_GP0_WSTRB,
+  input wire M_AXI_GP0_ARREADY,
+  input wire M_AXI_GP0_AWREADY,
+  input wire M_AXI_GP0_BVALID,
+  input wire M_AXI_GP0_RLAST,
+  input wire M_AXI_GP0_RVALID,
+  input wire M_AXI_GP0_WREADY,
+  input wire [11 : 0] M_AXI_GP0_BID,
+  input wire [11 : 0] M_AXI_GP0_RID,
+  input wire [1 : 0] M_AXI_GP0_BRESP,
+  input wire [1 : 0] M_AXI_GP0_RRESP,
+  input wire [31 : 0] M_AXI_GP0_RDATA,
+  
+  output wire FCLK_CLK0,
+  output wire FCLK_RESET0_N,
+  
+  inout wire [53 : 0] MIO,
+  
+  inout wire DDR_CAS_n,
+  inout wire DDR_CKE,
+  inout wire DDR_Clk_n,
+  inout wire DDR_Clk,
+  inout wire DDR_CS_n,
+  inout wire DDR_DRSTB,
+  inout wire DDR_ODT,
+  inout wire DDR_RAS_n,
+  inout wire DDR_WEB,
+  inout wire [2 : 0] DDR_BankAddr,
+  inout wire [14 : 0] DDR_Addr,
+  inout wire DDR_VRN,
+  inout wire DDR_VRP,
+  inout wire [3 : 0] DDR_DM,
+  inout wire [31 : 0] DDR_DQ,
+  inout wire [3 : 0] DDR_DQS_n,
+  inout wire [3 : 0] DDR_DQS,
+
+  output M_AXI_GP1_ARESETN,
+  output S_AXI_GP0_ARESETN,
+  output S_AXI_GP1_ARESETN,
+  output S_AXI_ACP_ARESETN,
+  output S_AXI_HP0_ARESETN,
+  output S_AXI_HP1_ARESETN,
+  output S_AXI_HP2_ARESETN,
+  output S_AXI_HP3_ARESETN,
+  output DMA0_RSTN,
+  output DMA1_RSTN,
+  output DMA2_RSTN,
+  output DMA3_RSTN,
+
+  inout wire PS_SRSTB,
+  inout wire PS_CLK,
+  inout wire PS_PORB
 );
-
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:usbctrl:1.0 USBIND_0 PORT_INDCTL" *)
-output wire [1 : 0] USB0_PORT_INDCTL;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:usbctrl:1.0 USBIND_0 VBUS_PWRSELECT" *)
-output wire USB0_VBUS_PWRSELECT;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:usbctrl:1.0 USBIND_0 VBUS_PWRFAULT" *)
-input wire USB0_VBUS_PWRFAULT;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARVALID" *)
-output wire M_AXI_GP0_ARVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWVALID" *)
-output wire M_AXI_GP0_AWVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 BREADY" *)
-output wire M_AXI_GP0_BREADY;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 RREADY" *)
-output wire M_AXI_GP0_RREADY;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 WLAST" *)
-output wire M_AXI_GP0_WLAST;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 WVALID" *)
-output wire M_AXI_GP0_WVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARID" *)
-output wire [11 : 0] M_AXI_GP0_ARID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWID" *)
-output wire [11 : 0] M_AXI_GP0_AWID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 WID" *)
-output wire [11 : 0] M_AXI_GP0_WID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARBURST" *)
-output wire [1 : 0] M_AXI_GP0_ARBURST;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARLOCK" *)
-output wire [1 : 0] M_AXI_GP0_ARLOCK;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARSIZE" *)
-output wire [2 : 0] M_AXI_GP0_ARSIZE;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWBURST" *)
-output wire [1 : 0] M_AXI_GP0_AWBURST;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWLOCK" *)
-output wire [1 : 0] M_AXI_GP0_AWLOCK;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWSIZE" *)
-output wire [2 : 0] M_AXI_GP0_AWSIZE;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARPROT" *)
-output wire [2 : 0] M_AXI_GP0_ARPROT;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWPROT" *)
-output wire [2 : 0] M_AXI_GP0_AWPROT;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARADDR" *)
-output wire [31 : 0] M_AXI_GP0_ARADDR;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWADDR" *)
-output wire [31 : 0] M_AXI_GP0_AWADDR;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 WDATA" *)
-output wire [31 : 0] M_AXI_GP0_WDATA;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARCACHE" *)
-output wire [3 : 0] M_AXI_GP0_ARCACHE;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARLEN" *)
-output wire [3 : 0] M_AXI_GP0_ARLEN;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARQOS" *)
-output wire [3 : 0] M_AXI_GP0_ARQOS;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWCACHE" *)
-output wire [3 : 0] M_AXI_GP0_AWCACHE;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWLEN" *)
-output wire [3 : 0] M_AXI_GP0_AWLEN;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWQOS" *)
-output wire [3 : 0] M_AXI_GP0_AWQOS;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 WSTRB" *)
-output wire [3 : 0] M_AXI_GP0_WSTRB;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXI_GP0_ACLK, ASSOCIATED_BUSIF M_AXI_GP0, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN justps7_sys_clock, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 M_AXI_GP0_ACLK CLK" *)
-input wire M_AXI_GP0_ACLK;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 ARREADY" *)
-input wire M_AXI_GP0_ARREADY;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 AWREADY" *)
-input wire M_AXI_GP0_AWREADY;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 BVALID" *)
-input wire M_AXI_GP0_BVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 RLAST" *)
-input wire M_AXI_GP0_RLAST;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 RVALID" *)
-input wire M_AXI_GP0_RVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 WREADY" *)
-input wire M_AXI_GP0_WREADY;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 BID" *)
-input wire [11 : 0] M_AXI_GP0_BID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 RID" *)
-input wire [11 : 0] M_AXI_GP0_RID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 BRESP" *)
-input wire [1 : 0] M_AXI_GP0_BRESP;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 RRESP" *)
-input wire [1 : 0] M_AXI_GP0_RRESP;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXI_GP0, SUPPORTS_NARROW_BURST 0, NUM_WRITE_OUTSTANDING 8, NUM_READ_OUTSTANDING 8, DATA_WIDTH 32, PROTOCOL AXI3, FREQ_HZ 125000000, ID_WIDTH 12, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, MAX_BURST_LENGTH 16, PHASE 0.000, CLK_DOMAIN justps7_sys_clock, NUM_READ_THREADS 4, NUM_WRITE_THREADS\
- 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_GP0 RDATA" *)
-input wire [31 : 0] M_AXI_GP0_RDATA;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FCLK_CLK0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN justps7_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 FCLK_CLK0 CLK" *)
-output wire FCLK_CLK0;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FCLK_RESET0_N, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 FCLK_RESET0_N RST" *)
-output wire FCLK_RESET0_N;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO" *)
-inout wire [53 : 0] MIO;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *)
-inout wire DDR_CAS_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CKE" *)
-inout wire DDR_CKE;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CK_N" *)
-inout wire DDR_Clk_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CK_P" *)
-inout wire DDR_Clk;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CS_N" *)
-inout wire DDR_CS_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RESET_N" *)
-inout wire DDR_DRSTB;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ODT" *)
-inout wire DDR_ODT;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RAS_N" *)
-inout wire DDR_RAS_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR WE_N" *)
-inout wire DDR_WEB;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *)
-inout wire [2 : 0] DDR_BankAddr;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *)
-inout wire [14 : 0] DDR_Addr;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN" *)
-inout wire DDR_VRN;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP" *)
-inout wire DDR_VRP;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR DM" *)
-inout wire [3 : 0] DDR_DM;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR DQ" *)
-inout wire [31 : 0] DDR_DQ;
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR DQS_N" *)
-inout wire [3 : 0] DDR_DQS_n;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, CAN_DEBUG false, TIMEPERIOD_PS 1250, MEMORY_TYPE COMPONENTS, DATA_WIDTH 8, CS_ENABLED true, DATA_MASK_ENABLED true, SLOT Single, MEM_ADDR_MAP ROW_COLUMN_BANK, BURST_LENGTH 8, AXI_ARBITRATION_SCHEME TDM, CAS_LATENCY 11, CAS_WRITE_LATENCY 11" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR DQS_P" *)
-inout wire [3 : 0] DDR_DQS;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *)
-inout wire PS_SRSTB;
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *)
-inout wire PS_CLK;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false" *)
-(* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *)
-inout wire PS_PORB;
-
   processing_system7_v5_5_processing_system7 #(
     .C_EN_EMIO_PJTAG(0),
     .C_EN_EMIO_ENET0(0),
@@ -489,6 +310,9 @@ inout wire PS_PORB;
     .USB1_VBUS_PWRSELECT(),
     .USB1_VBUS_PWRFAULT(1'B0),
     .SRAM_INTIN(1'B0),
+
+    .M_AXI_GP0_ACLK(M_AXI_GP0_ACLK),
+    .M_AXI_GP0_ARESETN(M_AXI_GP0_ARESETN),
     .M_AXI_GP0_ARVALID(M_AXI_GP0_ARVALID),
     .M_AXI_GP0_AWVALID(M_AXI_GP0_AWVALID),
     .M_AXI_GP0_BREADY(M_AXI_GP0_BREADY),
@@ -516,7 +340,6 @@ inout wire PS_PORB;
     .M_AXI_GP0_AWLEN(M_AXI_GP0_AWLEN),
     .M_AXI_GP0_AWQOS(M_AXI_GP0_AWQOS),
     .M_AXI_GP0_WSTRB(M_AXI_GP0_WSTRB),
-    .M_AXI_GP0_ACLK(M_AXI_GP0_ACLK),
     .M_AXI_GP0_ARREADY(M_AXI_GP0_ARREADY),
     .M_AXI_GP0_AWREADY(M_AXI_GP0_AWREADY),
     .M_AXI_GP0_BVALID(M_AXI_GP0_BVALID),
@@ -528,6 +351,7 @@ inout wire PS_PORB;
     .M_AXI_GP0_BRESP(M_AXI_GP0_BRESP),
     .M_AXI_GP0_RRESP(M_AXI_GP0_RRESP),
     .M_AXI_GP0_RDATA(M_AXI_GP0_RDATA),
+
     .M_AXI_GP1_ARVALID(),
     .M_AXI_GP1_AWVALID(),
     .M_AXI_GP1_BREADY(),
@@ -972,7 +796,9 @@ inout wire PS_PORB;
     .EVENT_STANDBYWFI(),
     .EVENT_EVENTI(1'B0),
     .DDR_ARB(4'B0),
+
     .MIO(MIO),
+
     .DDR_CAS_n(DDR_CAS_n),
     .DDR_CKE(DDR_CKE),
     .DDR_Clk_n(DDR_Clk_n),
@@ -990,6 +816,20 @@ inout wire PS_PORB;
     .DDR_DQ(DDR_DQ),
     .DDR_DQS_n(DDR_DQS_n),
     .DDR_DQS(DDR_DQS),
+
+    .M_AXI_GP1_ARESETN(M_AXI_GP1_ARESETN),
+    .S_AXI_GP0_ARESETN(S_AXI_GP0_ARESETN),
+    .S_AXI_GP1_ARESETN(S_AXI_GP1_ARESETN),
+    .S_AXI_ACP_ARESETN(S_AXI_ACP_ARESETN),
+    .S_AXI_HP0_ARESETN(S_AXI_HP0_ARESETN),
+    .S_AXI_HP1_ARESETN(S_AXI_HP1_ARESETN),
+    .S_AXI_HP2_ARESETN(S_AXI_HP2_ARESETN),
+    .S_AXI_HP3_ARESETN(S_AXI_HP3_ARESETN),
+    .DMA0_RSTN(DMA0_RSTN),
+    .DMA1_RSTN(DMA1_RSTN),
+    .DMA2_RSTN(DMA2_RSTN),
+    .DMA3_RSTN(DMA3_RSTN),
+
     .PS_SRSTB(PS_SRSTB),
     .PS_CLK(PS_CLK),
     .PS_PORB(PS_PORB)

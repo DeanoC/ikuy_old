@@ -46,7 +46,7 @@ object MyVivadoFlow {
     s"""
 read_verilog $modulePath
 read_verilog $mergedPath
-read_xdc /home/deano/ikuy/src/carts/blinky/hardware/constraints/ps7_constraints.xdc -cells ps7/ps7_mid_i/ps7_lo_i/inst
+read_xdc /home/deano/ikuy/src/carts/blinky/hardware/constraints/ps7_constraints.xdc -cells ps7/ps7_lo_i/inst
 read_xdc /home/deano/ikuy/src/carts/blinky/hardware/boards/pynqz2-z7-20/top.xdc
 set_property used_in_synthesis false [get_files ps7_constraints.xdc]
 set_property used_in_synthesis false [get_files top.xdc]
