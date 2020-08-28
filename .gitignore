@@ -389,3 +389,4 @@ gradle-wrapper.*
 .metals/metals.h2.db
 .metals/metals.lock.db
 .metals/readonly/scala/Array.scala
+*.lpp
