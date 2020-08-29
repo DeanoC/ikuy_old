@@ -7,4 +7,5 @@ case class BuildDummy() extends BlackBox {
   addRTLPath("../verilog/ps7_v5_5.v")
   addRTLPath("../verilog/ps7_wrapper_hi.v")
   addRTLPath("../verilog/ps7_wrapper_lo.v")
+  addRTLPath("../verilog/vga_test_bars.v")
 }

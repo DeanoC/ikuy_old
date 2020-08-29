@@ -1,12 +1,23 @@
 `timescale 1ns / 1ps
 
 module main(
-  input wire sys_clock,
+  // 125 Mhz clock
+  input wire sysclk,
+  
+  // led outputs (4 mono + 2 RGB)
   output wire [3:0] leds,
-  input wire [1:0] switches,
   output wire [2:0] led4,
   output wire [2:0] led5,
 
+  // switches(2) and buttons(4) inputs
+  input wire [1:0] switches,
+  input wire [3:0] btns,
+
+  // vga output red AR8-AR11 (AKA D8-D11), hsync -AR12, vsync - AR13
+  output wire [13:0] ar,
+
+
+  // DDR signals passed to the hard phy on PS
   inout wire DDR_CAS_n,
   inout wire DDR_CKE,
   inout wire DDR_Clk_n,
@@ -25,12 +36,14 @@ module main(
   inout wire [3 : 0] DDR_DQS_n,
   inout wire [3 : 0] DDR_DQS,
   
+  // misc wires for the PS
   inout wire [53:0]FIXED_IO_mio,
   inout wire FIXED_IO_ps_clk,
   inout wire FIXED_IO_ps_porb,
   inout wire FIXED_IO_ps_srstb
 
 );
+  // first master AXI3/4 general purpose bus from the PS
   wire PSM_AXI_GP0_ACLK;
   wire PSM_AXI_GP0_ARESETN;
   wire PSM_AXI_GP0_ARVALID;
@@ -72,7 +85,82 @@ module main(
   wire [1 : 0] PSM_AXI_GP0_RRESP;
   wire [31 : 0] PSM_AXI_GP0_RDATA;
 
+  wire [3:0] vga_red;
+  wire vga_hsync;
+  wire vga_vsync;
+  assign vga_red = ar[11:8];
+  assign vga_hsync = ar[12];
+  assign vga_vsync = ar[13];
 
+  reg [3:0] vgaClockCounter;
+  reg vga_clk;
+
+  always @(posedge sysclk) begin
+    case (vgaClockCounter)
+      4'h5:
+      begin      
+        vga_clk <= 1;  
+        vgaClockCounter <= vgaClockCounter + 1;
+      end 
+      4'hA:
+      begin
+        vga_clk <= 0;
+        vgaClockCounter <= 0;
+      end
+      default: 
+      begin      
+        vgaClockCounter <= vgaClockCounter + 1;
+      end
+    endcase
+  end
+ 
+  wire w_HSync;
+  wire w_VSync;
+  
+
+  // kill green and blue as only red is connected
+  wire [3:0] w_Grn_Video_TP;
+  wire [3:0] w_Blu_Video_TP; 
+  // Generates Sync Pulses to run VGA
+  VGA_Sync_Pulses #(.TOTAL_COLS(10),
+                    .TOTAL_ROWS(6),
+                    .ACTIVE_COLS(8),
+                    .ACTIVE_ROWS(4)) VGA_Sync_Pulses_Inst 
+  (.i_Clk(vga_clk),
+   .o_HSync(vga_hsync),
+   .o_VSync(vga_vsync),
+   .o_Col_Count(),
+   .o_Row_Count()
+  );
+  assign led4[1] = sysclk;
+  assign led5[1] = 1;
+
+  /*
+  
+  // Drives Red/Grn/Blue video - Test Pattern 5 (Color Bars)
+  Test_Pattern_Gen  #(.VIDEO_WIDTH(4),
+                      .TOTAL_COLS(10),
+                      .TOTAL_ROWS(6),
+                      .ACTIVE_COLS(8),
+                      .ACTIVE_ROWS(4))
+  Test_Pattern_Gen_Inst
+   (.i_Clk(vga_clk),
+    .i_Pattern(4'b0101), // color bars
+    .i_HSync(w_HSync),
+    .i_VSync(w_VSync),
+    .o_HSync(vga_hsync),
+    .o_VSync(vga_vsync),
+    .o_Red_Video(vga_red),
+    .o_Grn_Video(w_Grn_Video_TP),
+    .o_Blu_Video(w_Blu_Video_TP));
+*/
+/*
+  Test_Pattern_Gen vgaTest(
+
+
+  );*/
+
+  // instatiate the PS hard dual core ARM processor Soc
   Ps7BlackBox ps7(
     .DDR_CAS_n(DDR_CAS_n),
     .DDR_CKE(DDR_CKE),
@@ -171,13 +259,16 @@ module main(
     default: PSM_AXI_GP0_ARCACHE_converted = PSM_AXI_GP0_ARCACHE;
 	endcase
 
-  Blinky blinky(
+  // SpinalHDL module
+/*  Blinky blinky(
       .leds(leds[3:0]),
       .rgb_led0(led4),
       .rgb_led1(led5)
-  );
+  );*/
 
 endmodule
 
+// a dummy inserted in SpinalHDL to get verilog included
+// is stripped so costs nothing
 module BuildDummy();
 endmodule
