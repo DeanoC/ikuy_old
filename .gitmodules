@@ -4,9 +4,3 @@
 [submodule "tools/Silice"]
 	path = tools/Silice
 	url = git@github.com:DeanoC/Silice.git
-[submodule "src/tools/litex-boards"]
-	path = src/tools/litex-boards
-	url = git@github.com:DeanoC/litex-boards.git
-[submodule "src/tools/litex"]
-	path = src/tools/litex
-	url = git@github.com:DeanoC/litex.git

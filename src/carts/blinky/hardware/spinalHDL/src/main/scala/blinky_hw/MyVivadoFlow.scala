@@ -46,12 +46,16 @@ object MyVivadoFlow {
     s"""
 read_verilog $modulePath
 read_verilog $mergedPath
-read_xdc /home/deano/ikuy/src/carts/blinky/hardware/constraints/ps7_constraints.xdc -cells ps7/ps7_lo_i/inst
+set_msg_config -id "Vivado 12-4739" -suppress
+set_msg_config -id "Netlist 29-160" -suppress
+set_msg_config -id "Vivado 12-584" -suppress
+set_msg_config -id "Common 17-55" -suppress
+read_xdc /home/deano/ikuy/src/carts/blinky/hardware/constraints/ps7_constraints.xdc
 read_xdc /home/deano/ikuy/src/carts/blinky/hardware/boards/pynqz2-z7-20/top.xdc
 set_property used_in_synthesis false [get_files ps7_constraints.xdc]
 set_property used_in_synthesis false [get_files top.xdc]
 
-synth_design -part $device -top main 
+synth_design -part $device -top $projectName
 opt_design
 place_design
 route_design

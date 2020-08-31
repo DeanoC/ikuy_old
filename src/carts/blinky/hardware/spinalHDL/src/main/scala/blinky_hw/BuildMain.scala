@@ -1,5 +1,6 @@
 package blinky
 import spinal.core._
+import spinal.lib.io._
 
 object BuildMain {
     val sc = SpinalConfig(
@@ -10,7 +11,7 @@ object BuildMain {
     )
 
   def main(args: Array[String]): Unit = {
-    var rtl = sc.generate(new Blinky)
+    var rtl = sc.generate(InOutWrapper(new Blinky))
     rtl.mergeRTLSource("/home/deano/ikuy/build/carts/blinky/external")
     rtl.printPruned()
 
