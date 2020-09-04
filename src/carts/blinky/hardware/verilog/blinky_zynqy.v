@@ -26,11 +26,11 @@
 //`define USE_INTERRUPTS
 //`define USE_PS_EVENTS
 //`define USE_FPGA_IDLE
-//`define USE_FCLK0
+`define USE_FCLK0
 //`define USE_FCLK1
 //`define USE_FCLK2
 //`define USE_FCLK3
-//`define PS_MASTER_AXI_GP0
+`define PS_MASTER_AXI_GP0
 //`define PS_MASTER_AXI_GP1
 //`define PS_SLAVE_AXI_GP0
 //`define PS_SLAVE_AXI_GP1

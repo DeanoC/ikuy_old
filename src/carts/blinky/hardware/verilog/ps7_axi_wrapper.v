@@ -1,4 +1,4 @@
-module ps7_wrapper
+module ps7_axi_wrapper
 (
   `ifdef USE_CAN0
     output wire CAN0_PHY_TX,
@@ -369,46 +369,48 @@ module ps7_wrapper
 
   `ifdef PS_MASTER_AXI_GP0
     //M_AXI_GP0  
-    output wire M_AXI_GP0_ARESET,
-    output wire M_AXI_GP0_ARVALID,
-    output wire M_AXI_GP0_AWVALID,
-    output wire M_AXI_GP0_BREADY,
-    output wire M_AXI_GP0_RREADY,
-    output wire M_AXI_GP0_WLAST,
-    output wire M_AXI_GP0_WVALID,
-    output wire [11:0] M_AXI_GP0_ARID,
-    output wire [11:0] M_AXI_GP0_AWID,
-    output wire [11:0] M_AXI_GP0_WID,
-    output wire [1:0] M_AXI_GP0_ARBURST,
-    output wire [1:0] M_AXI_GP0_ARLOCK,
-    output wire [1:0] M_AXI_GP0_ARSIZE,
-    output wire [1:0] M_AXI_GP0_AWBURST,
-    output wire [1:0] M_AXI_GP0_AWLOCK,
-    output wire [1:0] M_AXI_GP0_AWSIZE,
-    output wire [2:0] M_AXI_GP0_ARPROT,
-    output wire [2:0] M_AXI_GP0_AWPROT,
-    output wire [31:0] M_AXI_GP0_ARADDR,
-    output wire [31:0] M_AXI_GP0_AWADDR,
-    output wire [31:0] M_AXI_GP0_WDATA,
-    output wire [3:0] M_AXI_GP0_ARCACHE,
-    output wire [3:0] M_AXI_GP0_ARLEN,
-    output wire [3:0] M_AXI_GP0_ARQOS,
-    output wire [3:0] M_AXI_GP0_AWCACHE,
-    output wire [3:0] M_AXI_GP0_AWLEN,
-    output wire [3:0] M_AXI_GP0_AWQOS,
-    output wire [3:0] M_AXI_GP0_WSTRB,
-    input wire M_AXI_GP0_ACLK,
-    input wire M_AXI_GP0_ARREADY,
-    input wire M_AXI_GP0_AWREADY,
-    input wire M_AXI_GP0_BVALID,
-    input wire M_AXI_GP0_RLAST,
-    input wire M_AXI_GP0_RVALID,
-    input wire M_AXI_GP0_WREADY,
-    input wire [11:0] M_AXI_GP0_BID,
-    input wire [11:0] M_AXI_GP0_RID,
-    input wire [1:0] M_AXI_GP0_BRESP,
-    input wire [1:0] M_AXI_GP0_RRESP,
-    input wire [31:0] M_AXI_GP0_RDATA,  
+    input wire M_AXI_GP0_clk,
+    output wire M_AXI_GP0_reset,
+
+    output wire M_AXI_GP0_ar_valid,
+    output wire M_AXI_GP0_aw_valid,
+    input wire M_AXI_GP0_r_valid,
+    output wire M_AXI_GP0_w_valid,
+    input wire M_AXI_GP0_b_valid,
+
+    input wire M_AXI_GP0_ar_ready,
+    input wire M_AXI_GP0_aw_ready,
+    output wire M_AXI_GP0_r_ready,
+    input wire M_AXI_GP0_w_ready,
+    output wire M_AXI_GP0_b_ready,
+
+    output wire [31:0] M_AXI_GP0_ar_payload_addr,
+    output wire [11:0] M_AXI_GP0_ar_payload_id,
+    output wire [1:0] M_AXI_GP0_ar_payload_burst,
+    output wire M_AXI_GP0_ar_payload_lock,
+    output wire [2:0] M_AXI_GP0_ar_payload_size,
+    output wire [2:0] M_AXI_GP0_ar_payload_prot,
+    output wire [3:0] M_AXI_GP0_ar_payload_cache,
+    output wire [7:0] M_AXI_GP0_ar_payload_len,
+    output wire [3:0] M_AXI_GP0_ar_payload_qos,
+    output wire [31:0] M_AXI_GP0_aw_payload_addr,
+    output wire [11:0] M_AXI_GP0_aw_payload_id,
+    output wire [1:0] M_AXI_GP0_aw_payload_burst,
+    output wire M_AXI_GP0_aw_payload_lock,
+    output wire [2:0] M_AXI_GP0_aw_payload_size,
+    output wire [2:0] M_AXI_GP0_aw_payload_prot,
+    output wire [3:0] M_AXI_GP0_aw_payload_cache,
+    output wire [7:0] M_AXI_GP0_aw_payload_len,
+    output wire [3:0] M_AXI_GP0_aw_payload_qos,
+    output wire [31:0] M_AXI_GP0_w_payload_data,
+    output wire [3:0] M_AXI_GP0_w_payload_strb,
+    output wire M_AXI_GP0_w_payload_last,
+    input wire [11:0] M_AXI_GP0_r_payload_id,
+    input wire M_AXI_GP0_r_payload_last,
+    input wire [1:0] M_AXI_GP0_r_payload_resp,
+    input wire [31:0] M_AXI_GP0_r_payload_data,
+    input wire [11:0] M_AXI_GP0_b_payload_id,
+    input wire [1:0] M_AXI_GP0_b_payload_resp,
   `endif
   `ifdef PS_MASTER_AXI_GP1
     //M_AXI_GP1
@@ -806,340 +808,33 @@ module ps7_wrapper
   output wire PS_POWER_ON_RESET
   
 );
-  genvar i;
+  `ifdef PS_MASTER_AXI_GP0
+    wire [1:0] M_AXI_GP0_ar_payload_lock_adaptor; // Axi4 lock simplified
+    wire [1:0] M_AXI_GP0_aw_payload_lock_adaptor;
+    wire [1:0] M_AXI_GP0_ar_payload_size_adaptor; // size can't be larger than bus so pad with 0
+    wire [1:0] M_AXI_GP0_aw_payload_size_adaptor;
+    wire [3:0] M_AXI_GP0_ar_payload_len_adaptor; // axi4 can issue longer burst we don't so pad with 0
+    wire [3:0] M_AXI_GP0_aw_payload_len_adaptor;
 
-  `ifdef USE_MIO
-    // ---------- MIO buffering
-    wire [53:0] MIO_buffered;
-    generate
-      for (i=0; i < 54; i=i+1) begin
-        BIBUF MIO_BIBUF (.PAD(MIO[i]), .IO(MIO_buffered[i]));
-      end
-    endgenerate
-  `endif
-
-  // ---------- jtag out buffer
-  `ifdef USE_JTAG
-    wire PJTAG_TDO_O;
-    wire PJTAG_TDO_T;
-    OBUFT PJTAG_TDO_BUFFER (.O(PJTAG_TDO), .I(PJTAG_TDO_O), .T(PJTAG_TDO_T) );
-  `endif
-  // ---------- FCLK buffers
-  `ifdef USE_FCLK0
-    wire FCLK0_CLK_buffered;
-    BUFG FCLK0_CLK_BUFG (.I(FCLK0_CLK), .O(FCLK0_CLK_buffered));
-  `endif
-  `ifdef USE_FCLK1
-    wire FCLK1_CLK_buffered;
-    BUFG FCLK1_CLK_BUFG (.I(FCLK1_CLK), .O(FCLK1_CLK_buffered));
-  `endif
-  `ifdef USE_FCLK2
-    wire FCLK2_CLK_buffered;
-    BUFG FCLK2_CLK_BUFG (.I(FCLK2_CLK), .O(FCLK2_CLK_buffered));
-  `endif
-  `ifdef USE_FCLK3
-    wire FCLK3_CLK_buffered;
-    BUFG FCLK3_CLK_BUFG (.I(FCLK3_CLK), .O(FCLK3_CLK_buffered));
+    wire [11:0] M_AXI_GP0_w_payload_id; // not used for Axi4
+    assign M_AXI_GP0_ar_payload_lock = M_AXI_GP0_ar_payload_lock_adaptor[0];
+    assign M_AXI_GP0_aw_payload_lock = M_AXI_GP0_aw_payload_lock_adaptor[0];
+    assign M_AXI_GP0_ar_payload_size = { 1'b0, M_AXI_GP0_ar_payload_size_adaptor };
+    assign M_AXI_GP0_aw_payload_size = { 1'b0, M_AXI_GP0_aw_payload_size_adaptor };
+    assign M_AXI_GP0_ar_payload_len = { 4'h0, M_AXI_GP0_ar_payload_len_adaptor };
+    assign M_AXI_GP0_aw_payload_len = { 4'h0, M_AXI_GP0_aw_payload_len_adaptor };      
   `endif
 
-  // ---------- misc PS signal buffers
-  wire PS_SYSTEM_RESET_buffered;
-  wire PS_CLK_buffered;
-  wire PS_POWER_ON_RESET_buffered;
-  BIBUF PS_SRSTB_BIBUF (.PAD(PS_SYSTEM_RESET), .IO(PS_SYSTEM_RESET_buffered));
-  BIBUF PS_CLK_BIBUF (.PAD(PS_CLK), .IO(PS_CLK_buffered));
-  BIBUF PS_PORB_BIBUF (.PAD(PS_POWER_ON_RESET), .IO(PS_POWER_ON_RESET_buffered));
-
-  // ---------- DDR Buffering
-  wire DDR_CAS_n_buffered;
-  wire DDR_CKE_buffered;
-  wire DDR_Clk_n_buffered;
-  wire DDR_Clk_buffered;
-  wire DDR_CS_n_buffered;
-  wire DDR_DRSTB_buffered;
-  wire DDR_ODT_buffered;
-  wire DDR_RAS_n_buffered;
-  wire DDR_WEB_buffered;
-  wire [2 : 0] DDR_BankAddr_buffered;
-  wire [14 : 0] DDR_Addr_buffered;
-  wire DDR_VRN_buffered;
-  wire DDR_VRP_buffered;
-  wire [3 : 0] DDR_DM_buffered;
-  wire [31 : 0] DDR_DQ_buffered;
-  wire [3 : 0] DDR_DQS_n_buffered;
-  wire [3 : 0] DDR_DQS_buffered;
-  BIBUF DDR_CAS_n_BIBUF (.PAD(DDR_CAS_n), .IO(DDR_CAS_n_buffered));
-  BIBUF DDR_CKE_BIBUF (.PAD(DDR_CKE), .IO(DDR_CKE_buffered));
-  BIBUF DDR_Clk_n_BIBUF (.PAD(DDR_Clk_n), .IO(DDR_Clk_n_buffered));
-  BIBUF DDR_Clk_BIBUF (.PAD(DDR_Clk), .IO(DDR_Clk_buffered));
-  BIBUF DDR_CS_n_BIBUF (.PAD(DDR_CS_n), .IO(DDR_CS_n_buffered));
-  BIBUF DDR_DRSTB_BIBUF (.PAD(DDR_DRSTB), .IO(DDR_DRSTB_buffered));
-  BIBUF DDR_ODT_BIBUF (.PAD(DDR_ODT), .IO(DDR_ODT_buffered));
-  BIBUF DDR_RAS_n_BIBUF (.PAD(DDR_RAS_n), .IO(DDR_RAS_n_buffered));
-  BIBUF DDR_WEB_BIBUF (.PAD(DDR_WEB), .IO(DDR_WEB_buffered));
-  BIBUF DDR_VRN_BIBUF (.PAD(DDR_VRN), .IO(DDR_VRN_buffered));
-  BIBUF DDR_VRP_BIBUF (.PAD(DDR_VRP), .IO(DDR_VRP_buffered));
-  generate
-    for (i=0; i < 3; i=i+1) begin
-      BIBUF DDR_BankAddr_BIBUF (.PAD(DDR_BankAddr[i]), .IO(DDR_BankAddr_buffered[i]));
-    end
-  endgenerate
-
-  generate
-    for (i=0; i < 15; i=i+1) begin
-      BIBUF DDR_Addr_BIBUF (.PAD(DDR_Addr[i]), .IO(DDR_Addr_buffered[i]));
-    end
-  endgenerate
-
-  generate
-    for (i=0; i < 32; i=i+1) begin
-      BIBUF DDR_DQ_BIBUF (.PAD(DDR_DQ[i]), .IO(DDR_DQ_buffered[i]));
-    end
-  endgenerate
-
-  generate
-    for (i=0; i < 4; i=i+1) begin
-      BIBUF DDR_DQS_BIBUF (.PAD(DDR_DQS[i]), .IO(DDR_DQS_buffered[i]));
-      BIBUF DDR_DQS_n_BIBUF (.PAD(DDR_DQS_n[i]), .IO(DDR_DQS_n_buffered[i]));
-      BIBUF DDR_DM_BIBUF (.PAD(DDR_DM[i]), .IO(DDR_DM_buffered[i]));
-    end
-  endgenerate
-  // ----------
-
-  //  ---------- Tristate Inversion logic 
-  `ifdef USE_ENET0
-    wire ENET0_MDIO_T_n;
-  `endif
-  `ifdef USE_ENT0
-    wire ENET1_MDIO_T_n;
-  `endif
-  `ifdef USE_DMA0
-    wire DMA0_RESET_n;
-  `endif
-  `ifdef USE_DMA1
-    wire DMA1_RESET_n;
-  `endif
-  `ifdef USE_DMA2
-    wire DMA2_RESET_n;
-  `endif
-  `ifdef USE_DMA3
-    wire DMA3_RESET_n;
-  `endif
-
-  `ifdef USE_GPIO
-    wire [63:0] GPIO_T_n;
-  `endif
-  `ifdef USE_I2C0
-    wire I2C0_SDA_T_n;
-    wire I2C0_SCL_T_n;
-  `endif
-  `ifdef USE_I2C1
-    wire I2C1_SDA_T_n;
-    wire I2C1_SCL_T_n;
-  `endif
-  `ifdef USE_SDIO0
-    wire SDIO0_CMD_T_n;
-    wire [3:0] SDIO0_DATA_T_n;
-  `endif
-  `ifdef USE_SDIO1
-    wire SDIO1_CMD_T_n;
-    wire [3:0]SDIO1_DATA_T_n;
-  `endif
-  `ifdef USE_SPI0
-    wire SPI0_SCLK_T_n;
-    wire SPI0_MOSI_T_n;
-    wire SPI0_MISO_T_n;
-    wire SPI0_SS_T_n;
-  `endif
-  `ifdef USE_SPI1
-    wire SPI1_SCLK_T_n;
-    wire SPI1_MOSI_T_n;
-    wire SPI1_MISO_T_n;
-    wire SPI1_SS_T_n;
-  `endif
-  `ifdef USE_JTAG
-    wire PJTAG_TDO_T_n;
-  `endif
-  `ifdef USE_FPGA_IDLE
-    wire FPGA_IDLE_n;
-  `endif
-  `ifdef USE_FCLK0
-    wire FCLK0_RESET_n;
-  `endif
-  `ifdef USE_FCLK1
-    wire FCLK1_RESET_n;
-  `endif
-  `ifdef USE_FCLK2
-    wire FCLK2_RESET_n;
-  `endif
-  `ifdef USE_FCLK3
-    wire FCLK3_RESET_n;
-  `endif
-
-  `ifdef USE_ENET0
-    assign ENET0_MDIO_T = ~ENET0_MDIO_T_n;
-  `endif
-  `ifdef USE_ENET1
-    assign ENET1_MDIO_T = ~ENET1_MDIO_T_n;
-  `endif
-  `ifdef USE_DMA0
-    assign DMA0_RESET = ~DMA0_RESET_n;
-  `endif
-  `ifdef USE_DMA1
-    assign DMA1_RESET = ~DMA1_RESET_n;
-  `endif
-  `ifdef USE_DMA2
-    assign DMA2_RESET = ~DMA2_RESET_n;
-  `endif
-  `ifdef USE_DMA3
-    assign DMA3_RESET = ~DMA3_RESET_n;
-  `endif
-
-  `ifdef USE_GPIO
-    assign GPIO_T = ~GPIO_T_n;
-  `endif
-  `ifdef USE_I2C0
-    assign I2C0_SDA_T  = ~I2C0_SDA_T_n;
-    assign I2C0_SCL_T  = ~I2C0_SCL_T_n;
-  `endif
-  `ifdef USE_I2C1
-    assign I2C1_SDA_T  = ~I2C1_SDA_T_n;
-    assign I2C1_SCL_T  = ~I2C1_SCL_T_n;
-  `endif
-  `ifdef USE_SDIO0
-    assign SDIO0_CMD_T = ~SDIO0_CMD_T_n;
-    assign SDIO0_DATA_T = ~SDIO0_DATA_T_n;
-  `endif
-  `ifdef USE_SDIO1
-    assign SDIO1_CMD_T = ~SDIO1_CMD_T_n;
-    assign SDIO1_DATA_T = ~SDIO1_DATA_T_n;
-  `endif
-  `ifdef USE_SPI0
-    assign SPI0_SCLK_T = ~SPI0_SCLK_T_n;
-    assign SPI0_MOSI_T = ~SPI0_MOSI_T_n;
-    assign SPI0_MISO_T = ~SPI0_MISO_T_n;
-    assign SPI0_SS_T   = ~SPI0_SS_T_n;
-  `endif
-  `ifdef USE_SPI1
-    assign SPI1_SCLK_T = ~SPI1_SCLK_T_n;
-    assign SPI1_MOSI_T = ~SPI1_MOSI_T_n;
-    assign SPI1_MISO_T = ~SPI1_MISO_T_n;
-    assign SPI1_SS_T   = ~SPI1_SS_T_n;
-  `endif
-  `ifdef USE_JTAG
-    assign PJTAG_TDO_T = ~PJTAG_TDO_T_n;
-  `endif
-  `ifdef USE_FPGA_IDLE
-    assign FPGA_IDLE_n = ~FPGA_IDLE;
-  `endif
-  `ifdef USE_FCLK0
-    assign FCLK0_RESET = ~FCLK0_RESET_n;
-  `endif
-  `ifdef USE_FCLK1
-    assign FCLK1_RESET = ~FCLK1_RESET_n;
-  `endif
-  `ifdef USE_FCLK2
-    assign FCLK2_RESET = ~FCLK2_RESET_n;
-  `endif
-  `ifdef USE_FCLK3
-    assign FCLK3_RESET = ~FCLK3_RESET_n;
-  `endif
-
-  // ----- Ethernet registers
-  `ifdef USE_ENET0
-    reg ENET0_GMII_TX_EN_reg = 'b0;
-    reg ENET0_GMII_TX_ER_reg = 'b0;
-    reg ENET0_GMII_COL_reg;
-    reg ENET0_GMII_CRS_reg;
-    reg ENET0_GMII_RX_DV_reg;
-    reg ENET0_GMII_RX_ER_reg;
-    reg [7:0] ENET0_GMII_RXD_reg;
-    reg [7:0] ENET0_GMII_TXD_reg;
-
-    wire ENET0_GMII_TX_EN_i;
-    wire ENET0_GMII_TX_ER_i;
-    wire ENET0_GMII_COL_i;
-    wire ENET0_GMII_CRS_i;
-    wire ENET0_GMII_RX_DV_i;
-    wire ENET0_GMII_RX_ER_i;
-    wire [7:0] ENET0_GMII_RXD_i;
-    wire [7:0] ENET0_GMII_TXD_i;
-
-    assign ENET0_GMII_TX_EN = ENET0_GMII_TX_EN_reg;
-    assign ENET0_GMII_TX_ER = ENET0_GMII_TX_ER_reg;
-    assign ENET0_GMII_TXD = ENET0_GMII_TXD_reg;
-    assign ENET0_GMII_COL_o = ENET0_GMII_COL_reg;
-    assign ENET0_GMII_CRS_o = ENET0_GMII_CRS_reg;
-    assign ENET0_GMII_RX_DV_o = ENET0_GMII_RX_DV_reg;
-    assign ENET0_GMII_RX_ER_o = ENET0_GMII_RX_ER_reg;
-    assign ENET0_GMII_RXD_o = ENET0_GMII_RXD_reg;
-
-    always @(posedge ENET0_GMII_TX_CLK ) begin
-      ENET0_GMII_TX_EN_reg <= ENET0_GMII_TX_EN_i;
-      ENET0_GMII_TX_ER_reg <= ENET0_GMII_TX_ER_i;
-      ENET0_GMII_TXD_reg <= ENET0_GMII_TXD;
-      ENET0_GMII_COL_reg <= ENET0_GMII_COL;
-      ENET0_GMII_CRS_reg <= ENET0_GMII_CRS;
-      ENET0_GMII_RX_DV_reg <= ENET0_GMII_RX_DV;
-      ENET0_GMII_RX_ER_reg <= ENET0_GMII_RX_ER;
-      ENET0_GMII_RXD_reg <= ENET0_GMII_RXD;
-    end
-  `endif
-  `ifdef USE_ENET1
-    reg ENET1_GMII_TX_EN_reg = 'b0;
-    reg ENET1_GMII_TX_ER_reg = 'b0;
-    reg ENET1_GMII_COL_reg;
-    reg ENET1_GMII_CRS_reg;
-    reg ENET1_GMII_RX_DV_reg;
-    reg ENET1_GMII_RX_ER_reg;
-    reg [7:0] ENET1_GMII_RXD_reg;
-    reg [7:0] ENET1_GMII_TXD_reg;
-
-    wire ENET1_GMII_TX_EN_i;
-    wire ENET1_GMII_TX_ER_i;
-    wire [7:0] ENET1_GMII_TXD_i;
-    wire ENET1_GMII_COL_o;
-    wire ENET1_GMII_CRS_o;
-    wire ENET1_GMII_RX_DV_o;
-    wire ENET1_GMII_RX_ER_o;
-    wire [7:0] ENET1_GMII_RXD_o;
-
-    assign ENET1_GMII_TX_EN = ENET1_GMII_TX_EN_reg;
-    assign ENET1_GMII_TX_ER = ENET1_GMII_TX_ER_reg;
-    assign ENET1_GMII_TXD = ENET1_GMII_TXD_reg;
-    assign ENET1_GMII_COL_o = ENET1_GMII_COL_reg;
-    assign ENET1_GMII_CRS_o = ENET1_GMII_CRS_reg;
-    assign ENET1_GMII_RX_DV_o = ENET1_GMII_RX_DV_reg;
-    assign ENET1_GMII_RX_ER_o = ENET1_GMII_RX_ER_reg;
-    assign ENET1_GMII_RXD_o = ENET1_GMII_RXD_reg;
-
-    always @(posedge ENET1_GMII_TX_CLK ) begin
-      ENET1_GMII_TX_EN_reg <= ENET1_GMII_TX_EN_i;
-      ENET1_GMII_TX_ER_reg <= ENET1_GMII_TX_ER_i;
-      ENET1_GMII_TXD_reg <= ENET1_GMII_TXD_i;
-      ENET1_GMII_COL_reg = ENET1_GMII_COL;
-      ENET1_GMII_CRS_reg = ENET1_GMII_CRS;
-      ENET1_GMII_RX_DV_reg = ENET1_GMII_RX_DV;
-      ENET1_GMII_RX_ER_reg = ENET1_GMII_RX_ER;
-      ENET1_GMII_RXD_reg = ENET1_GMII_RXD;
-    end
-  `endif
-  // ----- Instaniate the raw PS7 core
-  ps7_port_rename ps7_port_rename_i (
+  // ----- Instaniate the PS7 wrapper
+  ps7_wrapper ps7_wrapper_i (
   `ifdef USE_CAN0
     .CAN0_PHY_TX(CAN0_PHY_TX),
     .CAN0_PHY_RX(CAN0_PHY_RX),
-  `else
-    .CAN0_PHY_RX(1'b0),
-    .CAN0_PHY_TX(),
   `endif
 
   `ifdef USE_CAN1
     .CAN1_PHY_TX(CAN1_PHY_TX),
     .CAN1_PHY_RX(CAN1_PHY_RX),
-  `else
-    .CAN1_PHY_RX(1'b0),
-    .CAN1_PHY_TX(),
   `endif
 
   `ifdef USE_ENET0
@@ -1168,32 +863,6 @@ module ps7_wrapper
     .ENET0_SOF_TX(ENET0_SOF_TX),
     .ENET0_MDIO_I(ENET0_MDIO_I),
     .ENET0_EXT_INTIN(ENET0_EXT_INTIN),
-  `else
-    .ENET0_GMII_RX_CLK(1'b0),
-    .ENET0_GMII_TX_CLK(1'b0),
-    .ENET0_GMII_COL(1'b0),
-    .ENET0_GMII_CRS(1'b0),
-    .ENET0_GMII_RX_DV(1'b0),
-    .ENET0_GMII_RX_ER(1'b0),
-    .ENET0_GMII_RXD(8'b0),
-    .ENET0_MDIO_I(1'b0),
-    .ENET0_EXT_INTIN(1'b0),
-    .ENET0_GMII_TX_EN(),
-    .ENET0_GMII_TX_ER(),
-    .ENET0_GMII_TXD(),
-    .ENET0_MDIO_MDC(),
-    .ENET0_MDIO_O(),
-    .ENET0_MDIO_T_n(),
-    .ENET0_PTP_DELAY_REQ_RX(),
-    .ENET0_PTP_DELAY_REQ_TX(),
-    .ENET0_PTP_PDELAY_REQ_RX(),
-    .ENET0_PTP_PDELAY_REQ_TX(),
-    .ENET0_PTP_PDELAY_RESP_RX(),
-    .ENET0_PTP_PDELAY_RESP_TX(),
-    .ENET0_PTP_SYNC_FRAME_RX(),
-    .ENET0_PTP_SYNC_FRAME_TX(),
-    .ENET0_SOF_RX(),
-    .ENET0_SOF_TX(),
   `endif
   `ifdef USE_ENET1
     .ENET1_GMII_TX_EN(ENET1_GMII_TX_EN_i),
@@ -1221,32 +890,6 @@ module ps7_wrapper
     .ENET1_SOF_TX(ENET1_SOF_TX),
     .ENET1_MDIO_I(ENET1_MDIO_I),
     .ENET1_EXT_INTIN(ENET1_EXT_INTIN),
-  `else
-    .ENET1_GMII_RX_CLK(1'b0),
-    .ENET1_GMII_TX_CLK(1'b0),
-    .ENET1_GMII_COL(1'b0),
-    .ENET1_GMII_CRS(1'b0),
-    .ENET1_GMII_RX_DV(1'b0),
-    .ENET1_GMII_RX_ER(1'b0),
-    .ENET1_GMII_RXD(8'b0),
-    .ENET1_MDIO_I(1'b0),
-    .ENET1_EXT_INTIN(1'b0),
-    .ENET1_GMII_TX_EN(),
-    .ENET1_GMII_TX_ER(),
-    .ENET1_GMII_TXD(),
-    .ENET1_MDIO_MDC(),
-    .ENET1_MDIO_O(),
-    .ENET1_MDIO_T_n(),
-    .ENET1_PTP_DELAY_REQ_RX(),
-    .ENET1_PTP_DELAY_REQ_TX(),
-    .ENET1_PTP_PDELAY_REQ_RX(),
-    .ENET1_PTP_PDELAY_REQ_TX(),
-    .ENET1_PTP_PDELAY_RESP_RX(),
-    .ENET1_PTP_PDELAY_RESP_TX(),
-    .ENET1_PTP_SYNC_FRAME_RX(),
-    .ENET1_PTP_SYNC_FRAME_TX(),
-    .ENET1_SOF_RX(),
-    .ENET1_SOF_TX(),
   `endif
   `ifdef USE_DMA0
 	  .DMA0_ACLK		            (DMA0_ACLK),
@@ -1258,16 +901,6 @@ module ps7_wrapper
 	  .DMA0_DRLAST		          (DMA0_DRLAST),
 	  .DMA0_DRTYPE              (DMA0_DRTYPE),
 	  .DMA0_DRVALID		          (DMA0_DRVALID),
-  `else
-	  .DMA0_ACLK		            (1'b0),
-	  .DMA0_DAREADY		          (1'b0),
-	  .DMA0_DRLAST		          (1'b0),
-	  .DMA0_DRVALID		          (1'b0),
-	  .DMA0_RESET_n		          (),  
-	  .DMA0_DATYPE		          (),
-	  .DMA0_DAVALID		          (),
-	  .DMA0_DRREADY		          (),  
-	  .DMA0_DRTYPE              (),
   `endif
   `ifdef USE_DMA1
 	  .DMA1_ACLK		            (DMA1_ACLK),
@@ -1279,16 +912,6 @@ module ps7_wrapper
 	  .DMA1_DRLAST		          (DMA1_DRLAST),
 	  .DMA1_DRTYPE              (DMA1_DRTYPE),  
 	  .DMA1_DRVALID		          (DMA1_DRVALID),
-  `else
-	  .DMA1_ACLK		            (1'b0),
-	  .DMA1_DAREADY		          (1'b0),
-	  .DMA1_DRLAST		          (1'b0),
-	  .DMA1_DRVALID		          (1'b0),
-	  .DMA1_RESET_n		          (),  
-	  .DMA1_DATYPE		          (),
-	  .DMA1_DAVALID		          (),
-	  .DMA1_DRREADY		          (),  
-	  .DMA1_DRTYPE              (),
   `endif
   `ifdef USE_DMA2
 	  .DMA2_ACLK		            (DMA2_ACLK),
@@ -1300,16 +923,6 @@ module ps7_wrapper
 	  .DMA2_DRLAST		          (DMA2_DRLAST),
 	  .DMA2_DRTYPE              (DMA2_DRTYPE),    
 	  .DMA2_DRVALID		          (DMA2_DRVALID),
-  `else
-	  .DMA2_ACLK		            (1'b0),
-	  .DMA2_DAREADY		          (1'b0),
-	  .DMA2_DRLAST		          (1'b0),
-	  .DMA2_DRVALID		          (1'b0),
-	  .DMA2_RESET_n		          (),  
-	  .DMA2_DATYPE		          (),
-	  .DMA2_DAVALID		          (),
-	  .DMA2_DRREADY		          (),  
-	  .DMA2_DRTYPE              (),
   `endif
   `ifdef USE_DMA3
 	  .DMA3_ACLK		            (DMA3_ACLK),
@@ -1321,182 +934,94 @@ module ps7_wrapper
 	  .DMA3_DATYPE		          (DMA3_DATYPE),
 	  .DMA3_DAVALID		          (DMA3_DAVALID),
 	  .DMA3_DRREADY		          (DMA3_DRREADY),
-  `else
-	  .DMA3_ACLK		            (1'b0),
-	  .DMA3_DAREADY		          (1'b0),
-	  .DMA3_DRLAST		          (1'b0),
-	  .DMA3_DRVALID		          (1'b0),
-	  .DMA3_RESET_n		          (),  
-	  .DMA3_DATYPE		          (),
-	  .DMA3_DAVALID		          (),
-	  .DMA3_DRREADY		          (),  
-	  .DMA3_DRTYPE              (),
   `endif
   `ifdef USE_GPIO
     .GPIO_I                   (GPIO_I),
     .GPIO_O                   (GPIO_O),
     .GPIO_T_n                 (GPIO_T_n),
-  `else
-    .GPIO_I                   (64'b0),
-    .GPIO_O                   (),
-    .GPIO_T_n                 (),
   `endif
   `ifdef USE_MIO
-    .MIO                      (MIO_buffered),
-  `else
-    .MIO                      (),
+    .MIO                      (MIO),
   `endif
 
   `ifdef USE_I2C0
     .I2C0_SDA_I               (I2C0_SDA_I),
     .I2C0_SDA_O               (I2C0_SDA_O),
-    .I2C0_SDA_T_n             (I2C0_SDA_T_n),
+    .I2C0_SDA_T               (I2C0_SDA_T),
     .I2C0_SCL_I               (I2C0_SCL_I),
     .I2C0_SCL_O               (I2C0_SCL_O),
-    .I2C0_SCL_T_n             (I2C0_SCL_T_n),
-  `else
-    .I2C0_SDA_I               (1'b0),
-    .I2C0_SCL_I               (1'b0),
-    .I2C0_SDA_O               (),
-    .I2C0_SDA_T_n             (),
-    .I2C0_SCL_O               (),
-    .I2C0_SCL_T_n             (),
+    .I2C0_SCL_T               (I2C0_SCL_T),
   `endif    
   `ifdef USE_I2C1
     .I2C1_SDA_I               (I2C1_SDA_I),
     .I2C1_SDA_O               (I2C1_SDA_O),
-    .I2C1_SDA_T_n             (I2C1_SDA_T_n),
+    .I2C1_SDA_T               (I2C1_SDA_T),
     .I2C1_SCL_I               (I2C1_SCL_I),
     .I2C1_SCL_O               (I2C1_SCL_O),
-    .I2C1_SCL_T_n             (I2C1_SCL_T_n),
-  `else
-    .I2C1_SDA_I               (1'b0),
-    .I2C1_SCL_I               (1'b0),
-    .I2C1_SDA_O               (),
-    .I2C1_SDA_T_n             (),
-    .I2C1_SCL_O               (),
-    .I2C1_SCL_T_n             (),
+    .I2C1_SCL_T               (I2C1_SCL_T),
   `endif
   `ifdef USE_SDIO0
     .SDIO0_CLK                (SDIO0_CLK),
     .SDIO0_CLK_FB             (SDIO0_CLK_FB),
     .SDIO0_CMD_O              (SDIO0_CMD_O),
     .SDIO0_CMD_I              (SDIO0_CMD_I),
-    .SDIO0_CMD_T_n            (SDIO0_CMD_T_n),
+    .SDIO0_CMD_T              (SDIO0_CMD_T),
     .SDIO0_DATA_I             (SDIO0_DATA_I),
     .SDIO0_DATA_O             (SDIO0_DATA_O),
-    .SDIO0_DATA_T_n           (SDIO0_DATA_T_n),
+    .SDIO0_DATA_T             (SDIO0_DATA_T),
     .SDIO0_LED                (SDIO0_LED),
     .SDIO0_CDN                (SDIO0_CDN),
     .SDIO0_WP                 (SDIO0_WP),  
     .SDIO0_BUSPOW             (SDIO0_BUSPOW),
     .SDIO0_BUSVOLT            (SDIO0_BUSVOLT),
-  `else
-    .SDIO0_CLK_FB             (1'b0),
-    .SDIO0_CMD_I              (1'b0),
-    .SDIO0_DATA_I             (4'b0),
-    .SDIO0_CDN                (1'b0),
-    .SDIO0_WP                 (1'b0),
-    .SDIO0_CLK                (),
-    .SDIO0_CMD_O              (),
-    .SDIO0_CMD_T_n            (),
-    .SDIO0_DATA_O             (),
-    .SDIO0_DATA_T_n           (),
-    .SDIO0_LED                (),
-    .SDIO0_BUSPOW             (),
-    .SDIO0_BUSVOLT            (),
   `endif
   `ifdef USE_SDIO1
     .SDIO1_CLK                (SDIO1_CLK),
     .SDIO1_CLK_FB             (SDIO1_CLK_FB),
     .SDIO1_CMD_O              (SDIO1_CMD_O),
     .SDIO1_CMD_I              (SDIO1_CMD_I),
-    .SDIO1_CMD_T_n            (SDIO1_CMD_T_n),
+    .SDIO1_CMD_T              (SDIO1_CMD_T),
     .SDIO1_DATA_I             (SDIO1_DATA_I),
     .SDIO1_DATA_O             (SDIO1_DATA_O),
-    .SDIO1_DATA_T_n           (SDIO1_DATA_T_n),
+    .SDIO1_DATA_T             (SDIO1_DATA_T),
     .SDIO1_LED                (SDIO1_LED),
     .SDIO1_CDN                (SDIO1_CDN),
     .SDIO1_WP                 (SDIO1_WP),
     .SDIO1_BUSPOW             (SDIO1_BUSPOW),
     .SDIO1_BUSVOLT            (SDIO1_BUSVOLT),
-  `else
-    .SDIO1_CLK_FB             (1'b0),
-    .SDIO1_CMD_I              (1'b0),
-    .SDIO1_DATA_I             (4'b0),
-    .SDIO1_CDN                (1'b0),
-    .SDIO1_WP                 (1'b0),
-    .SDIO1_CLK                (),
-    .SDIO1_CMD_O              (),
-    .SDIO1_CMD_T_n            (),
-    .SDIO1_DATA_O             (),
-    .SDIO1_DATA_T_n           (),
-    .SDIO1_LED                (),
-    .SDIO1_BUSPOW             (),
-    .SDIO1_BUSVOLT            (),
   `endif
   `ifdef USE_SPI0
       // SPI wires
     .SPI0_SCLK_I              (SPI0_SCLK_I),
     .SPI0_SCLK_O              (SPI0_SCLK_O),
-    .SPI0_SCLK_T_n            (SPI0_SCLK_T_n),
+    .SPI0_SCLK_T              (SPI0_SCLK_T_n),
     .SPI0_MOSI_I              (SPI0_MOSI_I),
     .SPI0_MOSI_O              (SPI0_MOSI_O),
-    .SPI0_MOSI_T_n            (SPI0_MOSI_T_n),
+    .SPI0_MOSI_T              (SPI0_MOSI_T),
     .SPI0_MISO_I              (SPI0_MISO_I),
     .SPI0_MISO_O              (SPI0_MISO_O),
-    .SPI0_MISO_T_n            (SPI0_MISO_T_n),
+    .SPI0_MISO_T              (SPI0_MISO_T),
     .SPI0_SS_I                (SPI0_SS_I),
     .SPI0_SS_O                (SPI0_SS_O),
     .SPI0_SS1_O               (SPI0_SS1_O),
     .SPI0_SS2_O               (SPI0_SS2_O),
-    .SPI0_SS_T_n              (SPI0_SS_T_n),
-  `else
-    .SPI0_SCLK_I              (1'b0),
-    .SPI0_MOSI_I              (1'b0),
-    .SPI0_MISO_I              (1'b0),
-    .SPI0_SS_I                (1'b0),
-    .SPI0_SCLK_O              (),
-    .SPI0_SCLK_T_n            (),
-    .SPI0_MOSI_O              (),
-    .SPI0_MOSI_T_n            (),
-    .SPI0_MISO_O              (),
-    .SPI0_MISO_T_n            (),
-    .SPI0_SS_O                (),
-    .SPI0_SS1_O               (),
-    .SPI0_SS2_O               (),
-    .SPI0_SS_T_n              (),
+    .SPI0_SS_T                (SPI0_SS_T),
   `endif
   `ifdef USE_SPI1
     .SPI1_SCLK_I              (SPI1_SCLK_I),
     .SPI1_SCLK_O              (SPI1_SCLK_O),
-    .SPI1_SCLK_T_n            (SPI1_SCLK_T_n),
+    .SPI1_SCLK_T              (SPI1_SCLK_T),
     .SPI1_MOSI_I              (SPI1_MOSI_I),
     .SPI1_MOSI_O              (SPI1_MOSI_O),
-    .SPI1_MOSI_T_n            (SPI1_MOSI_T_n),
+    .SPI1_MOSI_T              (SPI1_MOSI_T),
     .SPI1_MISO_I              (SPI1_MISO_I),
     .SPI1_MISO_O              (SPI1_MISO_O),
-    .SPI1_MISO_T_n            (SPI1_MISO_T_n),
+    .SPI1_MISO_T              (SPI1_MISO_T),
     .SPI1_SS_I                (SPI1_SS_I),
     .SPI1_SS_O                (SPI1_SS_O),
     .SPI1_SS1_O               (SPI1_SS1_O),
     .SPI1_SS2_O               (SPI1_SS2_O),
-    .SPI1_SS_T_n              (SPI1_SS_T_n),
-  `else
-    .SPI1_SCLK_I              (1'b0),
-    .SPI1_MOSI_I              (1'b0),
-    .SPI1_MISO_I              (1'b0),
-    .SPI1_SS_I                (1'b0),
-    .SPI1_SCLK_O              (),
-    .SPI1_SCLK_T_n            (),
-    .SPI1_MOSI_O              (),
-    .SPI1_MOSI_T_n            (),
-    .SPI1_MISO_O              (),
-    .SPI1_MISO_T_n            (),
-    .SPI1_SS_O                (),
-    .SPI1_SS1_O               (),
-    .SPI1_SS2_O               (),
-    .SPI1_SS_T_n              (),
+    .SPI1_SS_T                (SPI1_SS_T),
   `endif
   `ifdef USE_UART0
     .UART0_DTRN               (UART0_DTRN),
@@ -1507,15 +1032,6 @@ module ps7_wrapper
     .UART0_DSRN               (UART0_DSRN),
     .UART0_RIN                (UART0_RIN),
     .UART0_RX                 (UART0_RX),
-  `else
-    .UART0_CTSN               (1'b0),
-    .UART0_DCDN               (1'b0),
-    .UART0_DSRN               (1'b0),
-    .UART0_RIN                (1'b0),
-    .UART0_RX                 (1'b1),
-    .UART0_DTRN               (),
-    .UART0_RTSN               (),
-    .UART0_TX                 (),
   `endif
   `ifdef USE_UART1
     .UART1_DTRN               (UART1_DTRN),
@@ -1526,28 +1042,13 @@ module ps7_wrapper
     .UART1_DCDN               (UART1_DCDN),
     .UART1_DSRN               (UART1_DSRN),
     .UART1_RIN                (UART1_RIN),
-  `else
-    .UART1_CTSN               (1'b0),
-    .UART1_DCDN               (1'b0),
-    .UART1_DSRN               (1'b0),
-    .UART1_RIN                (1'b0),
-    .UART1_RX                 (1'b1),
-    .UART1_DTRN               (),
-    .UART1_RTSN               (),
-    .UART1_TX                 (),
   `endif
   `ifdef USE_JTAG
     .PJTAG_TCK                (PJTAG_TCK),
     .PJTAG_TMS                (PJTAG_TMS),
     .PJTAG_TDI                (PJTAG_TDI),
     .PJTAG_TDO_O              (PJTAG_TDO_O),
-    .PJTAG_TDO_T_n            (PJTAG_TDO_T_n),
-  `else
-    .PJTAG_TCK                (1'b0),
-    .PJTAG_TMS                (1'b0),
-    .PJTAG_TDI                (1'b0),
-    .PJTAG_TDO_O              (),
-    .PJTAG_TDO_T_n            (),
+    .PJTAG_TDO_T              (PJTAG_TDO_T),
   `endif
   `ifdef USE_TTC0
     .TTC0_WAVE0_OUT           (TTC0_WAVE0_OUT),
@@ -1556,13 +1057,6 @@ module ps7_wrapper
     .TTC0_CLK0_IN             (TTC0_CLK0_IN),
     .TTC0_CLK1_IN             (TTC0_CLK1_IN),
     .TTC0_CLK2_IN             (TTC0_CLK2_IN),
-  `else
-    .TTC0_CLK0_IN             (1'b0),
-    .TTC0_CLK1_IN             (1'b0),
-    .TTC0_CLK2_IN             (1'b0),
-    .TTC0_WAVE0_OUT           (),
-    .TTC0_WAVE1_OUT           (),
-    .TTC0_WAVE2_OUT           (),
   `endif
   `ifdef USE_TTC1
     .TTC1_WAVE0_OUT           (TTC1_WAVE0_OUT),
@@ -1571,13 +1065,6 @@ module ps7_wrapper
     .TTC1_CLK0_IN             (TTC1_CLK0_IN),
     .TTC1_CLK1_IN             (TTC1_CLK1_IN),
     .TTC1_CLK2_IN             (TTC1_CLK2_IN),
-  `else
-    .TTC1_CLK0_IN             (1'b0),
-    .TTC1_CLK1_IN             (1'b0),
-    .TTC1_CLK2_IN             (1'b0),
-    .TTC1_WAVE0_OUT           (),
-    .TTC1_WAVE1_OUT           (),
-    .TTC1_WAVE2_OUT           (),
   `endif
   `ifdef USE_TRACE
     .TRACE_CLK                (TRACE_CLK),
@@ -1606,59 +1093,21 @@ module ps7_wrapper
     .FTMT_P2F_TRIGACK_3       (FTMT_P2F_TRIGACK_3),
     .FTMT_P2F_TRIG_3          (FTMT_P2F_TRIG_3),
     .FTMT_P2F_DEBUG           (FTMT_P2F_DEBUG),
-  `else
-    .TRACE_CLK                (1'b0),
-    .TRACE_CLK_OUT            (),
-    .TRACE_CTL                (),
-    .TRACE_DATA               (),
-    .FTMD_TRACEIN_DATA        (32'b0),
-    .FTMD_TRACEIN_VALID       (1'b0),
-    .FTMD_TRACEIN_CLK         (1'b0),
-    .FTMD_TRACEIN_ATID        (4'b0),
-    .FTMT_F2P_TRIG_0          (1'b0),
-    .FTMT_F2P_TRIGACK_0       (),
-    .FTMT_F2P_TRIG_1          (1'b0),
-    .FTMT_F2P_TRIGACK_1       (),
-    .FTMT_F2P_TRIG_2          (1'b0),
-    .FTMT_F2P_TRIGACK_2       (),
-    .FTMT_F2P_TRIG_3          (1'b0),
-    .FTMT_F2P_TRIGACK_3       (),
-    .FTMT_F2P_DEBUG           (32'b0),
-    .FTMT_P2F_TRIGACK_0       (1'b0),
-    .FTMT_P2F_TRIG_0          (),
-    .FTMT_P2F_TRIGACK_1       (1'b0),
-    .FTMT_P2F_TRIG_1          (),
-    .FTMT_P2F_TRIGACK_2       (1'b0),
-    .FTMT_P2F_TRIG_2          (),
-    .FTMT_P2F_TRIGACK_3       (1'b0),
-    .FTMT_P2F_TRIG_3          (),
-    .FTMT_P2F_DEBUG           (),
   `endif
 
   `ifdef USE_WATCHDOG
     .WDT_CLK_IN               (WDT_CLK_IN),
     .WDT_RST_OUT              (WDT_RST_OUT),
-  `else
-    .WDT_CLK_IN               (0'b0),
-    .WDT_RST_OUT              (),
   `endif
   `ifdef USE_USB0
     .USB0_PORT_INDCTL         (USB0_PORT_INDCTL),
     .USB0_VBUS_PWRSELECT      (USB0_VBUS_PWRSELECT),
     .USB0_VBUS_PWRFAULT       (USB0_VBUS_PWRFAULT),
-  `else
-    .USB0_VBUS_PWRFAULT       (0'b0),
-    .USB0_PORT_INDCTL         (),
-    .USB0_VBUS_PWRSELECT      (),
   `endif
   `ifdef USE_USB1
     .USB1_PORT_INDCTL         (USB1_PORT_INDCTL),
     .USB1_VBUS_PWRSELECT      (USB1_VBUS_PWRSELECT),
     .USB1_VBUS_PWRFAULT       (USB1_VBUS_PWRFAULT),
-  `else
-    .USB1_VBUS_PWRFAULT       (0'b0),
-    .USB1_PORT_INDCTL         (),
-    .USB1_VBUS_PWRSELECT      (),
   `endif
   `ifdef USE_INTERRUPTS
     .IRQ_P2F_DMAC_ABORT       (IRQ_P2F_DMAC_ABORT),
@@ -1696,173 +1145,79 @@ module ps7_wrapper
     .Core1_nIRQ               (Core1_nIRQ),
     .IRQ_F2P                  (IRQ_F2P),
     .SRAM_INTIN               (SRAM_INTIN),
-  `else
-    .Core0_nFIQ               (0'b0),
-    .Core0_nIRQ               (0'b0),
-    .Core1_nFIQ               (0'b0),
-    .Core1_nIRQ               (0'b0),
-    .IRQ_F2P                  (0'b0),
-    .SRAM_INTIN               (0'b0),
-    .IRQ_P2F_DMAC_ABORT       (),
-    .IRQ_P2F_DMAC0            (),
-    .IRQ_P2F_DMAC1            (),
-    .IRQ_P2F_DMAC2            (),
-    .IRQ_P2F_DMAC3            (),
-    .IRQ_P2F_DMAC4            (),
-    .IRQ_P2F_DMAC5            (),
-    .IRQ_P2F_DMAC6            (),
-    .IRQ_P2F_DMAC7            (),
-    .IRQ_P2F_SMC              (),
-    .IRQ_P2F_QSPI             (),
-    .IRQ_P2F_CTI              (),
-    .IRQ_P2F_GPIO             (),
-    .IRQ_P2F_USB0             (),
-    .IRQ_P2F_ENET0            (),
-    .IRQ_P2F_ENET_WAKE0       (),
-    .IRQ_P2F_SDIO0            (),
-    .IRQ_P2F_I2C0             (),
-    .IRQ_P2F_SPI0             (),
-    .IRQ_P2F_UART0            (),
-    .IRQ_P2F_CAN0             (),
-    .IRQ_P2F_USB1             (),
-    .IRQ_P2F_ENET1            (),
-    .IRQ_P2F_ENET_WAKE1       (),
-    .IRQ_P2F_SDIO1            (),
-    .IRQ_P2F_I2C1             (),
-    .IRQ_P2F_SPI1             (),
-    .IRQ_P2F_UART1            (),
-    .IRQ_P2F_CAN1             (),
   `endif
   `ifdef USE_PS_EVENTS
     .EVENT_EVENTO             (EVENT_EVENTO),
     .EVENT_EVENTI             (EVENT_EVENTI),   
     .EVENT_STANDBYWFE         (EVENT_STANDBYWFE),
     .EVENT_STANDBYWFI         (EVENT_STANDBYWFI),
-  `else
-    .EVENT_EVENTI             (1'b0),   
-    .EVENT_EVENTO             (),
-    .EVENT_STANDBYWFE         (),
-    .EVENT_STANDBYWFI         (),
   `endif
   `ifdef USE_FPGA_IDLE
-    .FPGA_IDLE_n              (FPGA_IDLE_n),
-  `else
-    .FPGA_IDLE_n              (1'b1),
+    .FPGA_IDLE                (FPGA_IDLE),
   `endif    
   `ifdef USE_FCLK0
     .FCLK0_CLK                (FCLK0_CLK),
-    .FCLK0_RESET_n            (FCLK0_RESET_n),
-  `else
-    .FCLK0_CLK                (),
-    .FCLK0_RESET_n            (),
+    .FCLK0_RESET              (FCLK0_RESET),
   `endif
   `ifdef USE_FCLK1
     .FCLK1_CLK                (FCLK1_CLK),
-    .FCLK1_RESET_n            (FCLK1_RESET_n),
-  `else
-    .FCLK1_CLK                (),
-    .FCLK1_RESET_n            (),
+    .FCLK1_RESET              (FCLK1_RESET),
   `endif
   `ifdef USE_FCLK2
     .FCLK2_CLK                (FCLK2_CLK),
-    .FCLK2_RESET_n            (FCLK2_RESET_n),
-  `else
-    .FCLK2_CLK                (),
-    .FCLK2_RESET_n            (),
+    .FCLK2_RESET              (FCLK2_RESET),
   `endif
   `ifdef USE_FCLK3
     .FCLK3_CLK                (FCLK3_CLK),
-    .FCLK3_RESET_n            (FCLK3_RESET_n),
-  `else
-    .FCLK3_CLK                (),
-    .FCLK3_RESET_n            (),
+    .FCLK3_RESET              (FCLK3_RESET),
   `endif
   `ifdef PS_MASTER_AXI_GP0
-    .M_AXI_GP0_ACLK           (M_AXI_GP0_ACLK),
-    .M_AXI_GP0_ARESET_n       (M_AXI_GP0_ARESET_n),
-    .M_AXI_GP0_ARVALID        (M_AXI_GP0_ARVALID),
-    .M_AXI_GP0_AWVALID        (M_AXI_GP0_AWVALID),
-    .M_AXI_GP0_BREADY         (M_AXI_GP0_BREADY),
-    .M_AXI_GP0_RREADY         (M_AXI_GP0_RREADY),
-    .M_AXI_GP0_WLAST          (M_AXI_GP0_WLAST),
-    .M_AXI_GP0_WVALID         (M_AXI_GP0_WVALID),
-    .M_AXI_GP0_ARID           (M_AXI_GP0_ARID),
-    .M_AXI_GP0_AWID           (M_AXI_GP0_AWID),
-    .M_AXI_GP0_WID            (M_AXI_GP0_WID),
-    .M_AXI_GP0_ARBURST        (M_AXI_GP0_ARBURST),
-    .M_AXI_GP0_ARLOCK         (M_AXI_GP0_ARLOCK),
-    .M_AXI_GP0_ARSIZE         (M_AXI_GP0_ARSIZE),
-    .M_AXI_GP0_AWBURST        (M_AXI_GP0_AWBURST),
-    .M_AXI_GP0_AWLOCK         (M_AXI_GP0_AWLOCK),
-    .M_AXI_GP0_AWSIZE         (M_AXI_GP0_AWSIZE),
-    .M_AXI_GP0_ARPROT         (M_AXI_GP0_ARPROT),
-    .M_AXI_GP0_AWPROT         (M_AXI_GP0_AWPROT),
-    .M_AXI_GP0_ARADDR         (M_AXI_GP0_ARADDR),
-    .M_AXI_GP0_AWADDR         (M_AXI_GP0_AWADDR),
-    .M_AXI_GP0_WDATA          (M_AXI_GP0_WDATA),
-    .M_AXI_GP0_ARCACHE        (M_AXI_GP0_ARCACHE),
-    .M_AXI_GP0_ARLEN          (M_AXI_GP0_ARLEN),
-    .M_AXI_GP0_ARQOS          (M_AXI_GP0_ARQOS),
-    .M_AXI_GP0_AWCACHE        (M_AXI_GP0_AWCACHE),
-    .M_AXI_GP0_AWLEN          (M_AXI_GP0_AWLEN),
-    .M_AXI_GP0_AWQOS          (M_AXI_GP0_AWQOS),
-    .M_AXI_GP0_WSTRB          (M_AXI_GP0_WSTRB),
-    .M_AXI_GP0_ARREADY        (M_AXI_GP0_ARREADY),
-    .M_AXI_GP0_AWREADY        (M_AXI_GP0_AWREADY),
-    .M_AXI_GP0_BVALID         (M_AXI_GP0_BVALID),
-    .M_AXI_GP0_RLAST          (M_AXI_GP0_RLAST),
-    .M_AXI_GP0_RVALID         (M_AXI_GP0_RVALID),
-    .M_AXI_GP0_WREADY         (M_AXI_GP0_WREADY),
-    .M_AXI_GP0_BID            (M_AXI_GP0_BID),
-    .M_AXI_GP0_RID            (M_AXI_GP0_RID),
-    .M_AXI_GP0_BRESP          (M_AXI_GP0_BRESP),
-    .M_AXI_GP0_RRESP          (M_AXI_GP0_RRESP),
-    .M_AXI_GP0_RDATA          (M_AXI_GP0_RDATA),  
-  `else
-    .M_AXI_GP0_ACLK           (1'b0),
-    .M_AXI_GP0_ARREADY        (1'b0),
-    .M_AXI_GP0_AWREADY        (1'b0),
-    .M_AXI_GP0_BVALID         (1'b0),
-    .M_AXI_GP0_RLAST          (1'b0),
-    .M_AXI_GP0_RVALID         (1'b0),
-    .M_AXI_GP0_WREADY         (1'b0),
-    .M_AXI_GP0_BID            (12'b0),
-    .M_AXI_GP0_RID            (12'b0),
-    .M_AXI_GP0_BRESP          (2'b0),
-    .M_AXI_GP0_RRESP          (2'b0),
-    .M_AXI_GP0_RDATA          (32'b0),
-    .M_AXI_GP0_ARESET_n       (),
-    .M_AXI_GP0_ARVALID        (),
-    .M_AXI_GP0_AWVALID        (),
-    .M_AXI_GP0_BREADY         (),
-    .M_AXI_GP0_RREADY         (),
-    .M_AXI_GP0_WLAST          (),
-    .M_AXI_GP0_WVALID         (),
-    .M_AXI_GP0_ARID           (),
-    .M_AXI_GP0_AWID           (),
-    .M_AXI_GP0_WID            (),
-    .M_AXI_GP0_ARBURST        (),
-    .M_AXI_GP0_ARLOCK         (),
-    .M_AXI_GP0_ARSIZE         (),
-    .M_AXI_GP0_AWBURST        (),
-    .M_AXI_GP0_AWLOCK         (),
-    .M_AXI_GP0_AWSIZE         (),
-    .M_AXI_GP0_ARPROT         (),
-    .M_AXI_GP0_AWPROT         (),
-    .M_AXI_GP0_ARADDR         (),
-    .M_AXI_GP0_AWADDR         (),
-    .M_AXI_GP0_WDATA          (),
-    .M_AXI_GP0_ARCACHE        (),
-    .M_AXI_GP0_ARLEN          (),
-    .M_AXI_GP0_ARQOS          (),
-    .M_AXI_GP0_AWCACHE        (),
-    .M_AXI_GP0_AWLEN          (),
-    .M_AXI_GP0_AWQOS          (),
-    .M_AXI_GP0_WSTRB          (),
+    .M_AXI_GP0_ACLK           (M_AXI_GP0_clk),
+    .M_AXI_GP0_ARESET         (M_AXI_GP0_reset),
+
+    .M_AXI_GP0_ARVALID        (M_AXI_GP0_ar_valid),
+    .M_AXI_GP0_AWVALID        (M_AXI_GP0_aw_valid),
+    .M_AXI_GP0_BREADY         (M_AXI_GP0_b_ready),
+    .M_AXI_GP0_RREADY         (M_AXI_GP0_r_ready),
+    .M_AXI_GP0_ARREADY        (M_AXI_GP0_ar_ready),
+    .M_AXI_GP0_AWREADY        (M_AXI_GP0_aw_ready),
+    .M_AXI_GP0_BVALID         (M_AXI_GP0_b_valid),
+    .M_AXI_GP0_RVALID         (M_AXI_GP0_r_valid),
+    .M_AXI_GP0_WREADY         (M_AXI_GP0_w_ready),
+    .M_AXI_GP0_WVALID         (M_AXI_GP0_w_valid),
+
+    .M_AXI_GP0_WLAST          (M_AXI_GP0_w_payload_last),
+    .M_AXI_GP0_ARID           (M_AXI_GP0_ar_payload_id),
+    .M_AXI_GP0_AWID           (M_AXI_GP0_aw_payload_id),
+    .M_AXI_GP0_WID            (M_AXI_GP0_w_payload_id),
+    .M_AXI_GP0_ARBURST        (M_AXI_GP0_ar_payload_burst),
+    .M_AXI_GP0_ARLOCK         (M_AXI_GP0_ar_payload_lock_adaptor),
+    .M_AXI_GP0_ARSIZE         (M_AXI_GP0_ar_payload_size_adaptor),
+    .M_AXI_GP0_AWBURST        (M_AXI_GP0_aw_payload_burst), 
+    .M_AXI_GP0_AWLOCK         (M_AXI_GP0_aw_payload_lock_adaptor),
+    .M_AXI_GP0_AWSIZE         (M_AXI_GP0_aw_payload_size_adaptor),
+    .M_AXI_GP0_ARPROT         (M_AXI_GP0_ar_payload_prot),
+    .M_AXI_GP0_AWPROT         (M_AXI_GP0_aw_payload_prot),
+    .M_AXI_GP0_ARADDR         (M_AXI_GP0_ar_payload_addr),
+    .M_AXI_GP0_AWADDR         (M_AXI_GP0_aw_payload_addr),
+    .M_AXI_GP0_WDATA          (M_AXI_GP0_w_payload_data),
+    .M_AXI_GP0_ARCACHE        (M_AXI_GP0_ar_payload_cache),
+    .M_AXI_GP0_ARLEN          (M_AXI_GP0_ar_payload_len_adaptor),
+    .M_AXI_GP0_ARQOS          (M_AXI_GP0_ar_payload_qos),
+    .M_AXI_GP0_AWCACHE        (M_AXI_GP0_aw_payload_cache),
+    .M_AXI_GP0_AWLEN          (M_AXI_GP0_aw_payload_len_adaptor),
+    .M_AXI_GP0_AWQOS          (M_AXI_GP0_aw_payload_qos),
+    .M_AXI_GP0_WSTRB          (M_AXI_GP0_w_payload_strb),
+    .M_AXI_GP0_RLAST          (M_AXI_GP0_r_payload_last),
+    .M_AXI_GP0_BID            (M_AXI_GP0_b_payload_id),
+    .M_AXI_GP0_RID            (M_AXI_GP0_r_payload_id),
+    .M_AXI_GP0_BRESP          (M_AXI_GP0_b_payload_resp),
+    .M_AXI_GP0_RRESP          (M_AXI_GP0_r_payload_resp),
+    .M_AXI_GP0_RDATA          (M_AXI_GP0_r_payload_data),  
   `endif
   `ifdef PS_MASTER_AXI_GP1
     .M_AXI_GP1_ACLK           (M_AXI_GP1_ACLK),
-    .M_AXI_GP1_ARESET_n       (M_AXI_GP1_ARESET_n),
+    .M_AXI_GP1_ARESET         (M_AXI_GP1_ARESET),
     .M_AXI_GP1_ARVALID        (M_AXI_GP1_ARVALID),
     .M_AXI_GP1_AWVALID        (M_AXI_GP1_AWVALID),
     .M_AXI_GP1_BREADY         (M_AXI_GP1_BREADY),
@@ -1901,51 +1256,10 @@ module ps7_wrapper
     .M_AXI_GP1_BRESP          (M_AXI_GP1_BRESP),
     .M_AXI_GP1_RRESP          (M_AXI_GP1_RRESP),
     .M_AXI_GP1_RDATA          (M_AXI_GP1_RDATA),
-  `else
-    .M_AXI_GP1_ACLK           (1'b0),
-    .M_AXI_GP1_ARREADY        (1'b0),
-    .M_AXI_GP1_AWREADY        (1'b0),
-    .M_AXI_GP1_BVALID         (1'b0),
-    .M_AXI_GP1_RLAST          (1'b0),
-    .M_AXI_GP1_RVALID         (1'b0),
-    .M_AXI_GP1_WREADY         (1'b0),
-    .M_AXI_GP1_BID            (12'b0),
-    .M_AXI_GP1_RID            (12'b0),
-    .M_AXI_GP1_BRESP          (2'b0),
-    .M_AXI_GP1_RRESP          (2'b0),
-    .M_AXI_GP1_RDATA          (32'b0),
-    .M_AXI_GP1_ARESET_n       (),
-    .M_AXI_GP1_ARVALID        (),
-    .M_AXI_GP1_AWVALID        (),
-    .M_AXI_GP1_BREADY         (),
-    .M_AXI_GP1_RREADY         (),
-    .M_AXI_GP1_WLAST          (),
-    .M_AXI_GP1_WVALID         (),
-    .M_AXI_GP1_ARID           (),
-    .M_AXI_GP1_AWID           (),
-    .M_AXI_GP1_WID            (),
-    .M_AXI_GP1_ARBURST        (),
-    .M_AXI_GP1_ARLOCK         (),
-    .M_AXI_GP1_ARSIZE         (),
-    .M_AXI_GP1_AWBURST        (),
-    .M_AXI_GP1_AWLOCK         (),
-    .M_AXI_GP1_AWSIZE         (),
-    .M_AXI_GP1_ARPROT         (),
-    .M_AXI_GP1_AWPROT         (),
-    .M_AXI_GP1_ARADDR         (),
-    .M_AXI_GP1_AWADDR         (),
-    .M_AXI_GP1_WDATA          (),
-    .M_AXI_GP1_ARCACHE        (),
-    .M_AXI_GP1_ARLEN          (),
-    .M_AXI_GP1_ARQOS          (),
-    .M_AXI_GP1_AWCACHE        (),
-    .M_AXI_GP1_AWLEN          (),
-    .M_AXI_GP1_AWQOS          (),
-    .M_AXI_GP1_WSTRB          (),
   `endif
   `ifdef PS_SLAVE_AXI_GP0
     .S_AXI_GP0_ACLK           (S_AXI_GP0_ACLK),
-    .S_AXI_GP0_ARESET_n       (S_AXI_GP0_ARESET_n),
+    .S_AXI_GP0_ARESET         (S_AXI_GP0_ARESET),
     .S_AXI_GP0_ARREADY        (S_AXI_GP0_ARREADY),
     .S_AXI_GP0_AWREADY        (S_AXI_GP0_AWREADY),
     .S_AXI_GP0_BVALID         (S_AXI_GP0_BVALID),
@@ -1984,51 +1298,10 @@ module ps7_wrapper
     .S_AXI_GP0_ARID           (S_AXI_GP0_ARID),
     .S_AXI_GP0_AWID           (S_AXI_GP0_AWID),
     .S_AXI_GP0_WID            (S_AXI_GP0_WID), 
-  `else
-    .S_AXI_GP0_ACLK           (1'b0),
-    .S_AXI_GP0_ARVALID        (1'b0),
-    .S_AXI_GP0_AWVALID        (1'b0),
-    .S_AXI_GP0_BREADY         (1'b0),
-    .S_AXI_GP0_RREADY         (1'b0),
-    .S_AXI_GP0_WLAST          (1'b0),
-    .S_AXI_GP0_WVALID         (1'b0),
-    .S_AXI_GP0_ARBURST        (2'b0),
-    .S_AXI_GP0_ARLOCK         (2'b0),
-    .S_AXI_GP0_ARSIZE         (3'b0),
-    .S_AXI_GP0_AWBURST        (2'b0),
-    .S_AXI_GP0_AWLOCK         (2'b0),
-    .S_AXI_GP0_AWSIZE         (3'b0),
-    .S_AXI_GP0_ARPROT         (3'b0),
-    .S_AXI_GP0_AWPROT         (3'b0),
-    .S_AXI_GP0_ARADDR         (32'b0),
-    .S_AXI_GP0_AWADDR         (32'b0),
-    .S_AXI_GP0_WDATA          (32'b0),
-    .S_AXI_GP0_ARCACHE        (4'b0),
-    .S_AXI_GP0_ARLEN          (4'b0),
-    .S_AXI_GP0_ARQOS          (4'b0),
-    .S_AXI_GP0_AWCACHE        (4'b0),
-    .S_AXI_GP0_AWLEN          (4'b0),
-    .S_AXI_GP0_AWQOS          (4'b0),
-    .S_AXI_GP0_WSTRB          (4'b0),
-    .S_AXI_GP0_ARID           (6'b0),
-    .S_AXI_GP0_AWID           (6'b0),
-    .S_AXI_GP0_WID            (6'b0),
-    .S_AXI_GP0_ARESET_n       (),
-    .S_AXI_GP0_ARREADY        (),
-    .S_AXI_GP0_AWREADY        (),
-    .S_AXI_GP0_BVALID         (),
-    .S_AXI_GP0_RLAST          (),
-    .S_AXI_GP0_RVALID         (),
-    .S_AXI_GP0_WREADY         (),
-    .S_AXI_GP0_BRESP          (),
-    .S_AXI_GP0_RRESP          (),
-    .S_AXI_GP0_RDATA          (),
-    .S_AXI_GP0_BID            (),
-    .S_AXI_GP0_RID            (),
   `endif
   `ifdef PS_SLAVE_AXI_GP1
     .S_AXI_GP1_ACLK           (S_AXI_GP1_ACLK),
-    .S_AXI_GP1_ARESET_n       (S_AXI_GP1_ARESET_n),
+    .S_AXI_GP1_ARESET         (S_AXI_GP1_ARESET),
     .S_AXI_GP1_ARREADY        (S_AXI_GP1_ARREADY),
     .S_AXI_GP1_AWREADY        (S_AXI_GP1_AWREADY),
     .S_AXI_GP1_BVALID         (S_AXI_GP1_BVALID),
@@ -2067,51 +1340,10 @@ module ps7_wrapper
     .S_AXI_GP1_ARID           (S_AXI_GP1_ARID),
     .S_AXI_GP1_AWID           (S_AXI_GP1_AWID),
     .S_AXI_GP1_WID            (S_AXI_GP1_WID), 
-  `else
-    .S_AXI_GP1_ACLK           (1'b0),
-    .S_AXI_GP1_ARVALID        (1'b0),
-    .S_AXI_GP1_AWVALID        (1'b0),
-    .S_AXI_GP1_BREADY         (1'b0),
-    .S_AXI_GP1_RREADY         (1'b0),
-    .S_AXI_GP1_WLAST          (1'b0),
-    .S_AXI_GP1_WVALID         (1'b0),
-    .S_AXI_GP1_ARBURST        (2'b0),
-    .S_AXI_GP1_ARLOCK         (2'b0),
-    .S_AXI_GP1_ARSIZE         (3'b0),
-    .S_AXI_GP1_AWBURST        (2'b0),
-    .S_AXI_GP1_AWLOCK         (2'b0),
-    .S_AXI_GP1_AWSIZE         (3'b0),
-    .S_AXI_GP1_ARPROT         (3'b0),
-    .S_AXI_GP1_AWPROT         (3'b0),
-    .S_AXI_GP1_ARADDR         (32'b0),
-    .S_AXI_GP1_AWADDR         (32'b0),
-    .S_AXI_GP1_WDATA          (32'b0),
-    .S_AXI_GP1_ARCACHE        (4'b0),
-    .S_AXI_GP1_ARLEN          (4'b0),
-    .S_AXI_GP1_ARQOS          (4'b0),
-    .S_AXI_GP1_AWCACHE        (4'b0),
-    .S_AXI_GP1_AWLEN          (4'b0),
-    .S_AXI_GP1_AWQOS          (4'b0),
-    .S_AXI_GP1_WSTRB          (4'b0),
-    .S_AXI_GP1_ARID           (6'b0),
-    .S_AXI_GP1_AWID           (6'b0),
-    .S_AXI_GP1_WID            (6'b0),
-    .S_AXI_GP1_ARESET_n       (),
-    .S_AXI_GP1_ARREADY        (),
-    .S_AXI_GP1_AWREADY        (),
-    .S_AXI_GP1_BVALID         (),
-    .S_AXI_GP1_RLAST          (),
-    .S_AXI_GP1_RVALID         (),
-    .S_AXI_GP1_WREADY         (),
-    .S_AXI_GP1_BRESP          (),
-    .S_AXI_GP1_RRESP          (),
-    .S_AXI_GP1_RDATA          (),
-    .S_AXI_GP1_BID            (),
-    .S_AXI_GP1_RID            (),
   `endif
   `ifdef PS_SLAVE_AXI_ACP
     .S_AXI_ACP_ACLK           (S_AXI_ACP_ACLK),
-    .S_AXI_ACP_ARESET_n       (S_AXI_ACP_ARESET_n),
+    .S_AXI_ACP_ARESET         (S_AXI_ACP_ARESET),
     .S_AXI_ACP_ARREADY        (S_AXI_ACP_ARREADY),
     .S_AXI_ACP_AWREADY        (S_AXI_ACP_AWREADY),
     .S_AXI_ACP_BVALID         (S_AXI_ACP_BVALID),
@@ -2152,52 +1384,9 @@ module ps7_wrapper
     .S_AXI_ACP_AWUSER         (S_AXI_ACP_AWUSER),
     .S_AXI_ACP_WDATA          (S_AXI_ACP_WDATA),
     .S_AXI_ACP_WSTRB          (S_AXI_ACP_WSTRB), 
-  `else
-    .S_AXI_ACP_ACLK           (1'b0),
-    .S_AXI_ACP_ARVALID        (1'b0),
-    .S_AXI_ACP_AWVALID        (1'b0),
-    .S_AXI_ACP_BREADY         (1'b0),
-    .S_AXI_ACP_RREADY         (1'b0),
-    .S_AXI_ACP_WLAST          (1'b0),
-    .S_AXI_ACP_WVALID         (1'b0),
-    .S_AXI_ACP_ARBURST        (2'b0),
-    .S_AXI_ACP_ARLOCK         (2'b0),
-    .S_AXI_ACP_ARSIZE         (3'b0),
-    .S_AXI_ACP_AWBURST        (2'b0),
-    .S_AXI_ACP_AWLOCK         (2'b0),
-    .S_AXI_ACP_AWSIZE         (3'b0),
-    .S_AXI_ACP_ARPROT         (3'b0),
-    .S_AXI_ACP_AWPROT         (3'b0),
-    .S_AXI_ACP_ARADDR         (32'b0),
-    .S_AXI_ACP_AWADDR         (32'b0),
-    .S_AXI_ACP_WDATA          (32'b0),
-    .S_AXI_ACP_ARCACHE        (4'b0),
-    .S_AXI_ACP_ARLEN          (4'b0),
-    .S_AXI_ACP_ARQOS          (4'b0),
-    .S_AXI_ACP_AWCACHE        (4'b0),
-    .S_AXI_ACP_AWLEN          (4'b0),
-    .S_AXI_ACP_AWQOS          (4'b0),
-    .S_AXI_ACP_WSTRB          (4'b0),
-    .S_AXI_ACP_ARID           (6'b0),
-    .S_AXI_ACP_AWID           (6'b0),
-    .S_AXI_ACP_WID            (6'b0),
-    .S_AXI_ACP_ARUSER         (5'b0),
-    .S_AXI_ACP_AWUSER         (5'b0),
-    .S_AXI_ACP_ARESET_n       (),
-    .S_AXI_ACP_ARREADY        (),
-    .S_AXI_ACP_AWREADY        (),
-    .S_AXI_ACP_BVALID         (),
-    .S_AXI_ACP_RLAST          (),
-    .S_AXI_ACP_RVALID         (),
-    .S_AXI_ACP_WREADY         (),
-    .S_AXI_ACP_BRESP          (),
-    .S_AXI_ACP_RRESP          (),
-    .S_AXI_ACP_RDATA          (),
-    .S_AXI_ACP_BID            (),
-    .S_AXI_ACP_RID            (),
   `endif
   `ifdef PS_SLAVE_AXI_HP0
-    .S_AXI_HP0_ARESET_n       (S_AXI_HP0_ARESET_n),
+    .S_AXI_HP0_ARESET         (S_AXI_HP0_ARESET),
     .S_AXI_HP0_ARREADY        (S_AXI_HP0_ARREADY),
     .S_AXI_HP0_AWREADY        (S_AXI_HP0_AWREADY),
     .S_AXI_HP0_BVALID         (S_AXI_HP0_BVALID),
@@ -2243,56 +1432,9 @@ module ps7_wrapper
     .S_AXI_HP0_WID            (S_AXI_HP0_WID),
     .S_AXI_HP0_WDATA          (S_AXI_HP0_WDATA),
     .S_AXI_HP0_WSTRB          (S_AXI_HP0_WSTRB),
-  `else
-    .S_AXI_HP0_ACLK           (1'B0),
-    .S_AXI_HP0_ARVALID        (1'B0),
-    .S_AXI_HP0_AWVALID        (1'B0),
-    .S_AXI_HP0_BREADY         (1'B0),
-    .S_AXI_HP0_RDISSUECAP1_EN (1'B0),
-    .S_AXI_HP0_RREADY         (1'B0),
-    .S_AXI_HP0_WLAST          (1'B0),
-    .S_AXI_HP0_WRISSUECAP1_EN (1'B0),
-    .S_AXI_HP0_WVALID         (1'B0),
-    .S_AXI_HP0_ARBURST        (2'B0),
-    .S_AXI_HP0_ARLOCK         (2'B0),
-    .S_AXI_HP0_ARSIZE         (3'B0),
-    .S_AXI_HP0_AWBURST        (2'B0),
-    .S_AXI_HP0_AWLOCK         (2'B0),
-    .S_AXI_HP0_AWSIZE         (3'B0),
-    .S_AXI_HP0_ARPROT         (3'B0),
-    .S_AXI_HP0_AWPROT         (3'B0),
-    .S_AXI_HP0_ARADDR         (32'B0),
-    .S_AXI_HP0_AWADDR         (32'B0),
-    .S_AXI_HP0_ARCACHE        (4'B0),
-    .S_AXI_HP0_ARLEN          (4'B0),
-    .S_AXI_HP0_ARQOS          (4'B0),
-    .S_AXI_HP0_AWCACHE        (4'B0),
-    .S_AXI_HP0_AWLEN          (4'B0),
-    .S_AXI_HP0_AWQOS          (4'B0),
-    .S_AXI_HP0_ARID           (6'B0),
-    .S_AXI_HP0_AWID           (6'B0),
-    .S_AXI_HP0_WID            (6'B0),
-    .S_AXI_HP0_WDATA          (64'B0),
-    .S_AXI_HP0_WSTRB          (8'B0),
-    .S_AXI_HP0_ARESET_n       (),
-    .S_AXI_HP0_ARREADY        (),
-    .S_AXI_HP0_AWREADY        (),
-    .S_AXI_HP0_BVALID         (),
-    .S_AXI_HP0_RLAST          (),
-    .S_AXI_HP0_RVALID         (),
-    .S_AXI_HP0_WREADY         (),
-    .S_AXI_HP0_BRESP          (),
-    .S_AXI_HP0_RRESP          (),
-    .S_AXI_HP0_BID            (),
-    .S_AXI_HP0_RID            (),
-    .S_AXI_HP0_RDATA          (),
-    .S_AXI_HP0_RCOUNT         (),
-    .S_AXI_HP0_WCOUNT         (),
-    .S_AXI_HP0_RACOUNT        (),
-    .S_AXI_HP0_WACOUNT        (),
   `endif
   `ifdef PS_SLAVE_AXI_HP1
-    .S_AXI_HP1_ARESET_n       (S_AXI_HP1_ARESET_n),
+    .S_AXI_HP1_ARESET         (S_AXI_HP1_ARESET),
     .S_AXI_HP1_ARREADY        (S_AXI_HP1_ARREADY),
     .S_AXI_HP1_AWREADY        (S_AXI_HP1_AWREADY),
     .S_AXI_HP1_BVALID         (S_AXI_HP1_BVALID),
@@ -2338,56 +1480,9 @@ module ps7_wrapper
     .S_AXI_HP1_WID            (S_AXI_HP1_WID),
     .S_AXI_HP1_WDATA          (S_AXI_HP1_WDATA),
     .S_AXI_HP1_WSTRB          (S_AXI_HP1_WSTRB),
-  `else
-    .S_AXI_HP1_ACLK           (1'B0),
-    .S_AXI_HP1_ARVALID        (1'B0),
-    .S_AXI_HP1_AWVALID        (1'B0),
-    .S_AXI_HP1_BREADY         (1'B0),
-    .S_AXI_HP1_RDISSUECAP1_EN (1'B0),
-    .S_AXI_HP1_RREADY         (1'B0),
-    .S_AXI_HP1_WLAST          (1'B0),
-    .S_AXI_HP1_WRISSUECAP1_EN (1'B0),
-    .S_AXI_HP1_WVALID         (1'B0),
-    .S_AXI_HP1_ARBURST        (2'B0),
-    .S_AXI_HP1_ARLOCK         (2'B0),
-    .S_AXI_HP1_ARSIZE         (3'B0),
-    .S_AXI_HP1_AWBURST        (2'B0),
-    .S_AXI_HP1_AWLOCK         (2'B0),
-    .S_AXI_HP1_AWSIZE         (3'B0),
-    .S_AXI_HP1_ARPROT         (3'B0),
-    .S_AXI_HP1_AWPROT         (3'B0),
-    .S_AXI_HP1_ARADDR         (32'B0),
-    .S_AXI_HP1_AWADDR         (32'B0),
-    .S_AXI_HP1_ARCACHE        (4'B0),
-    .S_AXI_HP1_ARLEN          (4'B0),
-    .S_AXI_HP1_ARQOS          (4'B0),
-    .S_AXI_HP1_AWCACHE        (4'B0),
-    .S_AXI_HP1_AWLEN          (4'B0),
-    .S_AXI_HP1_AWQOS          (4'B0),
-    .S_AXI_HP1_ARID           (6'B0),
-    .S_AXI_HP1_AWID           (6'B0),
-    .S_AXI_HP1_WID            (6'B0),
-    .S_AXI_HP1_WDATA          (64'B0),
-    .S_AXI_HP1_WSTRB          (8'B0),
-    .S_AXI_HP1_ARESET_n       (),
-    .S_AXI_HP1_ARREADY        (),
-    .S_AXI_HP1_AWREADY        (),
-    .S_AXI_HP1_BVALID         (),
-    .S_AXI_HP1_RLAST          (),
-    .S_AXI_HP1_RVALID         (),
-    .S_AXI_HP1_WREADY         (),
-    .S_AXI_HP1_BRESP          (),
-    .S_AXI_HP1_RRESP          (),
-    .S_AXI_HP1_BID            (),
-    .S_AXI_HP1_RID            (),
-    .S_AXI_HP1_RDATA          (),
-    .S_AXI_HP1_RCOUNT         (),
-    .S_AXI_HP1_WCOUNT         (),
-    .S_AXI_HP1_RACOUNT        (),
-    .S_AXI_HP1_WACOUNT        (),
   `endif
   `ifdef PS_SLAVE_AXI_HP2
-    .S_AXI_HP2_ARESET_n       (S_AXI_HP2_ARESET_n),
+    .S_AXI_HP2_ARESET         (S_AXI_HP2_ARESET),
     .S_AXI_HP2_ARREADY        (S_AXI_HP2_ARREADY),
     .S_AXI_HP2_AWREADY        (S_AXI_HP2_AWREADY),
     .S_AXI_HP2_BVALID         (S_AXI_HP2_BVALID),
@@ -2433,56 +1528,9 @@ module ps7_wrapper
     .S_AXI_HP2_WID            (S_AXI_HP2_WID),
     .S_AXI_HP2_WDATA          (S_AXI_HP2_WDATA),
     .S_AXI_HP2_WSTRB          (S_AXI_HP2_WSTRB),
-  `else
-    .S_AXI_HP2_ACLK           (1'B0),
-    .S_AXI_HP2_ARVALID        (1'B0),
-    .S_AXI_HP2_AWVALID        (1'B0),
-    .S_AXI_HP2_BREADY         (1'B0),
-    .S_AXI_HP2_RDISSUECAP1_EN (1'B0),
-    .S_AXI_HP2_RREADY         (1'B0),
-    .S_AXI_HP2_WLAST          (1'B0),
-    .S_AXI_HP2_WRISSUECAP1_EN (1'B0),
-    .S_AXI_HP2_WVALID         (1'B0),
-    .S_AXI_HP2_ARBURST        (2'B0),
-    .S_AXI_HP2_ARLOCK         (2'B0),
-    .S_AXI_HP2_ARSIZE         (3'B0),
-    .S_AXI_HP2_AWBURST        (2'B0),
-    .S_AXI_HP2_AWLOCK         (2'B0),
-    .S_AXI_HP2_AWSIZE         (3'B0),
-    .S_AXI_HP2_ARPROT         (3'B0),
-    .S_AXI_HP2_AWPROT         (3'B0),
-    .S_AXI_HP2_ARADDR         (32'B0),
-    .S_AXI_HP2_AWADDR         (32'B0),
-    .S_AXI_HP2_ARCACHE        (4'B0),
-    .S_AXI_HP2_ARLEN          (4'B0),
-    .S_AXI_HP2_ARQOS          (4'B0),
-    .S_AXI_HP2_AWCACHE        (4'B0),
-    .S_AXI_HP2_AWLEN          (4'B0),
-    .S_AXI_HP2_AWQOS          (4'B0),
-    .S_AXI_HP2_ARID           (6'B0),
-    .S_AXI_HP2_AWID           (6'B0),
-    .S_AXI_HP2_WID            (6'B0),
-    .S_AXI_HP2_WDATA          (64'B0),
-    .S_AXI_HP2_WSTRB          (8'B0),
-    .S_AXI_HP2_ARESET_n       (),
-    .S_AXI_HP2_ARREADY        (),
-    .S_AXI_HP2_AWREADY        (),
-    .S_AXI_HP2_BVALID         (),
-    .S_AXI_HP2_RLAST          (),
-    .S_AXI_HP2_RVALID         (),
-    .S_AXI_HP2_WREADY         (),
-    .S_AXI_HP2_BRESP          (),
-    .S_AXI_HP2_RRESP          (),
-    .S_AXI_HP2_BID            (),
-    .S_AXI_HP2_RID            (),
-    .S_AXI_HP2_RDATA          (),
-    .S_AXI_HP2_RCOUNT         (),
-    .S_AXI_HP2_WCOUNT         (),
-    .S_AXI_HP2_RACOUNT        (),
-    .S_AXI_HP2_WACOUNT        (),
   `endif
   `ifdef PS_SLAVE_AXI_HP3
-    .S_AXI_HP3_ARESET_n       (S_AXI_HP3_ARESET_n),
+    .S_AXI_HP3_ARESET         (S_AXI_HP3_ARESET),
     .S_AXI_HP3_ARREADY        (S_AXI_HP3_ARREADY),
     .S_AXI_HP3_AWREADY        (S_AXI_HP3_AWREADY),
     .S_AXI_HP3_BVALID         (S_AXI_HP3_BVALID),
@@ -2528,77 +1576,30 @@ module ps7_wrapper
     .S_AXI_HP3_WID            (S_AXI_HP3_WID),
     .S_AXI_HP3_WDATA          (S_AXI_HP3_WDATA),
     .S_AXI_HP3_WSTRB          (S_AXI_HP3_WSTRB),
-  `else
-    .S_AXI_HP3_ACLK           (1'B0),
-    .S_AXI_HP3_ARVALID        (1'B0),
-    .S_AXI_HP3_AWVALID        (1'B0),
-    .S_AXI_HP3_BREADY         (1'B0),
-    .S_AXI_HP3_RDISSUECAP1_EN (1'B0),
-    .S_AXI_HP3_RREADY         (1'B0),
-    .S_AXI_HP3_WLAST          (1'B0),
-    .S_AXI_HP3_WRISSUECAP1_EN (1'B0),
-    .S_AXI_HP3_WVALID         (1'B0),
-    .S_AXI_HP3_ARBURST        (2'B0),
-    .S_AXI_HP3_ARLOCK         (2'B0),
-    .S_AXI_HP3_ARSIZE         (3'B0),
-    .S_AXI_HP3_AWBURST        (2'B0),
-    .S_AXI_HP3_AWLOCK         (2'B0),
-    .S_AXI_HP3_AWSIZE         (3'B0),
-    .S_AXI_HP3_ARPROT         (3'B0),
-    .S_AXI_HP3_AWPROT         (3'B0),
-    .S_AXI_HP3_ARADDR         (32'B0),
-    .S_AXI_HP3_AWADDR         (32'B0),
-    .S_AXI_HP3_ARCACHE        (4'B0),
-    .S_AXI_HP3_ARLEN          (4'B0),
-    .S_AXI_HP3_ARQOS          (4'B0),
-    .S_AXI_HP3_AWCACHE        (4'B0),
-    .S_AXI_HP3_AWLEN          (4'B0),
-    .S_AXI_HP3_AWQOS          (4'B0),
-    .S_AXI_HP3_ARID           (6'B0),
-    .S_AXI_HP3_AWID           (6'B0),
-    .S_AXI_HP3_WID            (6'B0),
-    .S_AXI_HP3_WDATA          (64'B0),
-    .S_AXI_HP3_WSTRB          (8'B0),
-    .S_AXI_HP3_ARESET_n       (),
-    .S_AXI_HP3_ARREADY        (),
-    .S_AXI_HP3_AWREADY        (),
-    .S_AXI_HP3_BVALID         (),
-    .S_AXI_HP3_RLAST          (),
-    .S_AXI_HP3_RVALID         (),
-    .S_AXI_HP3_WREADY         (),
-    .S_AXI_HP3_BRESP          (),
-    .S_AXI_HP3_RRESP          (),
-    .S_AXI_HP3_BID            (),
-    .S_AXI_HP3_RID            (),
-    .S_AXI_HP3_RDATA          (),
-    .S_AXI_HP3_RCOUNT         (),
-    .S_AXI_HP3_WCOUNT         (),
-    .S_AXI_HP3_RACOUNT        (),
-    .S_AXI_HP3_WACOUNT        (),
   `endif
   // DDR
   .DDR_ARB                  (DDR_ARB),
-  .DDR_CAS_n                (DDR_CAS_n_buffered),
-  .DDR_CKE                  (DDR_CKE_buffered),
-  .DDR_Clk_n                (DDR_Clk_n_buffered),
-  .DDR_Clk                  (DDR_Clk_buffered),
-  .DDR_CS_n                 (DDR_CS_n_buffered),
-  .DDR_DRSTB                (DDR_DRSTB_buffered),
-  .DDR_ODT                  (DDR_ODT_buffered),
-  .DDR_RAS_n                (DDR_RAS_n_buffered),
-  .DDR_WEB                  (DDR_WEB_buffered),
-  .DDR_BankAddr             (DDR_BankAddr_buffered),
-  .DDR_Addr                 (DDR_Addr_buffered),
-  .DDR_VRN                  (DDR_VRN_buffered),
-  .DDR_VRP                  (DDR_VRP_buffered),
-  .DDR_DM                   (DDR_DM_buffered),
-  .DDR_DQ                   (DDR_DQ_buffered),
-  .DDR_DQS_n                (DDR_DQS_n_buffered),
-  .DDR_DQS                  (DDR_DQS_buffered),
+  .DDR_CAS_n                (DDR_CAS_n),
+  .DDR_CKE                  (DDR_CKE),
+  .DDR_Clk_n                (DDR_Clk_n),
+  .DDR_Clk                  (DDR_Clk),
+  .DDR_CS_n                 (DDR_CS_n),
+  .DDR_DRSTB                (DDR_DRSTB),
+  .DDR_ODT                  (DDR_ODT),
+  .DDR_RAS_n                (DDR_RAS_n),
+  .DDR_WEB                  (DDR_WEB),
+  .DDR_BankAddr             (DDR_BankAddr),
+  .DDR_Addr                 (DDR_Addr),
+  .DDR_VRN                  (DDR_VRN),
+  .DDR_VRP                  (DDR_VRP),
+  .DDR_DM                   (DDR_DM),
+  .DDR_DQ                   (DDR_DQ),
+  .DDR_DQS_n                (DDR_DQS_n),
+  .DDR_DQS                  (DDR_DQS),
   // PS Clock and Reset wires
-  .PS_CLK                   (PS_CLK_buffered),         
-  .PS_SYSTEM_RESET          (PS_SYSTEM_RESET_buffered),
-  .PS_POWER_ON_RESET        (PS_POWER_ON_RESET_buffered)
+  .PS_CLK                   (PS_CLK),         
+  .PS_SYSTEM_RESET          (PS_SYSTEM_RESET),
+  .PS_POWER_ON_RESET        (PS_POWER_ON_RESET)
 
   );
 endmodule

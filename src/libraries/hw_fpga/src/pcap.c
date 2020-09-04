@@ -426,15 +426,7 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
 
     debug_printf(DEBUG_GREEN_PEN " OK " DEBUG_CYAN_PEN " Time = %fms\n", hw_timers_global_get_elapsed(dma_time_start, hw_timers_global_get()) * 1000.0f );
 
-    debug_print(DEBUG_WHITE_PEN "FPGA DONE ");
-	if (!XDcfgPollDone(devcfg_XDCFG_INT_STS_IXR_PCFG_DONE_MASK)) {
-		debug_printf("PCAP_FPGA_DONE_FAIL\r\n");
-		return false;
-	}
-    // level shifter to both directions
-    *HW_REG(slcr, LVL_SHFTR_EN) = 0x000000A;
-
-/*    dma_time_start = hw_timers_global_get();
+    dma_time_start = hw_timers_global_get();
     do
     {
         if( hw_timers_global_get_elapsed(dma_time_start, hw_timers_global_get()) > 20.0f)
@@ -444,8 +436,16 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
 
             return false;
         } 
-    } while( !HW_REG_GET_BIT(devcfg, XDCFG_INT_STS, IXR_PCFG_DONE) );*/
+    } while( !HW_REG_GET_BIT(devcfg, XDCFG_INT_STS, IXR_PCFG_DONE) );    
     debug_print(DEBUG_GREEN_PEN " OK\n");
+
+    // level shifter to both directions
+    *HW_REG(slcr, LVL_SHFTR_EN) = 0x000000A;
+
+    // desassert FCLKs reset to allow things to start on the PL
+    *HW_REG(slcr, SLCR_UNLOCK) = 0xDF0DU;
+    *HW_REG(slcr, FPGA_RST_CTRL) = 0x0;
+    *HW_REG(slcr, SLCR_LOCK) = 0x767B;
 
     return true;
 }

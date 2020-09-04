@@ -1,5 +1,6 @@
 set(project blinky_hw)
-project(${project} NONE)
+
+add_subdirectory(sim)
 
 file(GLOB   SRC_VERILOG_FILES 
             CONFIGURE_DEPENDS 
@@ -14,9 +15,19 @@ file(GLOB   SRC_SILICE_FILES
 
 set( GEN_DIR ${CMAKE_CURRENT_BINARY_DIR}/workspace )
 set( BIN_PATH ${GEN_DIR}/${project}.bin)
+set( SIM_PATH ${GEN_DIR}/${project}_sim)
+
 set( FINAL_PATH ${CMAKE_CURRENT_BINARY_DIR}/${project}.bin)
 set( SLICE_VERILOG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/verilog/silice_main.v )
 
+add_custom_command( 
+      OUTPUT ${SIM_PATH}
+      COMMAND sbt "runMain blinky.DutTests"
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/spinalHDL
+      DEPENDS ${SRC_VERILOG_FILES} ${SRC_SCALA_FILES} ${SRC_SILICE_FILES} ${SLICE_VERILOG_PATH}
+)
+
+project(${project} NONE)
 
 add_custom_command( 
       OUTPUT ${SLICE_VERILOG_PATH}
@@ -26,7 +37,6 @@ add_custom_command(
                         -f ${CMAKE_CURRENT_SOURCE_DIR}/verilog/silice_framework.v
       DEPENDS ${SRC_SILICE_FILES}
 )
-
 
 add_custom_command( 
       OUTPUT ${BIN_PATH}

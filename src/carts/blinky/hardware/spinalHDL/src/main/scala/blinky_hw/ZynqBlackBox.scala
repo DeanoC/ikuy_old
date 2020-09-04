@@ -1,11 +1,14 @@
 package blinky
 
 import spinal.core._
+import spinal.lib._
 import spinal.lib.io._
+import spinal.lib.bus.amba4.axi._
+
 
 case class PLLE2_BASE(
   bandwidth : String = "OPTIMIZED",
-  startUpWait : Bool = False,
+  startUpWait : String = "FALSE",
   clkIn1_Period : Double = 0.0, // 0.938 to 52.631ns
   clkOut_Mult : Int = 2,
   clkOut0_Divide : Int = 1,
@@ -70,6 +73,7 @@ case class PLLE2_BASE(
   val CLKOUT3  = out Bool
   val CLKOUT4  = out Bool
   val CLKOUT5  = out Bool
+  val PWRDWN = in Bool
 }
 
 case class DdrInterface() extends Bundle{
@@ -92,18 +96,44 @@ case class DdrInterface() extends Bundle{
     val DQS = Analog(Bits(4 bits))
 }
 
-case class ps7_wrapper() extends BlackBox {
+case class ps7_axi_wrapper() extends BlackBox {
+  val GeneralPurposeAxi =  Axi4Config(                  
+                    addressWidth = 32,
+                    dataWidth = 32,
+                    idWidth = 12,
+                    useId  = true,
+                    useRegion = false,
+                    useBurst = true,
+                    useLock = true,
+                    useCache = true,
+                    useSize = true,
+                    useQos  = true,
+                    useLen  = true,
+                    useLast = true,
+                    useResp = true,
+                    useProt = true,
+                    useStrb = true    
+  )
+
   val io = new Bundle {
-      val PS_SOFT_RESET = inout Bool()
-      val PS_CLK = inout Bool()
-      val PS_POWER_ON_RESET = inout Bool()
+      val PS_SYSTEM_RESET = out Bool()
+      val PS_CLK = out Bool()
+      val PS_POWER_ON_RESET = out Bool()
       val DDR_ARB = in Bits(4 bits)
       val DDR = inout(DdrInterface())
+
+      val FCLK0_CLK = out Bool()
+      val FCLK0_RESET = out Bool()
+
+      val M_AXI_GP0 = master( Axi4(GeneralPurposeAxi) )
+      val M_AXI_GP0_clk = in Bool
+      val M_AXI_GP0_reset = out Bool
   }
   // Remove io_ prefix from verilog names
   noIoPrefix()
 
   addRTLPath("../verilog/blinky_zynqy.v")
+  addRTLPath("../verilog/ps7_axi_wrapper.v")
   addRTLPath("../verilog/ps7_wrapper.v")
   addRTLPath("../verilog/ps7_blackbox.v")
 }

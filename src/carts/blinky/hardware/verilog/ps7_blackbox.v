@@ -311,7 +311,7 @@ module ps7_port_rename(
   output wire FCLK3_RESET_n,
   
   // PS Clock and Reset wires
-  inout wire PS_SOFT_RESET,
+  inout wire PS_SYSTEM_RESET,
   inout wire PS_CLK,         
   inout wire PS_POWER_ON_RESET,
 
@@ -978,7 +978,7 @@ module ps7_port_rename(
     // Misc
 	  .PSCLK		                (PS_CLK),
 	  .PSPORB		                (PS_POWER_ON_RESET),
-	  .PSSRSTB		              (PS_SOFT_RESET),
+	  .PSSRSTB		              (PS_SYSTEM_RESET),
 	  .FPGAIDLEN		            (FPGA_IDLE_n),
 	  .EMIOSRAMINTIN            (SRAM_INTIN),
 

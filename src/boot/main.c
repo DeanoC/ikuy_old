@@ -22,6 +22,7 @@ extern void ddrcRunInitProgram(void);
 extern void uartRunInitProgram(void);
 extern void mmuInit(void);
 int ps7_init(void);
+int ps7_post_config(void);
 
 extern void move_ocm_high(void);
 extern void wake_cpu1();
@@ -37,30 +38,33 @@ bool ddrEarlyMemTest();
 void software_interrupt()
 {
     debug_unsafe_print(DEBUG_RED_PEN "SOFTWARE INTERRUPT\n");
-    while (1)
-    {
-    }
 }
 
 void irq_interrupt()
 {
     debug_unsafe_print(DEBUG_RED_PEN "IRQ INTERRUPT\n");
-    while (1)
-    {
-    }
 }
 
 void fiq_interrupt()
 {
     debug_unsafe_print(DEBUG_RED_PEN "FIQ INTERRUPT\n");
-    while (1)
-    {
-    }
 }
 
 int main(int argc, char const *argv[])
 {
-    ps7_init();
+    // assert the FCLKs reset line (to stop hopefully all PL action)
+    {
+        HW_REG_SET_BIT(devcfg, XDCFG_CTRL, PCFG_PROG_B);
+
+        *HW_REG(slcr, SLCR_UNLOCK) = 0xDF0DU;
+        *HW_REG(slcr, FPGA_RST_CTRL) = 0xF;
+        *HW_REG(slcr, SLCR_LOCK) = 0x767B;
+
+        HW_REG_CLR_BIT(devcfg, XDCFG_CTRL, PCFG_PROG_B);
+    }
+
+//    ps7_init();
+//    ps7_post_config();
     // init uart early for debugging
     uartRunInitProgram();
 
@@ -73,7 +77,7 @@ int main(int argc, char const *argv[])
     debug_unsafe_print(DEBUG_WHITE_PEN "** ikuy booting **\n");
 
     // System Level Control Registers
-/*    debug_unsafe_print(DEBUG_WHITE_PEN "System Level Configuration Init ");
+    debug_unsafe_print(DEBUG_WHITE_PEN "System Level Configuration Init ");
     // slcr requires the uart tx fifo is empty
     debug_uart_stall_till_transmit_fifo_is_empty();
 
@@ -102,7 +106,7 @@ int main(int argc, char const *argv[])
         debug_unsafe_print(DEBUG_RED_PEN "FAIL ");
     }
     debug_unsafe_printf(DEBUG_YELLOW_PEN "Time = %fs\n", hw_timers_global_get_elapsed(timeStart, timeEnd));
-*/
+
     debug_unsafe_print(DEBUG_WHITE_PEN "Moving boot low OCM to DDR ");
     move_ocm_high();
     debug_unsafe_print(DEBUG_GREEN_PEN "OK\n");

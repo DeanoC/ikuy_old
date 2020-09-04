@@ -4,3 +4,6 @@
 [submodule "tools/Silice"]
 	path = tools/Silice
 	url = git@github.com:DeanoC/Silice.git
+[submodule "tools/SpinalHDL"]
+	path = tools/SpinalHDL
+	url = git@github.com:DeanoC/SpinalHDL.git
