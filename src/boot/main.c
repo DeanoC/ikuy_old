@@ -63,8 +63,6 @@ int main(int argc, char const *argv[])
         HW_REG_CLR_BIT(devcfg, XDCFG_CTRL, PCFG_PROG_B);
     }
 
-//    ps7_init();
-//    ps7_post_config();
     // init uart early for debugging
     uartRunInitProgram();
 

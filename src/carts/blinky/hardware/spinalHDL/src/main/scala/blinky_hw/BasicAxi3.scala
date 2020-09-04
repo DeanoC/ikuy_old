@@ -66,6 +66,9 @@ class BasicAxi3Slave(config : Axi4Config) extends Component {
                     is(U(1,2 bits)){ 
                         fourKPage := fourKPage + numberBytes; 
                     } // INCR
+                    is(U(2,2 bits)) {
+                        
+                    }
                     default {
                         // do nothing for fixed and reserved
                     }

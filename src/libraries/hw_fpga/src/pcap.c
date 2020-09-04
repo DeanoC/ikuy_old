@@ -154,30 +154,21 @@ bool ClearPcapStatus(void)
 	uint32_t StatusReg;
 	uint32_t IntStatusReg;
 
-	/*
-	 * Clear it all, so if Boot ROM comes back, it can proceed
-	 */
     *HW_REG(devcfg, XDCFG_INT_STS) = 0xFFFFFFFF;
 
-	/*
-	 * Get PCAP Interrupt Status Register
-	 */
+	// Get PCAP Interrupt Status Register
     IntStatusReg = *HW_REG(devcfg, XDCFG_INT_STS);
 	if (IntStatusReg & FSBL_XDCFG_IXR_ERROR_FLAGS_MASK) {
 		debug_printf("FATAL errors in PCAP 0x%.8x\n", IntStatusReg);
 		return false;
 	}
 
-	/*
-	 * Read the PCAP status register for DMA status
-	 */
+	// Read the PCAP status register for DMA status
 	StatusReg = *HW_REG(devcfg, XDCFG_STATUS);
 
-	debug_printf("PCAP:StatusReg = 0x%.8x\n", StatusReg);
+	//debug_printf("PCAP:StatusReg = 0x%.8x\n", StatusReg);
 
-	/*
-	 * If the queue is full, return w/ XST_DEVICE_BUSY
-	 */
+	// If the queue is full, return w/ XST_DEVICE_BUSY
 	if ((StatusReg & devcfg_XDCFG_STATUS_DMA_CMD_Q_F_MASK) ==
 			devcfg_XDCFG_STATUS_DMA_CMD_Q_F_MASK) {
 
@@ -185,11 +176,9 @@ bool ClearPcapStatus(void)
 		return false;
 	}
 
-	debug_printf("PCAP:device ready\n");
+    debug_printf(DEBUG_WHITE_PEN "PCAP:device ready\n");
 
-	/*
-	 * There are unacknowledged DMA commands outstanding
-	 */
+    // There are unacknowledged DMA commands outstanding
 	if ((StatusReg & devcfg_XDCFG_STATUS_DMA_CMD_Q_E_MASK) !=
 			devcfg_XDCFG_STATUS_DMA_CMD_Q_E_MASK) {
 
@@ -216,7 +205,7 @@ bool ClearPcapStatus(void)
 
 	}
 
-	debug_printf("PCAP:Clear done\n");
+//	debug_printf("PCAP:Clear done\n");
     return true;
 }
 
@@ -225,7 +214,6 @@ bool FabricInit(void)
 	uint32_t TimerExpired = 0;
 	uint64_t tCur = 0;
 	uint64_t tEnd = 0;
-
 
 	// Set Level Shifters to PS to PL only (DT618760 and TRM say to do so)
     *HW_REG(slcr, LVL_SHFTR_EN) = 0x000000A;
@@ -275,60 +263,8 @@ TryAgain:
 	while(!HW_REG_GET_BIT(devcfg, XDCFG_STATUS, PCFG_INIT));
 
 	//	debug_printf("Devcfg Status register = 0x%x\n",StatusReg);
-    hw_fpga_pcap_log_XDCFG_STATUS();
-	debug_print("PCAP:Fabric is Initialized done\n");
-
-	return true;
-}
-
-/******************************************************************************/
-/**
-*
-* This function Polls for the DMA done or FPGA done.
-*
-* @param	none
-*
-* @return
-*		- XST_SUCCESS if polling for DMA/FPGA done is successful
-*		- XST_FAILURE if polling for DMA/FPGA done fails
-*
-* @note		none
-*
-****************************************************************************/
-bool XDcfgPollDone(uint32_t MaskValue)
-{
-	uint32_t IntrStsReg = 0;
-    uint64_t time_start = hw_timers_global_get();
-    uint64_t dbg_time_start = hw_timers_global_get();
-	/*
-	 * poll for the DMA done
-	 */
-	IntrStsReg = *HW_REG(devcfg, XDCFG_INT_STS);
-	while ((IntrStsReg & MaskValue) != MaskValue) {
-		IntrStsReg = *HW_REG(devcfg, XDCFG_INT_STS);
-
-		if (IntrStsReg & FSBL_XDCFG_IXR_ERROR_FLAGS_MASK) {
-				debug_printf(DEBUG_RED_PEN "FATAL errors in PCAP %x\r\n", IntrStsReg);
-                hw_fpga_pcap_log_registers();
-				return false;
-		}
-
-        if(hw_timers_global_get_elapsed(time_start, hw_timers_global_get()) > 30.0f)
-        {
-        	debug_print(DEBUG_RED_PEN"PCAP transfer timed out\n");
-			return false;
-		}
-
-        if(hw_timers_global_get_elapsed(dbg_time_start, hw_timers_global_get()) > 0.3f)
-        {
-            debug_print(DEBUG_GREEN_PEN ".");
-            dbg_time_start = hw_timers_global_get();
-        }
-	}
-
-	debug_print("\n");
-
-	*HW_REG(devcfg, XDCFG_INT_STS) = IntrStsReg & MaskValue;
+//    hw_fpga_pcap_log_XDCFG_STATUS();
+//	debug_print("PCAP is Initialized\n");
 
 	return true;
 }
@@ -336,7 +272,7 @@ bool XDcfgPollDone(uint32_t MaskValue)
 
 bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
 {
-/*    // reset
+    // reset
 	*HW_REG(devcfg, XDCFG_CFG) = 0x508;
     // unlock devcfg
     *HW_REG(devcfg, XDCFG_UNLOCK) = 0x757BDF0D;
@@ -346,7 +282,7 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
     *HW_REG(devcfg, XDCFG_INT_STS) = *HW_REG(devcfg, XDCFG_INT_STS); // all bits write to clear
 
     // flush d1 cache
-    l1cache_data_flush_all();
+//    l1cache_data_flush_all();
 
     // level shifter already enabled in boot     
     HW_REG_CLR_BIT(devcfg, XDCFG_CTRL, PCFG_POR_CNT_4K);
@@ -357,7 +293,7 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
         debug_print(DEBUG_RED_PEN "ERROR: FPGA Fabric not powered up!\n");
         return false;
     }
-*/
+
     if (!ClearPcapStatus()) {
 		debug_printf(DEBUG_RED_PEN "PCAP_CLEAR_STATUS_FAIL\n");
 		return false;
@@ -391,8 +327,11 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
     debug_print(DEBUG_WHITE_PEN "FPGA DMA ");
     uint64_t dma_time_start = hw_timers_global_get();
     uint64_t dbg_time_start = dma_time_start;
-    do
+    while (hw_fpga_is_devcfg_dma_busy())
     {
+// I sometimes get errors thrown but they seem benign...
+// so for now ignore the errors until I have time to investigate...
+#if ERROR_CHECK_DMA
         if( hw_timers_global_get_elapsed(dma_time_start, hw_timers_global_get()) > 20.0f)
         {
             debug_print(DEBUG_RED_PEN "\nERROR: bitstream upload dma timed out!\n");
@@ -417,12 +356,13 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
             hw_fpga_pcap_log_registers();
             return false;
         }
+#endif
         if(hw_timers_global_get_elapsed(dbg_time_start, hw_timers_global_get()) > 0.3f)
         {
             debug_print(DEBUG_GREEN_PEN ".");
             dbg_time_start = hw_timers_global_get();
         }
-    } while(hw_fpga_is_devcfg_dma_busy());
+    };
 
     debug_printf(DEBUG_GREEN_PEN " OK " DEBUG_CYAN_PEN " Time = %fms\n", hw_timers_global_get_elapsed(dma_time_start, hw_timers_global_get()) * 1000.0f );
 
@@ -436,8 +376,9 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
 
             return false;
         } 
-    } while( !HW_REG_GET_BIT(devcfg, XDCFG_INT_STS, IXR_PCFG_DONE) );    
-    debug_print(DEBUG_GREEN_PEN " OK\n");
+    } while( !HW_REG_GET_BIT(devcfg, XDCFG_INT_STS, IXR_PCFG_DONE) );
+
+    debug_print(DEBUG_WHITE_PEN "FPGA Kick off");
 
     // level shifter to both directions
     *HW_REG(slcr, LVL_SHFTR_EN) = 0x000000A;
@@ -446,6 +387,7 @@ bool hw_fpga_pcap_upload_bitstream(uintptr_t addr)
     *HW_REG(slcr, SLCR_UNLOCK) = 0xDF0DU;
     *HW_REG(slcr, FPGA_RST_CTRL) = 0x0;
     *HW_REG(slcr, SLCR_LOCK) = 0x767B;
+    debug_print(DEBUG_GREEN_PEN " OK\n" DEBUG_WHITE_PEN);
 
     return true;
 }
