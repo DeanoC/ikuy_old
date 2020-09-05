@@ -15,7 +15,7 @@ class PWM(width : Int) extends Component {
     val pwm_out = out Bool
   }
   val counter = Reg(UInt(width bits))
-  counter := Cat(counter(0 until width-1), B"0").asUInt
+  counter := (counter + 1).resize(width)
   when(io.duty_cycle > counter) {
     io.pwm_out := True
   }.otherwise
@@ -125,16 +125,16 @@ class Blinky extends Component {
   val thresholdArea = new ClockingArea(
     ClockDomain(pll.CLKOUT0, frequency = FixedFrequency(25 MHz)))
   {
-    val width = 4
+    val width = 8
     val ledPWM = new PWM(width)
-    val brightness = RegInit(U(0, 4 bits))
+    val brightness = RegInit(U(0, width bits))
     ledPWM.io.duty_cycle <> brightness
 
     when(io.btns(0))
     {
-      brightness := U"4'h4"
+      brightness := U(width/4, width bits)
     }.otherwise {
-      brightness := U"4'h0"
+      brightness := U(0, width bits)
     }
     io.rgb_led1(0) := ledPWM.io.pwm_out
     io.rgb_led1(1) := ledPWM.io.pwm_out
