@@ -4,7 +4,7 @@ import spinal.core._
 import spinal.lib._
 import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
-
+import spinal.lib.blackbox.xilinx.s7._
 
 class PWM(width : Int) extends Component {
   var io = new Bundle {
@@ -15,7 +15,7 @@ class PWM(width : Int) extends Component {
     val pwm_out = out Bool
   }
   val counter = Reg(UInt(width bits))
-  counter := (counter << 1).resize(width)
+  counter := Cat(counter(0 until width-1), B"0").asUInt
   when(io.duty_cycle > counter) {
     io.pwm_out := True
   }.otherwise
@@ -112,6 +112,7 @@ class Blinky extends Component {
     io.rgb_led0(2) := False
 
   }
+
 
   //Instanciate and drive the PLL (125 MHz * Mult) / Divide
   val pll = new PLLE2_BASE(clkOut_Mult = 10,      // 1250 MHz
