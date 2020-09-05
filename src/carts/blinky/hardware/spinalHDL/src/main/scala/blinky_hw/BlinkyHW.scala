@@ -59,8 +59,6 @@ class Blinky extends Component {
     )
   )
 
-  hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
-
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
   {
 /*    val ram = Axi4SharedOnChipRam(
@@ -81,20 +79,32 @@ class Blinky extends Component {
     axiCrossbar.build()
 */
 
-    val slave = new BasicAxi3Slave(hardSoc.GeneralPurposeAxi)
-    slave.io.s_axi <> hardSoc.io.M_AXI_GP0
-    slave.io.reset_n := ~ClockDomain.current.reset
+    val slaveGp0 = new BasicAxi3Slave(
+                      config = hardSoc.GeneralPurposeAxi, 
+                      addressSpaceHighBit = 30 // 0x40000000 address range
+                      )
+    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
+    slaveGp0.io.s_axi <> hardSoc.io.M_AXI_GP0
+    slaveGp0.io.reset_n := ~ClockDomain.current.reset
+
+    val slaveGp1 = new BasicAxi3Slave(
+                      config = hardSoc.GeneralPurposeAxi, 
+                      addressSpaceHighBit = 31 // 0x80000000 address range
+                      )
+    hardSoc.io.M_AXI_GP1_clk := hardSoc.io.FCLK0_CLK
+    slaveGp1.io.s_axi <> hardSoc.io.M_AXI_GP1
+    slaveGp1.io.reset_n := ~ClockDomain.current.reset
 
     val debug0 = RegInit(False)
-    when(slave.io.s_axi.w.data === U("32'x0000_0000").asBits) {
+    when(slaveGp0.io.s_axi.w.data === U("32'x0000_0000").asBits) {
       debug0 := True
     }
     val debug1 = RegInit(False)
-    when(slave.io.s_axi.w.valid) {
+    when(slaveGp0.io.s_axi.w.valid) {
       debug1 := True
     }
     val debug2 = RegInit(False)
-    when(slave.io.s_axi.w.ready) {
+    when(slaveGp0.io.s_axi.w.ready) {
       debug2 := True
     }
     val debug3 = RegInit(False)

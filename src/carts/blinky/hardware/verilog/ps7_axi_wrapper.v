@@ -413,47 +413,49 @@ module ps7_axi_wrapper
     input wire [1:0] M_AXI_GP0_b_payload_resp,
   `endif
   `ifdef PS_MASTER_AXI_GP1
-    //M_AXI_GP1
-    output wire M_AXI_GP1_ARESET,
-    output wire M_AXI_GP1_ARVALID,
-    output wire M_AXI_GP1_AWVALID,
-    output wire M_AXI_GP1_BREADY,
-    output wire M_AXI_GP1_RREADY,
-    output wire M_AXI_GP1_WLAST,
-    output wire M_AXI_GP1_WVALID,
-    output wire [11:0] M_AXI_GP1_ARID,
-    output wire [11:0] M_AXI_GP1_AWID,
-    output wire [11:0] M_AXI_GP1_WID,
-    output wire [1:0] M_AXI_GP1_ARBURST,
-    output wire [1:0] M_AXI_GP1_ARLOCK,
-    output wire [1:0] M_AXI_GP1_ARSIZE,
-    output wire [1:0] M_AXI_GP1_AWBURST,
-    output wire [1:0] M_AXI_GP1_AWLOCK,
-    output wire [1:0] M_AXI_GP1_AWSIZE,
-    output wire [2:0] M_AXI_GP1_ARPROT,
-    output wire [2:0] M_AXI_GP1_AWPROT,
-    output wire [31:0] M_AXI_GP1_ARADDR,
-    output wire [31:0] M_AXI_GP1_AWADDR,
-    output wire [31:0] M_AXI_GP1_WDATA,
-    output wire [3:0] M_AXI_GP1_ARCACHE,
-    output wire [3:0] M_AXI_GP1_ARLEN,
-    output wire [3:0] M_AXI_GP1_ARQOS,
-    output wire [3:0] M_AXI_GP1_AWCACHE,
-    output wire [3:0] M_AXI_GP1_AWLEN,
-    output wire [3:0] M_AXI_GP1_AWQOS,
-    output wire [3:0] M_AXI_GP1_WSTRB,
-    input wire M_AXI_GP1_ACLK,
-    input wire M_AXI_GP1_ARREADY,
-    input wire M_AXI_GP1_AWREADY,
-    input wire M_AXI_GP1_BVALID,
-    input wire M_AXI_GP1_RLAST,
-    input wire M_AXI_GP1_RVALID,
-    input wire M_AXI_GP1_WREADY,  
-    input wire [11:0] M_AXI_GP1_BID,
-    input wire [11:0] M_AXI_GP1_RID,
-    input wire [1:0] M_AXI_GP1_BRESP,
-    input wire [1:0] M_AXI_GP1_RRESP,
-    input wire [31:0] M_AXI_GP1_RDATA,
+    //M_AXI_GP1  
+    input wire M_AXI_GP1_clk,
+    output wire M_AXI_GP1_reset,
+
+    output wire M_AXI_GP1_ar_valid,
+    output wire M_AXI_GP1_aw_valid,
+    input wire M_AXI_GP1_r_valid,
+    output wire M_AXI_GP1_w_valid,
+    input wire M_AXI_GP1_b_valid,
+
+    input wire M_AXI_GP1_ar_ready,
+    input wire M_AXI_GP1_aw_ready,
+    output wire M_AXI_GP1_r_ready,
+    input wire M_AXI_GP1_w_ready,
+    output wire M_AXI_GP1_b_ready,
+
+    output wire [31:0] M_AXI_GP1_ar_payload_addr,
+    output wire [11:0] M_AXI_GP1_ar_payload_id,
+    output wire [1:0] M_AXI_GP1_ar_payload_burst,
+    output wire M_AXI_GP1_ar_payload_lock,
+    output wire [2:0] M_AXI_GP1_ar_payload_size,
+    output wire [2:0] M_AXI_GP1_ar_payload_prot,
+    output wire [3:0] M_AXI_GP1_ar_payload_cache,
+    output wire [7:0] M_AXI_GP1_ar_payload_len,
+    output wire [3:0] M_AXI_GP1_ar_payload_qos,
+    output wire [31:0] M_AXI_GP1_aw_payload_addr,
+    output wire [11:0] M_AXI_GP1_aw_payload_id,
+    output wire [1:0] M_AXI_GP1_aw_payload_burst,
+    output wire M_AXI_GP1_aw_payload_lock,
+    output wire [2:0] M_AXI_GP1_aw_payload_size,
+    output wire [2:0] M_AXI_GP1_aw_payload_prot,
+    output wire [3:0] M_AXI_GP1_aw_payload_cache,
+    output wire [7:0] M_AXI_GP1_aw_payload_len,
+    output wire [3:0] M_AXI_GP1_aw_payload_qos,
+    output wire [31:0] M_AXI_GP1_w_payload_data,
+    output wire [3:0] M_AXI_GP1_w_payload_strb,
+    output wire M_AXI_GP1_w_payload_last,
+    input wire [11:0] M_AXI_GP1_r_payload_id,
+    input wire M_AXI_GP1_r_payload_last,
+    input wire [1:0] M_AXI_GP1_r_payload_resp,
+    input wire [31:0] M_AXI_GP1_r_payload_data,
+    input wire [11:0] M_AXI_GP1_b_payload_id,
+    input wire [1:0] M_AXI_GP1_b_payload_resp,
   `endif
   `ifdef PS_SLAVE_AXI_GP0
     // S_AXI_GP0
@@ -824,6 +826,24 @@ module ps7_axi_wrapper
     assign M_AXI_GP0_ar_payload_len = { 4'h0, M_AXI_GP0_ar_payload_len_adaptor };
     assign M_AXI_GP0_aw_payload_len = { 4'h0, M_AXI_GP0_aw_payload_len_adaptor };      
   `endif
+
+  `ifdef PS_MASTER_AXI_GP1
+    wire [1:0] M_AXI_GP1_ar_payload_lock_adaptor; // Axi4 lock simplified
+    wire [1:0] M_AXI_GP1_aw_payload_lock_adaptor;
+    wire [1:0] M_AXI_GP1_ar_payload_size_adaptor; // size can't be larger than bus so pad with 0
+    wire [1:0] M_AXI_GP1_aw_payload_size_adaptor;
+    wire [3:0] M_AXI_GP1_ar_payload_len_adaptor; // axi4 can issue longer burst we don't so pad with 0
+    wire [3:0] M_AXI_GP1_aw_payload_len_adaptor;
+
+    wire [11:0] M_AXI_GP1_w_payload_id; // not used for Axi4
+    assign M_AXI_GP1_ar_payload_lock = M_AXI_GP1_ar_payload_lock_adaptor[0];
+    assign M_AXI_GP1_aw_payload_lock = M_AXI_GP1_aw_payload_lock_adaptor[0];
+    assign M_AXI_GP1_ar_payload_size = { 1'b0, M_AXI_GP1_ar_payload_size_adaptor };
+    assign M_AXI_GP1_aw_payload_size = { 1'b0, M_AXI_GP1_aw_payload_size_adaptor };
+    assign M_AXI_GP1_ar_payload_len = { 4'h0, M_AXI_GP1_ar_payload_len_adaptor };
+    assign M_AXI_GP1_aw_payload_len = { 4'h0, M_AXI_GP1_aw_payload_len_adaptor };      
+  `endif
+
 
   // ----- Instaniate the PS7 wrapper
   ps7_wrapper ps7_wrapper_i (
@@ -1216,46 +1236,48 @@ module ps7_axi_wrapper
     .M_AXI_GP0_RDATA          (M_AXI_GP0_r_payload_data),  
   `endif
   `ifdef PS_MASTER_AXI_GP1
-    .M_AXI_GP1_ACLK           (M_AXI_GP1_ACLK),
-    .M_AXI_GP1_ARESET         (M_AXI_GP1_ARESET),
-    .M_AXI_GP1_ARVALID        (M_AXI_GP1_ARVALID),
-    .M_AXI_GP1_AWVALID        (M_AXI_GP1_AWVALID),
-    .M_AXI_GP1_BREADY         (M_AXI_GP1_BREADY),
-    .M_AXI_GP1_RREADY         (M_AXI_GP1_RREADY),
-    .M_AXI_GP1_WLAST          (M_AXI_GP1_WLAST),
-    .M_AXI_GP1_WVALID         (M_AXI_GP1_WVALID),
-    .M_AXI_GP1_ARID           (M_AXI_GP1_ARID),
-    .M_AXI_GP1_AWID           (M_AXI_GP1_AWID),
-    .M_AXI_GP1_WID            (M_AXI_GP1_WID),
-    .M_AXI_GP1_ARBURST        (M_AXI_GP1_ARBURST),
-    .M_AXI_GP1_ARLOCK         (M_AXI_GP1_ARLOCK),
-    .M_AXI_GP1_ARSIZE         (M_AXI_GP1_ARSIZE),
-    .M_AXI_GP1_AWBURST        (M_AXI_GP1_AWBURST),
-    .M_AXI_GP1_AWLOCK         (M_AXI_GP1_AWLOCK),
-    .M_AXI_GP1_AWSIZE         (M_AXI_GP1_AWSIZE),
-    .M_AXI_GP1_ARPROT         (M_AXI_GP1_ARPROT),
-    .M_AXI_GP1_AWPROT         (M_AXI_GP1_AWPROT),
-    .M_AXI_GP1_ARADDR         (M_AXI_GP1_ARADDR),
-    .M_AXI_GP1_AWADDR         (M_AXI_GP1_AWADDR),
-    .M_AXI_GP1_WDATA          (M_AXI_GP1_WDATA),
-    .M_AXI_GP1_ARCACHE        (M_AXI_GP1_ARCACHE),
-    .M_AXI_GP1_ARLEN          (M_AXI_GP1_ARLEN),
-    .M_AXI_GP1_ARQOS          (M_AXI_GP1_ARQOS),
-    .M_AXI_GP1_AWCACHE        (M_AXI_GP1_AWCACHE),
-    .M_AXI_GP1_AWLEN          (M_AXI_GP1_AWLEN),
-    .M_AXI_GP1_AWQOS          (M_AXI_GP1_AWQOS),
-    .M_AXI_GP1_WSTRB          (M_AXI_GP1_WSTRB),
-    .M_AXI_GP1_ARREADY        (M_AXI_GP1_ARREADY),
-    .M_AXI_GP1_AWREADY        (M_AXI_GP1_AWREADY),
-    .M_AXI_GP1_BVALID         (M_AXI_GP1_BVALID),
-    .M_AXI_GP1_RLAST          (M_AXI_GP1_RLAST),
-    .M_AXI_GP1_RVALID         (M_AXI_GP1_RVALID),
-    .M_AXI_GP1_WREADY         (M_AXI_GP1_WREADY),  
-    .M_AXI_GP1_BID            (M_AXI_GP1_BID),
-    .M_AXI_GP1_RID            (M_AXI_GP1_RID),
-    .M_AXI_GP1_BRESP          (M_AXI_GP1_BRESP),
-    .M_AXI_GP1_RRESP          (M_AXI_GP1_RRESP),
-    .M_AXI_GP1_RDATA          (M_AXI_GP1_RDATA),
+    .M_AXI_GP1_ACLK           (M_AXI_GP1_clk),
+    .M_AXI_GP1_ARESET         (M_AXI_GP1_reset),
+
+    .M_AXI_GP1_ARVALID        (M_AXI_GP1_ar_valid),
+    .M_AXI_GP1_AWVALID        (M_AXI_GP1_aw_valid),
+    .M_AXI_GP1_BREADY         (M_AXI_GP1_b_ready),
+    .M_AXI_GP1_RREADY         (M_AXI_GP1_r_ready),
+    .M_AXI_GP1_ARREADY        (M_AXI_GP1_ar_ready),
+    .M_AXI_GP1_AWREADY        (M_AXI_GP1_aw_ready),
+    .M_AXI_GP1_BVALID         (M_AXI_GP1_b_valid),
+    .M_AXI_GP1_RVALID         (M_AXI_GP1_r_valid),
+    .M_AXI_GP1_WREADY         (M_AXI_GP1_w_ready),
+    .M_AXI_GP1_WVALID         (M_AXI_GP1_w_valid),
+
+    .M_AXI_GP1_WLAST          (M_AXI_GP1_w_payload_last),
+    .M_AXI_GP1_ARID           (M_AXI_GP1_ar_payload_id),
+    .M_AXI_GP1_AWID           (M_AXI_GP1_aw_payload_id),
+    .M_AXI_GP1_WID            (M_AXI_GP1_w_payload_id),
+    .M_AXI_GP1_ARBURST        (M_AXI_GP1_ar_payload_burst),
+    .M_AXI_GP1_ARLOCK         (M_AXI_GP1_ar_payload_lock_adaptor),
+    .M_AXI_GP1_ARSIZE         (M_AXI_GP1_ar_payload_size_adaptor),
+    .M_AXI_GP1_AWBURST        (M_AXI_GP1_aw_payload_burst), 
+    .M_AXI_GP1_AWLOCK         (M_AXI_GP1_aw_payload_lock_adaptor),
+    .M_AXI_GP1_AWSIZE         (M_AXI_GP1_aw_payload_size_adaptor),
+    .M_AXI_GP1_ARPROT         (M_AXI_GP1_ar_payload_prot),
+    .M_AXI_GP1_AWPROT         (M_AXI_GP1_aw_payload_prot),
+    .M_AXI_GP1_ARADDR         (M_AXI_GP1_ar_payload_addr),
+    .M_AXI_GP1_AWADDR         (M_AXI_GP1_aw_payload_addr),
+    .M_AXI_GP1_WDATA          (M_AXI_GP1_w_payload_data),
+    .M_AXI_GP1_ARCACHE        (M_AXI_GP1_ar_payload_cache),
+    .M_AXI_GP1_ARLEN          (M_AXI_GP1_ar_payload_len_adaptor),
+    .M_AXI_GP1_ARQOS          (M_AXI_GP1_ar_payload_qos),
+    .M_AXI_GP1_AWCACHE        (M_AXI_GP1_aw_payload_cache),
+    .M_AXI_GP1_AWLEN          (M_AXI_GP1_aw_payload_len_adaptor),
+    .M_AXI_GP1_AWQOS          (M_AXI_GP1_aw_payload_qos),
+    .M_AXI_GP1_WSTRB          (M_AXI_GP1_w_payload_strb),
+    .M_AXI_GP1_RLAST          (M_AXI_GP1_r_payload_last),
+    .M_AXI_GP1_BID            (M_AXI_GP1_b_payload_id),
+    .M_AXI_GP1_RID            (M_AXI_GP1_r_payload_id),
+    .M_AXI_GP1_BRESP          (M_AXI_GP1_b_payload_resp),
+    .M_AXI_GP1_RRESP          (M_AXI_GP1_r_payload_resp),
+    .M_AXI_GP1_RDATA          (M_AXI_GP1_r_payload_data),    
   `endif
   `ifdef PS_SLAVE_AXI_GP0
     .S_AXI_GP0_ACLK           (S_AXI_GP0_ACLK),

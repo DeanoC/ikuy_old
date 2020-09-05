@@ -6,14 +6,16 @@ import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
 import spinal.lib.fsm._
 
-class BasicAxi3Slave(config : Axi4Config) extends Component {
+class BasicAxi3Slave(   config : Axi4Config,
+                        addressSpaceHighBit : Int = 30
+) extends Component {
     var io = new Bundle {
 
       val s_axi = slave( Axi4(config) )
       val reset_n = in Bool
     }
 
-    val upperAddress = U(0x40000, 20 bit) 
+    val upperAddress = U(1L << (addressSpaceHighBit-12), 20 bit) 
     val data0 = Reg(Bits(32 bits)) init(B"32'xDCDCDCDC")
 
     var readArea = new Area {
@@ -36,7 +38,7 @@ class BasicAxi3Slave(config : Axi4Config) extends Component {
 
         when(readyForNewAddr)
         { 
-            when(io.s_axi.ar.valid && io.s_axi.ar.addr(30))
+            when(io.s_axi.ar.valid && io.s_axi.ar.addr(addressSpaceHighBit))
             {
                 size := io.s_axi.ar.size
                 val arsize = B("1").asUInt << io.s_axi.ar.size
@@ -112,7 +114,7 @@ class BasicAxi3Slave(config : Axi4Config) extends Component {
 
         when(readyForNewAddr)
         { 
-            when(io.s_axi.aw.valid && io.s_axi.aw.addr(30))
+            when(io.s_axi.aw.valid && io.s_axi.aw.addr(addressSpaceHighBit))
             {
                 size := io.s_axi.aw.size
                 val awsize = B("1").asUInt << io.s_axi.aw.size

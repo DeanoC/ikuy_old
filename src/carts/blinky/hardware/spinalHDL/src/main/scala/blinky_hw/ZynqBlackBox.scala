@@ -57,6 +57,10 @@ case class ps7_axi_wrapper() extends BlackBox {
       val M_AXI_GP0 = master( Axi4(GeneralPurposeAxi) )
       val M_AXI_GP0_clk = in Bool
       val M_AXI_GP0_reset = out Bool
+
+      val M_AXI_GP1 = master( Axi4(GeneralPurposeAxi) )
+      val M_AXI_GP1_clk = in Bool
+      val M_AXI_GP1_reset = out Bool
   }
   // Remove io_ prefix from verilog names
   noIoPrefix()
