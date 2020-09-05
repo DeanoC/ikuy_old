@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdbool.h>
+
 #define DEBUG_RESET_COLOURS "\x1b[0m"
 #define DEBUG_BLACK_PEN "\x1b[30m"
 #define DEBUG_RED_PEN "\x1b[31m"
@@ -38,3 +40,6 @@ void debug_printf(const char *format, ...) __attribute__((format(printf, 1, 2)))
 // No thread safety
 void debug_unsafe_print(char const * const text);
 void debug_unsafe_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
+
+// TODO make this go away on release
+void assertf(bool test, const char *format, ...) __attribute__((format(printf, 2, 3)));

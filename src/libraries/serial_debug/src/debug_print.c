@@ -48,11 +48,25 @@ void debug_printf(const char *format, ...)
 
 void debug_unsafe_printf(const char *format, ...)
 {
-    char buffer[256]; // 1K max string (on stack)
+    char buffer[256]; // 256 byte max string (on stack)
     va_list va;
     va_start(va, format);
-    vsnprintf(buffer, 1024, format, va);
+    vsnprintf(buffer, 256, format, va);
     va_end(va);
-    buffer[1023] = 0;
+    buffer[255] = 0;
     debug_unsafe_print(buffer);
+}
+
+void assertf(bool test, const char *format, ...)
+{
+    if(!test)
+    {
+        char buffer[256]; // 256 byte max string (on stack)
+        va_list va;
+        va_start(va, format);
+        vsnprintf(buffer, 256, format, va);
+        va_end(va);
+        buffer[255] = 0;
+        debug_unsafe_print(buffer);
+    }
 }

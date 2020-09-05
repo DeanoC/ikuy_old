@@ -86,15 +86,15 @@ class Blinky extends Component {
     slave.io.reset_n := ~ClockDomain.current.reset
 
     val debug0 = RegInit(False)
-    when(slave.io.s_axi.ar.valid) {
+    when(slave.io.s_axi.w.data === U("32'x0000_0000").asBits) {
       debug0 := True
     }
     val debug1 = RegInit(False)
-    when(slave.io.s_axi.ar.valid) {
+    when(slave.io.s_axi.w.valid) {
       debug1 := True
     }
     val debug2 = RegInit(False)
-    when(slave.io.s_axi.ar.ready) {
+    when(slave.io.s_axi.w.ready) {
       debug2 := True
     }
     val debug3 = RegInit(False)
@@ -102,12 +102,12 @@ class Blinky extends Component {
       debug3 := True
     }
 
-    io.leds(0) := slave.io.reset_n
+    io.leds(0) := debug0
     io.leds(1) := debug1
     io.leds(2) := debug2
     io.leds(3) := debug3
 
-    io.rgb_led0(0) := slave.io.reset_n
+    io.rgb_led0(0) := False
     io.rgb_led0(1) := False
     io.rgb_led0(2) := False
 

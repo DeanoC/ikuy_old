@@ -40,7 +40,11 @@ object DutTests
         dut.io.reset_n := dut.clockDomain.reset
         dut.clockDomain.forkStimulus(period = 10)
 
+        dut.io.s_axi.ar.valid #= false
+        dut.io.s_axi.aw.valid #= false
+        dut.io.s_axi.w.valid #= false
         dut.io.s_axi.r.ready #= false
+        dut.io.s_axi.b.ready #= false
 
         // place a burst read of 2 32 bit values using increment mode
         assert(dut.io.s_axi.r.valid.toBoolean == false)
@@ -55,6 +59,8 @@ object DutTests
         dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.ar.ready.toBoolean)
         dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.r.valid.toBoolean)
         dut.io.s_axi.ar.valid #= false
+        println(f"${dut.io.s_axi.r.data.toBigInt}%x")
+
         assert(dut.io.s_axi.r.data.toBigInt == 0xDCDCDCDCL)
         assert(dut.io.s_axi.r.last.toBoolean == false)
 
@@ -85,7 +91,33 @@ object DutTests
         assert(dut.io.s_axi.ar.valid.toBoolean == true)
         assert(dut.io.s_axi.ar.ready.toBoolean == true)
         assert(dut.io.s_axi.r.valid.toBoolean == false)
-        
+        dut.clockDomain.waitActiveEdge()
+
+        // lets try a 1 32 bit write with mask of top two bytes
+        dut.io.s_axi.aw.valid #= true
+        dut.io.s_axi.aw.addr #= 0x40000000
+        dut.io.s_axi.aw.size #= 2
+        dut.io.s_axi.aw.len #= 0
+        dut.io.s_axi.aw.burst #= 1
+        dut.io.s_axi.w.valid #= true
+        dut.io.s_axi.w.last #= true
+        dut.io.s_axi.w.strb #= 0x3
+        dut.io.s_axi.w.data #= 0x0A0B0C0D
+        dut.clockDomain.waitActiveEdge()
+        dut.clockDomain.waitActiveEdge()
+        dut.io.s_axi.aw.valid #= false
+        dut.io.s_axi.w.valid #= false
+        dut.clockDomain.waitActiveEdge()
+        dut.clockDomain.waitActiveEdge()
+        dut.io.s_axi.ar.valid #= true
+        dut.io.s_axi.ar.addr #= 0x40000000
+        dut.io.s_axi.ar.size #= 2
+        dut.io.s_axi.ar.len #= 0
+        dut.io.s_axi.ar.burst #= 1
+        dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.r.valid.toBoolean)
+        assert(dut.io.s_axi.r.data.toBigInt == 0x00000C0DL)
+
+        dut.clockDomain.waitActiveEdge()
         simSuccess()
     })
   }
