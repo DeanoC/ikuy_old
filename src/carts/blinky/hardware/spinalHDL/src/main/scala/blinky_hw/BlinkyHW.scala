@@ -78,17 +78,25 @@ class Blinky extends Component {
       )
     axiCrossbar.build()
 */
+  //  val debugCustomChip = new CustomChip(TINY);
+
 
     val slaveGp0 = new BasicAxi3Slave(
-                      config = hardSoc.GeneralPurposeAxi, 
+                      config = hardSoc.GeneralPurposeAxi,
+                      readAccess = true,
+                      writeAccess = true,
                       addressSpaceHighBit = 30 // 0x40000000 address range
                       )
     hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
     slaveGp0.io.s_axi <> hardSoc.io.M_AXI_GP0
     slaveGp0.io.reset_n := ~ClockDomain.current.reset
 
+//    slaveGp0.addChip( debugCustomChip )
+
     val slaveGp1 = new BasicAxi3Slave(
                       config = hardSoc.GeneralPurposeAxi, 
+                      readAccess = true,
+                      writeAccess = true,
                       addressSpaceHighBit = 31 // 0x80000000 address range
                       )
     hardSoc.io.M_AXI_GP1_clk := hardSoc.io.FCLK0_CLK

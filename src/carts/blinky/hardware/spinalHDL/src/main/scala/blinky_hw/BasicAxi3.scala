@@ -1,13 +1,16 @@
 package blinky
 
+import scala.collection.mutable.{ArrayBuffer}
 import spinal.core._
 import spinal.lib._
 import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
-import spinal.lib.fsm._
 
-class BasicAxi3Slave(   config : Axi4Config,
-                        addressSpaceHighBit : Int = 30
+class BasicAxi3Slave(   val config : Axi4Config,
+                        val readAccess : Boolean = true,
+                        val writeAccess : Boolean = true,
+                        val chipsOfBus : ArrayBuffer[CustomChip] = ArrayBuffer[CustomChip](),
+                        val addressSpaceHighBit : Int = 30
 ) extends Component {
     var io = new Bundle {
 
@@ -15,10 +18,27 @@ class BasicAxi3Slave(   config : Axi4Config,
       val reset_n = in Bool
     }
 
-    val upperAddress = U(1L << (addressSpaceHighBit-12), 20 bit) 
-    val data0 = Reg(Bits(32 bits)) init(B"32'xDCDCDCDC")
+    var chipBaseAddress = BigInt(0)
+    var chips = ArrayBuffer[CustomChip]()
 
-    var readArea = new Area {
+    def addChip(chip : CustomChip) : Unit = {
+        chip.bus = this
+        chip.address = chipBaseAddress
+        chips += chip
+        chipBaseAddress += chip.addressSpaceWidth
+    }
+
+    def sizeConverter(sizeVal : UInt) : UInt = {
+        var arsize = UInt(3 bits)
+        switch(sizeVal) {
+            is(0) { arsize := U"3'h1" }
+            is(1) { arsize := U"3'h2" }
+            default { arsize := U"3'h4" }
+        }
+        arsize
+    }
+
+    def readHandler() : Area = new Area {
         io.s_axi.r.valid := False
         io.s_axi.r.resp := 0
         io.s_axi.r.id := io.s_axi.ar.id
@@ -28,22 +48,25 @@ class BasicAxi3Slave(   config : Axi4Config,
         val readyForNewAddr = RegInit(True)
         io.s_axi.ar.ready := readyForNewAddr
 
+        val upperAddress = U(0, 17 bits) // 17+12 == 29 bits for addess (1GB-1B)
+
         // 4K boundary for axi increments
         val size = RegInit(U(0, 3 bits))
-        val fourKPage = RegInit(U(0, 12 bits))
-        val numberBytes = Reg(UInt(8 bits))
+        val fourKPage = RegInit(U(0, 12 bits)) // 12 bit pages for Axi3
+        val numberBytes = Reg(UInt(3 bits))
         val beat = RegInit(U(0, 8 bits))
         val burstLength = RegInit(U(0, 8 bits))
-        val burstType = Reg(UInt(2 bits))
+        val burstType = Reg(UInt(2 bits))        
 
         when(readyForNewAddr)
         { 
             when(io.s_axi.ar.valid && io.s_axi.ar.addr(addressSpaceHighBit))
             {
                 size := io.s_axi.ar.size
-                val arsize = B("1").asUInt << io.s_axi.ar.size
+                val arsize = sizeConverter(size)                
                 numberBytes := arsize
-                fourKPage := io.s_axi.ar.addr(0 until 12) & ~Cat(B"0000", (arsize-1)).asUInt
+                upperAddress := io.s_axi.ar.addr(13 to 29)
+                fourKPage := io.s_axi.ar.addr(0 until 12) & ~Cat(B"0000_0000_0", (arsize-1)).asUInt
                 burstLength := io.s_axi.ar.len
                 beat := io.s_axi.ar.len
                 burstType := io.s_axi.ar.burst.asUInt
@@ -77,20 +100,28 @@ class BasicAxi3Slave(   config : Axi4Config,
                 }
             }
 
-            val addr = Cat(upperAddress, fourKPage)            
-            switch(addr(15 downto 0))
-            {
-                is(0) {
-                    io.s_axi.r.data := data0
+            chips.foreach( chip => {
+                val addr = Cat(upperAddress, fourKPage)
+                val addrMasked = addr & ~U(chip.addressSpaceMask, 29 bits).asBits
+                val subAddress = addr & U(chip.addressSpaceMask, 29 bits).asBits
+
+                when(addrMasked === U(chip.address, 29 bits).asBits)
+                {
+                    // TODO can use the custum chip width here to save some LUTs?
+                    switch(subAddress) {
+                        for( (name, action) <- chip.registers) if(action.hasRead) {
+                            is(U(action.address, 29 bits).asBits) {
+                                io.s_axi.r.data := action.read()
+                            }
+                        }
+                    }
                 }
-                default{
-                    io.s_axi.r.data := addr.asBits
-                }
-            }
+            })
         }
     }
 
-    var writeArea = new Area {
+    def writeHandler() : Area = new Area 
+    {
         io.s_axi.b.valid := False
         io.s_axi.b.resp := 0
         io.s_axi.b.id := io.s_axi.aw.id
@@ -99,27 +130,25 @@ class BasicAxi3Slave(   config : Axi4Config,
         io.s_axi.aw.ready := readyForNewAddr
         io.s_axi.w.ready := ~readyForNewAddr
 
+        val upperAddress = U(0, 17 bits) // 17+12 == 29 bits for addess (1GB-1B)
+
         // 4K boundary for axi increments
         val size = RegInit(U(0, 3 bits))
         val fourKPage = RegInit(U(0, 12 bits))
-        val numberBytes = Reg(UInt(8 bits))
+        val numberBytes = Reg(UInt(3 bits))
         val beat = RegInit(U(0, 8 bits))
         val burstLength = RegInit(U(0, 8 bits))
         val burstType = Reg(UInt(2 bits))
-
-        val mask3 = UInt(8 bits).setAllTo( io.s_axi.w.strb(3)).asBits
-        val mask2 = UInt(8 bits).setAllTo( io.s_axi.w.strb(2)).asBits
-        val mask1 = UInt(8 bits).setAllTo( io.s_axi.w.strb(1)).asBits
-        val mask0 = UInt(8 bits).setAllTo( io.s_axi.w.strb(0)).asBits
 
         when(readyForNewAddr)
         { 
             when(io.s_axi.aw.valid && io.s_axi.aw.addr(addressSpaceHighBit))
             {
                 size := io.s_axi.aw.size
-                val awsize = B("1").asUInt << io.s_axi.aw.size
+                val awsize = sizeConverter(size)                
                 numberBytes := awsize
-                fourKPage := io.s_axi.aw.addr(0 until 12) & ~Cat(B"0000", (awsize-1)).asUInt
+                upperAddress := io.s_axi.ar.addr(13 to 29)
+                fourKPage := io.s_axi.aw.addr(0 until 12) & ~Cat(B"0000_0000_0", (awsize-1)).asUInt
                 burstLength := io.s_axi.aw.len
                 beat := io.s_axi.aw.len
                 burstType := io.s_axi.aw.burst.asUInt
@@ -146,30 +175,78 @@ class BasicAxi3Slave(   config : Axi4Config,
                     readyForNewAddr := True
                 }
 
-                val addr = Cat(upperAddress, fourKPage)            
-                switch(addr(15 downto 0))
-                {
-                    is(0) {
-                            data0 := Cat( io.s_axi.w.data(24 until 32) & mask3,
-                                        io.s_axi.w.data(16 until 24) & mask2,
-                                        io.s_axi.w.data(8 until 16) & mask1,
-                                        io.s_axi.w.data(0 until 8) & mask0
-                        )
+                chips.foreach( chip => {
+                    val addr = Cat(upperAddress, fourKPage)
+                    val addrMasked = addr & ~U(chip.addressSpaceMask, 29 bits).asBits
+                    val subAddress = addr & U(chip.addressSpaceMask, 29 bits).asBits
+                    when(addrMasked === U(chip.address, 29 bits).asBits) {
+                        switch(subAddress) {
+                            chip.registers.filter( f => f._2.hasWrite).foreach {
+                                case (name, action) =>
+                                    is(U(action.address, 29 bits).asBits) {
+                                        action.write(io.s_axi.w.data, io.s_axi.w.strb)
+                                    }
+                            }
+                        }
                     }
-                }
+                })
             }
-        } 
+        }
+    } 
+
+    def build(): Unit = {
+        println("Adding chips")
+        chipsOfBus.foreach( chip => {
+            addChip(chip)
+        })
+ 
+        println("Building chips")
+        chips.foreach( chip => {
+            println(f"Building ${chip.chipName}")
+            chip.build()
+        })
+
+
+        if( readAccess ) {
+            var readArea = readHandler()
+            when(!io.reset_n) 
+            {
+                io.s_axi.ar.ready := False
+                io.s_axi.r.valid := False
+            }
+        } else 
+        {
+            io.s_axi.ar.ready := False
+            io.s_axi.r.valid := False
+            io.s_axi.r.payload.id := 0
+            io.s_axi.r.payload.data := 0
+            io.s_axi.r.payload.resp := 0
+            io.s_axi.r.payload.last := False
+        }
+
+        if( writeAccess ) {
+            var writeArea = writeHandler()       
+            when(!io.reset_n) 
+            {
+                io.s_axi.aw.ready := False
+                io.s_axi.w.ready := False
+                io.s_axi.b.valid := False
+            }
+        } else 
+        {
+            
+            io.s_axi.aw.ready := False
+            io.s_axi.w.ready := False
+            io.s_axi.b.valid := False
+            io.s_axi.b.payload.id := 0
+            io.s_axi.b.payload.resp := 0
+        }
     }
 
-    when(!io.reset_n) 
-    {       
-        io.s_axi.ar.ready := False
-        io.s_axi.r.valid := False
+    Component.current.addPrePopTask(() => {
+      build()
+    })
+}
 
-        io.s_axi.aw.ready := False
-        io.s_axi.w.ready := False
-        io.s_axi.b.valid := False
-   }
-
-}   
+   
  

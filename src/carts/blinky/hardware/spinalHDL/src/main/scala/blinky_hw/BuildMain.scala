@@ -5,6 +5,7 @@ import spinal.lib.io._
 object BuildMain {
     val sc = SpinalConfig(
       mode = Verilog,
+      mergeAsyncProcess = true,
       defaultConfigForClockDomains = ClockDomainConfig(resetKind = BOOT),
       defaultClockDomainFrequency = FixedFrequency(125 MHz),
       targetDirectory = "~/ikuy/build/carts/blinky/"

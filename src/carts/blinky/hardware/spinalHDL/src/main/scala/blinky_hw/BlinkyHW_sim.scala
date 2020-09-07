@@ -4,6 +4,38 @@ import spinal.core._
 import spinal.sim._
 import spinal.core.sim._
 import spinal.lib.bus.amba4.axi._
+import scala.collection.mutable.{ArrayBuffer}
+
+class DebugCustomChip extends CustomChip( size = TINY, chipName = "Debug" )
+{
+  case class DebugReflectAddressRegister(  
+                                  override val name : String,
+                                  override val documentation : String,
+                                  override val hasRead : Boolean = true,
+                                  override val needsStorage : Boolean = false
+                                ) extends RegisterAction
+  {
+    override def read(): Bits = 
+      B(((1 << owner.bus.addressSpaceHighBit) | owner.address | address), 32 bits)
+  }
+
+  override def build() : Unit = 
+  {
+    addRegister( RegisterReadWrite(
+        name = "Test0",
+        documentation = "A 32 bit R/W register to test bus is working",
+        default = B"32'xDCDC_DCDC") 
+      )
+    for(r <- 1 to addressSpaceMask/4)
+    {
+      addRegister( DebugReflectAddressRegister(
+        name = s"Reflect${r}",
+        documentation = "Returns the address of this register")
+        )
+    }
+    super.build()
+  }
+}
 
 object DutTests 
 {
@@ -31,8 +63,17 @@ object DutTests
       workspacePath("~/ikuy/build/carts/blinky/hardware/sim/workspace").
       withConfig(BuildMain.sc)
 
+
     var compiled = sc.compile {
-      val dut = new BasicAxi3Slave(GeneralPurposeAxi)
+  
+      val chips = ArrayBuffer[CustomChip](
+        new DebugCustomChip()
+      )
+
+      val dut = new BasicAxi3Slave(
+                      config = GeneralPurposeAxi, 
+                      chipsOfBus = chips,
+                      addressSpaceHighBit = 30 )
       dut
     }
 
@@ -50,7 +91,7 @@ object DutTests
         assert(dut.io.s_axi.r.valid.toBoolean == false)
         dut.io.reset_n #= true
         dut.io.s_axi.ar.valid #= true
-        dut.io.s_axi.ar.addr #= 0x40000000
+        dut.io.s_axi.ar.addr #= 0x40000000L
         dut.io.s_axi.ar.size #= 2
         dut.io.s_axi.ar.len #= 1
         dut.io.s_axi.ar.burst #= 1
@@ -59,7 +100,6 @@ object DutTests
         dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.ar.ready.toBoolean)
         dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.r.valid.toBoolean)
         dut.io.s_axi.ar.valid #= false
-        println(f"${dut.io.s_axi.r.data.toBigInt}%x")
 
         assert(dut.io.s_axi.r.data.toBigInt == 0xDCDCDCDCL)
         assert(dut.io.s_axi.r.last.toBoolean == false)
@@ -93,31 +133,47 @@ object DutTests
         assert(dut.io.s_axi.r.valid.toBoolean == false)
         dut.clockDomain.waitActiveEdge()
 
+        // lets try a 1 32 bit write with not byte masking
+        dut.io.s_axi.aw.valid #= true
+        dut.io.s_axi.aw.addr #= 0x40000000L
+        dut.io.s_axi.aw.size #= 2
+        dut.io.s_axi.aw.len #= 0
+        dut.io.s_axi.aw.burst #= 1
+        dut.io.s_axi.w.valid #= true
+        dut.io.s_axi.w.last #= true
+        dut.io.s_axi.w.strb #= 0xF
+        dut.io.s_axi.w.data #= 0xFAFBFCFDL
+        dut.clockDomain.waitActiveEdge()
+        dut.io.s_axi.ar.valid #= true
+        dut.io.s_axi.ar.addr #= 0x40000000L
+        dut.io.s_axi.ar.size #= 2
+        dut.io.s_axi.ar.len #= 0
+        dut.io.s_axi.ar.burst #= 1
+        dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.r.valid.toBoolean)
+        assert(dut.io.s_axi.r.data.toBigInt == 0xFAFBFCFDL)
+
         // lets try a 1 32 bit write with mask of top two bytes
         dut.io.s_axi.aw.valid #= true
-        dut.io.s_axi.aw.addr #= 0x40000000
+        dut.io.s_axi.aw.addr #= 0x40000000L
         dut.io.s_axi.aw.size #= 2
         dut.io.s_axi.aw.len #= 0
         dut.io.s_axi.aw.burst #= 1
         dut.io.s_axi.w.valid #= true
         dut.io.s_axi.w.last #= true
         dut.io.s_axi.w.strb #= 0x3
-        dut.io.s_axi.w.data #= 0x0A0B0C0D
-        dut.clockDomain.waitActiveEdge()
+        dut.io.s_axi.w.data #= 0x0A0B0C0DL
         dut.clockDomain.waitActiveEdge()
         dut.io.s_axi.aw.valid #= false
         dut.io.s_axi.w.valid #= false
         dut.clockDomain.waitActiveEdge()
-        dut.clockDomain.waitActiveEdge()
         dut.io.s_axi.ar.valid #= true
-        dut.io.s_axi.ar.addr #= 0x40000000
+        dut.io.s_axi.ar.addr #= 0x40000000L
         dut.io.s_axi.ar.size #= 2
         dut.io.s_axi.ar.len #= 0
         dut.io.s_axi.ar.burst #= 1
         dut.clockDomain.waitActiveEdgeWhere(dut.io.s_axi.r.valid.toBoolean)
-        assert(dut.io.s_axi.r.data.toBigInt == 0x00000C0DL)
+        assert(dut.io.s_axi.r.data.toBigInt == 0xFAFB0C0DL)
 
-        dut.clockDomain.waitActiveEdge()
         simSuccess()
     })
   }
