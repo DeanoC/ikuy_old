@@ -62,32 +62,11 @@ class Blinky extends Component {
     )
   )
 
-  // for 640 x 480 @ 60 hz we want a 25.175 MHz pixel clock
-  // 1062.5 MHz (FCLK0 x 10.625) / 42.25 gives 25.1479 MHz
-  // for 640 x 480 @ 85 hz we want a 36 Mhz pixel clock
-  // 1515.625 Mhz (125MHz x 12.125) / 42.125 = 35.979 MHz
-  val mmcm0 = new MMCME2_BASE(clkOut_Mult_Frac = 10.625,
-                              clkOut0_Divide_Frac = 42.25)
-  mmcm0.CLKFBIN := mmcm0.CLKFBOUT // internal loop back
-  mmcm0.CLKIN1 := fclk0ClockDomain.clock // input clock 100 MHz
-  mmcm0.RST := fclk0ClockDomain.reset
-  mmcm0.PWRDWN := False
-
-  val pixelClockDomain = ClockDomain(
-    clock = mmcm0.CLKOUT0,
-    reset = fclk0ClockDomain.reset,
-    frequency = FixedFrequency(25.1479 MHz),
-    config = ClockDomainConfig (
-      clockEdge = RISING,
-      resetKind = SYNC,
-      resetActiveLevel = HIGH
-    )
-
-  )
-
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
   {
-    val dissy = new DissyCustomChip(pixelClockDomain = pixelClockDomain)
+    val dissy = new DissyCustomChip(fclk0ClockDomain.frequency)
+    dissy.io.axiClk <> fclk0ClockDomain.clock
+    dissy.io.axiReset <> fclk0ClockDomain.reset
 
     val slaveGp0 = new Axi3Slave(
                       config = hardSoc.GeneralPurposeAxi,
@@ -98,9 +77,11 @@ class Blinky extends Component {
                       addressSpaceHighBit = 30 // 0x40000000 address range
                     )
     hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
-    slaveGp0.io.s_axi <> hardSoc.io.M_AXI_GP0
-    slaveGp0.io.reset_n := ~ClockDomain.current.reset
+    slaveGp0.io.s_axi << hardSoc.io.M_AXI_GP0
+    slaveGp0.io.axiClk <> fclk0ClockDomain.clock
+    slaveGp0.io.axiReset <> fclk0ClockDomain.reset
 
+    /*
     val slaveGp1 = new Axi3Slave(
                       config = hardSoc.GeneralPurposeAxi, 
                       chipsOfBus = ArrayBuffer[CustomChip](
@@ -109,7 +90,7 @@ class Blinky extends Component {
                       addressSpaceHighBit = 31 // 0x80000000 address range
                     )
     hardSoc.io.M_AXI_GP1_clk := hardSoc.io.FCLK0_CLK
-    slaveGp1.io.s_axi <> hardSoc.io.M_AXI_GP1
+    slaveGp1.io.s_axi << hardSoc.io.M_AXI_GP1
     slaveGp1.io.reset_n := ~ClockDomain.current.reset
 
     val debug0 = RegInit(False)
@@ -128,11 +109,11 @@ class Blinky extends Component {
     when(hardSoc.io.M_AXI_GP0.r.valid) {
       debug3 := True
     }
-
-    io.leds(0) := debug0
-    io.leds(1) := debug1
-    io.leds(2) := debug2
-    io.leds(3) := debug3
+*/
+    io.leds(0) := False //debug0
+    io.leds(1) := False //debug1
+    io.leds(2) := False //debug2
+    io.leds(3) := False //debug3
 
     io.rgb_led0(0) := False
     io.rgb_led0(1) := False

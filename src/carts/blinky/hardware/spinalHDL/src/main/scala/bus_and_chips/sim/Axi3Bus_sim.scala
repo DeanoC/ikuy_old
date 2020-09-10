@@ -45,7 +45,6 @@ object Axi3Bus_sim
     }
 
     compiled.doSim({ dut =>
-        dut.io.reset_n := dut.clockDomain.reset
         dut.clockDomain.forkStimulus(period = 10)
 
         dut.io.s_axi.ar.valid #= false
@@ -56,7 +55,6 @@ object Axi3Bus_sim
 
         // place a burst read of 2 32 bit values using increment mode
         assert(dut.io.s_axi.r.valid.toBoolean == false)
-        dut.io.reset_n #= true
         dut.io.s_axi.ar.valid #= true
         dut.io.s_axi.ar.addr #= 0x40000000L
         dut.io.s_axi.ar.size #= 2

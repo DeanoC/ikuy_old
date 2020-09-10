@@ -31,7 +31,7 @@
 //`define USE_FCLK2
 //`define USE_FCLK3
 `define PS_MASTER_AXI_GP0
-`define PS_MASTER_AXI_GP1
+//`define PS_MASTER_AXI_GP1
 //`define PS_SLAVE_AXI_GP0
 //`define PS_SLAVE_AXI_GP1
 //`define PS_SLAVE_AXI_ACP

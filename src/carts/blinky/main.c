@@ -23,7 +23,7 @@ int cpu0_main()
     *(uint32_t *)0x40000000 = 0x0A0B0C0D;
     assert(*(uint32_t *)0x40000000 == 0x0A0B0C0D);
     debug_print(DEBUG_GREEN_PEN "PASS\n");
-
+/*
     debug_print(DEBUG_WHITE_PEN "AXI GP1 PS Master test ");
     assert(*(uint32_t *)0x80000000 == 0xDCDCDCDC);
     assert(*(uint32_t *)0x80000004 == 0x80000004);
@@ -32,7 +32,7 @@ int cpu0_main()
     *(uint32_t *)0x80000000 = 0x0A0B0C0D;
     assert(*(uint32_t *)0x80000000 == 0x0A0B0C0D);
     debug_print(DEBUG_GREEN_PEN "PASS\n");
-
+*/
     //    l1cache_instruction_enable(true);
     //    l1cache_data_enable(true);
 

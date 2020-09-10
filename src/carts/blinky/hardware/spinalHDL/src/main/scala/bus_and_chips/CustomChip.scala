@@ -15,7 +15,7 @@ object HUGE extends CustomChipSize
 
 abstract class CustomChip(  val size : CustomChipSize,
                             val chipName : String 
-                          ) extends Area 
+                          ) extends Component 
 {
   // must be POW2 and fit in a signed 32 bit integer
   def addressSpaceSize : Int = size match {

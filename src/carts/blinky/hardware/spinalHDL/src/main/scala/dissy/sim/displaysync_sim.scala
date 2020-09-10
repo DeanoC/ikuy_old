@@ -41,14 +41,13 @@ object DisplaySync_sim
       val dut = new Axi3Slave(
                       config = GeneralPurposeAxi, 
                       chipsOfBus = ArrayBuffer[CustomChip](
-                         new DissyCustomChip(pixelClockDomain)
+                         new DissyCustomChip(FixedFrequency(25.175 MHz))
                       ),
                       addressSpaceHighBit = 30 )
       dut
     }
 
     compiled.doSim({ dut =>
-        dut.io.reset_n := dut.clockDomain.reset
         dut.clockDomain.forkStimulus(period = 10)
         simSuccess()
     })
