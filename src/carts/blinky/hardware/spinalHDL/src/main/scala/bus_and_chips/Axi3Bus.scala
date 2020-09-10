@@ -1,4 +1,4 @@
-package blinky
+package bus_and_chips
 
 import scala.collection.mutable.{ArrayBuffer}
 import spinal.core._
@@ -6,14 +6,15 @@ import spinal.lib._
 import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
 
-class BasicAxi3Slave(   val config : Axi4Config,
-                        val readAccess : Boolean = true,
-                        val writeAccess : Boolean = true,
-                        val chipsOfBus : ArrayBuffer[CustomChip] = ArrayBuffer[CustomChip](),
-                        val addressSpaceHighBit : Int = 30
-) extends Component {
-    var io = new Bundle {
-
+class Axi3Slave(    val config : Axi4Config,
+                    val readAccess : Boolean = true,
+                    val writeAccess : Boolean = true,
+                    val chipsOfBus : ArrayBuffer[CustomChip] = ArrayBuffer[CustomChip](),
+                    val addressSpaceHighBit : Int = 30
+                    ) extends Component 
+{
+    var io = new Bundle 
+    {
       val s_axi = slave( Axi4(config) )
       val reset_n = in Bool
     }
@@ -21,14 +22,16 @@ class BasicAxi3Slave(   val config : Axi4Config,
     var chipBaseAddress = BigInt(0)
     var chips = ArrayBuffer[CustomChip]()
 
-    def addChip(chip : CustomChip) : Unit = {
+    def addChip(chip : CustomChip) : Unit = 
+    {
         chip.bus = this
         chip.address = chipBaseAddress
         chips += chip
         chipBaseAddress += chip.addressSpaceWidth
     }
 
-    def sizeConverter(sizeVal : UInt) : UInt = {
+    def sizeConverter(sizeVal : UInt) : UInt = 
+    {
         var arsize = UInt(3 bits)
         switch(sizeVal) {
             is(0) { arsize := U"3'h1" }
@@ -38,7 +41,8 @@ class BasicAxi3Slave(   val config : Axi4Config,
         arsize
     }
 
-    def readHandler() : Area = new Area {
+    def readHandler() : Area = new Area 
+    {
         io.s_axi.r.valid := False
         io.s_axi.r.resp := 0
         io.s_axi.r.id := io.s_axi.ar.id
@@ -103,16 +107,17 @@ class BasicAxi3Slave(   val config : Axi4Config,
             chips.foreach( chip => {
                 val addr = Cat(upperAddress, fourKPage)
                 val addrMasked = addr & ~U(chip.addressSpaceMask, 29 bits).asBits
-                val subAddress = addr & U(chip.addressSpaceMask, 29 bits).asBits
-
+ 
                 when(addrMasked === U(chip.address, 29 bits).asBits)
                 {
-                    // TODO can use the custum chip width here to save some LUTs?
-                    switch(subAddress) {
-                        for( (name, action) <- chip.registers) if(action.hasRead) {
-                            is(U(action.address, 29 bits).asBits) {
-                                io.s_axi.r.data := action.read()
-                            }
+                    val registerAddress = addr.asBits.resize(chip.addressSpaceWidth bits) &
+                                                            chip.addressSpaceMask
+                    switch(registerAddress(2 until chip.addressSpaceWidth)) {
+                        chip.registers.filter( f => f._2.hasRead).foreach {
+                            case (name, action) =>
+                                is(action.index) {
+                                    io.s_axi.r.data := action.read()
+                                }
                         }
                     }
                 }
@@ -178,15 +183,14 @@ class BasicAxi3Slave(   val config : Axi4Config,
                 chips.foreach( chip => {
                     val addr = Cat(upperAddress, fourKPage)
                     val addrMasked = addr & ~U(chip.addressSpaceMask, 29 bits).asBits
-                    val subAddress = addr & U(chip.addressSpaceMask, 29 bits).asBits
-                    when(addrMasked === U(chip.address, 29 bits).asBits) {
-                        switch(subAddress) {
-                            chip.registers.filter( f => f._2.hasWrite).foreach {
-                                case (name, action) =>
-                                    is(U(action.address, 29 bits).asBits) {
-                                        action.write(io.s_axi.w.data, io.s_axi.w.strb)
-                                    }
-                            }
+                    val registerAddress = addr.asBits.resize(chip.addressSpaceWidth bits) &
+                                                            chip.addressSpaceMask
+                    switch(registerAddress(2 until chip.addressSpaceWidth)) {
+                        chip.registers.filter( f => f._2.hasWrite).foreach {
+                            case (name, action) =>
+                                is(action.index) {
+                                    action.write(io.s_axi.w.data, io.s_axi.w.strb)
+                                }
                         }
                     }
                 })
@@ -194,15 +198,14 @@ class BasicAxi3Slave(   val config : Axi4Config,
         }
     } 
 
-    def build(): Unit = {
+    def build(): Unit = 
+    {
         println("Adding chips")
         chipsOfBus.foreach( chip => {
             addChip(chip)
         })
- 
-        println("Building chips")
-        chips.foreach( chip => {
-            println(f"Building ${chip.chipName}")
+         chips.foreach( chip => {
+            println(f"Building ${chip.chipName} chip")
             chip.build()
         })
 

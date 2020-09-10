@@ -7,7 +7,11 @@ file(GLOB   SRC_VERILOG_FILES
             verilog/*.v )
 file(GLOB   SRC_SCALA_FILES 
             CONFIGURE_DEPENDS 
-            spinalHDL/src/main/scala/blinky_hw/*.scala)
+            spinalHDL/src/main/scala/blinky_hw/*.scala
+            spinalHDL/src/main/scala/bus_and_chips/*.scala
+            spinalHDL/src/main/scala/bus_and_chips/sim/*.scala
+            spinalHDL/src/main/scala/dissy/*.scala
+            )
 
 file(GLOB   SRC_SILICE_FILES 
             CONFIGURE_DEPENDS 
@@ -19,13 +23,6 @@ set( SIM_PATH ${GEN_DIR}/${project}_sim)
 
 set( FINAL_PATH ${CMAKE_CURRENT_BINARY_DIR}/${project}.bin)
 set( SLICE_VERILOG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/verilog/silice_main.v )
-
-add_custom_command( 
-      OUTPUT ${SIM_PATH}
-      COMMAND sbt "runMain blinky.DutTests"
-      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/spinalHDL
-      DEPENDS ${SRC_VERILOG_FILES} ${SRC_SCALA_FILES} ${SRC_SILICE_FILES} ${SLICE_VERILOG_PATH}
-)
 
 project(${project} NONE)
 

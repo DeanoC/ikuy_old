@@ -13,9 +13,9 @@ set( SIM_PATH ${GEN_DIR}/${project})
 
 add_custom_command( 
       OUTPUT ${SIM_PATH}
-      COMMAND sbt "runMain blinky.DutTests"
+      COMMAND sbt "runMain blinky.BlinkyTests"
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../spinalHDL
-      DEPENDS ${SRC_VERILOG_FILES} ${SRC_SCALA_FILES} 
+      DEPENDS ${SRC_VERILOG_FILES} ${SRC_SCALA_FILES} ${SRC_SILICE_FILES} ${SLICE_VERILOG_PATH}
 )
 
 add_custom_target(

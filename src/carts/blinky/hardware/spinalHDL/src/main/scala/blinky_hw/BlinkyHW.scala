@@ -5,6 +5,9 @@ import spinal.lib._
 import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
 import spinal.lib.blackbox.xilinx.s7._
+import scala.collection.mutable.{ArrayBuffer}
+import bus_and_chips._
+import dissy._
 
 class PWM(width : Int) extends Component {
   var io = new Bundle {
@@ -59,46 +62,52 @@ class Blinky extends Component {
     )
   )
 
+  // for 640 x 480 @ 60 hz we want a 25.175 MHz pixel clock
+  // 1062.5 MHz (FCLK0 x 10.625) / 42.25 gives 25.1479 MHz
+  // for 640 x 480 @ 85 hz we want a 36 Mhz pixel clock
+  // 1515.625 Mhz (125MHz x 12.125) / 42.125 = 35.979 MHz
+  val mmcm0 = new MMCME2_BASE(clkOut_Mult_Frac = 10.625,
+                              clkOut0_Divide_Frac = 42.25)
+  mmcm0.CLKFBIN := mmcm0.CLKFBOUT // internal loop back
+  mmcm0.CLKIN1 := fclk0ClockDomain.clock // input clock 100 MHz
+  mmcm0.RST := fclk0ClockDomain.reset
+  mmcm0.PWRDWN := False
+
+  val pixelClockDomain = ClockDomain(
+    clock = mmcm0.CLKOUT0,
+    reset = fclk0ClockDomain.reset,
+    frequency = FixedFrequency(25.1479 MHz),
+    config = ClockDomainConfig (
+      clockEdge = RISING,
+      resetKind = SYNC,
+      resetActiveLevel = HIGH
+    )
+
+  )
+
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
   {
-/*    val ram = Axi4SharedOnChipRam(
-      dataWidth = 32,
-      byteCount = 4 KiB,
-      idWidth = 12
-    )
-    // Map the APB peripheral bus onto the AXI4 address space using a crossboar
-    val axiCrossbar = Axi4CrossbarFactory()
-    axiCrossbar.addSlaves(
-      ram.io.axi       -> (0x40000000L, 4 kB)
-    )
+    val dissy = new DissyCustomChip(pixelClockDomain = pixelClockDomain)
 
-    val shared_M_AXI_GP0 = hardSoc.io.M_AXI_GP0.toShared
-    axiCrossbar.addConnections( 
-       shared_M_AXI_GP0 -> List(ram.io.axi)
-      )
-    axiCrossbar.build()
-*/
-  //  val debugCustomChip = new CustomChip(TINY);
-
-
-    val slaveGp0 = new BasicAxi3Slave(
+    val slaveGp0 = new Axi3Slave(
                       config = hardSoc.GeneralPurposeAxi,
-                      readAccess = true,
-                      writeAccess = true,
+                      chipsOfBus = ArrayBuffer[CustomChip](
+                         new DebugCustomChip(),
+                         dissy
+                        ),
                       addressSpaceHighBit = 30 // 0x40000000 address range
-                      )
+                    )
     hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
     slaveGp0.io.s_axi <> hardSoc.io.M_AXI_GP0
     slaveGp0.io.reset_n := ~ClockDomain.current.reset
 
-//    slaveGp0.addChip( debugCustomChip )
-
-    val slaveGp1 = new BasicAxi3Slave(
+    val slaveGp1 = new Axi3Slave(
                       config = hardSoc.GeneralPurposeAxi, 
-                      readAccess = true,
-                      writeAccess = true,
+                      chipsOfBus = ArrayBuffer[CustomChip](
+                         new DebugCustomChip()
+                        ),
                       addressSpaceHighBit = 31 // 0x80000000 address range
-                      )
+                    )
     hardSoc.io.M_AXI_GP1_clk := hardSoc.io.FCLK0_CLK
     slaveGp1.io.s_axi <> hardSoc.io.M_AXI_GP1
     slaveGp1.io.reset_n := ~ClockDomain.current.reset

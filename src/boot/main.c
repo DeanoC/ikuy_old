@@ -21,8 +21,6 @@ extern void debugRunInitProgram(void);
 extern void ddrcRunInitProgram(void);
 extern void uartRunInitProgram(void);
 extern void mmuInit(void);
-int ps7_init(void);
-int ps7_post_config(void);
 
 extern void move_ocm_high(void);
 extern void wake_cpu1();
@@ -33,7 +31,6 @@ extern void* check_app_cpu1_loaded();
 void cpu1_main();
 
 bool ddrEarlyMemTest();
-
 
 void software_interrupt()
 {

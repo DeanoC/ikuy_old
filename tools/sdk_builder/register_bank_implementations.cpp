@@ -1,7 +1,6 @@
 
 #include "register_bank_implementations.h"
 
-
 #include <unistd.h>
 #include <sstream>
 #include <errno.h>
