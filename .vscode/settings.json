@@ -44,7 +44,9 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "*.txt": "cmake"
+        "*.txt": "cmake",
+        "chrono": "cpp",
+        "ratio": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/src",
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",

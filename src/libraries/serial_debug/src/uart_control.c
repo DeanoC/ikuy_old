@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <assert.h>
 #include "serial_debug/uart_control.h"
 #include "hw/uart.h"
 #include "hw/reg.h"
@@ -35,14 +36,11 @@ void debug_set_uart_freq(debug_uart_freq freq)
 
 void debug_set_uart_fifo_size(uint32_t size)
 {
-    if(size > 0x2F)
-    {
-        return;
-    } else 
-    {
-        *HW_REG_MB(uart, 0, RX_FIFO_TRIGGER_LEVEL) = size;
-        *HW_REG_MB(uart, 0, TX_FIFO_TRIGGER_LEVEL) = size;
-    }
+    uint32_t cappedSize = (size > 0x2F) ? 0x2F : size;
+    *HW_REG_MB(uart, 0, RX_FIFO_TRIGGER_LEVEL) = cappedSize;
+    *HW_REG_MB(uart, 0, TX_FIFO_TRIGGER_LEVEL) = cappedSize;
+
+    assert(size <= 0x2F);
 }
 
 #define IsTransmitEmpty() ((*HW_REG_MB(uart, 0, SR) & uart_SR_TXEMPTY_MASK) == uart_SR_TXEMPTY_MASK)

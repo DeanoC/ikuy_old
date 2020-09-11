@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef enum HW_GPIO_MIO_DIRECTION
 {

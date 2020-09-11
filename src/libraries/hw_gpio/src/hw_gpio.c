@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "hw_gpio/hw_gpio.h"
+#include "hw_gpio/gpio.h"
 #include "hw/gpio.h"
 #include "hw/reg.h"
 

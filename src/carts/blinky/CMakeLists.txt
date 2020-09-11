@@ -17,6 +17,7 @@ target_link_libraries(${project} PUBLIC core)
 target_link_libraries(${project} PUBLIC serial_debug)
 target_link_libraries(${project} PUBLIC hw_fpga)
 target_link_libraries(${project} PUBLIC hw_timers)
+target_link_libraries(${project} PUBLIC hw_i2c)
 target_link_libraries(${project} PUBLIC system_info)
 add_dependencies(${project} ${project}_hw)
 

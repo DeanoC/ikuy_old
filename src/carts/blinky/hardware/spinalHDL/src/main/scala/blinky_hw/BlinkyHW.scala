@@ -9,6 +9,36 @@ import scala.collection.mutable.{ArrayBuffer}
 import bus_and_chips._
 import dissy._
 
+case class MasterAxi4SharedEndPlug(config : Axi4Config)
+extends Component
+{
+  val io = new Bundle{
+    val output = master(Axi4Shared(config))
+  }
+
+  io.output.arw.valid := False
+  io.output.arw.payload.addr := 0
+  io.output.arw.payload.write := False
+  if(config.useId) io.output.arw.payload.id := 0
+  if(config.useLen) io.output.arw.payload.len := 0
+  if(config.useSize) io.output.arw.payload.size := 0
+  if(config.useBurst) io.output.arw.payload.burst := 0
+  if(config.useLock) io.output.arw.payload.lock := 0
+  if(config.useCache) io.output.arw.payload.cache := 0
+  if(config.useQos) io.output.arw.payload.qos := 0
+  if(config.useProt) io.output.arw.payload.prot := 0
+  if(config.useRegion) io.output.arw.payload.region := 0
+  
+  io.output.w.valid := False
+  io.output.w.payload.data := 0
+  if(config.useStrb) io.output.w.payload.strb := 0
+  if(config.useLast) io.output.w.payload.last := False
+
+  io.output.b.ready := False
+
+  io.output.r.ready := False
+}
+
 class PWM(width : Int) extends Component {
   var io = new Bundle {
     // duty_cycle is the threshold value where the bit is on
@@ -69,7 +99,7 @@ class Blinky extends Component {
     dissy.io.axiReset <> fclk0ClockDomain.reset
 
     val slaveGp0 = new Axi3Slave(
-                      config = hardSoc.GeneralPurposeAxi,
+                      config = hardSoc.PSM_GeneralPurposeAxi,
                       chipsOfBus = ArrayBuffer[CustomChip](
                          new DebugCustomChip(),
                          dissy
@@ -80,6 +110,12 @@ class Blinky extends Component {
     slaveGp0.io.s_axi << hardSoc.io.M_AXI_GP0
     slaveGp0.io.axiClk <> fclk0ClockDomain.clock
     slaveGp0.io.axiReset <> fclk0ClockDomain.reset
+
+    val dummy_master = new MasterAxi4SharedEndPlug(hardSoc.PSS_GeneralPurposeAxi)
+    val axi4Convertor = new Axi4SharedToAxi3Shared(hardSoc.PSS_GeneralPurposeAxi)
+    axi4Convertor.io.output.toAxi4 <> hardSoc.io.S_AXI_GP0
+    axi4Convertor.io.input <> dummy_master.io.output
+    hardSoc.io.S_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
 
     /*
     val slaveGp1 = new Axi3Slave(

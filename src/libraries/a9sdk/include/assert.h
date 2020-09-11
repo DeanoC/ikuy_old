@@ -4,12 +4,13 @@
 
 #if DO_ASSERT
 
-#include "serial_debug/debug_print.h"
-#define assert(test)                                                                         \
-if (!(test))                                                                                 \
-{                                                                                            \
-  debug_unsafe_printf(DEBUG_RED_PEN "%s:%u: ERROR %s\n" DEBUG_WHITE_PEN, __FILE__, __LINE__, #test); \
-}
+void assert_printf(char const *file, int line, char const* txt);
+
+#define assert(test) \
+  if (!(test))       \
+  {                  \
+    assert_printf(__FILE__, __LINE__, #test); \
+  }
 
 #else
 

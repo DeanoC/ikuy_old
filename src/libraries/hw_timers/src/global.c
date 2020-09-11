@@ -3,7 +3,7 @@
 #include "hw/slcr.h"
 #include "hw/reg.h"
 
-void hw_timers_global_reset()
+void hw_timers_global_reset(void)
 {
     HW_REG_CLR_BIT(scu, GLOBAL_TIMER_CONTROL, TIMER_ENABLE);
     *HW_REG(scu, GLOBAL_TIMER_COUNTER0) = 0;
@@ -12,7 +12,7 @@ void hw_timers_global_reset()
     HW_REG_SET_BIT(scu, GLOBAL_TIMER_CONTROL, TIMER_ENABLE);
 }
 
-uint64_t hw_timers_global_get()
+uint64_t hw_timers_global_get(void)
 {
     uint32_t hi, lo;
 redo:

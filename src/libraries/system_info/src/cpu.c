@@ -3,6 +3,7 @@
 
 #include "hw/reg.h"
 #include "hw/slcr.h"
+#include "hw_slcr/slcr.h"
 
 void system_info_log_clocks()
 {
@@ -15,22 +16,22 @@ void system_info_log_clocks()
     uint32_t const ddrPll = refClock * ddrPllDiv;
     uint32_t const ioPll = refClock * ioPllDiv;
 
-    uint32_t const armClockDiv = HW_REG_GET_FIELD(slcr, ARM_CLK_CTRL, DIVISOR);
-    uint32_t const armClk = armClockDiv ? (armPll / armClockDiv) : armPll;
-    uint32_t const ddr2xClockDiv = HW_REG_GET_FIELD(slcr, DDR_CLK_CTRL, DDR_2XCLK_DIVISOR);
-    uint32_t const ddr2xClk = ddr2xClockDiv ? (ddrPll / ddr2xClockDiv) : ddrPll;
-    uint32_t const ddr3xClockDiv = HW_REG_GET_FIELD(slcr, DDR_CLK_CTRL, DDR_3XCLK_DIVISOR);
-    uint32_t const ddr3xClk = ddr3xClockDiv ? (ddrPll / ddr3xClockDiv) : ddrPll;
-
-    debug_printf(DEBUG_WHITE_PEN "Ref: " DEBUG_GREEN_PEN "%i Mhz\n", refClock);
-
     debug_printf(DEBUG_WHITE_PEN "ARM PLL: " DEBUG_GREEN_PEN "Mult 0x%.02x == %i Mhz\n", armPllDiv, armPll);
     debug_printf(DEBUG_WHITE_PEN "DDR PLL: " DEBUG_YELLOW_PEN "Mult 0x%.02x == %i Mhz\n", ddrPllDiv, ddrPll);
     debug_printf(DEBUG_WHITE_PEN "IO PLL: " DEBUG_CYAN_PEN "Mult 0x%.02x == %i Mhz\n", ioPllDiv, ioPll);
+    debug_printf("\n");
 
-    debug_printf(DEBUG_WHITE_PEN "ARM Clk: " DEBUG_GREEN_PEN "Div 0x%.02x == %i Mhz\n", armClockDiv, armClk);
-    debug_printf(DEBUG_WHITE_PEN "DDR 2x Clk: " DEBUG_YELLOW_PEN "Div 0x%.02x == %i Mhz\n", ddr2xClockDiv, ddr2xClk);
-    debug_printf(DEBUG_WHITE_PEN "DDR 3x Clk: " DEBUG_YELLOW_PEN "Div 0x%.02x == %i Mhz\n", ddr3xClockDiv, ddr3xClk);
+#define MHZ (1000*1000)
+    debug_printf(DEBUG_WHITE_PEN "Reference Clock  : " DEBUG_GREEN_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_REF_CLOCK) / MHZ);
+    debug_printf(DEBUG_WHITE_PEN "FPGA System Clock: " DEBUG_GREEN_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_FPGA_SYSTEM_CLOCK) / MHZ);
+    debug_printf("\n");
+    debug_printf(DEBUG_WHITE_PEN "CPU Clock     : " DEBUG_GREEN_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_CPU_CLOCK) / MHZ);
+    debug_printf(DEBUG_WHITE_PEN "CPU_3x: Clock : " DEBUG_GREEN_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_ARM_3X_CLOCK) / MHZ);
+    debug_printf(DEBUG_WHITE_PEN "DMAC Clock    : " DEBUG_GREEN_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_DMAC_CLOCK) / MHZ);
+    debug_printf(DEBUG_WHITE_PEN "APB Clock     : " DEBUG_GREEN_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_APB_CLOCK) / MHZ);
+    debug_printf(DEBUG_WHITE_PEN "AXI HP Clock  : " DEBUG_YELLOW_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_AXI_HP_CLOCK) / MHZ);
+    debug_printf(DEBUG_WHITE_PEN "DDR RAM Clock : " DEBUG_YELLOW_PEN "%i MHz\n", hw_slcr_get_clock(HWSLC_DDR_RAM_CLOCK) / MHZ);
+#undef MHZ
 
     debug_print(DEBUG_WHITE_PEN "------\n");
 }

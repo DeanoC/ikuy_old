@@ -459,46 +459,46 @@ module ps7_axi_wrapper
   `endif
   `ifdef PS_SLAVE_AXI_GP0
     // S_AXI_GP0
-    output wire S_AXI_GP0_ARESET,
-    output wire S_AXI_GP0_ARREADY,
-    output wire S_AXI_GP0_AWREADY,
-    output wire S_AXI_GP0_BVALID,
-    output wire S_AXI_GP0_RLAST,
-    output wire S_AXI_GP0_RVALID,
-    output wire S_AXI_GP0_WREADY,  
-    output wire [1:0] S_AXI_GP0_BRESP,
-    output wire [1:0] S_AXI_GP0_RRESP,
-    output wire [31:0] S_AXI_GP0_RDATA,
-    output wire [5:0] S_AXI_GP0_BID,
-    output wire [5:0] S_AXI_GP0_RID,
-    input wire S_AXI_GP0_ACLK,
-    input wire S_AXI_GP0_ARVALID,
-    input wire S_AXI_GP0_AWVALID,
-    input wire S_AXI_GP0_BREADY,
-    input wire S_AXI_GP0_RREADY,
-    input wire S_AXI_GP0_WLAST,
-    input wire S_AXI_GP0_WVALID,
-    input wire [1:0] S_AXI_GP0_ARBURST,
-    input wire [1:0] S_AXI_GP0_ARLOCK,
-    input wire [1:0] S_AXI_GP0_ARSIZE,
-    input wire [1:0] S_AXI_GP0_AWBURST,
-    input wire [1:0] S_AXI_GP0_AWLOCK,
-    input wire [1:0] S_AXI_GP0_AWSIZE,
-    input wire [2:0] S_AXI_GP0_ARPROT,
-    input wire [2:0] S_AXI_GP0_AWPROT,
-    input wire [31:0] S_AXI_GP0_ARADDR,
-    input wire [31:0] S_AXI_GP0_AWADDR,
-    input wire [31:0] S_AXI_GP0_WDATA,
-    input wire [3:0] S_AXI_GP0_ARCACHE,
-    input wire [3:0] S_AXI_GP0_ARLEN,
-    input wire [3:0] S_AXI_GP0_ARQOS,
-    input wire [3:0] S_AXI_GP0_AWCACHE,
-    input wire [3:0] S_AXI_GP0_AWLEN,
-    input wire [3:0] S_AXI_GP0_AWQOS,
-    input wire [3:0] S_AXI_GP0_WSTRB,
-    input wire [5:0] S_AXI_GP0_ARID,
-    input wire [5:0] S_AXI_GP0_AWID,
-    input wire [5:0] S_AXI_GP0_WID,  
+    input wire S_AXI_GP0_clk,
+    output wire S_AXI_GP0_reset,
+    output wire S_AXI_GP0_ar_ready,
+    output wire S_AXI_GP0_aw_ready,
+    output wire S_AXI_GP0_w_ready,  
+    input wire S_AXI_GP0_b_ready,
+    input wire S_AXI_GP0_r_ready,
+    input wire S_AXI_GP0_ar_valid,
+    input wire S_AXI_GP0_aw_valid,
+    input wire S_AXI_GP0_w_valid,
+    output wire S_AXI_GP0_b_valid,
+    output wire S_AXI_GP0_r_valid,
+
+    output wire [1:0] S_AXI_GP0_b_payload_resp,
+    output wire [1:0] S_AXI_GP0_r_payload_resp,
+    output wire [31:0] S_AXI_GP0_r_payload_data,
+    output wire [5:0] S_AXI_GP0_b_payload_id,
+    output wire [5:0] S_AXI_GP0_r_payload_id,
+    output wire S_AXI_GP0_r_payload_last,
+    input wire S_AXI_GP0_w_payload_last,
+    input wire [1:0] S_AXI_GP0_ar_payload_burst,
+    input wire [1:0] S_AXI_GP0_ar_payload_lock,
+    input wire [2:0] S_AXI_GP0_ar_payload_size,
+    input wire [1:0] S_AXI_GP0_aw_payload_burst,
+    input wire [1:0] S_AXI_GP0_aw_payload_lock,
+    input wire [2:0] S_AXI_GP0_aw_payload_size,
+    input wire [2:0] S_AXI_GP0_ar_payload_prot,
+    input wire [2:0] S_AXI_GP0_aw_payload_prot,
+    input wire [31:0] S_AXI_GP0_ar_payload_addr,
+    input wire [31:0] S_AXI_GP0_aw_payload_addr,
+    input wire [31:0] S_AXI_GP0_w_payload_data,
+    input wire [3:0] S_AXI_GP0_ar_payload_cache,
+    input wire [7:0] S_AXI_GP0_ar_payload_len,
+    input wire [3:0] S_AXI_GP0_ar_payload_qos,
+    input wire [3:0] S_AXI_GP0_aw_payload_cache,
+    input wire [7:0] S_AXI_GP0_aw_payload_len,
+    input wire [3:0] S_AXI_GP0_aw_payload_qos,
+    input wire [3:0] S_AXI_GP0_w_payload_strb,
+    input wire [5:0] S_AXI_GP0_ar_payload_id,
+    input wire [5:0] S_AXI_GP0_aw_payload_id,
   `endif
   `ifdef PS_SLAVE_AXI_GP1
     // S_AXI_GP1
@@ -844,6 +844,32 @@ module ps7_axi_wrapper
     assign M_AXI_GP1_aw_payload_len = { 4'h0, M_AXI_GP1_aw_payload_len_adaptor };      
   `endif
 
+  `ifdef PS_SLAVE_AXI_GP0
+    wire [1:0] S_AXI_GP0_ar_payload_lock_adaptor; // Axi4 lock simplified
+    wire [1:0] S_AXI_GP0_aw_payload_lock_adaptor;
+
+    wire [1:0] S_AXI_GP0_ar_payload_size_adaptor; // size can't be larger than bus so cut down
+    wire [1:0] S_AXI_GP0_aw_payload_size_adaptor;
+    wire [3:0] S_AXI_GP0_ar_payload_len_adaptor; // axi4 can issue longer burst 
+    wire [3:0] S_AXI_GP0_aw_payload_len_adaptor;
+
+    reg [5:0] S_AXI_GP0_w_payload_id;
+    always @ (posedge S_AXI_GP0_clk) begin
+      // when aw is valid, copy its id and use as the w id
+      if(S_AXI_GP0_aw_valid) begin
+        S_AXI_GP0_w_payload_id <= S_AXI_GP0_aw_payload_id;
+      end
+    end
+    assign S_AXI_GP0_ar_payload_lock_adaptor = { 1'b0, S_AXI_GP0_ar_payload_lock };
+    assign S_AXI_GP0_aw_payload_lock_adaptor = { 1'b0, S_AXI_GP0_aw_payload_lock };
+
+    assign S_AXI_GP0_ar_payload_size_adaptor = S_AXI_GP0_ar_payload_size[1 : 0];
+    assign S_AXI_GP0_aw_payload_size_adaptor = S_AXI_GP0_aw_payload_size[1 : 0];
+    // this is a potential case of errors we really need to break long burst into
+    // a few shorter ones but for now we just drop them, so don't generate long bursts!!!!
+    assign S_AXI_GP0_ar_payload_len_adaptor = S_AXI_GP0_ar_payload_len[3 : 0];
+    assign S_AXI_GP0_aw_payload_len_adaptor = S_AXI_GP0_aw_payload_len[3 : 0];
+  `endif
 
   // ----- Instaniate the PS7 wrapper
   ps7_wrapper ps7_wrapper_i (
@@ -913,7 +939,7 @@ module ps7_axi_wrapper
   `endif
   `ifdef USE_DMA0
 	  .DMA0_ACLK		            (DMA0_ACLK),
-	  .DMA0_RESET_n		          (DMA0_RESET_n),  
+	  .DMA0_RESET		            (DMA0_RESET),  
 	  .DMA0_DATYPE		          (DMA0_DATYPE),
 	  .DMA0_DAVALID		          (DMA0_DAVALID),
 	  .DMA0_DRREADY		          (DMA0_DRREADY),  
@@ -924,7 +950,7 @@ module ps7_axi_wrapper
   `endif
   `ifdef USE_DMA1
 	  .DMA1_ACLK		            (DMA1_ACLK),
-	  .DMA1_RESET_n		          (DMA1_RESET_n),
+	  .DMA1_RESET		            (DMA1_RESET),
 	  .DMA1_DATYPE		          (DMA1_DATYPE),
 	  .DMA1_DAVALID		          (DMA1_DAVALID),
 	  .DMA1_DRREADY		          (DMA1_DRREADY),
@@ -946,7 +972,7 @@ module ps7_axi_wrapper
   `endif
   `ifdef USE_DMA3
 	  .DMA3_ACLK		            (DMA3_ACLK),
-	  .DMA3_RESET_n		          (DMA3_RESET_n),
+	  .DMA3_RESET		            (DMA3_RESET),
 	  .DMA3_DAREADY		          (DMA3_DAREADY),
 	  .DMA3_DRLAST		          (DMA3_DRLAST),
 	  .DMA3_DRTYPE              (DMA3_DRTYPE),
@@ -1280,46 +1306,48 @@ module ps7_axi_wrapper
     .M_AXI_GP1_RDATA          (M_AXI_GP1_r_payload_data),    
   `endif
   `ifdef PS_SLAVE_AXI_GP0
-    .S_AXI_GP0_ACLK           (S_AXI_GP0_ACLK),
-    .S_AXI_GP0_ARESET         (S_AXI_GP0_ARESET),
-    .S_AXI_GP0_ARREADY        (S_AXI_GP0_ARREADY),
-    .S_AXI_GP0_AWREADY        (S_AXI_GP0_AWREADY),
-    .S_AXI_GP0_BVALID         (S_AXI_GP0_BVALID),
-    .S_AXI_GP0_RLAST          (S_AXI_GP0_RLAST),
-    .S_AXI_GP0_RVALID         (S_AXI_GP0_RVALID),
-    .S_AXI_GP0_WREADY         (S_AXI_GP0_WREADY),  
-    .S_AXI_GP0_BRESP          (S_AXI_GP0_BRESP),
-    .S_AXI_GP0_RRESP          (S_AXI_GP0_RRESP),
-    .S_AXI_GP0_RDATA          (S_AXI_GP0_RDATA),
-    .S_AXI_GP0_BID            (S_AXI_GP0_BID),
-    .S_AXI_GP0_RID            (S_AXI_GP0_RID),
-    .S_AXI_GP0_ARVALID        (S_AXI_GP0_ARVALID),
-    .S_AXI_GP0_AWVALID        (S_AXI_GP0_AWVALID),
-    .S_AXI_GP0_BREADY         (S_AXI_GP0_BREADY),
-    .S_AXI_GP0_RREADY         (S_AXI_GP0_RREADY),
-    .S_AXI_GP0_WLAST          (S_AXI_GP0_WLAST),
-    .S_AXI_GP0_WVALID         (S_AXI_GP0_WVALID),
-    .S_AXI_GP0_ARBURST        (S_AXI_GP0_ARBURST),
-    .S_AXI_GP0_ARLOCK         (S_AXI_GP0_ARLOCK),
-    .S_AXI_GP0_ARSIZE         (S_AXI_GP0_ARSIZE),
-    .S_AXI_GP0_AWBURST        (S_AXI_GP0_AWBURST),
-    .S_AXI_GP0_AWLOCK         (S_AXI_GP0_AWLOCK),
-    .S_AXI_GP0_AWSIZE         (S_AXI_GP0_AWSIZE),
-    .S_AXI_GP0_ARPROT         (S_AXI_GP0_ARPROT),
-    .S_AXI_GP0_AWPROT         (S_AXI_GP0_AWPROT),
-    .S_AXI_GP0_ARADDR         (S_AXI_GP0_ARADDR),
-    .S_AXI_GP0_AWADDR         (S_AXI_GP0_AWADDR),
-    .S_AXI_GP0_WDATA          (S_AXI_GP0_WDATA),
-    .S_AXI_GP0_ARCACHE        (S_AXI_GP0_ARCACHE),
-    .S_AXI_GP0_ARLEN          (S_AXI_GP0_ARLEN),
-    .S_AXI_GP0_ARQOS          (S_AXI_GP0_ARQOS),
-    .S_AXI_GP0_AWCACHE        (S_AXI_GP0_AWCACHE),
-    .S_AXI_GP0_AWLEN          (S_AXI_GP0_AWLEN),
-    .S_AXI_GP0_AWQOS          (S_AXI_GP0_AWQOS),
-    .S_AXI_GP0_WSTRB          (S_AXI_GP0_WSTRB),
-    .S_AXI_GP0_ARID           (S_AXI_GP0_ARID),
-    .S_AXI_GP0_AWID           (S_AXI_GP0_AWID),
-    .S_AXI_GP0_WID            (S_AXI_GP0_WID), 
+    .S_AXI_GP0_ACLK           (S_AXI_GP0_clk),
+    .S_AXI_GP0_ARESET         (S_AXI_GP0_reset),
+
+    .S_AXI_GP0_ARVALID        (S_AXI_GP0_ar_valid),
+    .S_AXI_GP0_AWVALID        (S_AXI_GP0_aw_valid),
+    .S_AXI_GP0_BREADY         (S_AXI_GP0_b_ready),
+    .S_AXI_GP0_RREADY         (S_AXI_GP0_r_ready),
+    .S_AXI_GP0_ARREADY        (S_AXI_GP0_ar_ready),
+    .S_AXI_GP0_AWREADY        (S_AXI_GP0_aw_ready),
+    .S_AXI_GP0_BVALID         (S_AXI_GP0_b_valid),
+    .S_AXI_GP0_RVALID         (S_AXI_GP0_r_valid),
+    .S_AXI_GP0_WREADY         (S_AXI_GP0_w_ready),
+    .S_AXI_GP0_WVALID         (S_AXI_GP0_w_valid),
+
+    .S_AXI_GP0_WLAST          (S_AXI_GP0_w_payload_last),
+    .S_AXI_GP0_ARID           (S_AXI_GP0_ar_payload_id),
+    .S_AXI_GP0_AWID           (S_AXI_GP0_aw_payload_id),
+    .S_AXI_GP0_WID            (S_AXI_GP0_w_payload_id),
+    .S_AXI_GP0_ARBURST        (S_AXI_GP0_ar_payload_burst),
+    .S_AXI_GP0_ARLOCK         (S_AXI_GP0_ar_payload_lock_adaptor),
+    .S_AXI_GP0_ARSIZE         (S_AXI_GP0_ar_payload_size_adaptor),
+    .S_AXI_GP0_AWBURST        (S_AXI_GP0_aw_payload_burst), 
+    .S_AXI_GP0_AWLOCK         (S_AXI_GP0_aw_payload_lock_adaptor),
+    .S_AXI_GP0_AWSIZE         (S_AXI_GP0_aw_payload_size_adaptor),
+    .S_AXI_GP0_ARPROT         (S_AXI_GP0_ar_payload_prot),
+    .S_AXI_GP0_AWPROT         (S_AXI_GP0_aw_payload_prot),
+    .S_AXI_GP0_ARADDR         (S_AXI_GP0_ar_payload_addr),
+    .S_AXI_GP0_AWADDR         (S_AXI_GP0_aw_payload_addr),
+    .S_AXI_GP0_WDATA          (S_AXI_GP0_w_payload_data),
+    .S_AXI_GP0_ARCACHE        (S_AXI_GP0_ar_payload_cache),
+    .S_AXI_GP0_ARLEN          (S_AXI_GP0_ar_payload_len_adaptor),
+    .S_AXI_GP0_ARQOS          (S_AXI_GP0_ar_payload_qos),
+    .S_AXI_GP0_AWCACHE        (S_AXI_GP0_aw_payload_cache),
+    .S_AXI_GP0_AWLEN          (S_AXI_GP0_aw_payload_len_adaptor),
+    .S_AXI_GP0_AWQOS          (S_AXI_GP0_aw_payload_qos),
+    .S_AXI_GP0_WSTRB          (S_AXI_GP0_w_payload_strb),
+    .S_AXI_GP0_RLAST          (S_AXI_GP0_r_payload_last),
+    .S_AXI_GP0_BID            (S_AXI_GP0_b_payload_id),
+    .S_AXI_GP0_RID            (S_AXI_GP0_r_payload_id),
+    .S_AXI_GP0_BRESP          (S_AXI_GP0_b_payload_resp),
+    .S_AXI_GP0_RRESP          (S_AXI_GP0_r_payload_resp),
+    .S_AXI_GP0_RDATA          (S_AXI_GP0_r_payload_data),    
   `endif
   `ifdef PS_SLAVE_AXI_GP1
     .S_AXI_GP1_ACLK           (S_AXI_GP1_ACLK),

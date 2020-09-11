@@ -26,10 +26,27 @@ case class DdrInterface() extends Bundle{
 }
 
 case class ps7_axi_wrapper() extends BlackBox {
-  val GeneralPurposeAxi =  Axi4Config(                  
+  val PSM_GeneralPurposeAxi = Axi4Config(                  
                     addressWidth = 32,
                     dataWidth = 32,
                     idWidth = 12,
+                    useId  = true,
+                    useRegion = false,
+                    useBurst = true,
+                    useLock = true,
+                    useCache = true,
+                    useSize = true,
+                    useQos  = true,
+                    useLen  = true,
+                    useLast = true,
+                    useResp = true,
+                    useProt = true,
+                    useStrb = true    
+  )
+  val PSS_GeneralPurposeAxi =  Axi4Config(                  
+                    addressWidth = 32,
+                    dataWidth = 32,
+                    idWidth = 6,
                     useId  = true,
                     useRegion = false,
                     useBurst = true,
@@ -54,11 +71,15 @@ case class ps7_axi_wrapper() extends BlackBox {
       val FCLK0_CLK = out Bool()
       val FCLK0_RESET = out Bool()
 
-      val M_AXI_GP0 = master( Axi4(GeneralPurposeAxi) )
+      val M_AXI_GP0 = master( Axi4(PSM_GeneralPurposeAxi) )
       val M_AXI_GP0_clk = in Bool
       val M_AXI_GP0_reset = out Bool
 
-//      val M_AXI_GP1 = master( Axi4(GeneralPurposeAxi) )
+      val S_AXI_GP0 = slave( Axi4(PSS_GeneralPurposeAxi) )
+      val S_AXI_GP0_clk = in Bool
+      val S_AXI_GP0_reset = out Bool
+
+//      val M_AXI_GP1 = master( Axi4(PSM_GeneralPurposeAxi) )
 //      val M_AXI_GP1_clk = in Bool
 //      val M_AXI_GP1_reset = out Bool
   }
