@@ -344,19 +344,19 @@
 #define ddrc_reg6c_6d3_REG 0x1b4U
 
 
-// 3.
+//  Training results (2) for data slice 0.
 #define ddrc_reg6e_710_REG 0x1b8U
 
 
-// 3.
+//  Training results (2) for data slice 1.
 #define ddrc_reg6e_711_REG 0x1bcU
 
 
-// 3.
+//  Training results (2) for data slice 2.
 #define ddrc_reg6e_712_REG 0x1c0U
 
 
-// 3.
+//  Training results (2) for data slice 3.
 #define ddrc_reg6e_713_REG 0x1c4U
 
 
@@ -380,7 +380,7 @@
 #define ddrc_dll_lock_sts_REG 0x1e0U
 
 
-// slice 3.
+//  PHY Control status, read
 #define ddrc_phy_ctrl_sts_REG 0x1e4U
 
 

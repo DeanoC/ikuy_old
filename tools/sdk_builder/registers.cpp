@@ -16,6 +16,7 @@ const char* ctiRegisterDefs =
 #include "cti_regdef.txt"
 ;
 
+// TODO cti field defs
 const char* ctiFieldDefs = 
 #include "cti_fielddef.txt"
 ;
@@ -34,6 +35,13 @@ const char* devcfgRegisterDefs =
 ;
 const char* devcfgFieldDefs = 
 #include "devcfg_fielddef.txt"
+;
+
+const char *i2cRegisterDefs =
+#include "i2c_regdef.txt"
+;
+const char *i2cFieldDefs =
+#include "i2c_fielddef.txt"
 ;
 
 const char* slcrRegisterDefs = 
@@ -96,6 +104,10 @@ void InitRegisterData() {
                 BANK_IMPL(debug_cti_ftm,        0xF8809000 ) );
     SINGLE_BANK(ddrc, DDR Memory Controller, 0xF8006000);
     SINGLE_BANK(devcfg, Device (PL) Config, 0xF8007000);
+    MULTI_BANK(i2c, Inter Integrated Circuit(I2C),
+               BANK_IMPL(i2c0, 0xE0004000),
+               BANK_IMPL(i2c1, 0xE0005000));
+
     SINGLE_BANK(slcr, System Level Control, 0xF8000000);
     MULTI_BANK(uart, UART (serial), BANK_IMPL(uart0, 0xE0000000), BANK_IMPL(uart1, 0xE0001000) );
     SINGLE_BANK(gpio, GPIO, 0xE000A000);
@@ -107,7 +119,6 @@ void InitRegisterData() {
     {
         i.GenerateRegisterStructures();
     }
-    
 
 }
 

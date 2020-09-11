@@ -411,7 +411,7 @@
 #define devcfg_XDCFG_UNLOCK_MASK 0x0U
 
 
-// Address Pointer.
+//  Miscellaneous Control.
 #define devcfg_XDCFG_MCTRL_REG 0x80U
 #define devcfg_XDCFG_MCTRL_PS_VERSION_LSHIFT 28U
 #define devcfg_XDCFG_MCTRL_PS_VERSION_MASK 0xf0000000U

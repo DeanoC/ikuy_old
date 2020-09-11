@@ -1254,7 +1254,7 @@
 #define slcr_REBOOT_STATUS_MASK 0xff7fffffU
 
 
-// 28 rw 0x0
+//  Boot Mode Strapping Pins
 #define slcr_BOOT_MODE_REG 0x25cU
 #define slcr_BOOT_MODE_RESERVED_0_LSHIFT 5U
 #define slcr_BOOT_MODE_RESERVED_0_MASK 0xffffffe0U
@@ -1316,7 +1316,7 @@
 #define slcr_TZ_DMA_PERIPH_NS_MASK 0xfU
 
 
-// DMAC TrustZone Config for Peripherals
+//  PS IDCODE
 #define slcr_PSS_IDCODE_REG 0x530U
 #define slcr_PSS_IDCODE_REVISION_LSHIFT 28U
 #define slcr_PSS_IDCODE_REVISION_MASK 0xf0000000U

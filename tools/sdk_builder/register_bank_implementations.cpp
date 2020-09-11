@@ -141,7 +141,7 @@ void RegisterBankImplementations::GenerateRegisterStructures()
     getcwd(cwd, sizeof(cwd));
     printf("Current working dir: %s\n", cwd);
 
-    std::string bankStructsFN = std::string("../../generated/sdk/") + bank.name + ".h";
+    std::string bankStructsFN = std::string("src/libraries/a9sdk/include/hw/") + bank.name + ".h";
     FILE* bankStructsFH = fopen(bankStructsFN.c_str(), "w");
 
     if(!bankStructsFH) 

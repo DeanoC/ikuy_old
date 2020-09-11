@@ -300,7 +300,7 @@
 #define uart_MODEMCR_MASK 0x23U
 
 
-// Trigger Level Register
+//  Modem Status Register
 #define uart_MODEMSR_REG 0x28U
 #define uart_MODEMSR_RESERVED_0_LSHIFT 9U
 #define uart_MODEMSR_RESERVED_0_MASK 0xfffffe00U

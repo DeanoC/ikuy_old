@@ -99,7 +99,7 @@
 #define cti_CTIOUTEN7_REG 0xbcU
 
 
-// 7 Register
+//  CTI Trigger In Status Register
 #define cti_CTITRIGINSTATUS_REG 0x130U
 
 
@@ -107,7 +107,7 @@
 #define cti_CTITRIGOUTSTATUS_REG 0x134U
 
 
-// Register
+//  CTI Channel In Status Register
 #define cti_CTICHINSTATUS_REG 0x138U
 
 
@@ -175,7 +175,7 @@
 #define cti_LSR_REG 0xfb4U
 
 
-// Register
+//  Authentication Status Register
 #define cti_ASR_REG 0xfb8U
 
 

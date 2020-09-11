@@ -30,7 +30,7 @@
 #define gpio_MASK_DATA_0_MSW_MASK 0xffffffffU
 
 
-// 15:0 wo 0x00000000
+//  Maskable Output Data (GPIO Bank1, MIO, Lower 16bits)
 #define gpio_MASK_DATA_1_LSW_REG 0x8U
 #define gpio_MASK_DATA_1_LSW_MASK_LSHIFT 16U
 #define gpio_MASK_DATA_1_LSW_MASK_MASK 0xffff0000U
@@ -39,7 +39,7 @@
 #define gpio_MASK_DATA_1_LSW_MASK 0xffffffffU
 
 
-// 15:0 wo 0x00000000
+//  Maskable Output Data (GPIO Bank1, MIO, Upper 6bits)
 #define gpio_MASK_DATA_1_MSW_REG 0xcU
 #define gpio_MASK_DATA_1_MSW_MASK_LSHIFT 16U
 #define gpio_MASK_DATA_1_MSW_MASK_MASK 0xffff0000U
@@ -84,14 +84,14 @@
 #define gpio_MASK_DATA_3_MSW_MASK 0xffffffffU
 
 
-// Data (GPIO Bank3, EMIO, Upper 16bits)
+//  Output Data (GPIO Bank0, MIO)
 #define gpio_DATA_0_REG 0x40U
 #define gpio_DATA_0_DATA_LSHIFT 0U
 #define gpio_DATA_0_DATA_MASK 0x0U
 #define gpio_DATA_0_MASK 0x0U
 
 
-// Data (GPIO Bank3, EMIO, Upper 16bits)
+//  Output Data (GPIO Bank1, MIO)
 #define gpio_DATA_1_REG 0x44U
 #define gpio_DATA_1_DATA_LSHIFT 0U
 #define gpio_DATA_1_DATA_MASK 0x0U
@@ -112,14 +112,14 @@
 #define gpio_DATA_3_MASK 0x0U
 
 
-// EMIO)
+//  Input Data (GPIO Bank0, MIO)
 #define gpio_DATA_0_RO_REG 0x60U
 #define gpio_DATA_0_RO_DATA_LSHIFT 0U
 #define gpio_DATA_0_RO_DATA_MASK 0x0U
 #define gpio_DATA_0_RO_MASK 0x0U
 
 
-// EMIO)
+//  Input Data (GPIO Bank1, MIO)
 #define gpio_DATA_1_RO_REG 0x64U
 #define gpio_DATA_1_RO_DATA_LSHIFT 0U
 #define gpio_DATA_1_RO_DATA_MASK 0x0U

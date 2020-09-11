@@ -284,7 +284,7 @@
 #define qspi_TXD_11_MASK 0x0U
 
 
-// 31:16 wo 0x0
+//  Configuration Register specifically for the Linear Quad-SPI Controller
 #define qspi_LQSPI_CR_REG 0xa0U
 #define qspi_LQSPI_CR_LINEAR_LSHIFT 31U
 #define qspi_LQSPI_CR_LINEAR 0x80000000U

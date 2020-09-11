@@ -22,6 +22,9 @@ XilinxRegisterInfo::XilinxRegisterInfo(std::string const& line)
             cur++;
         }
         cur++;
+/*        static int count = 0;
+        if (count > 200 && count < 400)
+            printf("%s\n", name.c_str());*/
 
         while(*cur != ' ') {
             tmpBuffer += *cur;
@@ -44,32 +47,45 @@ XilinxRegisterInfo::XilinxRegisterInfo(std::string const& line)
         tmpBuffer.clear();
         cur++;
 
-        bool hexFound = false;
+        char lastchar = ' ';
 
-        while(hexFound == false)
+        while (!(*cur == '0' || (lastchar == ' ' && *cur == 'x')))
         {
-            if( *cur == '\n' || *cur == 0)
-            {
-                hexFound = true;
-            }
-            else if( (*cur == '0') && (*(cur+1)== 'x'))
-            {
-                hexFound = true;
-            } else
-            {
-                type += *cur;
-                cur++;
-            }
-        }
-        type.resize(type.size()-1);
-        cur++;
-        tmpBuffer += '0';
-        while(*cur != ' ') {
             tmpBuffer += *cur;
+            lastchar = *cur;
             cur++;
         }
-        STOUL_HEX(tmpBuffer, resetValue);
+        tmpBuffer.resize(tmpBuffer.size() - 1); // remove final space
         tmpBuffer.clear();
+
+        if (*cur == 'x' || *cur == 'X')
+        {
+            resetValue = 0;
+        } else 
+        {
+            bool hexFound = false;
+
+            while(hexFound == false)
+            {
+                if( *cur == '\n' || *cur == 0)
+                {
+                    hexFound = true;
+                }
+                else if( (*cur == '0') && (*(cur+1)== 'x'))
+                {
+                    cur++;
+                    hexFound = true;
+                }
+            }
+            cur++;
+            tmpBuffer += '0';
+            while(*cur != ' ') {
+                tmpBuffer += *cur;
+                cur++;
+            }
+            STOUL_HEX(tmpBuffer, resetValue);
+            tmpBuffer.clear();
+        }
         cur++;
 
         while(*cur != '\n') {
