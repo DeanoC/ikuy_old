@@ -1,18 +1,31 @@
 package bus_and_chips
 
-import scala.collection.mutable.{ArrayBuffer}
+import scala.collection.mutable.{HashMap, ArrayBuffer}
 import spinal.core._
 import spinal.lib._
 import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
 
+case class BusID(val name : String, val index : Int)
+{
+    var busAddress : BigInt = 0
+
+    def allocate(size : CustomChipSize) : BigInt = {
+        val addr = busAddress
+        busAddress += size.addressSpaceSize
+        addr
+    }
+
+}
+
 class Axi3Slave(    val config : Axi4Config,
+                    val addressSpaceHighBit : Int,
+                    val busID : BusID,
+                    val motherboard : Motherboard,
                     val readAccess : Boolean = true,
                     val writeAccess : Boolean = true,
-                    val chipsOfBus : ArrayBuffer[CustomChip] = ArrayBuffer[CustomChip](),
-                    val addressSpaceHighBit : Int = 30,
-                    val axiFrequency : ClockDomain.ClockFrequency = FixedFrequency(100 MHz)
-                    ) extends Component 
+                    val axiFrequency : ClockDomain.ClockFrequency = FixedFrequency(108 MHz)
+) extends Component 
 {
     var io = new Bundle 
     {
@@ -22,15 +35,6 @@ class Axi3Slave(    val config : Axi4Config,
     }
 
     var chipBaseAddress = BigInt(0)
-    var chips = ArrayBuffer[CustomChip]()
-
-    def addChip(chip : CustomChip) : Unit = 
-    {
-        chip.bus = this
-        chip.address = chipBaseAddress
-        chips += chip
-        chipBaseAddress += chip.addressSpaceWidth
-    }
 
     def sizeConverter(sizeVal : UInt) : UInt = 
     {
@@ -43,6 +47,7 @@ class Axi3Slave(    val config : Axi4Config,
         arsize
     }
 
+    val bus = this
     val axiClockDomain = ClockDomain.internal(
         name = "axiClock",
         frequency = axiFrequency,
@@ -55,18 +60,42 @@ class Axi3Slave(    val config : Axi4Config,
     axiClockDomain.clock := io.axiClk
     axiClockDomain.reset := io.axiReset
 
+    val chipAddresses = HashMap[ChipID, BigInt]()
+
+    val chips = motherboard.getChipsConnectedToBus(busID)
+    chips.foreach( c => {
+        val chip = motherboard.getChipByID(c)
+        chipAddresses += c -> busID.allocate(chip.size)
+
+        val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
+        connection match {
+            case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
+                val raddr = out Bits(chip.size.addressSpaceWidth bits)
+                val rdata = in Bits(32 bits)
+                io.add(raddr, s"${c.name}_read_address")
+                io.add(rdata, s"${c.name}_read_data")
+                raddr := B(0, chip.size.addressSpaceWidth bits)
+                val wren = out Bool
+                val wraddr = out Bits(chip.size.addressSpaceWidth bits)
+                val wrdata = out Bits(32 bits)
+                val wrstrb = out Bits(4 bits)
+                io.add(wren, s"${c.name}_write_enable")
+                io.add(wraddr, s"${c.name}_write_address")
+                io.add(wrdata, s"${c.name}_write_data")
+                io.add(wrstrb, s"${c.name}_write_strb")
+                wren := False
+                wraddr := B(0, chip.size.addressSpaceWidth bits)
+                wrdata := B(0, 32 bits)
+                wrstrb := B(0, 4 bits)
+            }
+            case _ => {
+                println(s"ERROR ${connection} not supported on bus ${busID.name}")
+            }
+        }
+    })
+
     val axiClockArea = new ClockingArea(axiClockDomain)
     {
-        println("Adding chips")
-        chipsOfBus.foreach( chip => {
-            addChip(chip)
-        })
-
-        chips.foreach( chip => {
-            println(f"Building ${chip.chipName} chip")
-            chip.build()
-        })
-
         if( readAccess )
         {        
             io.s_axi.r.valid <> False
@@ -132,26 +161,34 @@ class Axi3Slave(    val config : Axi4Config,
                         readReadyForNewAddr := True
                     }
                 }
+                io.s_axi.r.data := 0
 
-                chips.foreach( chip => {
+                val chips = motherboard.getChipsConnectedToBus(busID)
+                chips.foreach( c => {
+                    val chip = motherboard.getChipByID(c)
+                    val csize = chip.size
                     val addr = Cat(upperAddress, readFourKPage)
-                    val addrMasked = addr & ~U(chip.addressSpaceMask, 29 bits).asBits
+                    val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
+                    val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
 
-                    when(addrMasked === U(chip.address, 29 bits).asBits)
+                    when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
                     {
-                        val registerAddress = addr.asBits.resize(chip.addressSpaceWidth bits) &
-                                                                chip.addressSpaceMask
-                        switch(registerAddress(2 until chip.addressSpaceWidth)) {
-                            chip.registers.filter( f => f._2.hasRead).foreach {
-                                case (name, action) =>
-                                    is(action.index) {
-                                        io.s_axi.r.data <> action.read()
-                                    }
+                        val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
+                        connection match {
+                            case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
+                                val bRaddrOption = bus.io.get(s"${c.name}_read_address")
+                                if(bRaddrOption.isDefined) bRaddrOption.get._2 := registerAddress
+                                val bRdataOption = bus.io.get(s"${c.name}_read_data")
+                                if(bRdataOption.isDefined) io.s_axi.r.data.asData := bRdataOption.get._2
+                            }
+                            case _ => {
+                                println(s"ERROR ${connection} not supported on bus ${busID.name}")
                             }
                         }
                     }
                 })
             }
+
             when(ClockDomain.current.reset) 
             {
                 io.s_axi.ar.ready <> False
@@ -225,18 +262,32 @@ class Axi3Slave(    val config : Axi4Config,
                         io.s_axi.b.valid <> True
                         writeReadyForNewAddr := True
                     }
-
-                    chips.foreach( chip => {
+                    val chips = motherboard.getChipsConnectedToBus(busID)
+                    
+                    chips.foreach( c => {
+                        val chip = motherboard.getChipByID(c)
+                        val csize = chip.size
                         val addr = Cat(upperAddress, fourKPage)
-                        val addrMasked = addr & ~U(chip.addressSpaceMask, 29 bits).asBits
-                        val registerAddress = addr.asBits.resize(chip.addressSpaceWidth bits) &
-                                                                chip.addressSpaceMask
-                        switch(registerAddress(2 until chip.addressSpaceWidth)) {
-                            chip.registers.filter( f => f._2.hasWrite).foreach {
-                                case (name, action) =>
-                                    is(action.index) {
-                                        action.write(io.s_axi.w.data, io.s_axi.w.strb)
-                                    }
+                        val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
+                        val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
+
+                        when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
+                        {
+                            val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
+                            connection match {
+                                case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
+                                    val bWenOption = bus.io.get(s"${c.name}_write_enable")
+                                    if(bWenOption.isDefined) bWenOption.get._2 := True
+                                    val bWaddrOption = bus.io.get(s"${c.name}_write_address")
+                                    if(bWaddrOption.isDefined) bWaddrOption.get._2 := registerAddress
+                                    val bWdataOption = bus.io.get(s"${c.name}_write_data")
+                                    if(bWdataOption.isDefined) bWdataOption.get._2 := io.s_axi.w.data
+                                    val bWstrbOption = bus.io.get(s"${c.name}_write_strb")
+                                    if(bWstrbOption.isDefined) bWstrbOption.get._2 := io.s_axi.w.strb
+                                }
+                                case _ => {
+                                    println(s"ERROR ${connection} not supported on bus ${busID.name}")
+                                }
                             }
                         }
                     })

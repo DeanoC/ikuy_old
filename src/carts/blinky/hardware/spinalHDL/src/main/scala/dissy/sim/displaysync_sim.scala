@@ -33,23 +33,22 @@ object DisplaySync_sim
       workspacePath("~/ikuy/build/carts/blinky/hardware/sim/workspace").
       withConfig(spinalConfig)
 
-
+/*
     var compiled = sc.compile {
       val pixelClock = Bool
       val pixelClockDomain = ClockDomain(pixelClock)
 
       val dut = new Axi3Slave(
                       config = GeneralPurposeAxi, 
-                      chipsOfBus = ArrayBuffer[CustomChip](
-                         new DissyCustomChip(FixedFrequency(25.175 MHz))
-                      ),
-                      addressSpaceHighBit = 30 )
+                      addressSpaceHighBit = 30,
+                      busName = "PS_to_PL_Gp0"
+                    )
       dut
     }
 
     compiled.doSim({ dut =>
         dut.clockDomain.forkStimulus(period = 10)
         simSuccess()
-    })
+    })*/
   }
 }

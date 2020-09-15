@@ -5,11 +5,16 @@ import bus_and_chips._
 import spinal.lib.blackbox.xilinx.s7._
 
 class DissyCustomChip(
-  val axiFrequency : ClockDomain.ClockFrequency
+  val axiFrequency : ClockDomain.ClockFrequency,
+  override val chipID : ChipID,
+  override val motherboard : Motherboard
 ) 
-extends CustomChip( size = TINY, chipName = "Dissy" )
+extends CustomChip( size = TINY, 
+                    chipID = chipID,
+                    motherboard = motherboard,
+                    chipName = "Dissy" )
 {
-  val io = new Bundle {
+  override val io = new Bundle {
     val axiClk = in Bool
     val axiReset = in Bool
   } 
@@ -86,13 +91,12 @@ extends CustomChip( size = TINY, chipName = "Dissy" )
     }
   }
 
-  override def build() : Unit = 
+  override def addRegisters() : Unit = 
   {
     addRegister( RegisterReadWrite(
         ReadWriteRegisterDef( 
                 name = "DisplaySource",
                 description = "Where is the display data coming from?",
                 default = B"32'x0000_0000") ) )
-    super.build()
   }
 }

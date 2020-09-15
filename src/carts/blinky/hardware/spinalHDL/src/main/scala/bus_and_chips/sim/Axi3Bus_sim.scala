@@ -28,21 +28,20 @@ object Axi3Bus_sim
                       useProt = true,
                       useStrb = true    
     )
-    var sc = SimConfig.
+    val sc = SimConfig.
       withWave.
       workspacePath("~/ikuy/build/carts/blinky/hardware/sim/workspace").
       withConfig(spinalConfig)
+/*
 
-
-    var compiled = sc.compile {
-      val dut = new Axi3Slave(
-                      config = GeneralPurposeAxi, 
-                      chipsOfBus = ArrayBuffer[CustomChip](
-                         new DebugCustomChip()
-                      ),
-                      addressSpaceHighBit = 30 )
-      dut
-    }
+    val compiled = sc.compile({
+      val axi3Slave = new Axi3Slave(  
+                      config = GeneralPurposeAxi,
+                      addressSpaceHighBit = 30,
+                      busName = "PS_to_PL_Gp0"
+                    )
+      axi3Slave
+    })
 
     compiled.doSim({ dut =>
         dut.clockDomain.forkStimulus(period = 10)
@@ -142,5 +141,6 @@ object Axi3Bus_sim
 
         simSuccess()
     })
+    */
   }
 }

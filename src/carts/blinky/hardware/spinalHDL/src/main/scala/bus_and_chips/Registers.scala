@@ -63,7 +63,7 @@ case class RegisterReadConstant(override val definition : ReadOnlyRegisterDef)
 case class RegisterReadOnly(override val definition : ReadOnlyRegisterDef)
         extends RegisterAction(definition = definition)
 {
-  override def read(): Bits = owner.getRegisterStorage(definition.name)
+  override def read(): Bits = owner.getRegisterStorage(definition.name) as(Bits)
 }
 
 case class RegisterWriteOnly(override val definition : WriteOnlyRegisterDef)
@@ -83,10 +83,10 @@ case class RegisterWriteOnly(override val definition : WriteOnlyRegisterDef)
 case class RegisterReadWrite(override val definition : ReadWriteRegisterDef)
         extends RegisterAction(definition = definition)
 {
-  override def read(): Bits = owner.getRegisterStorage(definition.name)
+  override def read(): Bits = owner.getRegisterStorage(definition.name) as(Bits)
 
   override def write( data : Bits, byteMask : Bits) : Unit = {
-      val exist = owner.getRegisterStorage(definition.name)
+      val exist = owner.getRegisterStorage(definition.name) as(Bits)
       val result = Bits(32 bits)
       result(24 until 32) := byteMask(3) ? data(24 until 32) | exist(24 until 32)
       result(16 until 24) := byteMask(2) ? data(16 until 24) | exist(16 until 24)

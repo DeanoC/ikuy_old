@@ -5,7 +5,7 @@ import spinal.lib._
 import spinal.lib.io._
 import spinal.lib.bus.amba4.axi._
 import spinal.lib.blackbox.xilinx.s7._
-import scala.collection.mutable.{ArrayBuffer}
+import scala.collection.mutable.{ArrayBuffer, HashMap}
 import bus_and_chips._
 import dissy._
 
@@ -57,9 +57,10 @@ class PWM(width : Int) extends Component {
   }
 }
 
-class Blinky extends Component {
+class Blinky 
+extends Motherboard {
 
-  val io = new Bundle {
+  override val io = new Bundle {
     val leds = out Bits(4 bits)
     val rgb_led0 = out Bits(3 bits)
     val rgb_led1 = out Bits(3 bits)
@@ -94,29 +95,59 @@ class Blinky extends Component {
 
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
   {
-    val dissy = new DissyCustomChip(fclk0ClockDomain.frequency)
-    dissy.io.axiClk <> fclk0ClockDomain.clock
-    dissy.io.axiReset <> fclk0ClockDomain.reset
+    val buggyBoyID = addChip(
+                "BuggyBoy",
+                (chipID : ChipID, mb : Motherboard) => 
+                { 
+                  new DebugCustomChip(chipID = chipID, motherboard = mb) 
+                })
 
-    val slaveGp0 = new Axi3Slave(
+    val slaveGp0ID = addBus(
+                    "slaveGp0", 
+                    (busID : BusID, mb : Motherboard) => { 
+                      new Axi3Slave(    
+                        config = hardSoc.PSM_GeneralPurposeAxi,
+                        addressSpaceHighBit = 30, // 0x40000000 address range
+                        busID = busID,
+                        motherboard = mb)
+                    })
+    connectChipToBus( buggyBoyID, 
+                      CHIP_BUS_FULL_DUPLUX_CONNECTION, 
+                      slaveGp0ID)
+    build()
+    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK    
+    getBusByID(slaveGp0ID).io.s_axi << hardSoc.io.M_AXI_GP0
+    getBusByID(slaveGp0ID).io.axiClk <> fclk0ClockDomain.clock
+    getBusByID(slaveGp0ID).io.axiReset <> fclk0ClockDomain.reset
+    
+//    val dissy = new DissyCustomChip(fclk0ClockDomain.frequency)
+//    dissy.io.axiClk <> fclk0ClockDomain.clock
+//    dissy.io.axiReset <> fclk0ClockDomain.reset
+/*
+    val slaveGp0 = new Axi3Slave(    
                       config = hardSoc.PSM_GeneralPurposeAxi,
-                      chipsOfBus = ArrayBuffer[CustomChip](
-                         new DebugCustomChip(),
-                         dissy
-                        ),
-                      addressSpaceHighBit = 30 // 0x40000000 address range
-                    )
-    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
-    slaveGp0.io.s_axi << hardSoc.io.M_AXI_GP0
-    slaveGp0.io.axiClk <> fclk0ClockDomain.clock
-    slaveGp0.io.axiReset <> fclk0ClockDomain.reset
+                      addressSpaceHighBit = 30, // 0x40000000 address range
+                      chips = Array[CustomChip](
+//                        buggyboy
+//                        () => dissy                      
+                      ),
+                      busName = "PS_to_PL_Gp0"
+                    )*/
+//    slaveGp0.build()
+//    buggyboy.completeBusConnections()
+//    buggyboy.addPrePopTask(() => buggyboy.completeBusConnections())
 
+//    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
+//    slaveGp0.io.s_axi << hardSoc.io.M_AXI_GP0
+//    slaveGp0.io.axiClk <> fclk0ClockDomain.clock
+//    slaveGp0.io.axiReset <> fclk0ClockDomain.reset
+/*
     val dummy_master = new MasterAxi4SharedEndPlug(hardSoc.PSS_GeneralPurposeAxi)
     val axi4Convertor = new Axi4SharedToAxi3Shared(hardSoc.PSS_GeneralPurposeAxi)
     axi4Convertor.io.output.toAxi4 <> hardSoc.io.S_AXI_GP0
     axi4Convertor.io.input <> dummy_master.io.output
     hardSoc.io.S_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
-
+*/
     /*
     val slaveGp1 = new Axi3Slave(
                       config = hardSoc.GeneralPurposeAxi, 

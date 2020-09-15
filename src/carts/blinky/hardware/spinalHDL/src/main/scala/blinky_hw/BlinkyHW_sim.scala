@@ -13,6 +13,6 @@ object BlinkyTests
   def main(args: Array[String]): Unit = 
   {
     Axi3Bus_sim.test(BuildMain.sc)
-    DisplaySync_sim.test(BuildMain.sc)
+//    DisplaySync_sim.test(BuildMain.sc)
   }
 }
