@@ -6,12 +6,12 @@ import scala.collection.mutable.{ArrayBuffer, HashMap}
 
 sealed trait ChipBusConnection 
 {
-  val connection : Array[String] = null
+  val wires : Array[String] = null
 }
 
 object CHIP_BUS_FULL_DUPLUX_CONNECTION extends ChipBusConnection
 {
-  override val connection = Array(
+  override val wires = Array(
     "read_address",
     "read_data",
     "write_enable",
@@ -103,11 +103,11 @@ extends Component
         busIDs.foreach( b => {
           val bus = getBusByID(b)
           val connection = getConnectionBetweenChipAndBus(c, b)
-          connection.connection.foreach( n => {
+          connection.wires.foreach( n => {
             val cOption = chip.io.get(s"${b.name}_${n}")
             val bOption = bus.io.get(s"${c.name}_${n}")
             if(cOption.isDefined && bOption.isDefined)
-              cOption.get._2 <> bOption.get._2
+              cOption.get <> bOption.get
             else println(s"ERROR ${c.name}_${n}=${cOption} or ${b.name}_${n}=${bOption} not found")
           })
         })

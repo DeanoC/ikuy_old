@@ -11,8 +11,7 @@ class DissyCustomChip(
 ) 
 extends CustomChip( size = TINY, 
                     chipID = chipID,
-                    motherboard = motherboard,
-                    chipName = "Dissy" )
+                    motherboard = motherboard)
 {
   override val io = new Bundle {
     val axiClk = in Bool

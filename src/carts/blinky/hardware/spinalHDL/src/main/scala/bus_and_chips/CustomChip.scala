@@ -32,8 +32,7 @@ object HUGE extends CustomChipSize
 
 abstract class CustomChip(  val size : CustomChipSize,
                             val chipID : ChipID,
-                            val motherboard : Motherboard,
-                            val chipName : String )
+                            val motherboard : Motherboard)
 extends Component 
 {
   val io = new Bundle {}
@@ -103,6 +102,4 @@ extends Component
   // add a register space hole
   def addHole( bytesForHole : Int ) = registerIndex += bytesForHole / 4
   
-//  Component.current.addPrePopTask(() => completeBusConnections())
-
 }

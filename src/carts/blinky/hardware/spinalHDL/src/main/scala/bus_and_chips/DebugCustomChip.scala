@@ -8,8 +8,7 @@ class DebugCustomChip(
 )
 extends CustomChip( size = DUO,  
                     chipID = chipID,
-                    motherboard = motherboard,
-                    chipName = "Debug" )
+                    motherboard = motherboard)
 {
 
   case class DebugReflectAddressRegister(override val definition : ReadOnlyRegisterDef) 

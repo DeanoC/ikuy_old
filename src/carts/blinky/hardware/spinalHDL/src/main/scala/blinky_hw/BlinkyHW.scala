@@ -82,16 +82,18 @@ extends Motherboard {
   hardSoc.io.DDR_ARB <> 0
   hardSoc.io.DDR <> io.DDR
 
-  val fclk0ClockDomain = ClockDomain(
-    clock = hardSoc.io.FCLK0_CLK,
-    reset = hardSoc.io.FCLK0_RESET,
-    frequency = FixedFrequency(100 MHz),
+  val fclk0ClockDomain = ClockDomain.internal( 
+    name = "fclk0",
+    frequency = FixedFrequency(108 MHz),
     config = ClockDomainConfig (
       clockEdge = RISING,
       resetKind = SYNC,
       resetActiveLevel = HIGH
     )
   )
+  val softReset = Reg(Bool) init False
+  fclk0ClockDomain.clock := hardSoc.io.FCLK0_CLK
+  fclk0ClockDomain.reset := hardSoc.io.FCLK0_RESET | softReset
 
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
   {
@@ -100,6 +102,12 @@ extends Motherboard {
                 (chipID : ChipID, mb : Motherboard) => 
                 { 
                   new DebugCustomChip(chipID = chipID, motherboard = mb) 
+                })
+    val mrRessetiID = addChip(
+                "MrResseti",
+                (chipID : ChipID, mb : Motherboard) => 
+                { 
+                  new MrRessetiChip(chipID = chipID, motherboard = mb) 
                 })
 
     val slaveGp0ID = addBus(
@@ -111,32 +119,20 @@ extends Motherboard {
                         busID = busID,
                         motherboard = mb)
                     })
-    connectChipToBus( buggyBoyID, 
-                      CHIP_BUS_FULL_DUPLUX_CONNECTION, 
-                      slaveGp0ID)
+    connectChipToBus( buggyBoyID, CHIP_BUS_FULL_DUPLUX_CONNECTION, slaveGp0ID)
+    connectChipToBus( mrRessetiID, CHIP_BUS_FULL_DUPLUX_CONNECTION, slaveGp0ID)
+
     build()
+
+    val fpgaReset_n = !(getChipByID(mrRessetiID).io.get("reset_n").getOrElse(True) as(Bool))
+
     hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK    
     getBusByID(slaveGp0ID).io.s_axi << hardSoc.io.M_AXI_GP0
-    getBusByID(slaveGp0ID).io.axiClk <> fclk0ClockDomain.clock
-    getBusByID(slaveGp0ID).io.axiReset <> fclk0ClockDomain.reset
     
 //    val dissy = new DissyCustomChip(fclk0ClockDomain.frequency)
 //    dissy.io.axiClk <> fclk0ClockDomain.clock
-//    dissy.io.axiReset <> fclk0ClockDomain.reset
-/*
-    val slaveGp0 = new Axi3Slave(    
-                      config = hardSoc.PSM_GeneralPurposeAxi,
-                      addressSpaceHighBit = 30, // 0x40000000 address range
-                      chips = Array[CustomChip](
-//                        buggyboy
-//                        () => dissy                      
-                      ),
-                      busName = "PS_to_PL_Gp0"
-                    )*/
-//    slaveGp0.build()
-//    buggyboy.completeBusConnections()
-//    buggyboy.addPrePopTask(() => buggyboy.completeBusConnections())
 
+//    dissy.io.axiReset <> fclk0ClockDomain.reset
 //    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
 //    slaveGp0.io.s_axi << hardSoc.io.M_AXI_GP0
 //    slaveGp0.io.axiClk <> fclk0ClockDomain.clock
@@ -148,35 +144,6 @@ extends Motherboard {
     axi4Convertor.io.input <> dummy_master.io.output
     hardSoc.io.S_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
 */
-    /*
-    val slaveGp1 = new Axi3Slave(
-                      config = hardSoc.GeneralPurposeAxi, 
-                      chipsOfBus = ArrayBuffer[CustomChip](
-                         new DebugCustomChip()
-                        ),
-                      addressSpaceHighBit = 31 // 0x80000000 address range
-                    )
-    hardSoc.io.M_AXI_GP1_clk := hardSoc.io.FCLK0_CLK
-    slaveGp1.io.s_axi << hardSoc.io.M_AXI_GP1
-    slaveGp1.io.reset_n := ~ClockDomain.current.reset
-
-    val debug0 = RegInit(False)
-    when(slaveGp0.io.s_axi.w.data === U("32'x0000_0000").asBits) {
-      debug0 := True
-    }
-    val debug1 = RegInit(False)
-    when(slaveGp0.io.s_axi.w.valid) {
-      debug1 := True
-    }
-    val debug2 = RegInit(False)
-    when(slaveGp0.io.s_axi.w.ready) {
-      debug2 := True
-    }
-    val debug3 = RegInit(False)
-    when(hardSoc.io.M_AXI_GP0.r.valid) {
-      debug3 := True
-    }
-*/
     io.leds(0) := False //debug0
     io.leds(1) := False //debug1
     io.leds(2) := False //debug2
@@ -187,6 +154,7 @@ extends Motherboard {
     io.rgb_led0(2) := False
 
   }
+  softReset := BufferCC(fclk0ClockArea.fpgaReset_n)
 
 
   //Instanciate and drive the PLL (125 MHz * Mult) / Divide

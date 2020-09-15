@@ -23,15 +23,12 @@ class Axi3Slave(    val config : Axi4Config,
                     val busID : BusID,
                     val motherboard : Motherboard,
                     val readAccess : Boolean = true,
-                    val writeAccess : Boolean = true,
-                    val axiFrequency : ClockDomain.ClockFrequency = FixedFrequency(108 MHz)
+                    val writeAccess : Boolean = true
 ) extends Component 
 {
     var io = new Bundle 
     {
         val s_axi = slave( Axi4(config) )
-        val axiClk = in Bool
-        val axiReset = in Bool
     }
 
     var chipBaseAddress = BigInt(0)
@@ -48,18 +45,6 @@ class Axi3Slave(    val config : Axi4Config,
     }
 
     val bus = this
-    val axiClockDomain = ClockDomain.internal(
-        name = "axiClock",
-        frequency = axiFrequency,
-        config = ClockDomainConfig (
-            clockEdge = RISING,
-            resetKind = SYNC,
-            resetActiveLevel = HIGH
-        )
-    )
-    axiClockDomain.clock := io.axiClk
-    axiClockDomain.reset := io.axiReset
-
     val chipAddresses = HashMap[ChipID, BigInt]()
 
     val chips = motherboard.getChipsConnectedToBus(busID)
@@ -94,220 +79,222 @@ class Axi3Slave(    val config : Axi4Config,
         }
     })
 
-    val axiClockArea = new ClockingArea(axiClockDomain)
-    {
-        if( readAccess )
-        {        
-            io.s_axi.r.valid <> False
-            io.s_axi.r.resp <> 0
-            val arid = Reg(UInt(12 bits))
-            when(io.s_axi.ar.valid)
+    if( readAccess )
+    {        
+        io.s_axi.r.valid <> False
+        io.s_axi.r.resp <> 0
+        val arid = Reg(UInt(12 bits))
+        when(io.s_axi.ar.valid)
+        {
+            arid := io.s_axi.ar.id
+        }            
+        io.s_axi.r.id := arid
+        io.s_axi.r.last <> False
+        io.s_axi.r.data <> 0
+
+        val readReadyForNewAddr = Reg(Bool) init True
+        io.s_axi.ar.ready := readReadyForNewAddr
+
+        // 4K boundary for axi increments
+        val size = Reg(UInt(3 bits))
+        val readFourKPage = Reg(UInt(12 bits)) //12 bit pages for Axi3
+        val numberBytes = Reg(UInt(3 bits))
+        val beat = RegInit(U(0, 8 bits))
+        val burstLength = RegInit(U(0, 8 bits))
+        val burstType = Reg(UInt(2 bits))        
+        val upperAddress = U(0, 17 bits) // 17+12 == 29 bits for addess (1GB-1B)
+        when(readReadyForNewAddr)
+        { 
+            when(io.s_axi.ar.valid && io.s_axi.ar.addr(addressSpaceHighBit))
             {
-                arid := io.s_axi.ar.id
-            }            
-            io.s_axi.r.id := arid
-            io.s_axi.r.last <> False
-            io.s_axi.r.data <> 0
+                size <> io.s_axi.ar.size
+                val arsize = sizeConverter(size)                
+                numberBytes := arsize
+                upperAddress := io.s_axi.ar.addr(13 to 29)
+                readFourKPage := (io.s_axi.ar.addr(0 until 12) & ~Cat(B"0000_0000_0", (arsize-1)).asUInt)
+                burstLength := io.s_axi.ar.len
+                beat := io.s_axi.ar.len
+                burstType := io.s_axi.ar.burst.asUInt
+                readReadyForNewAddr := False
+            }
+        }.otherwise
+        {
+            io.s_axi.r.valid := True
 
-            val readReadyForNewAddr = Reg(Bool) init True
-            io.s_axi.ar.ready := readReadyForNewAddr
-
-            // 4K boundary for axi increments
-            val size = Reg(UInt(3 bits))
-            val readFourKPage = Reg(UInt(12 bits)) //12 bit pages for Axi3
-            val numberBytes = Reg(UInt(3 bits))
-            val beat = RegInit(U(0, 8 bits))
-            val burstLength = RegInit(U(0, 8 bits))
-            val burstType = Reg(UInt(2 bits))        
-            val upperAddress = U(0, 17 bits) // 17+12 == 29 bits for addess (1GB-1B)
-            when(readReadyForNewAddr)
-            { 
-                when(io.s_axi.ar.valid && io.s_axi.ar.addr(addressSpaceHighBit))
+            when(io.s_axi.r.ready)
+            {
+                when(beat > 0)
                 {
-                    size <> io.s_axi.ar.size
-                    val arsize = sizeConverter(size)                
-                    numberBytes := arsize
-                    upperAddress := io.s_axi.ar.addr(13 to 29)
-                    readFourKPage := (io.s_axi.ar.addr(0 until 12) & ~Cat(B"0000_0000_0", (arsize-1)).asUInt)
-                    burstLength := io.s_axi.ar.len
-                    beat := io.s_axi.ar.len
-                    burstType := io.s_axi.ar.burst.asUInt
-                    readReadyForNewAddr := False
-                }
-            }.otherwise
-            {
-                io.s_axi.r.valid := True
+                    readFourKPage := Axi4.incr(
+                        address = readFourKPage,
+                        burst   = burstType.asBits,
+                        len     = burstLength,
+                        size    = size,
+                        bytePerWord = 4
+                    )
 
-                when(beat === 0)
+                    beat := beat - 1
+                }.elsewhen(beat === 0)
                 {
                     io.s_axi.r.last <> True
+                    readReadyForNewAddr := True
                 }
+            }
+            io.s_axi.r.data := 0
 
-                when(io.s_axi.r.ready)
+            val chips = motherboard.getChipsConnectedToBus(busID)
+            chips.foreach( c => {
+                val chip = motherboard.getChipByID(c)
+                val csize = chip.size
+                val addr = Cat(upperAddress, readFourKPage)
+                val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
+                val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
+
+                when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
                 {
-                    when(beat > 0)
-                    {
-                        readFourKPage := Axi4.incr(
-                            address = readFourKPage,
-                            burst   = burstType.asBits,
-                            len     = burstLength,
-                            size    = size,
-                            bytePerWord = 4
-                        )
-
-                        beat := beat - 1
-                    }.elsewhen(beat === 0)
-                    {
-                        readReadyForNewAddr := True
-                    }
-                }
-                io.s_axi.r.data := 0
-
-                val chips = motherboard.getChipsConnectedToBus(busID)
-                chips.foreach( c => {
-                    val chip = motherboard.getChipByID(c)
-                    val csize = chip.size
-                    val addr = Cat(upperAddress, readFourKPage)
-                    val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
-                    val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
-
-                    when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
-                    {
-                        val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
-                        connection match {
-                            case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
-                                val bRaddrOption = bus.io.get(s"${c.name}_read_address")
-                                if(bRaddrOption.isDefined) bRaddrOption.get._2 := registerAddress
-                                val bRdataOption = bus.io.get(s"${c.name}_read_data")
-                                if(bRdataOption.isDefined) io.s_axi.r.data.asData := bRdataOption.get._2
-                            }
-                            case _ => {
-                                println(s"ERROR ${connection} not supported on bus ${busID.name}")
-                            }
+                    val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
+                    connection match {
+                        case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
+                            val bRaddrOption = bus.io.get(s"${c.name}_read_address")
+                            if(bRaddrOption.isDefined) bRaddrOption.get := registerAddress
+                            val bRdataOption = bus.io.get(s"${c.name}_read_data")
+                            if(bRdataOption.isDefined) io.s_axi.r.data.asData := bRdataOption.get
+                        }
+                        case _ => {
+                            println(s"ERROR ${connection} not supported on bus ${busID.name}")
                         }
                     }
-                })
-            }
+                }
+            })
+        }
 
+/*        if(ClockDomain.current.reset != null)
+        {
             when(ClockDomain.current.reset) 
             {
                 io.s_axi.ar.ready <> False
                 io.s_axi.r.valid <> False
             }
-        } else 
+        }*/
+    } else 
+    {
+        io.s_axi.ar.ready <> False
+        io.s_axi.r.valid <> False
+        io.s_axi.r.payload.id <> 0
+        io.s_axi.r.payload.data <> 0
+        io.s_axi.r.payload.resp <> 0
+        io.s_axi.r.payload.last <> False
+    }
+
+    if( writeAccess )
+    {
+        val bValidRegister = RegInit(False)
+        io.s_axi.b.valid <> bValidRegister
+        io.s_axi.b.resp <> 0
+        val bid = Reg(UInt(12 bits))
+        when(io.s_axi.aw.valid)
         {
-            io.s_axi.ar.ready <> False
-            io.s_axi.r.valid <> False
-            io.s_axi.r.payload.id <> 0
-            io.s_axi.r.payload.data <> 0
-            io.s_axi.r.payload.resp <> 0
-            io.s_axi.r.payload.last <> False
-        }
+            bid := io.s_axi.aw.id
+        }          
+        io.s_axi.b.id := bid
 
-        if( writeAccess )
+        val writeReadyForNewAddr = RegInit(True)
+        io.s_axi.aw.ready := writeReadyForNewAddr
+        io.s_axi.w.ready := ~writeReadyForNewAddr
+
+        val upperAddress = U(0, 17 bits) // 17+12 == 29 bits for addess (1GB-1B)
+
+        // 4K boundary for axi increments
+        val size = Reg(UInt(3 bits))
+        val fourKPage = Reg(UInt(12 bits))
+        val numberBytes = Reg(UInt(3 bits))
+        val burstLength = RegInit(U(0, 8 bits))
+        val burstType = Reg(UInt(2 bits))
+
+        when(writeReadyForNewAddr)
+        { 
+            when(io.s_axi.aw.valid && io.s_axi.aw.addr(addressSpaceHighBit))
+            {
+                size := io.s_axi.aw.size
+                val awsize = sizeConverter(size)
+                numberBytes := awsize
+                upperAddress := io.s_axi.aw.addr(13 to 29)
+                fourKPage := io.s_axi.aw.addr(0 until 12) & ~Cat(B"0000_0000_0", (awsize-1)).asUInt
+                burstLength := io.s_axi.aw.len
+                burstType := io.s_axi.aw.burst.asUInt
+                writeReadyForNewAddr := False
+            }
+        }.otherwise
         {
-            io.s_axi.b.valid <> False
-            io.s_axi.b.resp <> 0
-            val bid = Reg(UInt(12 bits))
-            when(io.s_axi.aw.valid)
+            when(io.s_axi.w.valid)
             {
-                bid := io.s_axi.aw.id
-            }          
-            io.s_axi.b.id := bid
-            val writeReadyForNewAddr = RegInit(True)
-            io.s_axi.aw.ready := writeReadyForNewAddr
-            io.s_axi.w.ready := ~writeReadyForNewAddr
-
-            val upperAddress = U(0, 17 bits) // 17+12 == 29 bits for addess (1GB-1B)
-
-            // 4K boundary for axi increments
-            val size = Reg(UInt(3 bits))
-            val fourKPage = Reg(UInt(12 bits))
-            val numberBytes = Reg(UInt(3 bits))
-            val beat = RegInit(U(0, 8 bits))
-            val burstLength = RegInit(U(0, 8 bits))
-            val burstType = Reg(UInt(2 bits))
-
-            when(writeReadyForNewAddr)
-            { 
-                when(io.s_axi.aw.valid && io.s_axi.aw.addr(addressSpaceHighBit))
+                when(!io.s_axi.w.last) 
                 {
-                    size := io.s_axi.aw.size
-                    val awsize = sizeConverter(size)                
-                    numberBytes := awsize
-                    upperAddress := io.s_axi.ar.addr(13 to 29)
-                    fourKPage := io.s_axi.aw.addr(0 until 12) & ~Cat(B"0000_0000_0", (awsize-1)).asUInt
-                    burstLength := io.s_axi.aw.len
-                    beat := io.s_axi.aw.len
-                    burstType := io.s_axi.aw.burst.asUInt
-                    writeReadyForNewAddr := False
-                }
-            }.otherwise
-            {
-                when(io.s_axi.w.valid && io.s_axi.w.ready)
+                    fourKPage := Axi4.incr(
+                        address = fourKPage,
+                        burst   = burstType.asBits,
+                        len     = burstLength,
+                        size    = size,
+                        bytePerWord = 4
+                    )
+                } 
+                .otherwise
                 {
-                    when(beat > 0)
-                    {
-                        fourKPage := Axi4.incr(
-                            address = fourKPage,
-                            burst   = burstType.asBits,
-                            len     = burstLength,
-                            size    = size,
-                            bytePerWord = 4
-                        )
-
-                        beat := beat - 1
-                    }.elsewhen(beat === 0)
-                    {
-                        io.s_axi.b.valid <> True
-                        writeReadyForNewAddr := True
-                    }
-                    val chips = motherboard.getChipsConnectedToBus(busID)
-                    
-                    chips.foreach( c => {
-                        val chip = motherboard.getChipByID(c)
-                        val csize = chip.size
-                        val addr = Cat(upperAddress, fourKPage)
-                        val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
-                        val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
-
-                        when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
-                        {
-                            val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
-                            connection match {
-                                case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
-                                    val bWenOption = bus.io.get(s"${c.name}_write_enable")
-                                    if(bWenOption.isDefined) bWenOption.get._2 := True
-                                    val bWaddrOption = bus.io.get(s"${c.name}_write_address")
-                                    if(bWaddrOption.isDefined) bWaddrOption.get._2 := registerAddress
-                                    val bWdataOption = bus.io.get(s"${c.name}_write_data")
-                                    if(bWdataOption.isDefined) bWdataOption.get._2 := io.s_axi.w.data
-                                    val bWstrbOption = bus.io.get(s"${c.name}_write_strb")
-                                    if(bWstrbOption.isDefined) bWstrbOption.get._2 := io.s_axi.w.strb
-                                }
-                                case _ => {
-                                    println(s"ERROR ${connection} not supported on bus ${busID.name}")
-                                }
-                            }
-                        }
-                    })
+                    bValidRegister := True
                 }
             }
-        
+            when(io.s_axi.b.valid && io.s_axi.b.ready)
+            {
+                bValidRegister := False
+                writeReadyForNewAddr := True
+            }
+
+            val chips = motherboard.getChipsConnectedToBus(busID)                    
+            chips.foreach( c => {
+                val chip = motherboard.getChipByID(c)
+                val csize = chip.size
+                val addr = Cat(upperAddress, fourKPage)
+                val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
+                val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
+
+                when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
+                {
+                    val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
+                    connection match {
+                        case CHIP_BUS_FULL_DUPLUX_CONNECTION => {
+                            val bWenOption = bus.io.get(s"${c.name}_write_enable")
+                            if(bWenOption.isDefined) bWenOption.get := True
+                            val bWaddrOption = bus.io.get(s"${c.name}_write_address")
+                            if(bWaddrOption.isDefined) bWaddrOption.get := registerAddress
+                            val bWdataOption = bus.io.get(s"${c.name}_write_data")
+                            if(bWdataOption.isDefined) bWdataOption.get := io.s_axi.w.data
+                            val bWstrbOption = bus.io.get(s"${c.name}_write_strb")
+                            if(bWstrbOption.isDefined) bWstrbOption.get := io.s_axi.w.strb
+                        }
+                        case _ => {
+                            println(s"ERROR ${connection} not supported on bus ${busID.name}")
+                        }
+                    }
+                }
+            })
+        }
+    
+/*        if(ClockDomain.current.reset != null)
+        {
             when(ClockDomain.current.reset)
             {
                 io.s_axi.aw.ready := False
                 io.s_axi.w.ready := False
                 io.s_axi.b.valid := False
             }
-        } else 
-        {
-            io.s_axi.aw.ready := False
-            io.s_axi.w.ready := False
-            io.s_axi.b.valid := False
-            io.s_axi.b.payload.id := 0
-            io.s_axi.b.payload.resp := 0            
-        }
+        }*/
+    } else 
+    {
+        io.s_axi.aw.ready := False
+        io.s_axi.w.ready := False
+        io.s_axi.b.valid := False
+        io.s_axi.b.payload.id := 0
+        io.s_axi.b.payload.resp := 0            
     }
 }
 
