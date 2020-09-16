@@ -1,9 +1,0 @@
-[submodule "tools/zynq-mkbootimage"]
-	path = tools/zynq-mkbootimage
-	url = https://github.com/antmicro/zynq-mkbootimage.git
-[submodule "tools/Silice"]
-	path = tools/Silice
-	url = git@github.com:DeanoC/Silice.git
-[submodule "tools/SpinalHDL"]
-	path = tools/SpinalHDL
-	url = git@github.com:DeanoC/SpinalHDL.git
