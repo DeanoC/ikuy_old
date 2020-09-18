@@ -30,18 +30,49 @@ object MEDIUM extends CustomChipSize
 object LARGE  extends CustomChipSize
 object HUGE extends CustomChipSize
 
-abstract class CustomChip(  val size : CustomChipSize,
-                            val chipID : ChipID,
-                            val motherboard : Motherboard)
-extends Component 
+// chips are things with registers connected on a motherboard
+abstract class Chip(  val chipID : ChipID,
+                      val motherboard : Motherboard,
+                      val isHard : Boolean = false)
+extends Component
 {
   val io = new Bundle {}
+
+  var registerIndex = 0
+  var registers = HashMap[String, RegisterAction]()
 
   // subclasses should override this to add register to this chip
   def addRegisters() : Unit 
 
-  var registerIndex = 0
-  var registers = HashMap[String, RegisterAction]()
+  // add a register space hole
+  def addHole( bytesForHole : Int ) = registerIndex += bytesForHole / 4
+
+  // called in addRegisters to add an register action
+  def addRegister(action : RegisterAction)
+
+  def postBuild() : Unit = {}
+
+}
+
+// a hard chip is non FPGA chip on hybrid FPGA (like Zynq)
+abstract class HardChip(override val chipID : ChipID,
+                        override val motherboard : Motherboard)
+extends Chip(chipID, motherboard, true)
+{
+  addRegisters()
+
+  override def addRegister(action : RegisterAction) = 
+  {
+
+  }
+}
+
+// a custom chip is a FPGA HDL connected on to the motherboard by busses
+abstract class CustomChip(val size : CustomChipSize,
+                          override val chipID : ChipID,
+                          override val motherboard : Motherboard)
+extends Chip(chipID, motherboard)
+{
   var registerStorage = HashMap[String, Data]()
 
   addRegisters()
@@ -81,7 +112,7 @@ extends Component
     }
   })
 
-  def addRegister(action : RegisterAction) = 
+  override def addRegister(action : RegisterAction) = 
   {
     assert(registerIndex < size.addressSpaceSize/4)
 
@@ -99,7 +130,5 @@ extends Component
 
   def getRegisterStorage(name : String) : Data = registerStorage(name)
 
-  // add a register space hole
-  def addHole( bytesForHole : Int ) = registerIndex += bytesForHole / 4
   
 }

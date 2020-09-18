@@ -7,6 +7,7 @@ import spinal.lib.bus.amba4.axi._
 import spinal.lib.blackbox.xilinx.s7._
 import scala.collection.mutable.{ArrayBuffer, HashMap}
 import bus_and_chips._
+import zynq_hard_soc._
 import dissy._
 
 case class MasterAxi4SharedEndPlug(config : Axi4Config)
@@ -61,39 +62,59 @@ class Blinky
 extends Motherboard {
 
   override val io = new Bundle {
-    val leds = out Bits(4 bits)
+/*    val leds = out Bits(4 bits)
     val rgb_led0 = out Bits(3 bits)
-    val rgb_led1 = out Bits(3 bits)
+    val rgb_led1 = out Bits(3 bits)*/
     val btns = in Bits(4 bits)
     val sys_clk = in Bool
 
-    val DDR = inout(DdrInterface())
+    val DDR = master( zynqDDR() )
+    val MIO = master( zynqMIO() )
+    val PS_CLOCK_AND_RESET = master( zynqPSClockAndReset() )
   } 
 
   // Remove io_ prefix from verilog names
   noIoPrefix()
 
+  val mcp = addChip(
+            "mcp",
+            (chipID : ChipID, mb : Motherboard) => 
+            { 
+              new zynqHardSoC(chipID = chipID, 
+                              motherboard = mb,
+                              config = zynqSoCConfig(
+                              ))
+            })
+
+  build()
+
+/*
   val systemClockDomain = ClockDomain(
     clock = io.sys_clk,
     frequency = FixedFrequency(125 MHz)
   )
 
-  val hardSoc = new ps7_axi_wrapper()
-  hardSoc.io.DDR_ARB <> 0
-  hardSoc.io.DDR <> io.DDR
+  val hardSoc = new zynq_hard_soc(
+    useFPGAClock0 = true
+  )
+  io.PS_CLOCK_AND_RESET <> hardSoc.io.PS_CLOCK_AND_RESET
+  io.DDR <> hardSoc.io.DDR  
+  io.MIO <> hardSoc.io.MIO
 
   val fclk0ClockDomain = ClockDomain.internal( 
     name = "fclk0",
     frequency = FixedFrequency(108 MHz),
+    withClockEnable = true,
     config = ClockDomainConfig (
       clockEdge = RISING,
       resetKind = SYNC,
-      resetActiveLevel = HIGH
+      resetActiveLevel = HIGH,
+      clockEnableActiveLevel = HIGH
     )
   )
-  val softReset = Reg(Bool) init False
-  fclk0ClockDomain.clock := hardSoc.io.FCLK0_CLK
-  fclk0ClockDomain.reset := hardSoc.io.FCLK0_RESET | softReset
+  fclk0ClockDomain.clock := hardSoc.io.FPGAClock0
+  fclk0ClockDomain.clockEnable := hardSoc.io.FPGAClockEnable0
+  hardSoc.io.FPGAClockEnable0 := True
 
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
   {
@@ -114,20 +135,20 @@ extends Motherboard {
                     "slaveGp0", 
                     (busID : BusID, mb : Motherboard) => { 
                       new Axi3Slave(    
-                        config = hardSoc.PSM_GeneralPurposeAxi,
+                        config = hardSoc.ps7.PSMasterGPAxiConfig,
                         addressSpaceHighBit = 30, // 0x40000000 address range
                         busID = busID,
                         motherboard = mb)
                     })
-    connectChipToBus( buggyBoyID, CHIP_BUS_FULL_DUPLUX_CONNECTION, slaveGp0ID)
-    connectChipToBus( mrRessetiID, CHIP_BUS_FULL_DUPLUX_CONNECTION, slaveGp0ID)
+    connectChipToBus( buggyBoyID, FULL_DUPLUX_CONN, slaveGp0ID)
+    connectChipToBus( mrRessetiID, FULL_DUPLUX_CONN, slaveGp0ID)
 
     build()
 
     val fpgaReset_n = !(getChipByID(mrRessetiID).io.get("reset_n").getOrElse(True) as(Bool))
 
-    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FCLK0_CLK    
-    getBusByID(slaveGp0ID).io.s_axi << hardSoc.io.M_AXI_GP0
+    hardSoc.io.M_AXI_GP0_clk := hardSoc.io.FPGAClock0    
+    getBusByID(slaveGp0ID).io.s_axi << hardSoc.ps7.io.ps_axi3_master_gp0
     
 //    val dissy = new DissyCustomChip(fclk0ClockDomain.frequency)
 //    dissy.io.axiClk <> fclk0ClockDomain.clock
@@ -144,6 +165,7 @@ extends Motherboard {
     axi4Convertor.io.input <> dummy_master.io.output
     hardSoc.io.S_AXI_GP0_clk := hardSoc.io.FCLK0_CLK
 */
+
     io.leds(0) := False //debug0
     io.leds(1) := False //debug1
     io.leds(2) := False //debug2
@@ -154,35 +176,38 @@ extends Motherboard {
     io.rgb_led0(2) := False
 
   }
-  softReset := BufferCC(fclk0ClockArea.fpgaReset_n)
-
-
-  //Instanciate and drive the PLL (125 MHz * Mult) / Divide
-  val pll = new PLLE2_BASE(clkOut_Mult = 10,      // 1250 MHz
-                            clkOut0_Divide = 50)  //  25 MHz
-  pll.CLKFBIN := pll.CLKFBOUT // internal loop back
-  pll.CLKIN1 := io.sys_clk // input clock 125 MHz
-  pll.RST := False
-  pll.PWRDWN := False
-
-  val thresholdArea = new ClockingArea(
-    ClockDomain(pll.CLKOUT0, frequency = FixedFrequency(25 MHz)))
+  val systemClockArea = new ClockingArea(systemClockDomain)
   {
-    val width = 8
-    val ledPWM = new PWM(width)
-    val brightness = RegInit(U(0, width bits))
-    ledPWM.io.duty_cycle <> brightness
+    val softReset = Reg(Bool) init False
+    softReset := BufferCC(fclk0ClockArea.fpgaReset_n)
 
-    when(io.btns(0))
+    fclk0ClockDomain.reset := softReset
+
+    //Instanciate and drive the PLL (125 MHz * Mult) / Divide
+    val pll = new PLLE2_BASE(clkOut_Mult = 10,      // 1250 MHz
+                              clkOut0_Divide = 50)  //  25 MHz
+    pll.CLKFBIN := pll.CLKFBOUT // internal loop back
+    pll.CLKIN1 := io.sys_clk // input clock 125 MHz
+    pll.RST := False
+    pll.PWRDWN := False
+
+    val thresholdArea = new ClockingArea(
+      ClockDomain(pll.CLKOUT0, frequency = FixedFrequency(25 MHz)))
     {
-      brightness := U(width/4, width bits)
-    }.otherwise {
-      brightness := U(0, width bits)
+      val width = 8
+      val ledPWM = new PWM(width)
+      val brightness = RegInit(U(0, width bits))
+      ledPWM.io.duty_cycle <> brightness
+
+      when(io.btns(0))
+      {
+        brightness := U(width/4, width bits)
+      }.otherwise {
+        brightness := U(0, width bits)
+      }
+      io.rgb_led1(0) := ledPWM.io.pwm_out
+      io.rgb_led1(1) := ledPWM.io.pwm_out
+      io.rgb_led1(2) := ledPWM.io.pwm_out
     }
-    io.rgb_led1(0) := ledPWM.io.pwm_out
-    io.rgb_led1(1) := ledPWM.io.pwm_out
-    io.rgb_led1(2) := ledPWM.io.pwm_out
-
-  }
-
+  }*/
 }

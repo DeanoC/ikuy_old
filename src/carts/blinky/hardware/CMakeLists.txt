@@ -5,41 +5,33 @@ add_subdirectory(sim)
 file(GLOB   SRC_VERILOG_FILES 
             CONFIGURE_DEPENDS 
             verilog/*.v )
+
 file(GLOB   SRC_SCALA_FILES 
             CONFIGURE_DEPENDS 
             spinalHDL/src/main/scala/blinky_hw/*.scala
             spinalHDL/src/main/scala/bus_and_chips/*.scala
             spinalHDL/src/main/scala/bus_and_chips/sim/*.scala
             spinalHDL/src/main/scala/dissy/*.scala
+            spinalHDL/build.sbt
+            spinalHDL/project/plugins.sbt
+            spinalHDL/project/ikuy.scala
             )
-
-file(GLOB   SRC_SILICE_FILES 
-            CONFIGURE_DEPENDS 
-            Silice/*.ice)
 
 set( GEN_DIR ${CMAKE_CURRENT_BINARY_DIR}/workspace )
 set( BIN_PATH ${GEN_DIR}/${project}.bin)
 set( SIM_PATH ${GEN_DIR}/${project}_sim)
 
 set( FINAL_PATH ${CMAKE_CURRENT_BINARY_DIR}/${project}.bin)
-set( SLICE_VERILOG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/verilog/silice_main.v )
 
 project(${project} NONE)
-
-add_custom_command( 
-      OUTPUT ${SLICE_VERILOG_PATH}
-      COMMAND /home/deano/ikuy/tools/Silice/bin/silice 
-                        ${CMAKE_CURRENT_SOURCE_DIR}/Silice/main.ice 
-                        -o ${SLICE_VERILOG_PATH}
-                        -f ${CMAKE_CURRENT_SOURCE_DIR}/verilog/silice_framework.v
-      DEPENDS ${SRC_SILICE_FILES}
-)
 
 add_custom_command( 
       OUTPUT ${BIN_PATH}
       COMMAND sbt "runMain blinky.BuildMain"
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/spinalHDL
-      DEPENDS ${SRC_VERILOG_FILES} ${SRC_SCALA_FILES} ${SRC_SILICE_FILES} ${SLICE_VERILOG_PATH}
+      DEPENDS     ${SRC_VERILOG_FILES} 
+                  ${SRC_SCALA_FILES} 
+                  ${SRC_SILICE_FILES} 
 )
 
 add_custom_command(

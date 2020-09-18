@@ -12,12 +12,11 @@ lazy val buildSettings = Seq(
   licenses := Seq("The MIT License (MIT)" -> url("http://opensource.org/licenses/MIT"))
 )
 
-lazy val hardware = (project in file("."))
+lazy val all = (project in file("."))
   .dependsOn(spinalCore)
   .dependsOn(spinalLib)
   .dependsOn(spinalPlugin)
   .dependsOn(Ikuy.Chips.busAndChips)
-  .dependsOn(Ikuy.Chips.zynq_hard_soc)
   .settings(
     buildSettings
   )

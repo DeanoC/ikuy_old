@@ -12,27 +12,27 @@ abstract class RegisterDef(
                         val name : String, 
                         val description : String,
                         val registerType : AccessType,
-                        val fields : Vector[FieldDocBase],
+                        val fields : Vector[FieldDoc],
                         val default : Bits = B"32'h0000_0000"
                       )
 
 case class ReadOnlyRegisterDef(
                         override val name : String, 
                         override val description : String,
-                        override val fields : Vector[FieldDocBase] = Vector()) 
+                        override val fields : Vector[FieldDoc] = Vector()) 
               extends RegisterDef( name = name, description = description, registerType = READONLY, fields = fields)
 
 case class WriteOnlyRegisterDef(
                         override val name : String, 
                         override val description : String,
-                        override val fields : Vector[FieldDocBase] = Vector(),
+                        override val fields : Vector[FieldDoc] = Vector(),
                         override val default : Bits = B"32'h0000_0000") 
               extends RegisterDef( name = name, description = description, registerType = WRITEONLY, fields = fields)
 
 case class ReadWriteRegisterDef(
                         override val name : String, 
                         override val description : String,
-                        override val fields : Vector[FieldDocBase] = Vector(),
+                        override val fields : Vector[FieldDoc] = Vector(),
                         override val default : Bits = B"32'h0000_0000")
               extends RegisterDef( name = name, description = description, registerType = READWRITE, fields = fields)
 

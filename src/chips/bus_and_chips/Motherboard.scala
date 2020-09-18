@@ -9,7 +9,12 @@ sealed trait ChipBusConnection
   val wires : Array[String] = null
 }
 
-object CHIP_BUS_FULL_DUPLUX_CONNECTION extends ChipBusConnection
+object PRIVATE_BUS_CONN extends ChipBusConnection
+{
+  override val wires = Array[String]()
+}
+
+object FULL_DUPLUX_CONN extends ChipBusConnection
 {
   override val wires = Array(
     "read_address",
@@ -22,24 +27,24 @@ object CHIP_BUS_FULL_DUPLUX_CONNECTION extends ChipBusConnection
 }
 
 
-case class Motherboard()
+class Motherboard()
 extends Component
 {
   val io = new Bundle {
   }
 
-  val chipGenerators = HashMap[ChipID,  (ChipID, Motherboard) => CustomChip]()
+  val chipGenerators = HashMap[ChipID,  (ChipID, Motherboard) => Chip]()
   val busGenerators = HashMap[BusID, (BusID, Motherboard) => Axi3Slave]()
 
-  private var chips : HashMap[ChipID, CustomChip] = null
+  var chips : HashMap[ChipID, Chip] = null
   private var buses : HashMap[BusID, Axi3Slave] = null
 
   private var busChipConnections = ArrayBuffer[(ChipID, ChipBusConnection, BusID)]()
 
-  def addChip(name : String, chipGenerator : (ChipID, Motherboard) => CustomChip) : ChipID = 
+  def addChip(name : String, chipGenerator : (ChipID, Motherboard) => Chip) : ChipID = 
   {
     val chipID = ChipID(name, chipGenerators.size)
-    chipGenerators += chipID -> chipGenerator
+    chipGenerators += (chipID -> chipGenerator)
     chipID
   }
 
@@ -70,9 +75,24 @@ extends Component
     a(0)
   }
 
-  def getChipByID(chipID : ChipID) : CustomChip = {
+  def isChipHard(chipID : ChipID) : Boolean = {
+    assert(chips != null)
+    chips(chipID).isHard
+  }
+
+  def getChipByID(chipID : ChipID) : Chip = {
     assert(chips != null)
     chips(chipID)
+  }
+
+  def getHardChipByID(chipID : ChipID) : HardChip = {
+    assert(isChipHard(chipID))
+    chips(chipID).asInstanceOf[HardChip]
+  }
+
+  def getCustomChipByID(chipID : ChipID) : CustomChip = {
+    assert(!isChipHard(chipID))
+    chips(chipID).asInstanceOf[CustomChip]
   }
 
   def getBusByID(busID : BusID) : Axi3Slave = {
@@ -82,13 +102,15 @@ extends Component
 
   def build() = 
   {
-    chips = new HashMap[ChipID, CustomChip]()
+    chips = new HashMap[ChipID, Chip]()
     buses = new HashMap[BusID, Axi3Slave]()
 
     // create the chips 
     // will create io for each bus they will be connected to
     chipGenerators.foreach( { case (chipID, cg) => {
-      chips += chipID -> cg(chipID, this)
+      val chip = cg(chipID, this)
+      assert(chip != null)
+      chips += (chipID -> chip)
     }})
 
     // create the buses
@@ -112,5 +134,10 @@ extends Component
           })
         })
     }})
+
+    chips.foreach( { case (chipID, chip) => {
+      chip.postBuild()
+    }})
+
   }
 }

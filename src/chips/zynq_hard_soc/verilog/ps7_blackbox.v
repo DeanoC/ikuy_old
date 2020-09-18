@@ -32,6 +32,7 @@ module ps7_port_rename(
   input wire ENET0_MDIO_I,
   input wire ENET0_EXT_INTIN,
   input wire [7:0] ENET0_GMII_RXD,  
+
   output wire ENET1_GMII_TX_EN,
   output wire ENET1_GMII_TX_ER,
   output wire ENET1_MDIO_MDC,
@@ -112,6 +113,7 @@ module ps7_port_rename(
   input wire I2C0_SCL_I,
   output wire I2C0_SCL_O,
   output wire I2C0_SCL_T_n,
+  
   input wire I2C1_SDA_I,
   output wire I2C1_SDA_O,
   output wire I2C1_SDA_T_n,
@@ -860,10 +862,16 @@ module ps7_port_rename(
 	  .EMIOI2C0SCLTN            (I2C0_SCL_T_n),
 	  .EMIOI2C0SDAO	            (I2C0_SDA_O),
 	  .EMIOI2C0SDATN	          (I2C0_SDA_T_n),
+	  .EMIOI2C0SCLI	            (I2C0_SCL_I),
+	  .EMIOI2C0SDAI	            (I2C0_SDA_I),
+
 	  .EMIOI2C1SCLO	            (I2C1_SCL_O),
 	  .EMIOI2C1SCLTN            (I2C1_SCL_T_n),
 	  .EMIOI2C1SDAO	            (I2C1_SDA_O),
 	  .EMIOI2C1SDATN	          (I2C1_SDA_T_n),
+	  .EMIOI2C1SCLI	            (I2C1_SCL_I),
+	  .EMIOI2C1SDAI	            (I2C1_SDA_I),
+
 	  
     // 2x SDIO
 	  .EMIOSDIO0BUSPOW          (SDIO0_BUSPOW),  
@@ -920,13 +928,6 @@ module ps7_port_rename(
 	  .EMIOSPI1SCLKI	          (SPI1_SCLK_I),
 	  .EMIOSPI1SI		            (SPI1_MOSI_I),
 	  .EMIOSPI1SSIN	            (SPI1_SS_I),
-
-    // 2x i2c
-	  .EMIOI2C0SCLI	            (I2C0_SCL_I),
-	  .EMIOI2C0SDAI	            (I2C0_SDA_I),
-
-	  .EMIOI2C1SCLI	            (I2C1_SCL_I),
-	  .EMIOI2C1SDAI	            (I2C1_SDA_I),
 
     // jtag, trace and debug
 	  .EMIOTRACECLK		          (TRACE_CLK),
