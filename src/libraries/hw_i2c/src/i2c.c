@@ -1,8 +1,8 @@
 #include <assert.h>
+#include <hwreg.h>
 #include "hw_i2c/i2c.h"
-#include "hw/slcr.h"
+#include "zynq_ps/slcr.h"
 #include "hw_slcr/slcr.h"
-#include "hw/reg.h"
 
 void hw_i2c_setup(uint8_t index, uint8_t basepin, HW_I2C_SPEED speed, bool extendedAddress)
 {

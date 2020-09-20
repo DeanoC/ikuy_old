@@ -1,7 +1,7 @@
 #include <assert.h>
+#include <hwreg.h>
 #include "hw_slcr/slcr.h"
-#include "hw/slcr.h"
-#include "hw/reg.h"
+#include "zynq_ps/slcr.h"
 
 void hw_slcr_unlock(void)
 {

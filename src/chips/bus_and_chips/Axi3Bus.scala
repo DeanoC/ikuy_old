@@ -8,9 +8,9 @@ import spinal.lib.bus.amba4.axi._
 
 case class BusID(val name : String, val index : Int)
 {
-  var busAddress : BigInt = 0
+  var busAddress : Long = 0
 
-  def allocate(size : CustomChipSize) : BigInt = {
+  def allocate(size : CustomChipSize) : Long = {
     val addr = busAddress
     busAddress += size.addressSpaceSize
     addr
@@ -30,7 +30,7 @@ extends Component
     val s_axi = slave( Axi4(config) )
   }
 
-  var chipBaseAddress = BigInt(0)
+  var chipBaseAddress = 0L
 
   def sizeConverter(sizeVal : UInt) : UInt =
   {
@@ -44,7 +44,7 @@ extends Component
   }
 
   val bus = this
-  val chipAddresses = HashMap[ChipID, BigInt]()
+  val chipAddresses = HashMap[ChipID, Long]()
 
   val chips = motherboard.getChipsConnectedToBus(busID)
   chips.filter( p => !motherboard.isChipHard(p)).foreach( c => {

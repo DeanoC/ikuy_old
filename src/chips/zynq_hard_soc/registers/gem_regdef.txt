@@ -1,0 +1,97 @@
+NWCTRL 0x00000000 32 mixed 0x00000000 Network Control
+NWCFG 0x00000004 32 rw 0x00080000 Network Configuration
+NWSR 0x00000008 32 ro x Network Status
+DMACR 0x00000010 32 mixed 0x00020784 DMA Configuration
+TXSR 0x00000014 32 mixed 0x00000000 Transmit Status
+RXQBASE 0x00000018 32 mixed 0x00000000 Receive Buffer Queue Base Address
+TXQBASE 0x0000001C 32 mixed 0x00000000 Transmit Buffer Queue Base Address
+RXSR 0x00000020 32 mixed 0x00000000 Receive Status
+ISR 0x00000024 32 mixed 0x00000000 Interrupt Status
+IER 0x00000028 32 wo x Interrupt Enable
+IDR 0x0000002C 32 wo x Interrupt Disable
+IMR 0x00000030 32 mixed x Interrupt Mask Status
+PHYMNTNC 0x00000034 32 rw 0x00000000 PHY Maintenance
+RXPAUSE 0x00000038 32 ro 0x00000000 Received Pause Quantum
+TXPAUSE 0x0000003C 32 rw 0x0000FFFF Transmit Pause Quantum
+HASHL 0x00000080 32 rw 0x00000000 Hash Register Bottom [31:0]
+HASHH 0x00000084 32 rw 0x00000000 Hash Register Top [63:32]
+LADDR1L 0x00000088 32 rw 0x00000000 Specific Address 1 Bottom [31:0]
+LADDR1H 0x0000008C 32 mixed 0x00000000 Specific Address 1 Top [47:32]
+LADDR2L 0x00000090 32 rw 0x00000000 Specific Address 2 Bottom [31:0]
+LADDR2H 0x00000094 32 mixed 0x00000000 Specific Address 2 Top [47:32]
+LADDR3L 0x00000098 32 rw 0x00000000 Specific Address 3 Bottom [31:0]
+LADDR3H 0x0000009C 32 mixed 0x00000000 Specific Address 3 Top [47:32]
+LADDR4L 0x000000A0 32 rw 0x00000000 Specific Address 4 Bottom [31:0]
+LADDR4H 0x000000A4 32 mixed 0x00000000 Specific Address 4 Top [47:32]
+MATCH1 0x000000A8 32 mixed 0x00000000 Type ID Match 1
+MATCH2 0x000000AC 32 mixed 0x00000000 Type ID Match 2
+MATCH3 0x000000B0 32 mixed 0x00000000 Type ID Match 3
+MATCH4 0x000000B4 32 mixed 0x00000000 Type ID Match 4
+WAKE_ON_LAN 0x000000B8 32 mixed 0x00000000 Wake on LAN Register
+STRETCH 0x000000BC 32 mixed 0x00000000 IPG stretch register
+STACKED_VLAN 0x000000C0 32 mixed 0x00000000 Stacked VLAN Register
+TX_PFC_PAUSE 0x000000C4 32 mixed 0x00000000 Transmit PFC Pause Register
+SPEC_ADDR1_MASK_BOT 0x000000C8 32 rw 0x00000000 Specific Address Mask 1 Bottom [31:0]
+SPEC_ADDR1_MASK_TOP 0x000000CC 32 mixed 0x00000000 Specific Address Mask 1 Top [47:32]
+MODULE_ID 0x000000FC 32 ro 0x00020118 Module ID
+OCTTXL 0x00000100 32 ro 0x00000000 Octets transmitted [31:0] (in frames without error)
+OCTTXH 0x00000104 32 ro 0x00000000 Octets transmitted [47:32] (in frames without error)
+TXCNT 0x00000108 32 ro 0x00000000 Frames Transmitted
+TXBCCNT 0x0000010C 32 ro 0x00000000 Broadcast frames Tx
+TXMCCNT 0x00000110 32 ro 0x00000000 Multicast frames Tx
+TXPAUSECNT 0x00000114 32 ro 0x00000000 Pause frames Tx
+TX64CNT 0x00000118 32 ro 0x00000000 Frames Tx, 64-byte length
+TX65CNT 0x0000011C 32 ro 0x00000000 Frames Tx, 65 to 127-byte length
+TX128CNT 0x00000120 32 ro 0x00000000 Frames Tx, 128 to 255-bytelength
+TX256CNT 0x00000124 32 ro 0x00000000 Frames Tx, 256 to 511-byte length
+TX512CNT 0x00000128 32 ro 0x00000000 Frames Tx, 512 to 1023-byte length
+TX1024CNT 0x0000012C 32 ro 0x00000000 Frame Tx, 1024 to 1518-byte length
+TXURUNCNT 0x00000134 32 ro 0x00000000 Transmit under runs
+SNGLCOLLCNT 0x00000138 32 ro 0x00000000 Single Collision Frames
+MULTICOLLCNT 0x0000013C 32 ro 0x00000000 Multiple Collision Frames
+EXCESSCOLLCNT 0x00000140 32 ro 0x00000000 Excessive Collisions
+LATECOLLCNT 0x00000144 32 ro 0x00000000 Late Collisions
+TXDEFERCNT 0x00000148 32 ro 0x00000000 Deferred Transmission Frames
+TXCSENSECNT 0x0000014C 32 ro 0x00000000 Carrier Sense Errors.
+OCTRXL 0x00000150 32 ro 0x00000000 Octets Received [31:0]
+OCTRXH 0x00000154 32 ro 0x00000000 Octets Received [47:32]
+RXCNT 0x00000158 32 ro 0x00000000 Frames Received
+RXBROADCNT 0x0000015C 32 ro 0x00000000 Broadcast Frames Rx
+RXMULTICNT 0x00000160 32 ro 0x00000000 Multicast Frames Rx
+RXPAUSECNT 0x00000164 32 ro 0x00000000 Pause Frames Rx
+RX64CNT 0x00000168 32 ro 0x00000000 Frames Rx, 64-byte length
+RX65CNT 0x0000016C 32 ro 0x00000000 Frames Rx, 65 to 127-byte length
+RX128CNT 0x00000170 32 ro 0x00000000 Frames Rx, 128 to 255-byte length
+RX256CNT 0x00000174 32 ro 0x00000000 Frames Rx, 256 to 511-byte length
+RX512CNT 0x00000178 32 ro 0x00000000 Frames Rx, 512 to 1023-byte length
+RX1024CNT 0x0000017C 32 ro 0x00000000 Frames Rx, 1024 to 1518-byte length
+RXUNDRCNT 0x00000184 32 ro 0x00000000 Undersize frames received
+RXOVRCNT 0x00000188 32 ro 0x00000000 Oversize frames received
+RXJABCNT 0x0000018C 32 ro 0x00000000 Jabbers received
+RXFCSCNT 0x00000190 32 ro 0x00000000 Frame check sequence errors
+RXLENGTHCNT 0x00000194 32 ro 0x00000000 Length field frame errors
+RXSYMBCNT 0x00000198 32 ro 0x00000000 Receive symbol errors
+RXALIGNCNT 0x0000019C 32 ro 0x00000000 Alignment errors
+RXRESERRCNT 0x000001A0 32 ro 0x00000000 Receive resource errors
+RXORCNT 0x000001A4 32 ro 0x00000000 Receive overrun errors
+RXIPCCNT 0x000001A8 32 ro 0x00000000 IP header checksum errors
+RXTCPCCNT 0x000001AC 32 ro 0x00000000 TCP checksum errors
+RXUDPCCNT 0x000001B0 32 ro 0x00000000 UDP checksum error
+ROBE_S 0x000001C8 32 rw 0x00000000 1588 timer sync strobe seconds
+ROBE_NS 0x000001CC 32 mixed 0x00000000 1588 timer sync strobe nanoseconds
+TIMER_1588_SEC 0x000001D0 32 rw 0x00000000 1588 timer seconds
+TIMER_1588_NANOSEC 0x000001D4 32 mixed 0x00000000 1588 timer nanoseconds
+TIMER_1588_ADJ 0x000001D8 32 mixed 0x00000000 1588 timer adjust
+TIMER_1588_INC 0x000001DC 32 mixed 0x00000000 1588 timer increment
+PTP_TXSEC 0x000001E0 32 ro 0x00000000 PTP event frame transmitted seconds
+PTP_TXNANOSEC 0x000001E4 32 ro 0x00000000 PTP event frame transmitted nanoseconds
+PTP_RXSEC 0x000001E8 32 ro 0x00000000 PTP event frame received seconds
+PTP_RXNANOSEC 0x000001EC 32 ro 0x00000000 PTP event frame received nanoseconds.
+PTPP_TXSEC 0x000001F0 32 ro 0x00000000 PTP peer event frame transmitted seconds
+PTPP_TXNANOSEC 0x000001F4 32 ro 0x00000000 PTP peer event frame transmitted nanoseconds
+PTPP_RXSEC 0x000001F8 32 ro 0x00000000 PTP peer event frame received seconds
+PTPP_RXNANOSEC 0x000001FC 32 ro 0x00000000 PTP peer event frame received nanoseconds.
+DESIGN_CFG2 0x00000284 32 ro x Design Configuration 2
+DESIGN_CFG3 0x00000288 32 ro 0x00000000 Design Configuration 3
+DESIGN_CFG4 0x0000028C 32 ro 0x00000000 Design Configuration 4
+DESIGN_CFG5 0x00000290 32 ro x Design Configuration 5

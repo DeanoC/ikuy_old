@@ -1,7 +1,7 @@
 #include "hw_timers/global.h"
-#include "hw/scu.h"
-#include "hw/slcr.h"
-#include "hw/reg.h"
+#include "zynq_ps/scu.h"
+#include "zynq_ps/slcr.h"
+#include "hwreg.h"
 
 void hw_timers_global_reset(void)
 {

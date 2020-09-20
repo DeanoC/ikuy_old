@@ -2,14 +2,11 @@ set(project core)
 
 project(${project} C ASM)
 
-set(SRCLIST 
-        src/snprintf.c
-)
-set(HEADERLIST 
-        include/snprintf.h
-)
-
+file(GLOB_RECURSE SRCLIST CONFIGURE_DEPENDS src/*.c )
+file(GLOB_RECURSE HEADERLIST CONFIGURE_DEPENDS include/*.h )
 
 add_library(${project} ${SRCLIST} ${HEADERLIST})
 target_include_directories(${project} PUBLIC include)
 target_link_libraries(${project} PUBLIC -lgcc)
+target_link_libraries(${project} PUBLIC serial_debug)
+target_link_libraries(${project} PRIVATE zynq_ps)

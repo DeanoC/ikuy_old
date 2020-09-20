@@ -1,0 +1,33 @@
+XCANPS_SRR_OFFSET 0x00000000 32 rw 0x00000000 Software Reset Register
+XCANPS_MSR_OFFSET 0x00000004 32 rw 0x00000000 Mode Select Register
+XCANPS_BRPR_OFFSET 0x00000008 32 rw 0x00000000 Baud Rate Prescaler Register
+XCANPS_BTR_OFFSET 0x0000000C 32 rw 0x00000000 Bit Timing Register
+XCANPS_ECR_OFFSET 0x00000010 32 ro 0x00000000 Error Counter Register
+XCANPS_ESR_OFFSET 0x00000014 32 mixed 0x00000000 Error Status Register
+XCANPS_SR_OFFSET 0x00000018 32 mixed 0x00000001 Status Register
+XCANPS_ISR_OFFSET 0x0000001C 32 mixed 0x00006000 Interrupt Status Register
+XCANPS_IER_OFFSET 0x00000020 32 rw 0x00000000 Interrupt Enable Register
+XCANPS_ICR_OFFSET 0x00000024 32 mixed 0x00000000 Interrupt Clear Register
+XCANPS_TCR_OFFSET 0x00000028 32 mixed 0x00000000 Timestamp Control Register
+XCANPS_WIR_OFFSET 0x0000002C 32 rw 0x00003F3F Watermark Interrupt Register
+XCANPS_TXFIFO_ID_OFFSET 0x00000030 32 wo 0x00000000 transmit message fifo message identifier
+XCANPS_TXFIFO_DLC_OFFSET 0x00000034 32 rw 0x00000000 transmit message fifo data length code
+XCANPS_TXFIFO_DW1_OFFSET 0x00000038 32 rw 0x00000000 transmit message fifo data word 1
+XCANPS_TXFIFO_DW2_OFFSET 0x0000003C 32 rw 0x00000000 transmit message fifo data word 2
+XCANPS_TXHPB_ID_OFFSET 0x00000040 32 wo 0x00000000 transmit high priority buffer message identifier
+XCANPS_TXHPB_DLC_OFFSET 0x00000044 32 rw 0x00000000 transmit high priority buffer data length code
+XCANPS_TXHPB_DW1_OFFSET 0x00000048 32 rw 0x00000000 transmit high priority buffer data word 1
+XCANPS_TXHPB_DW2_OFFSET 0x0000004C 32 rw 0x00000000 transmit high priority buffer data word 2
+XCANPS_RXFIFO_ID_OFFSET 0x00000050 32 ro x receive message fifo message identifier
+XCANPS_RXFIFO_DLC_OFFSET 0x00000054 32 rw x receive message fifo data length code
+XCANPS_RXFIFO_DW1_OFFSET 0x00000058 32 rw x receive message fifo data word 1
+XCANPS_RXFIFO_DW2_OFFSET 0x0000005C 32 rw x receive message fifo data word 2
+XCANPS_AFR_OFFSET 0x00000060 32 rw 0x00000000 Acceptance Filter Register
+XCANPS_AFMR1_OFFSET 0x00000064 32 rw x Acceptance Filter Mask Register 1
+XCANPS_AFIR1_OFFSET 0x00000068 32 rw x Acceptance Filter ID Register 1
+XCANPS_AFMR2_OFFSET 0x0000006C 32 rw x Acceptance Filter Mask Register 2
+XCANPS_AFIR2_OFFSET 0x00000070 32 rw x Acceptance Filter ID Register 2
+XCANPS_AFMR3_OFFSET 0x00000074 32 rw x Acceptance Filter Mask Register 3
+XCANPS_AFIR3_OFFSET 0x00000078 32 rw x Acceptance Filter ID Register 3
+XCANPS_AFMR4_OFFSET 0x0000007C 32 rw x Acceptance Filter Mask Register 4
+XCANPS_AFIR4_OFFSET 0x00000080 32 rw x Acceptance Filter ID Register 4

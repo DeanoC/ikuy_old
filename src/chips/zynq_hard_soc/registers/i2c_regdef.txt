@@ -1,0 +1,11 @@
+CR 0x00000000 16 mixed 0x00000000 Control Register
+SR 0x00000004 16 ro 0x00000000 Status register
+ADDR 0x00000008 16 mixed 0x00000000 I2C Address register
+DATA 0x0000000C 16 mixed 0x00000000 I2C data register
+ISR 0x00000010 16 mixed 0x00000000 I2C interrupt status register
+TRANS_SIZE 0x00000014 8 rw 0x00000000 Transfer Size Register
+SLV_PAUSE 0x00000018 8 mixed 0x00000000 Slave Monitor Pause Register
+TIME_OUT 0x0000001C 8 rw 0x0000001F Time out register
+IMR 0x00000020 16 ro 0x000002FF Interrupt mask register
+IER 0x00000024 16 mixed 0x00000000 Interrupt Enable Register
+IDR 0x00000028 16 mixed 0x00000000 Interrupt Disable Register

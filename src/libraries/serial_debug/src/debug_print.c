@@ -1,7 +1,7 @@
 #include <stdint.h>
-#include <hw/uart.h>
-#include <hw/reg.h>
-#include "snprintf.h"
+#include <hwreg.h>
+#include <snprintf.h>
+#include "zynq_ps/uart.h"
 #include "serial_debug/debug_print.h"
 #define IsTransmitFull() (HW_REG_MB_GET_BIT(uart, 0, SR, TXFULL))
 

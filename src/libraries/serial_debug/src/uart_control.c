@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include <assert.h>
+#include <hwreg.h>
 #include "serial_debug/uart_control.h"
-#include "hw/uart.h"
-#include "hw/reg.h"
+#include "zynq_ps/uart.h"
 
 void debug_set_uart_freq(debug_uart_freq freq)
 {

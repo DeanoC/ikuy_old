@@ -1,29 +1,31 @@
 package bus_and_chips
 
-import scala.collection.immutable.Vector
-
-trait FieldDesc
-{
-  def describe() : String
+trait FieldDesc 
+{ 
+  def describe() : String 
+  def longDescribe() : String
 }
 
-case class StringFieldDesc(val desc : String) extends FieldDesc
+case class StringFieldDesc(val desc : String, val longdesc : String = "")
+extends FieldDesc
 {
   def describe(): String = desc
+  def longDescribe(): String = longdesc
 }
 
-sealed abstract class FieldDoc( val bits : String,
-                                val fieldType : AccessType,
-                                val description : String )
+sealed case class BitsDesc(val text : String)
+{
+  val singleBit = text.split(":").length < 2
+  val hi : Int = Integer.parseInt( text.split(":")(0) )
+  val lo : Int = if(singleBit) hi else Integer.parseInt( text.split(":")(1) )
+  val bitCount : Int = (hi - lo)+1
+  val mask : Long = ((1 << bitCount)-1).toLong << lo.toLong
 
-case class ReservedField(override val bits : String) 
-extends FieldDoc(bits, IGNORE, "Reserved")
+  // sanity check
+  if(singleBit) assert(bitCount == 1)
+}
 
-case class ReadOnlyField(override val bits : String, override val description : String) 
-extends FieldDoc(bits, READONLY, description)
-
-case class WriteOnlyField(override val bits : String, override val description : String) 
-extends FieldDoc(bits, WRITEONLY, description)
-
-case class ReadWriteField(override val bits : String, override val description : String)
-extends FieldDoc(bits, READWRITE, description)
+sealed case class FieldDoc( val name : String,
+                            val bits : BitsDesc,
+                            val fieldType : AccessType,
+                            val desc : FieldDesc)

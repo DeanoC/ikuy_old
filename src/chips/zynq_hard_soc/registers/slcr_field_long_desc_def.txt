@@ -1,0 +1,23 @@
+** SCL LOCK
+Secure configuration lock for these slcr registers:
+SCL, PSS_RST_CTRL, APU_CTRL, and
+WDT_CLK_SEL.
+Read:
+0: unlocked, Secure writes to secure configuration
+registers are enabled.
+1: locked, all writes to secure configuration
+registers are ignored.
+Write:
+0: noaffect.
+1: lock the secure configuration registers.
+Once the secure registers are locked, they remain
+locked until a power-on reset cycle (PS_POR_B)
+
+** SLCR_LOCK LOCK_KEY
+Write the lock key, 0x767B, to write protect the
+slcr registers: all slcr registers, 0xF800_0000 to
+0xF800_0B74, are write protected until the unlock
+key is written to the SLCR_UNLOCK register. A
+read of this register returns zero.
+
+

@@ -135,9 +135,5 @@ extends Component
         })
     }})
 
-    chips.foreach( { case (chipID, chip) => {
-      chip.postBuild()
-    }})
-
   }
 }

@@ -1,0 +1,62 @@
+StimPort00 0x00000000 32 rw 0x00000000 Stimulus Port Register 0
+StimPort01 0x00000004 32 rw 0x00000000 Stimulus Port Register 1
+StimPort02 0x00000008 32 rw 0x00000000 Stimulus Port Register 2
+StimPort03 0x0000000C 32 rw 0x00000000 Stimulus Port Register 3
+StimPort04 0x00000010 32 rw 0x00000000 Stimulus Port Register 4
+StimPort05 0x00000014 32 rw 0x00000000 Stimulus Port Register 5
+StimPort06 0x00000018 32 rw 0x00000000 Stimulus Port Register 6
+StimPort07 0x0000001C 32 rw 0x00000000 Stimulus Port Register 7
+StimPort08 0x00000020 32 rw 0x00000000 Stimulus Port Register 8
+StimPort09 0x00000024 32 rw 0x00000000 Stimulus Port Register 9
+StimPort10 0x00000028 32 rw 0x00000000 Stimulus Port Register 10
+StimPort11 0x0000002C 32 rw 0x00000000 Stimulus Port Register 11
+StimPort12 0x00000030 32 rw 0x00000000 Stimulus Port Register 12
+StimPort13 0x00000034 32 rw 0x00000000 Stimulus Port Register 13
+StimPort14 0x00000038 32 rw 0x00000000 Stimulus Port Register 14
+StimPort15 0x0000003C 32 rw 0x00000000 Stimulus Port Register 15
+StimPort16 0x00000040 32 rw 0x00000000 Stimulus Port Register 16
+StimPort17 0x00000044 32 rw 0x00000000 Stimulus Port Register 17
+StimPort18 0x00000048 32 rw 0x00000000 Stimulus Port Register 18
+StimPort19 0x0000004C 32 rw 0x00000000 Stimulus Port Register 19
+StimPort20 0x00000050 32 rw 0x00000000 Stimulus Port Register 20
+StimPort21 0x00000054 32 rw 0x00000000 Stimulus Port Register 21
+StimPort22 0x00000058 32 rw 0x00000000 Stimulus Port Register 22
+StimPort23 0x0000005C 32 rw 0x00000000 Stimulus Port Register 23
+StimPort24 0x00000060 32 rw 0x00000000 Stimulus Port Register 24
+StimPort25 0x00000064 32 rw 0x00000000 Stimulus Port Register 25
+StimPort26 0x00000068 32 rw 0x00000000 Stimulus Port Register 26
+StimPort27 0x0000006C 32 rw 0x00000000 Stimulus Port Register 27
+StimPort28 0x00000070 32 rw 0x00000000 Stimulus Port Register 28
+StimPort29 0x00000074 32 rw 0x00000000 Stimulus Port Register 29
+StimPort30 0x00000078 32 rw 0x00000000 Stimulus Port Register 30
+StimPort31 0x0000007C 32 rw 0x00000000 Stimulus Port Register 31
+TER 0x00000E00 32 rw 0x00000000 Trace Enable Register
+TTR 0x00000E20 32 rw 0x00000000 Trace Trigger Register
+CR 0x00000E80 24 mixed 0x00000004 Control Register
+SCR 0x00000E90 12 rw 0x00000400 Synchronization Control Register
+ITTRIGOUTACK 0x00000EE4 1 ro 0x00000000 Integration Test Trigger Out Acknowledge Register
+ITTRIGOUT 0x00000EE8 1 wo 0x00000000 Integration Test Trigger Out Register
+ITATBDATA0 0x00000EEC 2 wo 0x00000000 Integration Test ATB Data Register 0
+ITATBCTR2 0x00000EF0 1 ro 0x00000001 Integration Test ATB Control Register 2
+ITATABCTR1 0x00000EF4 7 wo 0x00000000 Integration Test ATB Control Register 1
+ITATBCTR0 0x00000EF8 2 wo 0x00000000 Integration Test ATB Control Register 0
+IMCR 0x00000F00 1 rw 0x00000000 Integration Mode Control Register
+CTSR 0x00000FA0 8 rw 0x000000FF Claim Tag Set Register
+CTCR 0x00000FA4 8 rw 0x00000000 Claim Tag Clear Register
+LAR 0x00000FB0 32 wo 0x00000000 Lock Access Register
+LSR 0x00000FB4 3 ro 0x00000003 Lock Status Register
+ASR 0x00000FB8 8 ro 0x00000088 Authentication Status Register
+DEVID 0x00000FC8 13 ro 0x00000020 Device ID
+DTIR 0x00000FCC 8 ro 0x00000043 Device Type Identifier Register
+PERIPHID4 0x00000FD0 8 ro 0x00000004 Peripheral ID4
+PERIPHID5 0x00000FD4 8 ro 0x00000000 Peripheral ID5
+PERIPHID6 0x00000FD8 8 ro 0x00000000 Peripheral ID6
+PERIPHID7 0x00000FDC 8 ro 0x00000000 Peripheral ID7
+PERIPHID0 0x00000FE0 8 ro 0x00000013 Peripheral ID0
+PERIPHID1 0x00000FE4 8 ro 0x000000B9 Peripheral ID1
+PERIPHID2 0x00000FE8 8 ro 0x0000002B Peripheral ID2
+PERIPHID3 0x00000FEC 8 ro 0x00000000 Peripheral ID3
+COMPID0 0x00000FF0 8 ro 0x0000000D Component ID0
+COMPID1 0x00000FF4 8 ro 0x00000090 Component ID1
+COMPID2 0x00000FF8 8 ro 0x00000005 Component ID2
+COMPID3 0x00000FFC 8 ro 0x000000B1 Component ID3

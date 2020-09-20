@@ -75,7 +75,7 @@ extends Motherboard {
 
   // Remove io_ prefix from verilog names
   noIoPrefix()
-
+  
   val mcp = addChip(
             "mcp",
             (chipID : ChipID, mb : Motherboard) => 

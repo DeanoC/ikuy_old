@@ -1,0 +1,33 @@
+CLK_CNTRL_0 0x00000000 7 rw 0x00000000 Clock Control register
+CLK_CNTRL_1 0x00000004 7 rw 0x00000000 Clock Control register
+CLK_CNTRL_2 0x00000008 7 rw 0x00000000 Clock Control register
+CNT_CNTRL_0 0x0000000C 7 rw 0x00000021 Operational mode and reset
+CNT_CNTRL_1 0x00000010 7 rw 0x00000021 Operational mode and reset
+CNT_CNTRL_2 0x00000014 7 rw 0x00000021 Operational mode and reset
+CNT_0 0x00000018 16 ro 0x00000000 Current counter value
+CNT_1 0x0000001C 16 ro 0x00000000 Current counter value
+CNT_2 0x00000020 16 ro 0x00000000 Current counter value
+INTERVAL_0 0x00000024 16 rw 0x00000000 Interval value
+INTERVAL_1 0x00000028 16 rw 0x00000000 Interval value
+INTERVAL_2 0x0000002C 16 rw 0x00000000 Interval value
+MATCH_0_CNT_0 0x00000030 16 rw 0x00000000 Match value
+MATCH_0_CNT_1 0x00000034 16 rw 0x00000000 Match value
+MATCH_0_CNT_2 0x00000038 16 rw 0x00000000 Match value
+MATCH_1_CNT_0 0x0000003C 16 rw 0x00000000 Match value
+MATCH_1_CNT_1 0x00000040 16 rw 0x00000000 Match value
+MATCH_1_CNT_2 0x00000044 16 rw 0x00000000 Match value
+MATCH_2_CNT_0 0x00000048 16 rw 0x00000000 Match value
+MATCH_2_CNT_1 0x0000004C 16 rw 0x00000000 Match value
+MATCH_2_CNT_2 0x00000050 16 rw 0x00000000 Match value
+ISR_0 0x00000054 6 clronrd 0x00000000 Counter 1 Interval, Match, Overflow and Event interrupts
+ISR_1 0x00000058 6 clronrd 0x00000000 Counter 2 Interval, Match, Overflow and Event interrupts 
+ISR_2 0x0000005C 6 clronrd 0x00000000 Counter 3 Interval, Match, Overflow and Event interrupts
+IER_0 0x00000060 6 rw 0x00000000 ANDed with corresponding Interrupt
+IER_1 0x00000064 6 rw 0x00000000 ANDed with corresponding Interrupt
+IER_2 0x00000068 6 rw 0x00000000 ANDed with corresponding Interrupt
+EVENT_TIMER_0 0x0000006C 3 rw 0x00000000 Enable, pulse and overflow
+EVENT_TIMER_1 0x00000070 3 rw 0x00000000 Enable, pulse and overflow
+EVENT_TIMER_2 0x00000074 3 rw 0x00000000 Enable, pulse and overflow
+EVENT_0 0X00000078 16 ro 0x00000000 pclk cycle count for event
+EVENT_1 0X0000007C 16 ro 0x00000000 pclk cycle count for event
+EVENT_2 0X00000080 16 ro 0x00000000 pclk cycle count for event

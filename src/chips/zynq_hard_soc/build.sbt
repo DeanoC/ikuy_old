@@ -9,14 +9,14 @@ lazy val buildSettings = Seq(
   scalacOptions += (artifactPath in(spinalPlugin, Compile, packageBin)).map { file =>
     s"-Xplugin:${file.getAbsolutePath}"
   }.value,
-  licenses := Seq("The MIT License (MIT)" -> url("http://opensource.org/licenses/MIT"))
+  licenses := Seq("The MIT License (MIT)" -> url("http://opensource.org/licenses/MIT")),
 )
 
-lazy val all = (project in file("."))
+name := "zynq_hard_soc"
+
+lazy val all = (project in file("src/main"))
   .dependsOn(spinalCore)
   .dependsOn(spinalLib)
   .dependsOn(spinalPlugin)
   .dependsOn(Ikuy.Chips.busAndChips)
-  .settings(
-    buildSettings
-  )
+  .settings(buildSettings)

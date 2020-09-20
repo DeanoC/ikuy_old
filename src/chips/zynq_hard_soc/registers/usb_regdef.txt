@@ -1,0 +1,51 @@
+ID 0x00000000 32 ro 0xE441FA05 IP version and revision
+HWGENERAL 0x00000004 12 ro 0x00000083 Misc IP config constants
+HWHOST 0x00000008 32 ro 0x10020001 Host Mode IP config constants
+HWDEVICE 0x0000000C 6 ro 0x00000019 Device Mode IP config constants
+HWTXBUF 0x00000010 32 ro 0x80060A10 TxBuffer IP config constants
+HWRXBUF 0x00000014 32 ro 0x00000A10 IP constants, RX buffer constants
+GPTIMER0LD 0x00000080 24 rw 0x00000000 GP Timer 0 Load Value.
+GPTIMER0CTRL 0x00000084 32 mixed 0x00000000 GP Timer 1 Control.
+GPTIMER1LD 0x00000088 24 rw 0x00000000 GP Timer 1 Load Value
+GPTIMER1CTRL 0x0000008C 32 mixed 0x00000000 GP Timer 1 Control
+SBUSCFG 0x00000090 3 rw 0x00000003 DMA Master AHB Burst Mode
+CAPLENGTH_HCIVERSION 0x00000100 32 ro 0x01000040 EHCI Addr Space and HCI constants
+HCSPARAMS 0x00000104 28 ro 0x00010011 TT counts and EHCI HCS constants
+HCCPARAMS 0x00000108 16 ro 0x00000006 EHCI Host Configuration Constants.
+DCIVERSION 0x00000120 16 ro 0x00000001 Device Controller Interface Version.
+DCCPARAMS 0x00000124 9 ro 0x0000018C EHCI, Device, and EndpointCapabilities.
+CMD 0x00000140 24 mixed 0x00080000 USB Commands (EHCI extended)
+ISR 0x00000144 26 mixed 0x00000000 Interrupt/Raw Status (EHCI extended) (Host/Device)
+IER 0x00000148 26 mixed 0x00000000 Interrrupts and Enables
+FRAME 0x0000014C 14 rw 0x00000000 Frame List Index
+LISTBASE 0x00000154 32 mixed 0x00000000 Host/Device Address dual-use
+ASYNCLISTADDR 0x00000158 32 mixed 0x00000000 Host/Device dual-use
+TTCTRL 0x0000015C 32 mixed 0x00000000 TT Control
+BURSTSIZE 0x00000160 17 rw 0x00001010 Burst Size
+TXFILL 0x00000164 22 mixed 0x00000000 TxFIFO Fill Tuning
+TXTTFILLTUNING 0x00000168 13 mixed 0x00000000 TT TX latency FIFO
+IC_USB 0x0000016C 32 mixed 0x00000000 Low and Fast Speed Control constants
+ULPIVIEW 0x00000170 32 mixed 0x08000000 ULPI Viewport
+EPNAKISR 0x00000178 32 wtc 0x00000000 Endpoint NAK (Device mode)
+EPNAKIER 0x0000017C 32 rw 0x00000000 Endpoint NAK (Device mode)
+CONFIG_FLAG 0x00000180 32 ro 0x00000001 reserved
+PORTSCR1 0x00000184 32 mixed 0x8C000004 Port Status & Control
+OTGCSR 0x000001A4 32 mixed 0x00001020 OTG Status and Control
+MODE 0x000001A8 32 mixed 0x00000000 USB Mode Selection
+EPSTAT 0x000001AC 16 wtc 0x00000000 Endpoint Status Setup (Device mode)
+EPPRIME 0x000001B0 32 wtc 0x00000000 Endpoint Primer (Device mode)
+EPFLUSH 0x000001B4 32 wtc 0x00000000 Endpoint Flush (Device mode)
+EPRDY 0x000001B8 32 ro 0x00000000 Endpoint Buffer Ready Status (Device mode)
+EPCOMPL 0x000001BC 32 rw 0x00000000 Endpoint Tx Complete (Device mode)
+EPCR0 0x000001C0 24 mixed 0x00800080 Endpoint 0 (Device mode)
+ENDPTCTRL1 0x000001C4 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL2 0x000001C8 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL3 0x000001CC 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL4 0x000001D0 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL5 0x000001D4 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL6 0x000001D8 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL7 0x000001DC 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL8 0x000001E0 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL9 0x000001E4 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL10 0x000001E8 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)
+ENDPTCTRL11 0x000001EC 24 mixed 0x00000000 Endpoints 1 to 11 (Device mode)

@@ -18,7 +18,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcpu=cortex-a9")
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fpie")
 
-include_directories(libraries/a9sdk/include SYSTEM)
+include_directories(libraries/core/include SYSTEM)
 
 project(ikuy C)
 

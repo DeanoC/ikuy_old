@@ -1,0 +1,27 @@
+MEMC_STATUS 0x00000000 13 ro 0x00000000 Operating and Interrupt Status
+MEMC_IF_CONFIG 0x00000004 18 ro 0x00011205 SMC configuration information
+MEMC_SET_CONFIG 0x00000008 7 wo x Enable interrupts and lower power state
+MEMC_CLR_CONFIG 0x0000000C 7 wo x Disable interrupts and exit from low-power state
+DIRECT_CMD 0x00000010 26 wo x Issue mem commands and register updates
+SET_CYCLES 0x00000014 24 wo x Stage a write to a Cycle register
+SET_OPMODE 0x00000018 16 mixed x Stage a write to an OpMode register
+REFRESH_PERIOD_0 0x00000020 4 rw 0x00000000 Idle cycles between read/write bursts
+REFRESH_PERIOD_1 0x00000024 4 rw 0x00000000 Insert idle cycles between bursts
+IF0_CHIP_0_CONFIG 0x00000100 21 ro 0x0002B3CC SRAM/NOR chip select 0 timing, active
+OPMODE 0x00000104 32 ro 0xE2FE0800 SRAM/NOR chip select 0 OpCode, active
+IF0_CHIP_1_CONFIG 0x00000120 21 ro 0x0002B3CC SRAM/NOR chip select 1 timing, active
+OPMODE0_1 0x00000124 32 ro 0xE4FE0800 SRAM/NOR chip select 1 OpCode, active
+IF1_CHIP_0_CONFIG 0x00000180 24 ro 0x0024ABCC NAND Flash timing, active
+OPMODE1_0 0x00000184 32 ro 0xE1FF0001 NAND Flash OpCode, active 
+USER_STATUS 0x00000200 8 ro 0x00000000 User Status
+USER_CONFIG 0x00000204 8 wo x User Configuration
+IF1_ECC 0x00000400 30 ro 0x00000000 ECC Status and Clear
+ECC_MEMCFG_1 0x00000404 13 rw 0x00000043 ECC Memory Configuation
+ECC_MEMCOMMAND1_1 0x00000408 25 rw 0x01300080 ECC Memory Command 1
+ECC_MEMCOMMAND2_1 0x0000040C 25 rw 0x01E00585 ECC Memory Command 2
+ECC_ADDR0_1 0x00000410 32 ro 0x00000000 ECC Address 0
+ECC_ADDR1_1 0x00000414 24 ro 0x00000000 ECC Address 1
+ECC_VALUE0_1 0x00000418 32 ro 0x00000000 ECC Value 0
+ECC_VALUE1_1 0x0000041C 32 ro 0x00000000 ECC Value 1
+ECC_VALUE2_1 0x00000420 32 ro 0x00000000 ECC Value 2
+ECC_VALUE3_1 0x00000424 32 ro 0x00000000 ECC Value 3

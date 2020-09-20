@@ -1,0 +1,79 @@
+CR 0x00000000 30 rw 0x00000401 Main Control Register
+CCR 0x00000004 32 ro 0x8D294004 Configuration Code Register
+TRIGGER 0x00000008 17 rw 0x00000000 Trigger Event Register
+SR 0x00000010 4 mixed 0x00000002 Status Register
+SCR 0x00000014 15 ro 0x00000000 System Configuration Register
+TSSCR 0x00000018 24 rw 0x00000000 TraceEnable Start/Stop Control Register
+TEEVR 0x00000020 32 rw 0x00000000 TraceEnable Event
+TECR1 0x00000024 26 rw 0x00000000 TraceEnable Control Register 1
+ACVR1 0x00000040 32 rw 0x00000000 Address Comparator Value Register 1
+ACVR2 0x00000044 32 rw 0x00000000 Address Comparator Value Register 2
+ACVR3 0x00000048 32 rw 0x00000000 Address Comparator Value Register 3
+ACVR4 0x0000004C 32 rw 0x00000000 Address Comparator Value Register 4
+ACVR5 0x00000050 32 rw 0x00000000 Address Comparator Value Register 5
+ACVR6 0x00000054 32 rw 0x00000000 Address Comparator Value Register 6
+ACVR7 0x00000058 32 rw 0x00000000 Address Comparator Value Register 7
+ACVR8 0x0000005C 32 rw 0x00000000 Address Comparator Value Register 8
+ACTR1 0x00000080 12 mixed 0x00000001 Address Comparator Access Type Register 1
+ACTR2 0x00000084 12 mixed 0x00000001 Address Comparator Access Type Register 2
+ACTR3 0x00000088 12 mixed 0x00000001 Address Comparator Access Type Register 3
+ACTR4 0x0000008C 12 mixed 0x00000001 Address Comparator Access Type Register 4
+ACTR5 0x00000090 12 mixed 0x00000001 Address Comparator Access Type Register 5
+ACTR6 0x00000094 12 mixed 0x00000001 Address Comparator Access Type Register 6
+ACTR7 0x00000098 12 mixed 0x00000001 Address Comparator Access Type Register 7
+ACTR8 0x0000009C 12 mixed 0x00000001 Address Comparator Access Type Register 8
+CNTRLDVR1 0x00000140 16 rw 0x00000000 Counter Reload Value Register 1
+CNTRLDVR2 0x00000144 16 rw 0x00000000 Counter Reload Value Register 2
+CNTENR1 0x00000150 18 mixed 0x00020000 Counter Enable Event Register 1
+CNTENR2 0x00000154 18 mixed 0x00020000 Counter Enable Event Register 2
+CNTRLDEVR1 0x00000160 17 rw 0x00000000 Counter Reload Event Register 1
+CNTRLDEVR2 0x00000164 17 rw 0x00000000 Counter Reload Event Register 2
+CNTVR1 0x00000170 16 rw 0x00000000 Counter Value Register 1
+CNTVR2 0x00000174 16 rw 0x00000000 Counter Value Register 2
+SQ12EVR 0x00000180 17 rw 0x00000000 Sequencer State Transition Event Register 12
+SQ21EVR 0x00000184 17 rw 0x00000000 Sequencer State Transition Event Register 21
+SQ23EVR 0x00000188 17 rw 0x00000000 Sequencer State Transition Event Register 23
+SQ31EVR 0x0000018C 17 rw 0x00000000 Sequencer State Transition Event Register 31
+SQ32EVR 0x00000190 17 rw 0x00000000 Sequencer State Transition Event Register 32
+SQ13EVR 0x00000194 17 rw 0x00000000 Sequencer State Transition Event Register 13
+SQR 0x0000019C 2 rw 0x00000000 Current Sequencer State Register
+EXTOUTEVR1 0x000001A0 17 rw 0x00000000 External Output Event Register 1
+EXTOUTEVR2 0x000001A4 17 rw 0x00000000 External Output Event Register 2
+CIDCVR1 0x000001B0 32 rw 0x00000000 Context ID Comparator Value Register
+CIDCMR 0x000001BC 32 rw 0x00000000 Context ID Comparator Mask Register
+SYNCFR 0x000001E0 12 mixed 0x00000400 Synchronization Frequency Register
+IDR 0x000001E4 32 ro 0x411CF301 ID Register
+CCER 0x000001E8 26 ro 0x000008EA Configuration Code Extension Register
+EXTINSELR 0x000001EC 14 rw 0x00000000 Extended External Input Selection Register
+TSEVR 0x000001F8 32 rw 0x00000000 Timestamp Event
+AUXCR 0x000001FC 4 rw 0x00000000 Auxiliary Control Register
+TRACEIDR 0x00000200 7 rw 0x00000000 CoreSight Trace ID Register
+OSLSR 0x00000304 32 ro 0x00000000 OS Lock Status Register
+PDSR 0x00000314 32 ro 0x00000001 Device Powerdown Status Register
+ITMISCOUT 0x00000EDC 10 wo 0x00000000 Miscellaneous Outputs Register
+ITMISCIN 0x00000EE0 7 ro x Miscellaneous Inputs Register
+ITTRIGGER 0x00000EE8 1 wo 0x00000000 Trigger Register
+ITATBDATA0 0x00000EEC 5 wo 0x00000000 ATB Data 0 Register
+ITATBCTR2 0x00000EF0 2 ro x ATB Control 2 Register
+ITATBID 0x00000EF4 7 wo 0x00000000 ATB Identification Register
+ITATBCTR0 0x00000EF8 10 wo 0x00000000 ATB Control 0 Register
+ITCTRL 0x00000F00 1 rw 0x00000000 Integration Mode Control Register
+CTSR 0x00000FA0 8 rw 0x000000FF Claim Tag Set Register
+CTCR 0x00000FA4 8 rw 0x00000000 Claim Tag Clear Register
+LAR 0x00000FB0 32 wo 0x00000000 Lock Access Register
+LSR 0x00000FB4 3 ro 0x00000003 Lock Status Register
+ASR 0x00000FB8 8 ro x Authentication Status Register
+DEVID 0x00000FC8 32 ro 0x00000000 Device ID
+DTIR 0x00000FCC 32 ro 0x00000013 Device Type Identifier (ETMDEVTYPE)
+PERIPHID4 0x00000FD0 8 ro 0x00000004 Peripheral ID4
+PERIPHID5 0x00000FD4 8 ro 0x00000000 Peripheral ID5
+PERIPHID6 0x00000FD8 8 ro 0x00000000 Peripheral ID6
+PERIPHID7 0x00000FDC 8 ro 0x00000000 Peripheral ID7
+PERIPHID0 0x00000FE0 8 ro 0x00000050 Peripheral ID0
+PERIPHID1 0x00000FE4 8 ro 0x000000B9 Peripheral ID1
+PERIPHID2 0x00000FE8 8 ro 0x0000001B Peripheral ID2
+PERIPHID3 0x00000FEC 8 ro 0x00000000 Peripheral ID3
+COMPID0 0x00000FF0 8 ro 0x0000000D Component ID0
+COMPID1 0x00000FF4 8 ro 0x00000090 Component ID1
+COMPID2 0x00000FF8 8 ro 0x00000005 Component ID2
+COMPID3 0x00000FFC 8 ro 0x000000B1 Component ID3

@@ -1,0 +1,39 @@
+SuppSize 0x00000000 32 rw 0xFFFFFFFF Supported Port Size Register
+CurrentSize 0x00000004 32 rw 0x00000001 Current Port Size Register
+SuppTrigMode 0x00000100 18 ro 0x0000011F Supported Trigger Modes Register
+TrigCount 0x00000104 8 rw 0x00000000 Trigger Counter Register
+TrigMult 0x00000108 5 rw 0x00000000 Trigger Multiplier Register
+SuppTest 0x00000200 18 ro 0x0003000F Supported Test Patterns/Modes Register
+CurrentTest 0x00000204 18 mixed 0x00000000 Current Test Patterns/Modes Register
+TestRepeatCount 0x00000208 8 rw 0x00000000 TPIU Test Pattern Repeat Counter Register
+FFSR 0x00000300 3 ro 0x00000006 Formatter and Flush Status Register
+FFCR 0x00000304 14 mixed 0x00000000 Formatter and Flush Control Register
+FormatSyncCount 0x00000308 12 rw 0x00000040 Formatter Synchronization Counter Register
+EXTCTLIn 0x00000400 8 ro 0x00000000 EXTCTL In Port
+EXTCTLOut 0x00000404 8 rw 0x00000000 EXTCTL Out Port
+ITTRFLINACK 0x00000EE4 2 wo 0x00000000 Integration Test Trigger In and Flush In Acknowledge Register
+ITTRFLIN 0x00000EE8 2 ro x Integration Test Trigger In and Flush In Register
+ITATBDATA0 0x00000EEC 5 ro x Integration Test ATB Data Register 0
+ITATBCTR2 0x00000EF0 2 wo 0x00000000 Integration Test ATB Control Register 2
+ITATBCTR1 0x00000EF4 7 ro x Integration Test ATB Control Register 1
+ITATBCTR0 0x00000EF8 10 ro x Integration Test ATB Control Register 0
+IMCR 0x00000F00 1 rw 0x00000000 Integration Mode Control Register
+CTSR 0x00000FA0 4 rw 0x0000000F Claim Tag Set Register
+CTCR 0x00000FA4 4 rw 0x00000000 Claim Tag Clear Register
+LAR 0x00000FB0 32 wo 0x00000000 Lock Access Register
+LSR 0x00000FB4 3 ro 0x00000003 Lock Status Register
+ASR 0x00000FB8 8 ro 0x00000000 Authentication Status Register
+DEVID 0x00000FC8 12 ro 0x000000A0 Device ID
+DTIR 0x00000FCC 8 ro 0x00000011 Device Type Identifier Register
+PERIPHID4 0x00000FD0 8 ro 0x00000004 Peripheral ID4
+PERIPHID5 0x00000FD4 8 ro 0x00000000 Peripheral ID5
+PERIPHID6 0x00000FD8 8 ro 0x00000000 Peripheral ID6
+PERIPHID7 0x00000FDC 8 ro 0x00000000 Peripheral ID7
+PERIPHID0 0x00000FE0 8 ro 0x00000012 Peripheral ID0
+PERIPHID1 0x00000FE4 8 ro 0x000000B9 Peripheral ID1
+PERIPHID2 0x00000FE8 8 ro 0x0000004B Peripheral ID2
+PERIPHID3 0x00000FEC 8 ro 0x00000000 Peripheral ID3
+COMPID0 0x00000FF0 8 ro 0x0000000D Component ID0
+COMPID1 0x00000FF4 8 ro 0x00000090 Component ID1
+COMPID2 0x00000FF8 8 ro 0x00000005 Component ID2
+COMPID3 0x00000FFC 8 ro 0x000000B1 Component ID3

@@ -1,0 +1,92 @@
+DS 0x00000000 32 mixed 0x00000000 DMA Manager Status
+DPC 0x00000004 32 mixed 0x00000000 DMA Program Counter
+INTEN 0x00000020 32 mixed 0x00000000 DMASEV Instruction Response Control
+ES 0x00000024 32 mixed 0x00000000 Event Interrupt Raw Status
+INTSTATUS 0x00000028 32 mixed 0x00000000 Interrupt Status
+INTCLR 0x0000002C 32 mixed 0x00000000 Interrupt Clear
+FSM 0x00000030 32 mixed 0x00000000 Fault Status DMA Manager
+FSC 0x00000034 32 mixed 0x00000000 Fault Status DMA Channel
+FTM 0X00000038 32 mixed 0x00000000 Fault Type DMA Manager
+FTC0 0X00000040 32 mixed 0x00000000 Default Type DMA Channel 0
+FTCN_1 0x00000044 32 mixed 0x00000000 Default Type DMA Channel 1
+FTCN_2 0x00000048 32 mixed 0x00000000 Default Type DMA Channel 2
+FTCN_3 0x0000004C 32 mixed 0x00000000 Default Type DMA Channel 3
+FTCN_4 0x00000050 32 mixed 0x00000000 Default Type DMA Channel 4
+FTCN_5 0x00000054 32 mixed 0x00000000 Default Type DMA Channel 5
+FTCN_6 0x00000058 32 mixed 0x00000000 Default Type DMA Channel 6
+FTCN_7 0x0000005C 32 mixed 0x00000000 Default Type DMA Channel 7
+CS0 0X00000100 32 mixed 0x00000000 Channel Status DMA Channel 0
+CPC0 0X00000104 32 mixed 0x00000000 Channel PC for DMA Channel 0
+CSN_1 0X00000108 32 mixed 0x00000000 Channel Status DMA Channel 1
+CPCN_1 0x0000010C 32 mixed 0x00000000 Channel PC for DMA Channel 1
+CSN_2 0X00000110 32 mixed 0x00000000 Channel Status DMA Channel 2
+CPCN_2 0x00000114 32 mixed 0x00000000 Channel PC for DMA Channel 2
+CSN_3 0X00000118 32 mixed 0x00000000 Channel Status DMA Channel 3
+CPCN_3 0x0000011C 32 mixed 0x00000000 Channel PC for DMA Channel 3
+CSN_4 0X00000120 32 mixed 0x00000000 Channel Status DMA Channel 4
+CPCN_4 0x00000124 32 mixed 0x00000000 Channel PC for DMA Channel 4
+CSN_5 0X00000128 32 mixed 0x00000000 Channel Status DMA Channel 5
+CPCN_5 0x0000012C 32 mixed 0x00000000 Channel PC for DMA Channel 5
+CSN_6 0X00000130 32 mixed 0x00000000 Channel Status DMA Channel 6
+CPCN_6 0x00000134 32 mixed 0x00000000 Channel PC for DMA Channel 6
+CSN_7 0X00000138 32 mixed 0x00000000 Channel Status DMA Channel 7
+CPCN_7 0x0000013C 32 mixed 0x00000000 Channel PC for DMA Channel 7
+SA_0 0x00000400 32 mixed 0x00000000 Source Address DMA Channel 0
+DA_0 0x00000404 32 mixed 0x00000000 Destination Addr DMA Channel 0
+CC_0 0x00000408 32 mixed 0x00000000 Channel Control DMA Channel 0
+LC0_0 0x0000040C 32 mixed 0x00000000 Loop Counter 0 DMA Channel 0
+LC1_0 0x00000410 32 mixed 0x00000000 Loop Counter 1 DMA Channel 0
+SA_N_1 0x00000420 32 mixed 0x00000000 Source address DMA Channel 1
+DA_N_1 0x00000424 32 mixed 0x00000000 Destination Addr DMA Channel 1
+CC_N_1 0x00000428 32 mixed 0x00000000 Channel Control DMA Channel 1
+LC0_N_1 0x0000042C 32 mixed 0x00000000 Loop Counter 0 DMA Channel 1
+LC1_N_1 0x00000430 32 mixed 0x00000000 Loop Counter 1 DMA Channel 1
+SA_N_2 0x00000440 32 mixed 0x00000000 Source Address DMA Channel 2
+DA_N_2 0x00000444 32 mixed 0x00000000 Destination Addr DMA Channel 2
+CC_N_2 0x00000448 32 mixed 0x00000000 Channel Control DMA Channel 2
+LC0_N_2 0x0000044C 32 mixed 0x00000000 Loop Counter 0 DMA Channel 2
+LC1_N_2 0x00000450 32 mixed 0x00000000 Loop Counter 1 DMA Channel 2
+SA_N_3 0x00000460 32 mixed 0x00000000 Source Address DMA Channel 3
+DA_N_3 0x00000464 32 mixed 0x00000000 Destination Addr DMA Channel 3
+CC_N_3 0x00000468 32 mixed 0x00000000 Channel Control DMA Channel 3
+LC0_N_3 0x0000046C 32 mixed 0x00000000 Loop Counter 0 DMA Channel 3
+LC1_N_3 0x00000470 32 mixed 0x00000000 Loop Counter 1 DMA Channel 3
+SA_N_4 0x00000480 32 mixed 0x00000000 Source Address DMA Channel 4
+DA_N_4 0x00000484 32 mixed 0x00000000 Destination Addr DMA Channel 4
+CC_N_4 0x00000488 32 mixed 0x00000000 Channel Control DMA Channel 4
+LC0_N_4 0x0000048C 32 mixed 0x00000000 Loop Counter 0 DMA Channel 4
+LC1_N_4 0x00000490 32 mixed 0x00000000 Loop Counter 1 DMA Channel 4
+SA_N_5 0x000004A0 32 mixed 0x00000000 Source Address DMA Channel 5
+DA_N_5 0x000004A4 32 mixed 0x00000000 Destination Addr DMA Channel 5
+CC_N_5 0x000004A8 32 mixed 0x00000000 Channel Control DMA Channel 5
+LC0_N_5 0x000004AC 32 mixed 0x00000000 Loop Counter 0 DMA Channel 5
+LC1_N_5 0x000004B0 32 mixed 0x00000000 Loop Counter 1 DMA Channel 5
+SA_N_6 0x000004C0 32 mixed 0x00000000 Source Address DMA Channel 6
+DA_N_6 0x000004C4 32 mixed 0x00000000 Destination Addr DMA Channel 6
+CC_N_6 0x000004C8 32 mixed 0x00000000 Channel Control DMA Channel 6
+LC0_N_6 0x000004CC 32 mixed 0x00000000 Loop Counter 0 DMA Channel 6
+LC1_N_6 0x000004D0 32 mixed 0x00000000 Loop Counter 1 DMA Channel 6
+SA_N_7 0x000004E0 32 mixed 0x00000000 Source Address DMA Channel 7
+DA_N_7 0x000004E4 32 mixed 0x00000000 Destination Addr DMA Channel 7
+CC_N_7 0x000004E8 32 mixed 0x00000000 Channel Control DMA Channel 7
+LC0_N_7 0x000004EC 32 mixed 0x00000000 Loop Counter 0 DMA Channel 7
+LC1_N_7 0x000004F0 32 mixed 0x00000000 Loop Counter 1 DMA Channel 7
+DBGSTATUS 0x00000D00 32 mixed 0x00000000 DMA Manager Execution Status
+DBGCMD 0x00000D04 32 mixed 0x00000000 DMA Manager Instr. Command
+DBGINST0 0x00000D08 32 mixed 0x00000000 DMA Manager Instruction Part A
+DBGINST1 0x00000D0C 32 mixed 0x00000000 DMA Manager Instruction Part B
+CR0 0x00000E00 32 mixed 0x00000000 Config. 0: Events, Peripheral Interfaces, PC, Mode
+CR1 0x00000E04 32 mixed 0x00000000 Config. 1: Instruction Cache
+CR2 0x00000E08 32 mixed 0x00000000 Config. 2: DMA Mgr Boot Addr
+CR3 0x00000E0C 32 mixed 0x00000000 Config. 3: Security state of IRQs
+CR4 0x00000E10 32 mixed 0x00000000 Config 4, Security of Periph Interfaces
+CRDN 0x00000E14 32 mixed 0x00000000 DMA configuration
+WD 0x00000E80 32 mixed 0x00000000 Watchdog Timer
+PERIPH_ID_0 0x00000FE0 32 mixed 0x00000000 Peripheral Idenfication register 0
+PERIPH_ID_1 0x00000FE4 32 mixed 0x00000000 Peripheral Idenfication register 1
+PERIPH_ID_2 0x00000FE8 32 mixed 0x00000000 Peripheral Idenfication register 2
+PERIPH_ID_3 0x00000FEC 32 mixed 0x00000000 Peripheral Idenfication register 3
+PCELL_ID_0 0x00000FF0 32 mixed 0x00000000 Compontent Idenfication register 0
+PCELL_ID_1 0x00000FF4 32 mixed 0x00000000 Compontent Idenfication register 1
+PCELL_ID_2 0x00000FF8 32 mixed 0x00000000 Compontent Idenfication register 2
+PCELL_ID_3 0x00000FFC 32 mixed 0x00000000 Compontent Idenfication register 3

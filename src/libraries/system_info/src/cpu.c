@@ -1,9 +1,9 @@
+#include <hwreg.h>
+
 #include "system_info/cpu.h"
 #include "serial_debug/debug_print.h"
-
-#include "hw/reg.h"
-#include "hw/slcr.h"
 #include "hw_slcr/slcr.h"
+#include "zynq_ps/slcr.h"
 
 void system_info_log_clocks()
 {

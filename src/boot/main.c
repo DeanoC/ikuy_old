@@ -1,19 +1,18 @@
 #include <stdbool.h>
+#include <hwreg.h>
 
 #include "serial_debug/uart_control.h"
 #include "serial_debug/debug_print.h"
 #include "hw_timers/global.h"
 #include "system_info/cpu.h"
 
-#include "hw/arma9_cop.h"
-#include "hw/l1cache.h"
-#include "hw/devcfg.h"
-#include "hw/uart.h"
-#include "hw/reg.h"
-#include "hw/slcr.h"
-#include "hw/scu.h"
-#include "hw/reg.h"
-#include "hw/memory_map.h"
+#include "zynq_ps/arma9_cop.h"
+#include "zynq_ps/l1cache.h"
+#include "zynq_ps/devcfg.h"
+#include "zynq_ps/uart.h"
+#include "zynq_ps/slcr.h"
+#include "zynq_ps/scu.h"
+#include "zynq_ps/memory_map.h"
 
 extern void slcrRunInitProgram(void);
 extern void slcrRunPostDDRInitProgram(void);

@@ -1,7 +1,7 @@
 #include "ps_init_program.h"
-#include "hw/slcr.h"
+#include "zynq_ps/slcr.h"
 
-#define REG(reg)(slcr_##reg##_REG)
+#define REG(reg)(slcr_##reg##_OFFSET)
 #define MASK(field) (slcr_##field##_MASK)
 #define VAL(field, val) (val << slcr_##field##_LSHIFT)
 

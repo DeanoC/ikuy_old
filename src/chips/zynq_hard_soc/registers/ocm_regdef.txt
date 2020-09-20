@@ -1,0 +1,4 @@
+PARITY_CTRL 0x00000000 32 mixed 0x00000000 Control fields for RAM parity operation
+PARITY_ERRADDRESS 0x00000004 32 mixed 0x00000000 Stores the first parity error access address. This register is sticky and will retain its value unless explicitly cleared (written with 1's) with an APB write access. The physical RAM address is logged.
+IRQ_STS 0x00000008 32 mixed 0x00000000 Status of OCM Interrupt
+CONTROL 0x0000000C 32 mixed 0x00000000 Control fields for OCM

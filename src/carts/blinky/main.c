@@ -1,6 +1,6 @@
 #include <assert.h>
 #include "serial_debug/debug_print.h"
-#include "hw/l1cache.h"
+#include "zynq_ps/l1cache.h"
 #include "hw_fpga/pcap.h"
 #include "hw_i2c/i2c.h"
 #include "system_info/cpu.h"

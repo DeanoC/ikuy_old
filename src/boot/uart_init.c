@@ -1,7 +1,7 @@
 #include "ps_init_program.h"
-#include "hw/uart.h"
+#include "zynq_ps/uart.h"
 
-#define REG(reg) (uart_##reg##_REG)
+#define REG(reg) (uart_##reg##_OFFSET)
 #define MASK(field) (uart_##field##_MASK)
 #define VAL(field, val) (val << uart_##field##_LSHIFT)
 #define TRUEV(field) VAL(field, 0x1)

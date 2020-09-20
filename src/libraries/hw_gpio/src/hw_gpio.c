@@ -1,7 +1,7 @@
 #include <assert.h>
+#include <hwreg.h>
 #include "hw_gpio/gpio.h"
-#include "hw/gpio.h"
-#include "hw/reg.h"
+#include "zynq_ps/gpio.h"
 
 void hw_gpio_configure_mio(uint8_t pin, HW_GPIO_MIO_DIRECTION const direction)
 {

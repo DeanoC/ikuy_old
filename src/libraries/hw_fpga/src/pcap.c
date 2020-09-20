@@ -1,10 +1,10 @@
-#include "stdint.h"
-#include "stdbool.h"
+#include <stdint.h>
+#include <stdbool.h>
+#include <hwreg.h>
 
-#include "hw/slcr.h"
-#include "hw/devcfg.h"
-#include "hw/reg.h"
-#include "hw/l1cache.h"
+#include "zynq_ps/slcr.h"
+#include "zynq_ps/devcfg.h"
+#include "zynq_ps/l1cache.h"
 #include "hw_timers/global.h"
 #include "serial_debug/debug_print.h"
 
