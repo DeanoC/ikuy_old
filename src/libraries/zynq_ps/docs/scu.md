@@ -2,7 +2,7 @@
 
 Module CPU Configuration (mpcore) (scu)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 scu Base Address = 0xf8f00000  
 
@@ -264,7 +264,6 @@ scu Base Address = 0xf8f00000
 
 ### CONTROL  
 
-Module scu  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -293,7 +292,6 @@ Description SCU Control Register
 
 ### CONFIG  
 
-Module scu  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = ro  
@@ -316,7 +314,6 @@ Description SCU Configuration Register
 
 ### CPU_POWER_STATUS  
 
-Module scu  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = rw  
@@ -345,7 +342,6 @@ Description SCU CPU Power Status Register
 
 ### INVALIDATE_ALL_REGISTERS_IN_SECURE_STATE  
 
-Module scu  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = wo  
@@ -368,7 +364,6 @@ Description SCU Invalidate All Registers in Secure State
 
 ### FILTERING_START_ADDRESS  
 
-Module scu  
 Relative Address = 0x00000040  
 Width = 32 bits  
 Access Type = rw  
@@ -385,7 +380,6 @@ Description Filtering Start Address Register
 
 ### FILTERING_END_ADDRESS  
 
-Module scu  
 Relative Address = 0x00000044  
 Width = 32 bits  
 Access Type = rw  
@@ -402,7 +396,6 @@ Description Defined by FILTEREND input
 
 ### ACCESS_CONTROL_REGISTER_SAC  
 
-Module scu  
 Relative Address = 0x00000050  
 Width = 32 bits  
 Access Type = rw  
@@ -425,7 +418,6 @@ Description SCU Access Control (SAC) Register
 
 ### NON_SECURE_ACCESS_CONTROL  
 
-Module scu  
 Relative Address = 0x00000054  
 Width = 32 bits  
 Access Type = ro  
@@ -464,7 +456,6 @@ Description SCU Non-secure Access Control Register SNSAC
 
 ### ICCICR  
 
-Module scu  
 Relative Address = 0x00000100  
 Width = 32 bits  
 Access Type = rw  
@@ -489,7 +480,6 @@ Description CPU Interface Control Register
 
 ### ICCPMR  
 
-Module scu  
 Relative Address = 0x00000104  
 Width = 32 bits  
 Access Type = rw  
@@ -506,7 +496,6 @@ Description Interrupt Priority Mask Register
 
 ### ICCBPR  
 
-Module scu  
 Relative Address = 0x00000108  
 Width = 32 bits  
 Access Type = rw  
@@ -523,7 +512,6 @@ Description Binary Point Register
 
 ### ICCIAR  
 
-Module scu  
 Relative Address = 0x0000010c  
 Width = 32 bits  
 Access Type = rw  
@@ -542,7 +530,6 @@ Description Interrupt Acknowledge Register
 
 ### ICCEOIR  
 
-Module scu  
 Relative Address = 0x00000110  
 Width = 32 bits  
 Access Type = rw  
@@ -561,7 +548,6 @@ Description End Of Interrupt Register
 
 ### ICCRPR  
 
-Module scu  
 Relative Address = 0x00000114  
 Width = 32 bits  
 Access Type = rw  
@@ -578,7 +564,6 @@ Description Running Priority Register
 
 ### ICCHPIR  
 
-Module scu  
 Relative Address = 0x00000118  
 Width = 32 bits  
 Access Type = rw  
@@ -597,7 +582,6 @@ Description Highest Pending Interrupt Register
 
 ### ICCABPR  
 
-Module scu  
 Relative Address = 0x0000011c  
 Width = 32 bits  
 Access Type = rw  
@@ -614,7 +598,6 @@ Description Aliased Non-secure Binary Point Register
 
 ### ICCIDR  
 
-Module scu  
 Relative Address = 0x000001fc  
 Width = 32 bits  
 Access Type = ro  
@@ -635,7 +618,6 @@ Description CPU Interface Implementer Identification Register
 
 ### GLOBAL_TIMER_COUNTER0  
 
-Module scu  
 Relative Address = 0x00000200  
 Width = 32 bits  
 Access Type = rw  
@@ -650,7 +632,6 @@ Description Global Timer Counter Register 0
 
 ### GLOBAL_TIMER_COUNTER1  
 
-Module scu  
 Relative Address = 0x00000204  
 Width = 32 bits  
 Access Type = rw  
@@ -665,7 +646,6 @@ Description Global Timer Counter Register 1
 
 ### GLOBAL_TIMER_CONTROL  
 
-Module scu  
 Relative Address = 0x00000208  
 Width = 32 bits  
 Access Type = rw  
@@ -692,7 +672,6 @@ Description Global Timer Control Register
 
 ### GLOBAL_TIMER_INTERRUPT_STATUS  
 
-Module scu  
 Relative Address = 0x0000020c  
 Width = 32 bits  
 Access Type = rw  
@@ -709,7 +688,6 @@ Description Global Timer Interrupt Status Register
 
 ### COMPARATOR_VALUE0  
 
-Module scu  
 Relative Address = 0x00000210  
 Width = 32 bits  
 Access Type = rw  
@@ -724,7 +702,6 @@ Description Comparator Value Register_0
 
 ### COMPARATOR_VALUE1  
 
-Module scu  
 Relative Address = 0x00000214  
 Width = 32 bits  
 Access Type = rw  
@@ -739,7 +716,6 @@ Description Comparator Value Register_1
 
 ### AUTO_INCREMENT  
 
-Module scu  
 Relative Address = 0x00000218  
 Width = 32 bits  
 Access Type = rw  
@@ -754,7 +730,6 @@ Description Auto-increment Register
 
 ### PRIVATE_TIMER_LOAD  
 
-Module scu  
 Relative Address = 0x00000600  
 Width = 32 bits  
 Access Type = rw  
@@ -769,7 +744,6 @@ Description Private Timer Load Register
 
 ### PRIVATE_TIMER_COUNTER  
 
-Module scu  
 Relative Address = 0x00000604  
 Width = 32 bits  
 Access Type = rw  
@@ -784,7 +758,6 @@ Description Private Timer Counter Register
 
 ### PRIVATE_TIMER_CONTROL  
 
-Module scu  
 Relative Address = 0x00000608  
 Width = 32 bits  
 Access Type = rw  
@@ -809,7 +782,6 @@ Description Private Timer Control Register
 
 ### PRIVATE_TIMER_INTERRUPT_STATUS  
 
-Module scu  
 Relative Address = 0x0000060c  
 Width = 32 bits  
 Access Type = rw  
@@ -826,7 +798,6 @@ Description Private Timer Interrupt Status Register
 
 ### WATCHDOG_LOAD  
 
-Module scu  
 Relative Address = 0x00000620  
 Width = 32 bits  
 Access Type = rw  
@@ -841,7 +812,6 @@ Description Watchdog Load Register
 
 ### WATCHDOG_COUNTER  
 
-Module scu  
 Relative Address = 0x00000624  
 Width = 32 bits  
 Access Type = rw  
@@ -856,7 +826,6 @@ Description Watchdog Counter Register
 
 ### WATCHDOG_CONTROL  
 
-Module scu  
 Relative Address = 0x00000628  
 Width = 32 bits  
 Access Type = rw  
@@ -883,7 +852,6 @@ Description Watchdog Control Register
 
 ### WATCHDOG_INTERRUPT_STATUS  
 
-Module scu  
 Relative Address = 0x0000062c  
 Width = 32 bits  
 Access Type = rw  
@@ -900,7 +868,6 @@ Description Watchdog Interrupt Status Register
 
 ### WATCHDOG_RESET_STATUS  
 
-Module scu  
 Relative Address = 0x00000630  
 Width = 32 bits  
 Access Type = rw  
@@ -917,7 +884,6 @@ Description Watchdog Reset Status Register
 
 ### WATCHDOG_DISABLE  
 
-Module scu  
 Relative Address = 0x00000634  
 Width = 32 bits  
 Access Type = rw  
@@ -932,7 +898,6 @@ Description Watchdog Disable Register
 
 ### ICDDCR  
 
-Module scu  
 Relative Address = 0x00001000  
 Width = 32 bits  
 Access Type = rw  
@@ -951,7 +916,6 @@ Description Distributor Control Register
 
 ### ICDICTR  
 
-Module scu  
 Relative Address = 0x00001004  
 Width = 32 bits  
 Access Type = ro  
@@ -976,7 +940,6 @@ Description Interrupt Controller Type Register
 
 ### ICDIIDR  
 
-Module scu  
 Relative Address = 0x00001008  
 Width = 32 bits  
 Access Type = ro  
@@ -995,7 +958,6 @@ Description Distributor Implementer Identification Register
 
 ### ICDISR0  
 
-Module scu  
 Relative Address = 0x00001080  
 Width = 32 bits  
 Access Type = rw  
@@ -1010,7 +972,6 @@ Description Interrupt Security Register_0
 
 ### ICDISR1  
 
-Module scu  
 Relative Address = 0x00001084  
 Width = 32 bits  
 Access Type = rw  
@@ -1025,7 +986,6 @@ Description Interrupt Security Register_1
 
 ### ICDISR2  
 
-Module scu  
 Relative Address = 0x00001088  
 Width = 32 bits  
 Access Type = rw  
@@ -1040,7 +1000,6 @@ Description Interrupt Security Register_2
 
 ### ICDISER0  
 
-Module scu  
 Relative Address = 0x00001100  
 Width = 32 bits  
 Access Type = rw  
@@ -1055,7 +1014,6 @@ Description Interrupt Set-enable Register 0
 
 ### ICDISER1  
 
-Module scu  
 Relative Address = 0x00001104  
 Width = 32 bits  
 Access Type = rw  
@@ -1070,7 +1028,6 @@ Description Interrupt Set-enable Register 1
 
 ### ICDISER2  
 
-Module scu  
 Relative Address = 0x00001108  
 Width = 32 bits  
 Access Type = rw  
@@ -1085,7 +1042,6 @@ Description Interrupt Set-enable Register 2
 
 ### ICDICER0  
 
-Module scu  
 Relative Address = 0x00001180  
 Width = 32 bits  
 Access Type = rw  
@@ -1100,7 +1056,6 @@ Description Interrupt Clear-Enable Register 0
 
 ### ICDICER1  
 
-Module scu  
 Relative Address = 0x00001184  
 Width = 32 bits  
 Access Type = rw  
@@ -1115,7 +1070,6 @@ Description Interrupt Clear-Enable Register 1
 
 ### ICDICER2  
 
-Module scu  
 Relative Address = 0x00001188  
 Width = 32 bits  
 Access Type = rw  
@@ -1130,7 +1084,6 @@ Description Interrupt Clear-Enable Register 2
 
 ### ICDISPR0  
 
-Module scu  
 Relative Address = 0x00001200  
 Width = 32 bits  
 Access Type = rw  
@@ -1145,7 +1098,6 @@ Description Interrupt Set-pending Register_0
 
 ### ICDISPR1  
 
-Module scu  
 Relative Address = 0x00001204  
 Width = 32 bits  
 Access Type = rw  
@@ -1160,7 +1112,6 @@ Description Interrupt Set-pending Register_1
 
 ### ICDISPR2  
 
-Module scu  
 Relative Address = 0x00001208  
 Width = 32 bits  
 Access Type = rw  
@@ -1175,7 +1126,6 @@ Description Interrupt Set-pending Register_2
 
 ### ICDICPR0  
 
-Module scu  
 Relative Address = 0x00001280  
 Width = 32 bits  
 Access Type = rw  
@@ -1190,7 +1140,6 @@ Description Interrupt Clear-Pending Register_0
 
 ### ICDICPR1  
 
-Module scu  
 Relative Address = 0x00001284  
 Width = 32 bits  
 Access Type = rw  
@@ -1205,7 +1154,6 @@ Description Interrupt Clear-Pending Register_1
 
 ### ICDICPR2  
 
-Module scu  
 Relative Address = 0x00001288  
 Width = 32 bits  
 Access Type = rw  
@@ -1220,7 +1168,6 @@ Description Interrupt Clear-Pending Register_2
 
 ### ICDABR0  
 
-Module scu  
 Relative Address = 0x00001300  
 Width = 32 bits  
 Access Type = rw  
@@ -1235,7 +1182,6 @@ Description Active Bit register_0
 
 ### ICDABR1  
 
-Module scu  
 Relative Address = 0x00001304  
 Width = 32 bits  
 Access Type = rw  
@@ -1250,7 +1196,6 @@ Description Active Bit register_1
 
 ### ICDABR2  
 
-Module scu  
 Relative Address = 0x00001308  
 Width = 32 bits  
 Access Type = rw  
@@ -1265,7 +1210,6 @@ Description Active Bit register_2
 
 ### ICDIPR0  
 
-Module scu  
 Relative Address = 0x00001400  
 Width = 32 bits  
 Access Type = rw  
@@ -1280,7 +1224,6 @@ Description Interrupt Priority Register_0
 
 ### ICDIPR1  
 
-Module scu  
 Relative Address = 0x00001404  
 Width = 32 bits  
 Access Type = rw  
@@ -1295,7 +1238,6 @@ Description Interrupt Priority Register_1
 
 ### ICDIPR2  
 
-Module scu  
 Relative Address = 0x00001408  
 Width = 32 bits  
 Access Type = rw  
@@ -1310,7 +1252,6 @@ Description Interrupt Priority Register_2
 
 ### ICDIPR3  
 
-Module scu  
 Relative Address = 0x0000140c  
 Width = 32 bits  
 Access Type = rw  
@@ -1325,7 +1266,6 @@ Description Interrupt Priority Register_3
 
 ### ICDIPR4  
 
-Module scu  
 Relative Address = 0x00001410  
 Width = 32 bits  
 Access Type = rw  
@@ -1340,7 +1280,6 @@ Description Interrupt Priority Register_4
 
 ### ICDIPR5  
 
-Module scu  
 Relative Address = 0x00001414  
 Width = 32 bits  
 Access Type = rw  
@@ -1355,7 +1294,6 @@ Description Interrupt Priority Register_5
 
 ### ICDIPR6  
 
-Module scu  
 Relative Address = 0x00001418  
 Width = 32 bits  
 Access Type = rw  
@@ -1370,7 +1308,6 @@ Description Interrupt Priority Register_6
 
 ### ICDIPR7  
 
-Module scu  
 Relative Address = 0x0000141c  
 Width = 32 bits  
 Access Type = rw  
@@ -1385,7 +1322,6 @@ Description Interrupt Priority Register_7
 
 ### ICDIPR8  
 
-Module scu  
 Relative Address = 0x00001420  
 Width = 32 bits  
 Access Type = rw  
@@ -1400,7 +1336,6 @@ Description Interrupt Priority Register_8
 
 ### ICDIPR9  
 
-Module scu  
 Relative Address = 0x00001424  
 Width = 32 bits  
 Access Type = rw  
@@ -1415,7 +1350,6 @@ Description Interrupt Priority Register_9
 
 ### ICDIPR10  
 
-Module scu  
 Relative Address = 0x00001428  
 Width = 32 bits  
 Access Type = rw  
@@ -1430,7 +1364,6 @@ Description Interrupt Priority Register_10
 
 ### ICDIPR11  
 
-Module scu  
 Relative Address = 0x0000142c  
 Width = 32 bits  
 Access Type = rw  
@@ -1445,7 +1378,6 @@ Description Interrupt Priority Register_11
 
 ### ICDIPR12  
 
-Module scu  
 Relative Address = 0x00001430  
 Width = 32 bits  
 Access Type = rw  
@@ -1460,7 +1392,6 @@ Description Interrupt Priority Register_12
 
 ### ICDIPR13  
 
-Module scu  
 Relative Address = 0x00001434  
 Width = 32 bits  
 Access Type = rw  
@@ -1475,7 +1406,6 @@ Description Interrupt Priority Register_13
 
 ### ICDIPR14  
 
-Module scu  
 Relative Address = 0x00001438  
 Width = 32 bits  
 Access Type = rw  
@@ -1490,7 +1420,6 @@ Description Interrupt Priority Register_14
 
 ### ICDIPR15  
 
-Module scu  
 Relative Address = 0x0000143c  
 Width = 32 bits  
 Access Type = rw  
@@ -1505,7 +1434,6 @@ Description Interrupt Priority Register_15
 
 ### ICDIPR16  
 
-Module scu  
 Relative Address = 0x00001440  
 Width = 32 bits  
 Access Type = rw  
@@ -1520,7 +1448,6 @@ Description Interrupt Priority Register_16
 
 ### ICDIPR17  
 
-Module scu  
 Relative Address = 0x00001444  
 Width = 32 bits  
 Access Type = rw  
@@ -1535,7 +1462,6 @@ Description Interrupt Priority Register_17
 
 ### ICDIPR18  
 
-Module scu  
 Relative Address = 0x00001448  
 Width = 32 bits  
 Access Type = rw  
@@ -1550,7 +1476,6 @@ Description Interrupt Priority Register_18
 
 ### ICDIPR19  
 
-Module scu  
 Relative Address = 0x0000144c  
 Width = 32 bits  
 Access Type = rw  
@@ -1565,7 +1490,6 @@ Description Interrupt Priority Register_19
 
 ### ICDIPR20  
 
-Module scu  
 Relative Address = 0x00001450  
 Width = 32 bits  
 Access Type = rw  
@@ -1580,7 +1504,6 @@ Description Interrupt Priority Register_20
 
 ### ICDIPR21  
 
-Module scu  
 Relative Address = 0x00001454  
 Width = 32 bits  
 Access Type = rw  
@@ -1595,7 +1518,6 @@ Description Interrupt Priority Register_21
 
 ### ICDIPR22  
 
-Module scu  
 Relative Address = 0x00001458  
 Width = 32 bits  
 Access Type = rw  
@@ -1610,7 +1532,6 @@ Description Interrupt Priority Register_22
 
 ### ICDIPR23  
 
-Module scu  
 Relative Address = 0x0000145c  
 Width = 32 bits  
 Access Type = rw  
@@ -1625,7 +1546,6 @@ Description Interrupt Priority Register_23
 
 ### ICDIPTR0  
 
-Module scu  
 Relative Address = 0x00001800  
 Width = 32 bits  
 Access Type = ro  
@@ -1654,7 +1574,6 @@ Description Interrupt Processor Targets Register 0
 
 ### ICDIPTR1  
 
-Module scu  
 Relative Address = 0x00001804  
 Width = 32 bits  
 Access Type = ro  
@@ -1683,7 +1602,6 @@ Description Interrupt Processor Targets Register 1
 
 ### ICDIPTR2  
 
-Module scu  
 Relative Address = 0x00001808  
 Width = 32 bits  
 Access Type = ro  
@@ -1712,7 +1630,6 @@ Description Interrupt Processor Targets Register 2
 
 ### ICDIPTR3  
 
-Module scu  
 Relative Address = 0x0000180c  
 Width = 32 bits  
 Access Type = ro  
@@ -1741,7 +1658,6 @@ Description Interrupt Processor Targets Register 3
 
 ### ICDIPTR4  
 
-Module scu  
 Relative Address = 0x00001810  
 Width = 32 bits  
 Access Type = rw  
@@ -1756,7 +1672,6 @@ Description Interrupt Processor Targets Register 4
 
 ### ICDIPTR5  
 
-Module scu  
 Relative Address = 0x00001814  
 Width = 32 bits  
 Access Type = ro  
@@ -1771,7 +1686,6 @@ Description Interrupt Processor Targets Register 5
 
 ### ICDIPTR6  
 
-Module scu  
 Relative Address = 0x00001818  
 Width = 32 bits  
 Access Type = ro  
@@ -1790,7 +1704,6 @@ Description Interrupt Processor Targets Register 6
 
 ### ICDIPTR7  
 
-Module scu  
 Relative Address = 0x0000181c  
 Width = 32 bits  
 Access Type = ro  
@@ -1819,7 +1732,6 @@ Description Interrupt Processor Targets Register 7
 
 ### ICDIPTR8  
 
-Module scu  
 Relative Address = 0x00001820  
 Width = 32 bits  
 Access Type = rw  
@@ -1848,7 +1760,6 @@ Description Interrupt Processor Targets Register 8
 
 ### ICDIPTR9  
 
-Module scu  
 Relative Address = 0x00001824  
 Width = 32 bits  
 Access Type = rw  
@@ -1877,7 +1788,6 @@ Description Interrupt Processor Targets Register 9
 
 ### ICDIPTR10  
 
-Module scu  
 Relative Address = 0x00001828  
 Width = 32 bits  
 Access Type = rw  
@@ -1906,7 +1816,6 @@ Description Interrupt Processor Targets Register 10
 
 ### ICDIPTR11  
 
-Module scu  
 Relative Address = 0x0000182c  
 Width = 32 bits  
 Access Type = rw  
@@ -1935,7 +1844,6 @@ Description Interrupt Processor Targets Register 11
 
 ### ICDIPTR12  
 
-Module scu  
 Relative Address = 0x00001830  
 Width = 32 bits  
 Access Type = rw  
@@ -1964,7 +1872,6 @@ Description Interrupt Processor Targets Register 12
 
 ### ICDIPTR13  
 
-Module scu  
 Relative Address = 0x00001834  
 Width = 32 bits  
 Access Type = rw  
@@ -1993,7 +1900,6 @@ Description Interrupt Processor Targets Register 13
 
 ### ICDIPTR14  
 
-Module scu  
 Relative Address = 0x00001838  
 Width = 32 bits  
 Access Type = rw  
@@ -2022,7 +1928,6 @@ Description Interrupt Processor Targets Register 14
 
 ### ICDIPTR15  
 
-Module scu  
 Relative Address = 0x0000183c  
 Width = 32 bits  
 Access Type = rw  
@@ -2051,7 +1956,6 @@ Description Interrupt Processor Targets Register 15
 
 ### ICDIPTR16  
 
-Module scu  
 Relative Address = 0x00001840  
 Width = 32 bits  
 Access Type = rw  
@@ -2080,7 +1984,6 @@ Description Interrupt Processor Targets Register 16
 
 ### ICDIPTR17  
 
-Module scu  
 Relative Address = 0x00001844  
 Width = 32 bits  
 Access Type = rw  
@@ -2109,7 +2012,6 @@ Description Interrupt Processor Targets Register 17
 
 ### ICDIPTR18  
 
-Module scu  
 Relative Address = 0x00001848  
 Width = 32 bits  
 Access Type = rw  
@@ -2138,7 +2040,6 @@ Description Interrupt Processor Targets Register 18
 
 ### ICDIPTR19  
 
-Module scu  
 Relative Address = 0x0000184c  
 Width = 32 bits  
 Access Type = rw  
@@ -2167,7 +2068,6 @@ Description Interrupt Processor Targets Register 19
 
 ### ICDIPTR20  
 
-Module scu  
 Relative Address = 0x00001850  
 Width = 32 bits  
 Access Type = rw  
@@ -2196,7 +2096,6 @@ Description Interrupt Processor Targets Register 20
 
 ### ICDIPTR21  
 
-Module scu  
 Relative Address = 0x00001854  
 Width = 32 bits  
 Access Type = rw  
@@ -2225,7 +2124,6 @@ Description Interrupt Processor Targets Register 21
 
 ### ICDIPTR22  
 
-Module scu  
 Relative Address = 0x00001858  
 Width = 32 bits  
 Access Type = rw  
@@ -2254,7 +2152,6 @@ Description Interrupt Processor Targets Register 22
 
 ### ICDIPTR23  
 
-Module scu  
 Relative Address = 0x0000185c  
 Width = 32 bits  
 Access Type = rw  
@@ -2283,7 +2180,6 @@ Description Interrupt Processor Targets Register 23
 
 ### ICDICFR0  
 
-Module scu  
 Relative Address = 0x00001c00  
 Width = 32 bits  
 Access Type = ro  
@@ -2328,7 +2224,6 @@ Description Interrupt Configuration Register 0
 
 ### ICDICFR1  
 
-Module scu  
 Relative Address = 0x00001c04  
 Width = 32 bits  
 Access Type = rw  
@@ -2373,7 +2268,6 @@ Description Interrupt Configuration Register 1
 
 ### ICDICFR2  
 
-Module scu  
 Relative Address = 0x00001c08  
 Width = 32 bits  
 Access Type = rw  
@@ -2418,7 +2312,6 @@ Description Interrupt Configuration Register 2
 
 ### ICDICFR3  
 
-Module scu  
 Relative Address = 0x00001c0c  
 Width = 32 bits  
 Access Type = rw  
@@ -2463,7 +2356,6 @@ Description Interrupt Configuration Register 3
 
 ### ICDICFR4  
 
-Module scu  
 Relative Address = 0x00001c10  
 Width = 32 bits  
 Access Type = rw  
@@ -2508,7 +2400,6 @@ Description Interrupt Configuration Register 4
 
 ### ICDICFR5  
 
-Module scu  
 Relative Address = 0x00001c14  
 Width = 32 bits  
 Access Type = rw  
@@ -2553,7 +2444,6 @@ Description Interrupt Configuration Register 5
 
 ### PPI_STATUS  
 
-Module scu  
 Relative Address = 0x00001d00  
 Width = 32 bits  
 Access Type = ro  
@@ -2572,7 +2462,6 @@ Description PPI Status Register
 
 ### SPI_STATUS_0  
 
-Module scu  
 Relative Address = 0x00001d04  
 Width = 32 bits  
 Access Type = ro  
@@ -2587,7 +2476,6 @@ Description SPI Status Register 0
 
 ### SPI_STATUS_1  
 
-Module scu  
 Relative Address = 0x00001d08  
 Width = 32 bits  
 Access Type = ro  
@@ -2602,7 +2490,6 @@ Description SPI Status Register 1
 
 ### ICDSGIR  
 
-Module scu  
 Relative Address = 0x00001f00  
 Width = 32 bits  
 Access Type = rw  
@@ -2627,7 +2514,6 @@ Description Software Generated Interrupt Register
 
 ### ICPIDR4  
 
-Module scu  
 Relative Address = 0x00001fd0  
 Width = 32 bits  
 Access Type = rw  
@@ -2644,7 +2530,6 @@ Description Peripheral ID4
 
 ### ICPIDR5  
 
-Module scu  
 Relative Address = 0x00001fd4  
 Width = 32 bits  
 Access Type = rw  
@@ -2659,7 +2544,6 @@ Description Peripheral ID5
 
 ### ICPIDR6  
 
-Module scu  
 Relative Address = 0x00001fd8  
 Width = 32 bits  
 Access Type = rw  
@@ -2674,7 +2558,6 @@ Description Peripheral ID6
 
 ### ICPIDR7  
 
-Module scu  
 Relative Address = 0x00001fdc  
 Width = 32 bits  
 Access Type = rw  
@@ -2689,7 +2572,6 @@ Description Peripheral ID7
 
 ### ICPIDR0  
 
-Module scu  
 Relative Address = 0x00001fe0  
 Width = 32 bits  
 Access Type = rw  
@@ -2706,7 +2588,6 @@ Description Peripheral ID0
 
 ### ICPIDR1  
 
-Module scu  
 Relative Address = 0x00001fe4  
 Width = 32 bits  
 Access Type = rw  
@@ -2725,7 +2606,6 @@ Description Peripheral ID1
 
 ### ICPIDR2  
 
-Module scu  
 Relative Address = 0x00001fe8  
 Width = 32 bits  
 Access Type = rw  
@@ -2746,7 +2626,6 @@ Description Peripheral ID2
 
 ### ICPIDR3  
 
-Module scu  
 Relative Address = 0x00001fec  
 Width = 32 bits  
 Access Type = rw  
@@ -2765,7 +2644,6 @@ Description Peripheral ID3
 
 ### ICCIDR0  
 
-Module scu  
 Relative Address = 0x00001ff0  
 Width = 32 bits  
 Access Type = rw  
@@ -2780,7 +2658,6 @@ Description Component ID0
 
 ### ICCIDR1  
 
-Module scu  
 Relative Address = 0x00001ff4  
 Width = 32 bits  
 Access Type = rw  
@@ -2795,7 +2672,6 @@ Description Component ID1
 
 ### ICCIDR2  
 
-Module scu  
 Relative Address = 0x00001ff8  
 Width = 32 bits  
 Access Type = rw  
@@ -2810,7 +2686,6 @@ Description Component ID2
 
 ### ICCIDR3  
 
-Module scu  
 Relative Address = 0x00001ffc  
 Width = 32 bits  
 Access Type = rw  

@@ -2,15 +2,15 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // Device (PL) Config
-// Auto-generated on Sun Sep 20 15:25:57 EEST 2020
+// Auto-generated on Sun Sep 20 23:32:01 EEST 2020
 
 #include <stdint.h>
 
 // 1 banks of devcfg chips
-#define devcfg_BASE_ADDR 0xf8007000
+#define devcfg_BASE_ADDR 0xf8007000U
 
 // Control Register
-#define devcfg_XDCFG_CTRL_OFFSET 0x00000000
+#define devcfg_XDCFG_CTRL_OFFSET 0x00000000U
 #define devcfg_XDCFG_CTRL_FORCE_RST_LSHIFT 0x0000001fU
 #define devcfg_XDCFG_CTRL_FORCE_RST 0x80000000U
 #define devcfg_XDCFG_CTRL_FORCE_RST_MASK 0x80000000U
@@ -77,7 +77,7 @@
 #define devcfg_XDCFG_CTRL_MASK 0xef801fffU
 
 // Locks for the Control Register.
-#define devcfg_XDCFG_LOCK_OFFSET 0x00000004
+#define devcfg_XDCFG_LOCK_OFFSET 0x00000004U
 #define devcfg_XDCFG_LOCK_reserved_0_LSHIFT 0x00000005U
 #define devcfg_XDCFG_LOCK_reserved_0_MASK 0xffffffe0U
 #define devcfg_XDCFG_LOCK_AES_FUSE_LOCK_LSHIFT 0x00000004U
@@ -98,7 +98,7 @@
 #define devcfg_XDCFG_LOCK_MASK 0x0000001fU
 
 // Configuration Register
-#define devcfg_XDCFG_CFG_OFFSET 0x00000008
+#define devcfg_XDCFG_CFG_OFFSET 0x00000008U
 #define devcfg_XDCFG_CFG_reserved_0_LSHIFT 0x0000000cU
 #define devcfg_XDCFG_CFG_reserved_0_MASK 0xfffff000U
 #define devcfg_XDCFG_CFG_RFIFO_TH_LSHIFT 0x0000000aU
@@ -132,7 +132,7 @@
 #define devcfg_XDCFG_CFG_MASK 0x00000ff0U
 
 // Interrupt Status
-#define devcfg_XDCFG_INT_STS_OFFSET 0x0000000c
+#define devcfg_XDCFG_INT_STS_OFFSET 0x0000000cU
 #define devcfg_XDCFG_INT_STS_PSS_GTS_USR_B_INT_LSHIFT 0x0000001fU
 #define devcfg_XDCFG_INT_STS_PSS_GTS_USR_B_INT 0x80000000U
 #define devcfg_XDCFG_INT_STS_PSS_GTS_USR_B_INT_MASK 0x80000000U
@@ -215,7 +215,7 @@
 #define devcfg_XDCFG_INT_STS_MASK 0xf8f7f87fU
 
 // Interrupt Mask.
-#define devcfg_XDCFG_INT_MASK_OFFSET 0x00000010
+#define devcfg_XDCFG_INT_MASK_OFFSET 0x00000010U
 #define devcfg_XDCFG_INT_MASK_M_PSS_GTS_USR_B_INT_LSHIFT 0x0000001fU
 #define devcfg_XDCFG_INT_MASK_M_PSS_GTS_USR_B_INT 0x80000000U
 #define devcfg_XDCFG_INT_MASK_M_PSS_GTS_USR_B_INT_MASK 0x80000000U
@@ -298,7 +298,7 @@
 #define devcfg_XDCFG_INT_MASK_MASK 0xf8f7f87fU
 
 // Miscellaneous Status.
-#define devcfg_XDCFG_STATUS_OFFSET 0x00000014
+#define devcfg_XDCFG_STATUS_OFFSET 0x00000014U
 #define devcfg_XDCFG_STATUS_DMA_CMD_Q_F_LSHIFT 0x0000001fU
 #define devcfg_XDCFG_STATUS_DMA_CMD_Q_F 0x80000000U
 #define devcfg_XDCFG_STATUS_DMA_CMD_Q_F_MASK 0x80000000U
@@ -355,17 +355,17 @@
 #define devcfg_XDCFG_STATUS_MASK 0xf1f7fffeU
 
 // DMA Source Address.
-#define devcfg_XDCFG_DMA_SRC_ADDR_OFFSET 0x00000018
+#define devcfg_XDCFG_DMA_SRC_ADDR_OFFSET 0x00000018U
 #define devcfg_XDCFG_DMA_SRC_ADDR_SRC_ADDR_LSHIFT 0x00000000U
 #define devcfg_XDCFG_DMA_SRC_ADDR_SRC_ADDR_MASK 0x00000000U
 
 // DMA Destination Address.
-#define devcfg_XDCFG_DMA_DEST_ADDR_OFFSET 0x0000001c
+#define devcfg_XDCFG_DMA_DEST_ADDR_OFFSET 0x0000001cU
 #define devcfg_XDCFG_DMA_DEST_ADDR_DST_ADDR_LSHIFT 0x00000000U
 #define devcfg_XDCFG_DMA_DEST_ADDR_DST_ADDR_MASK 0x00000000U
 
 // DMA Source Transfer Length.
-#define devcfg_XDCFG_DMA_SRC_LEN_OFFSET 0x00000020
+#define devcfg_XDCFG_DMA_SRC_LEN_OFFSET 0x00000020U
 #define devcfg_XDCFG_DMA_SRC_LEN_reserved_0_LSHIFT 0x0000001bU
 #define devcfg_XDCFG_DMA_SRC_LEN_reserved_0_MASK 0xf8000000U
 #define devcfg_XDCFG_DMA_SRC_LEN_DMA_LEN_LSHIFT 0x00000000U
@@ -373,7 +373,7 @@
 #define devcfg_XDCFG_DMA_SRC_LEN_MASK 0x07ffffffU
 
 // DMA Destination Transfer Length.
-#define devcfg_XDCFG_DMA_DEST_LEN_OFFSET 0x00000024
+#define devcfg_XDCFG_DMA_DEST_LEN_OFFSET 0x00000024U
 #define devcfg_XDCFG_DMA_DEST_LEN_reserved_0_LSHIFT 0x0000001bU
 #define devcfg_XDCFG_DMA_DEST_LEN_reserved_0_MASK 0xf8000000U
 #define devcfg_XDCFG_DMA_DEST_LEN_DMA_LEN_LSHIFT 0x00000000U
@@ -381,18 +381,18 @@
 #define devcfg_XDCFG_DMA_DEST_LEN_MASK 0x07ffffffU
 
 // Multi-Boot Address Pointer.
-#define devcfg_XDCFG_MULTIBOOT_ADDR_OFFSET 0x0000002c
+#define devcfg_XDCFG_MULTIBOOT_ADDR_OFFSET 0x0000002cU
 #define devcfg_XDCFG_MULTIBOOT_ADDR_MULTIBOOT_ADDR_LSHIFT 0x00000000U
 #define devcfg_XDCFG_MULTIBOOT_ADDR_MULTIBOOT_ADDR_MASK 0x00001fffU
 #define devcfg_XDCFG_MULTIBOOT_ADDR_MASK 0x00001fffU
 
 // Unlock Control.
-#define devcfg_XDCFG_UNLOCK_OFFSET 0x00000034
+#define devcfg_XDCFG_UNLOCK_OFFSET 0x00000034U
 #define devcfg_XDCFG_UNLOCK_UNLOCK_LSHIFT 0x00000000U
 #define devcfg_XDCFG_UNLOCK_UNLOCK_MASK 0x00000000U
 
 // Miscellaneous Control.
-#define devcfg_XDCFG_MCTRL_OFFSET 0x00000080
+#define devcfg_XDCFG_MCTRL_OFFSET 0x00000080U
 #define devcfg_XDCFG_MCTRL_PS_VERSION_LSHIFT 0x0000001cU
 #define devcfg_XDCFG_MCTRL_PS_VERSION_MASK 0xf0000000U
 #define devcfg_XDCFG_MCTRL_reserved_0_LSHIFT 0x0000001bU
@@ -439,7 +439,7 @@
 #define devcfg_XDCFG_MCTRL_MASK 0xf0000110U
 
 // XADC Interface Configuration.
-#define devcfg_XADCIF_CFG_OFFSET 0x00000100
+#define devcfg_XADCIF_CFG_OFFSET 0x00000100U
 #define devcfg_XADCIF_CFG_ENABLE_LSHIFT 0x0000001fU
 #define devcfg_XADCIF_CFG_ENABLE 0x80000000U
 #define devcfg_XADCIF_CFG_ENABLE_MASK 0x80000000U
@@ -468,7 +468,7 @@
 #define devcfg_XADCIF_CFG_MASK 0x80ff331fU
 
 // XADC Interface Interrupt Status.
-#define devcfg_XADCIF_INT_STS_OFFSET 0x00000104
+#define devcfg_XADCIF_INT_STS_OFFSET 0x00000104U
 #define devcfg_XADCIF_INT_STS_reserved_0_LSHIFT 0x0000000aU
 #define devcfg_XADCIF_INT_STS_reserved_0_MASK 0xfffffc00U
 #define devcfg_XADCIF_INT_STS_CFIFO_LTH_LSHIFT 0x00000009U
@@ -485,7 +485,7 @@
 #define devcfg_XADCIF_INT_STS_MASK 0x000003ffU
 
 // XADC Interface Interrupt Mask.
-#define devcfg_XADCIF_INT_MASK_OFFSET 0x00000108
+#define devcfg_XADCIF_INT_MASK_OFFSET 0x00000108U
 #define devcfg_XADCIF_INT_MASK_reserved_0_LSHIFT 0x0000000aU
 #define devcfg_XADCIF_INT_MASK_reserved_0_MASK 0xfffffc00U
 #define devcfg_XADCIF_INT_MASK_M_CFIFO_LTH_LSHIFT 0x00000009U
@@ -502,7 +502,7 @@
 #define devcfg_XADCIF_INT_MASK_MASK 0x000003ffU
 
 // XADC Interface Miscellaneous Status.
-#define devcfg_XADCIF_MSTS_OFFSET 0x0000010c
+#define devcfg_XADCIF_MSTS_OFFSET 0x0000010cU
 #define devcfg_XADCIF_MSTS_reserved_0_LSHIFT 0x00000014U
 #define devcfg_XADCIF_MSTS_reserved_0_MASK 0xfff00000U
 #define devcfg_XADCIF_MSTS_CFIFO_LVL_LSHIFT 0x00000010U
@@ -529,17 +529,17 @@
 #define devcfg_XADCIF_MSTS_MASK 0x000fffffU
 
 // XADC Interface Command FIFO Data Port
-#define devcfg_XADCIF_CMDFIFO_OFFSET 0x00000110
+#define devcfg_XADCIF_CMDFIFO_OFFSET 0x00000110U
 #define devcfg_XADCIF_CMDFIFO_CMD_LSHIFT 0x00000000U
 #define devcfg_XADCIF_CMDFIFO_CMD_MASK 0x00000000U
 
 // XADC Interface Data FIFO Data Port
-#define devcfg_XADCIF_RDFIFO_OFFSET 0x00000114
+#define devcfg_XADCIF_RDFIFO_OFFSET 0x00000114U
 #define devcfg_XADCIF_RDFIFO_RDDATA_LSHIFT 0x00000000U
 #define devcfg_XADCIF_RDFIFO_RDDATA_MASK 0x00000000U
 
 // XADC Interface Miscellaneous Control.
-#define devcfg_XADCIF_MCTL_OFFSET 0x00000118
+#define devcfg_XADCIF_MCTL_OFFSET 0x00000118U
 #define devcfg_XADCIF_MCTL_reserved_0_LSHIFT 0x00000005U
 #define devcfg_XADCIF_MCTL_reserved_0_MASK 0xffffffe0U
 #define devcfg_XADCIF_MCTL_RESET_LSHIFT 0x00000004U

@@ -34,7 +34,6 @@ abstract class CustomChip(val size : CustomChipSize,
 extends Chip(chipID, motherboard, false)
 {
   var registerAddress = 0
-  var registerStorage = HashMap[String, Data]()
 
   override def addRegister(register : Register) = 
   {
@@ -43,19 +42,9 @@ extends Chip(chipID, motherboard, false)
     registers += ((register.defi.name, register))
     register.owner = this    
     registerAddress += 4
-
-    val action = register.asInstanceOf[CustomRegister]
-    
-    if(action.needsStorage)
-    {
-      var reg = Reg(Bits(32 bits)) init action.defi.default
-      registerStorage += ((name, reg.asData))
-    }
   }
 
   override def addHole( bytesForHole : Int ) : Unit = registerAddress += bytesForHole
-
-  def getRegisterStorage(name : String) : Data = registerStorage(name) 
 
   def connect() : Unit = {
     val buses = motherboard.getBusesConnectedToChip(chipID)

@@ -2,7 +2,7 @@ package blinky
 import spinal.core._
 import spinal.lib.io._
 
-object BuildMain {
+object Build {
     val sc = SpinalConfig(
       mode = Verilog,
       mergeAsyncProcess = true,

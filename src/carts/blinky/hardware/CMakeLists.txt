@@ -27,7 +27,7 @@ project(${project} NONE)
 
 add_custom_command( 
       OUTPUT ${BIN_PATH}
-      COMMAND sbt "runMain blinky.BuildMain"
+      COMMAND sbt "runMain blinky.Build"
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/spinalHDL
       DEPENDS     ${SRC_VERILOG_FILES} 
                   ${SRC_SCALA_FILES} 

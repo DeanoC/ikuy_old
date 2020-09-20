@@ -2,7 +2,7 @@
 
 Module AXI_HP Interface (AFI) (axi_hp)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 axi_hp0 Base Address = 0xf8008000  
 axi_hp1 Base Address = 0xf8009000  
@@ -37,7 +37,6 @@ axi_hp3 Base Address = 0xf800b000
 
 ### hp_AFI_RDCHAN_CTRL  
 
-Module axi_hp  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -47,7 +46,6 @@ Description Read Channel Control Register
 
 ### hp_AFI_RDCHAN_ISSUINGCAP  
 
-Module axi_hp  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -57,7 +55,6 @@ Description Read Issuing Capability Register
 
 ### hp_AFI_RDQOS  
 
-Module axi_hp  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = mixed  
@@ -67,7 +64,6 @@ Description QOS Read Channel Register
 
 ### hp_AFI_RDDATAFIFO_LEVEL  
 
-Module axi_hp  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -77,7 +73,6 @@ Description Read Data FIFO Level Register
 
 ### hp_AFI_RDDEBUG  
 
-Module axi_hp  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = mixed  
@@ -87,7 +82,6 @@ Description Read Channel Debug Register
 
 ### hp_AFI_WRCHAN_CTRL  
 
-Module axi_hp  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -97,7 +91,6 @@ Description Write Channel Control Register
 
 ### hp_AFI_WRCHAN_ISSUINGCAP  
 
-Module axi_hp  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = mixed  
@@ -107,7 +100,6 @@ Description Write Issuing Capability Register
 
 ### hp_AFI_WRQOS  
 
-Module axi_hp  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = mixed  
@@ -117,7 +109,6 @@ Description QOS Write Channel Register
 
 ### hp_AFI_WRDATAFIFO_LEVEL  
 
-Module axi_hp  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = mixed  
@@ -127,7 +118,6 @@ Description Write Data FIFO Level Register
 
 ### hp_AFI_WRDEBUG  
 
-Module axi_hp  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = mixed  

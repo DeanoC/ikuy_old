@@ -2,7 +2,7 @@
 
 Module Static Memory Controller (smcc)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 smcc Base Address = 0xe000e000  
 
@@ -68,7 +68,6 @@ smcc Base Address = 0xe000e000
 
 ### MEMC_STATUS  
 
-Module smcc  
 Relative Address = 0x00000000  
 Width = 13 bits  
 Access Type = ro  
@@ -78,7 +77,6 @@ Description Operating and Interrupt Status
 
 ### MEMC_IF_CONFIG  
 
-Module smcc  
 Relative Address = 0x00000004  
 Width = 18 bits  
 Access Type = ro  
@@ -88,7 +86,6 @@ Description SMC configuration information
 
 ### MEMC_SET_CONFIG  
 
-Module smcc  
 Relative Address = 0x00000008  
 Width = 7 bits  
 Access Type = wo  
@@ -98,7 +95,6 @@ Description Enable interrupts and lower power state
 
 ### MEMC_CLR_CONFIG  
 
-Module smcc  
 Relative Address = 0x0000000c  
 Width = 7 bits  
 Access Type = wo  
@@ -108,7 +104,6 @@ Description Disable interrupts and exit from low-power state
 
 ### DIRECT_CMD  
 
-Module smcc  
 Relative Address = 0x00000010  
 Width = 26 bits  
 Access Type = wo  
@@ -118,7 +113,6 @@ Description Issue mem commands and register updates
 
 ### SET_CYCLES  
 
-Module smcc  
 Relative Address = 0x00000014  
 Width = 24 bits  
 Access Type = wo  
@@ -128,7 +122,6 @@ Description Stage a write to a Cycle register
 
 ### SET_OPMODE  
 
-Module smcc  
 Relative Address = 0x00000018  
 Width = 16 bits  
 Access Type = mixed  
@@ -138,7 +131,6 @@ Description Stage a write to an OpMode register
 
 ### REFRESH_PERIOD_0  
 
-Module smcc  
 Relative Address = 0x00000020  
 Width = 4 bits  
 Access Type = rw  
@@ -148,7 +140,6 @@ Description Idle cycles between read/write bursts
 
 ### REFRESH_PERIOD_1  
 
-Module smcc  
 Relative Address = 0x00000024  
 Width = 4 bits  
 Access Type = rw  
@@ -158,7 +149,6 @@ Description Insert idle cycles between bursts
 
 ### IF0_CHIP_0_CONFIG  
 
-Module smcc  
 Relative Address = 0x00000100  
 Width = 21 bits  
 Access Type = ro  
@@ -168,7 +158,6 @@ Description SRAM/NOR chip select 0 timing, active
 
 ### OPMODE  
 
-Module smcc  
 Relative Address = 0x00000104  
 Width = 32 bits  
 Access Type = ro  
@@ -178,7 +167,6 @@ Description SRAM/NOR chip select 0 OpCode, active
 
 ### IF0_CHIP_1_CONFIG  
 
-Module smcc  
 Relative Address = 0x00000120  
 Width = 21 bits  
 Access Type = ro  
@@ -188,7 +176,6 @@ Description SRAM/NOR chip select 1 timing, active
 
 ### OPMODE0_1  
 
-Module smcc  
 Relative Address = 0x00000124  
 Width = 32 bits  
 Access Type = ro  
@@ -198,7 +185,6 @@ Description SRAM/NOR chip select 1 OpCode, active
 
 ### IF1_CHIP_0_CONFIG  
 
-Module smcc  
 Relative Address = 0x00000180  
 Width = 24 bits  
 Access Type = ro  
@@ -208,7 +194,6 @@ Description NAND Flash timing, active
 
 ### OPMODE1_0  
 
-Module smcc  
 Relative Address = 0x00000184  
 Width = 32 bits  
 Access Type = ro  
@@ -218,7 +203,6 @@ Description NAND Flash OpCode, active
 
 ### USER_STATUS  
 
-Module smcc  
 Relative Address = 0x00000200  
 Width = 8 bits  
 Access Type = ro  
@@ -228,7 +212,6 @@ Description User Status
 
 ### USER_CONFIG  
 
-Module smcc  
 Relative Address = 0x00000204  
 Width = 8 bits  
 Access Type = wo  
@@ -238,7 +221,6 @@ Description User Configuration
 
 ### IF1_ECC  
 
-Module smcc  
 Relative Address = 0x00000400  
 Width = 30 bits  
 Access Type = ro  
@@ -248,7 +230,6 @@ Description ECC Status and Clear
 
 ### ECC_MEMCFG_1  
 
-Module smcc  
 Relative Address = 0x00000404  
 Width = 13 bits  
 Access Type = rw  
@@ -258,7 +239,6 @@ Description ECC Memory Configuation
 
 ### ECC_MEMCOMMAND1_1  
 
-Module smcc  
 Relative Address = 0x00000408  
 Width = 25 bits  
 Access Type = rw  
@@ -268,7 +248,6 @@ Description ECC Memory Command 1
 
 ### ECC_MEMCOMMAND2_1  
 
-Module smcc  
 Relative Address = 0x0000040c  
 Width = 25 bits  
 Access Type = rw  
@@ -278,7 +257,6 @@ Description ECC Memory Command 2
 
 ### ECC_ADDR0_1  
 
-Module smcc  
 Relative Address = 0x00000410  
 Width = 32 bits  
 Access Type = ro  
@@ -288,7 +266,6 @@ Description ECC Address 0
 
 ### ECC_ADDR1_1  
 
-Module smcc  
 Relative Address = 0x00000414  
 Width = 24 bits  
 Access Type = ro  
@@ -298,7 +275,6 @@ Description ECC Address 1
 
 ### ECC_VALUE0_1  
 
-Module smcc  
 Relative Address = 0x00000418  
 Width = 32 bits  
 Access Type = ro  
@@ -308,7 +284,6 @@ Description ECC Value 0
 
 ### ECC_VALUE1_1  
 
-Module smcc  
 Relative Address = 0x0000041c  
 Width = 32 bits  
 Access Type = ro  
@@ -318,7 +293,6 @@ Description ECC Value 1
 
 ### ECC_VALUE2_1  
 
-Module smcc  
 Relative Address = 0x00000420  
 Width = 32 bits  
 Access Type = ro  
@@ -328,7 +302,6 @@ Description ECC Value 2
 
 ### ECC_VALUE3_1  
 
-Module smcc  
 Relative Address = 0x00000424  
 Width = 32 bits  
 Access Type = ro  

@@ -30,8 +30,6 @@ extends Component
     val s_axi = slave( Axi4(config) )
   }
 
-  var chipBaseAddress = 0L
-
   def sizeConverter(sizeVal : UInt) : UInt =
   {
     var arsize = UInt(3 bits)
@@ -45,6 +43,9 @@ extends Component
 
   val bus = this
   val chipAddresses = HashMap[ChipID, Long]()
+
+  def getRelativeChipAddress(chipID : ChipID) = chipAddresses(chipID)
+  def getAbsoluteChipAddress(chipID : ChipID) = chipAddresses(chipID) + (1L << addressSpaceHighBit)
 
   val chips = motherboard.getChipsConnectedToBus(busID)
   chips.filter( p => !motherboard.isChipHard(p)).foreach( c => {

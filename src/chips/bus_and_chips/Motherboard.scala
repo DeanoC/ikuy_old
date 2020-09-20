@@ -107,20 +107,20 @@ extends Component
 
     // create the chips 
     // will create io for each bus they will be connected to
-    chipGenerators.foreach( { case (chipID, cg) => {
+    chipGenerators.foreach{ case (chipID, cg) => {
       val chip = cg(chipID, this)
       assert(chip != null)
       chips += (chipID -> chip)
-    }})
+    }}
 
     // create the buses
     // will create io for each chip they will be connected to
-    busGenerators.foreach( { case (busID, bg) => {
+    busGenerators.foreach{ case (busID, bg) => {
       buses += busID -> bg(busID, this)
-    }})
+    }}
 
     // now connect buses and chips
-    chips.foreach( { case (c, chip) => {
+    chips.foreach{ case (c, chip) => {
         val busIDs = getBusesConnectedToChip(c)
         busIDs.foreach( b => {
           val bus = getBusByID(b)
@@ -133,7 +133,12 @@ extends Component
             else println(s"ERROR ${c.name}_${n}=${cOption} or ${b.name}_${n}=${bOption} not found")
           })
         })
-    }})
+    }}
 
+    // generate headers and docs
+    chips.foreach{ case (c, chip) => {
+      CHeaderRegisterOutput.generateHeaders(chip)
+      MarkdownRegisterOutput.generateMarkdowns(chip)
+    }}
   }
 }

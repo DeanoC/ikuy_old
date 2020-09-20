@@ -2,7 +2,7 @@
 
 Module CoreSight Cross Trigger Interface (cti)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 debug_cpu_cti0 Base Address = 0xf8898000  
 debug_cpu_cti1 Base Address = 0xf8899000  
@@ -127,7 +127,6 @@ debug_cpu_ftm Base Address = 0xf8809000
 
 ### CTICONTROL  
 
-Module cti  
 Relative Address = 0x00000000  
 Width = 1 bits  
 Access Type = rw  
@@ -137,7 +136,6 @@ Description CTI Control Register
 
 ### CTIINTACK  
 
-Module cti  
 Relative Address = 0x00000010  
 Width = 8 bits  
 Access Type = wo  
@@ -147,7 +145,6 @@ Description CTI Interrupt Acknowledge Register
 
 ### CTIAPPSET  
 
-Module cti  
 Relative Address = 0x00000014  
 Width = 4 bits  
 Access Type = rw  
@@ -157,7 +154,6 @@ Description CTI Application Trigger Set Register
 
 ### CTIAPPCLEAR  
 
-Module cti  
 Relative Address = 0x00000018  
 Width = 4 bits  
 Access Type = wo  
@@ -167,7 +163,6 @@ Description CTI Application Trigger Clear Register
 
 ### CTIAPPPULSE  
 
-Module cti  
 Relative Address = 0x0000001c  
 Width = 4 bits  
 Access Type = wo  
@@ -177,7 +172,6 @@ Description CTI Application Pulse Register
 
 ### CTIINEN0  
 
-Module cti  
 Relative Address = 0x00000020  
 Width = 4 bits  
 Access Type = rw  
@@ -187,7 +181,6 @@ Description CTI Trigger to Channel Enable 0 Register
 
 ### CTIINEN1  
 
-Module cti  
 Relative Address = 0x00000024  
 Width = 4 bits  
 Access Type = rw  
@@ -197,7 +190,6 @@ Description CTI Trigger to Channel Enable 1 Register
 
 ### CTIINEN2  
 
-Module cti  
 Relative Address = 0x00000028  
 Width = 4 bits  
 Access Type = rw  
@@ -207,7 +199,6 @@ Description CTI Trigger to Channel Enable 2 Register
 
 ### CTIINEN3  
 
-Module cti  
 Relative Address = 0x0000002c  
 Width = 4 bits  
 Access Type = rw  
@@ -217,7 +208,6 @@ Description CTI Trigger to Channel Enable 3 Register
 
 ### CTIINEN4  
 
-Module cti  
 Relative Address = 0x00000030  
 Width = 4 bits  
 Access Type = rw  
@@ -227,7 +217,6 @@ Description CTI Trigger to Channel Enable 4 Register
 
 ### CTIINEN5  
 
-Module cti  
 Relative Address = 0x00000034  
 Width = 4 bits  
 Access Type = rw  
@@ -237,7 +226,6 @@ Description CTI Trigger to Channel Enable 5 Register
 
 ### CTIINEN6  
 
-Module cti  
 Relative Address = 0x00000038  
 Width = 4 bits  
 Access Type = rw  
@@ -247,7 +235,6 @@ Description CTI Trigger to Channel Enable 6 Register
 
 ### CTIINEN7  
 
-Module cti  
 Relative Address = 0x0000003c  
 Width = 4 bits  
 Access Type = rw  
@@ -257,7 +244,6 @@ Description CTI Trigger to Channel Enable 7 Register
 
 ### CTIOUTEN0  
 
-Module cti  
 Relative Address = 0x000000a0  
 Width = 4 bits  
 Access Type = rw  
@@ -267,7 +253,6 @@ Description CTI Channel to Trigger Enable 0 Register
 
 ### CTIOUTEN1  
 
-Module cti  
 Relative Address = 0x000000a4  
 Width = 4 bits  
 Access Type = rw  
@@ -277,7 +262,6 @@ Description CTI Channel to Trigger Enable 1 Register
 
 ### CTIOUTEN2  
 
-Module cti  
 Relative Address = 0x000000a8  
 Width = 4 bits  
 Access Type = rw  
@@ -287,7 +271,6 @@ Description CTI Channel to Trigger Enable 2 Register
 
 ### CTIOUTEN3  
 
-Module cti  
 Relative Address = 0x000000ac  
 Width = 4 bits  
 Access Type = rw  
@@ -297,7 +280,6 @@ Description CTI Channel to Trigger Enable 3 Register
 
 ### CTIOUTEN4  
 
-Module cti  
 Relative Address = 0x000000b0  
 Width = 4 bits  
 Access Type = rw  
@@ -307,7 +289,6 @@ Description CTI Channel to Trigger Enable 4 Register
 
 ### CTIOUTEN5  
 
-Module cti  
 Relative Address = 0x000000b4  
 Width = 4 bits  
 Access Type = rw  
@@ -317,7 +298,6 @@ Description CTI Channel to Trigger Enable 5 Register
 
 ### CTIOUTEN6  
 
-Module cti  
 Relative Address = 0x000000b8  
 Width = 4 bits  
 Access Type = rw  
@@ -327,7 +307,6 @@ Description CTI Channel to Trigger Enable 6 Register
 
 ### CTIOUTEN7  
 
-Module cti  
 Relative Address = 0x000000bc  
 Width = 4 bits  
 Access Type = rw  
@@ -337,7 +316,6 @@ Description CTI Channel to Trigger Enable 7 Register
 
 ### CTITRIGINSTATUS  
 
-Module cti  
 Relative Address = 0x00000130  
 Width = 8 bits  
 Access Type = ro  
@@ -347,7 +325,6 @@ Description CTI Trigger In Status Register
 
 ### CTITRIGOUTSTATUS  
 
-Module cti  
 Relative Address = 0x00000134  
 Width = 8 bits  
 Access Type = ro  
@@ -357,7 +334,6 @@ Description CTI Trigger Out Status Register
 
 ### CTICHINSTATUS  
 
-Module cti  
 Relative Address = 0x00000138  
 Width = 4 bits  
 Access Type = ro  
@@ -367,7 +343,6 @@ Description CTI Channel In Status Register
 
 ### CTICHOUTSTATUS  
 
-Module cti  
 Relative Address = 0x0000013c  
 Width = 4 bits  
 Access Type = ro  
@@ -377,7 +352,6 @@ Description CTI Channel Out Status Register
 
 ### CTIGATE  
 
-Module cti  
 Relative Address = 0x00000140  
 Width = 4 bits  
 Access Type = rw  
@@ -387,7 +361,6 @@ Description Enable CTI Channel Gate Register
 
 ### ASICCTL  
 
-Module cti  
 Relative Address = 0x00000144  
 Width = 8 bits  
 Access Type = rw  
@@ -397,7 +370,6 @@ Description External Multiplexor Control Register
 
 ### ITCHINACK  
 
-Module cti  
 Relative Address = 0x00000edc  
 Width = 4 bits  
 Access Type = wo  
@@ -407,7 +379,6 @@ Description ITCHINACK Register
 
 ### ITTRIGINACK  
 
-Module cti  
 Relative Address = 0x00000ee0  
 Width = 8 bits  
 Access Type = wo  
@@ -417,7 +388,6 @@ Description ITTRIGINACK Register
 
 ### ITCHOUT  
 
-Module cti  
 Relative Address = 0x00000ee4  
 Width = 4 bits  
 Access Type = wo  
@@ -427,7 +397,6 @@ Description ITCHOUT Register
 
 ### ITTRIGOUT  
 
-Module cti  
 Relative Address = 0x00000ee8  
 Width = 8 bits  
 Access Type = wo  
@@ -437,7 +406,6 @@ Description ITTRIGOUT Register
 
 ### ITCHOUTACK  
 
-Module cti  
 Relative Address = 0x00000eec  
 Width = 4 bits  
 Access Type = ro  
@@ -447,7 +415,6 @@ Description ITCHOUTACK Register
 
 ### ITTRIGOUTACK  
 
-Module cti  
 Relative Address = 0x00000ef0  
 Width = 8 bits  
 Access Type = ro  
@@ -457,7 +424,6 @@ Description ITTRIGOUTACK Register
 
 ### ITCHIN  
 
-Module cti  
 Relative Address = 0x00000ef4  
 Width = 4 bits  
 Access Type = ro  
@@ -467,7 +433,6 @@ Description ITCHIN Register
 
 ### ITTRIGIN  
 
-Module cti  
 Relative Address = 0x00000ef8  
 Width = 8 bits  
 Access Type = ro  
@@ -477,7 +442,6 @@ Description ITTRIGIN Register
 
 ### ITCTRL  
 
-Module cti  
 Relative Address = 0x00000f00  
 Width = 1 bits  
 Access Type = rw  
@@ -487,7 +451,6 @@ Description IT Control Register
 
 ### CTSR  
 
-Module cti  
 Relative Address = 0x00000fa0  
 Width = 4 bits  
 Access Type = rw  
@@ -497,7 +460,6 @@ Description Claim Tag Set Register
 
 ### CTCR  
 
-Module cti  
 Relative Address = 0x00000fa4  
 Width = 4 bits  
 Access Type = rw  
@@ -507,7 +469,6 @@ Description Claim Tag Clear Register
 
 ### LAR  
 
-Module cti  
 Relative Address = 0x00000fb0  
 Width = 32 bits  
 Access Type = wo  
@@ -517,7 +478,6 @@ Description Lock Access Register
 
 ### LSR  
 
-Module cti  
 Relative Address = 0x00000fb4  
 Width = 3 bits  
 Access Type = ro  
@@ -527,7 +487,6 @@ Description Lock Status Register
 
 ### ASR  
 
-Module cti  
 Relative Address = 0x00000fb8  
 Width = 4 bits  
 Access Type = ro  
@@ -537,7 +496,6 @@ Description Authentication Status Register
 
 ### DEVID  
 
-Module cti  
 Relative Address = 0x00000fc8  
 Width = 20 bits  
 Access Type = ro  
@@ -547,7 +505,6 @@ Description Device ID
 
 ### DTIR  
 
-Module cti  
 Relative Address = 0x00000fcc  
 Width = 8 bits  
 Access Type = ro  
@@ -557,7 +514,6 @@ Description Device Type Identifier Register
 
 ### PERIPHID4  
 
-Module cti  
 Relative Address = 0x00000fd0  
 Width = 8 bits  
 Access Type = ro  
@@ -567,7 +523,6 @@ Description Peripheral ID4
 
 ### PERIPHID5  
 
-Module cti  
 Relative Address = 0x00000fd4  
 Width = 8 bits  
 Access Type = ro  
@@ -577,7 +532,6 @@ Description Peripheral ID5
 
 ### PERIPHID6  
 
-Module cti  
 Relative Address = 0x00000fd8  
 Width = 8 bits  
 Access Type = ro  
@@ -587,7 +541,6 @@ Description Peripheral ID6
 
 ### PERIPHID7  
 
-Module cti  
 Relative Address = 0x00000fdc  
 Width = 8 bits  
 Access Type = ro  
@@ -597,7 +550,6 @@ Description Peripheral ID7
 
 ### PERIPHID0  
 
-Module cti  
 Relative Address = 0x00000fe0  
 Width = 8 bits  
 Access Type = ro  
@@ -607,7 +559,6 @@ Description Peripheral ID0
 
 ### PERIPHID1  
 
-Module cti  
 Relative Address = 0x00000fe4  
 Width = 8 bits  
 Access Type = ro  
@@ -617,7 +568,6 @@ Description Peripheral ID1
 
 ### PERIPHID2  
 
-Module cti  
 Relative Address = 0x00000fe8  
 Width = 8 bits  
 Access Type = ro  
@@ -627,7 +577,6 @@ Description Peripheral ID2
 
 ### PERIPHID3  
 
-Module cti  
 Relative Address = 0x00000fec  
 Width = 8 bits  
 Access Type = ro  
@@ -637,7 +586,6 @@ Description Peripheral ID3
 
 ### COMPID0  
 
-Module cti  
 Relative Address = 0x00000ff0  
 Width = 8 bits  
 Access Type = ro  
@@ -647,7 +595,6 @@ Description Component ID0
 
 ### COMPID1  
 
-Module cti  
 Relative Address = 0x00000ff4  
 Width = 8 bits  
 Access Type = ro  
@@ -657,7 +604,6 @@ Description Component ID1
 
 ### COMPID2  
 
-Module cti  
 Relative Address = 0x00000ff8  
 Width = 8 bits  
 Access Type = ro  
@@ -667,7 +613,6 @@ Description Component ID2
 
 ### COMPID3  
 
-Module cti  
 Relative Address = 0x00000ffc  
 Width = 8 bits  
 Access Type = ro  

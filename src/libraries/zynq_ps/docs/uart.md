@@ -2,7 +2,7 @@
 
 Module UART (serial) (uart)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 uart0 Base Address = 0xe0000000  
 uart1 Base Address = 0xe0001000  
@@ -47,7 +47,6 @@ uart1 Base Address = 0xe0001000
 
 ### CR  
 
-Module uart  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -80,7 +79,6 @@ Description UART Control Register
 
 ### MR  
 
-Module uart  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -109,7 +107,6 @@ Description UART Mode Register
 
 ### IER  
 
-Module uart  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = mixed  
@@ -150,7 +147,6 @@ Description Interrupt Enable Register
 
 ### IDR  
 
-Module uart  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -191,7 +187,6 @@ Description Interrupt Disable Register
 
 ### IMR  
 
-Module uart  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -232,7 +227,6 @@ Description Interrupt Mask Register
 
 ### ISR  
 
-Module uart  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = wtc  
@@ -273,7 +267,6 @@ Description Channel Interrupt Status Register
 
 ### BAUD_RATE_GENERATOR  
 
-Module uart  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = mixed  
@@ -290,7 +283,6 @@ Description Baud Rate Generator Register.
 
 ### RXTOUT  
 
-Module uart  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = mixed  
@@ -307,7 +299,6 @@ Description Receiver Timeout Register
 
 ### RX_FIFO_TRIGGER_LEVEL  
 
-Module uart  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = mixed  
@@ -324,7 +315,6 @@ Description Receiver FIFO Trigger Level Register
 
 ### MODEMCR  
 
-Module uart  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = mixed  
@@ -347,7 +337,6 @@ Description Modem Control Register
 
 ### MODEMSR  
 
-Module uart  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = mixed  
@@ -380,7 +369,6 @@ Description Modem Status Register
 
 ### SR  
 
-Module uart  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = ro  
@@ -425,7 +413,6 @@ Description Channel Status Register
 
 ### FIFO  
 
-Module uart  
 Relative Address = 0x00000030  
 Width = 32 bits  
 Access Type = mixed  
@@ -442,7 +429,6 @@ Description Transmit and Receive FIFO
 
 ### BAUD_RATE_DIVIDER  
 
-Module uart  
 Relative Address = 0x00000034  
 Width = 32 bits  
 Access Type = mixed  
@@ -459,7 +445,6 @@ Description Baud Rate Divider Register
 
 ### FLOW_DELAY  
 
-Module uart  
 Relative Address = 0x00000038  
 Width = 32 bits  
 Access Type = mixed  
@@ -476,7 +461,6 @@ Description Flow Control Delay Register
 
 ### TX_FIFO_TRIGGER_LEVEL  
 
-Module uart  
 Relative Address = 0x00000044  
 Width = 32 bits  
 Access Type = mixed  

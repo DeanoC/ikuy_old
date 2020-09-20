@@ -2,7 +2,7 @@
 
 Module System Watchdog Timer (swdt)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 swdt Base Address = 0xf8005000  
 
@@ -22,7 +22,6 @@ swdt Base Address = 0xf8005000
 
 ### ZMR  
 
-Module swdt  
 Relative Address = 0x00000000  
 Width = 24 bits  
 Access Type = mixed  
@@ -32,7 +31,6 @@ Description WD zero mode
 
 ### CCR  
 
-Module swdt  
 Relative Address = 0x00000004  
 Width = 26 bits  
 Access Type = mixed  
@@ -42,7 +40,6 @@ Description Counter Control
 
 ### RESTART  
 
-Module swdt  
 Relative Address = 0x00000008  
 Width = 16 bits  
 Access Type = wo  
@@ -52,7 +49,6 @@ Description Restart key
 
 ### SR  
 
-Module swdt  
 Relative Address = 0x0000000c  
 Width = 1 bits  
 Access Type = ro  

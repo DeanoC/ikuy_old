@@ -2,7 +2,7 @@
 
 Module System Level Control Registers (slcr)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 slcr Base Address = 0xf8000000  
 
@@ -338,7 +338,6 @@ slcr Base Address = 0xf8000000
 
 ### SCL  
 
-Module slcr  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -355,7 +354,6 @@ Description Secure Configuration Lock
 
 ### SLCR_LOCK  
 
-Module slcr  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = wo  
@@ -372,7 +370,6 @@ Description SLCR Write Protection Lock
 
 ### SLCR_UNLOCK  
 
-Module slcr  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = wo  
@@ -389,7 +386,6 @@ Description SLCR Write Protection Unlock
 
 ### SLCR_LOCKSTA  
 
-Module slcr  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = ro  
@@ -406,7 +402,6 @@ Description SLCR Write Protection Status
 
 ### ARM_PLL_CTRL  
 
-Module slcr  
 Relative Address = 0x00000100  
 Width = 32 bits  
 Access Type = rw  
@@ -435,7 +430,6 @@ Description ARM PLL Control
 
 ### DDR_PLL_CTRL  
 
-Module slcr  
 Relative Address = 0x00000104  
 Width = 32 bits  
 Access Type = rw  
@@ -464,7 +458,6 @@ Description DDR PLL Control
 
 ### IO_PLL_CTRL  
 
-Module slcr  
 Relative Address = 0x00000108  
 Width = 32 bits  
 Access Type = rw  
@@ -493,7 +486,6 @@ Description IO PLL Control
 
 ### PLL_STATUS  
 
-Module slcr  
 Relative Address = 0x0000010c  
 Width = 32 bits  
 Access Type = ro  
@@ -520,7 +512,6 @@ Description PLL Status
 
 ### ARM_PLL_CFG  
 
-Module slcr  
 Relative Address = 0x00000110  
 Width = 32 bits  
 Access Type = rw  
@@ -543,7 +534,6 @@ Description ARM PLL Configuration
 
 ### DDR_PLL_CFG  
 
-Module slcr  
 Relative Address = 0x00000114  
 Width = 32 bits  
 Access Type = rw  
@@ -566,7 +556,6 @@ Description DDR PLL Configuration
 
 ### IO_PLL_CFG  
 
-Module slcr  
 Relative Address = 0x00000118  
 Width = 32 bits  
 Access Type = rw  
@@ -589,7 +578,6 @@ Description IO PLL Configuration
 
 ### ARM_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000120  
 Width = 32 bits  
 Access Type = rw  
@@ -624,7 +612,6 @@ Description CPU Clock Control
 
 ### DDR_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000124  
 Width = 32 bits  
 Access Type = rw  
@@ -647,7 +634,6 @@ Description DDR Clock Control
 
 ### DCI_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000128  
 Width = 32 bits  
 Access Type = rw  
@@ -672,7 +658,6 @@ Description DCI clock control
 
 ### APER_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x0000012c  
 Width = 32 bits  
 Access Type = rw  
@@ -737,7 +722,6 @@ Description AMBA Peripheral Clock Control
 
 ### USB0_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000130  
 Width = 32 bits  
 Access Type = rw  
@@ -766,7 +750,6 @@ Description USB 0 ULPI Clock Control
 
 ### USB1_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000134  
 Width = 32 bits  
 Access Type = rw  
@@ -795,7 +778,6 @@ Description USB 1 ULPI Clock Control
 
 ### GEM0_RCLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000138  
 Width = 32 bits  
 Access Type = rw  
@@ -816,7 +798,6 @@ Description GigE 0 Rx Clock and Rx Signals Select
 
 ### GEM1_RCLK_CTRL  
 
-Module slcr  
 Relative Address = 0x0000013c  
 Width = 32 bits  
 Access Type = rw  
@@ -837,7 +818,6 @@ Description GigE 1 Rx Clock and Rx Signals Select
 
 ### GEM0_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000140  
 Width = 32 bits  
 Access Type = rw  
@@ -866,7 +846,6 @@ Description GigE 0 Ref Clock Control
 
 ### GEM1_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000144  
 Width = 32 bits  
 Access Type = rw  
@@ -895,7 +874,6 @@ Description GigE 1 Ref Clock Control
 
 ### SMC_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000148  
 Width = 32 bits  
 Access Type = rw  
@@ -920,7 +898,6 @@ Description SMC Ref Clock Control
 
 ### LQSPI_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x0000014c  
 Width = 32 bits  
 Access Type = rw  
@@ -945,7 +922,6 @@ Description Quad SPI Ref Clock Control
 
 ### SDIO_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000150  
 Width = 32 bits  
 Access Type = rw  
@@ -972,7 +948,6 @@ Description SDIO Ref Clock Control
 
 ### UART_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000154  
 Width = 32 bits  
 Access Type = rw  
@@ -999,7 +974,6 @@ Description UART Ref Clock Control
 
 ### SPI_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000158  
 Width = 32 bits  
 Access Type = rw  
@@ -1026,7 +1000,6 @@ Description SPI Ref Clock Control
 
 ### CAN_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x0000015c  
 Width = 32 bits  
 Access Type = rw  
@@ -1057,7 +1030,6 @@ Description CAN Ref Clock Control
 
 ### CAN_MIOCLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000160  
 Width = 32 bits  
 Access Type = rw  
@@ -1082,7 +1054,6 @@ Description CAN MIO Clock Control
 
 ### DBG_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000164  
 Width = 32 bits  
 Access Type = rw  
@@ -1109,7 +1080,6 @@ Description SoC Debug Clock Control
 
 ### PCAP_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000168  
 Width = 32 bits  
 Access Type = rw  
@@ -1134,7 +1104,6 @@ Description PCAP Clock Control
 
 ### TOPSW_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x0000016c  
 Width = 32 bits  
 Access Type = rw  
@@ -1151,7 +1120,6 @@ Description Central Interconnect Clock Control
 
 ### FPGA0_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000170  
 Width = 32 bits  
 Access Type = rw  
@@ -1178,7 +1146,6 @@ Description PL Clock 0 Output control
 
 ### FPGA0_THR_CTRL  
 
-Module slcr  
 Relative Address = 0x00000174  
 Width = 32 bits  
 Access Type = rw  
@@ -1201,7 +1168,6 @@ Description PL Clock 0 Throttle control
 
 ### FPGA0_THR_CNT  
 
-Module slcr  
 Relative Address = 0x00000178  
 Width = 32 bits  
 Access Type = rw  
@@ -1220,7 +1186,6 @@ Description PL Clock 0 Throttle Count control
 
 ### FPGA0_THR_STA  
 
-Module slcr  
 Relative Address = 0x0000017c  
 Width = 32 bits  
 Access Type = ro  
@@ -1239,7 +1204,6 @@ Description PL Clock 0 Throttle Status read
 
 ### FPGA1_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000180  
 Width = 32 bits  
 Access Type = rw  
@@ -1266,7 +1230,6 @@ Description PL Clock 1 Output control
 
 ### FPGA1_THR_CTRL  
 
-Module slcr  
 Relative Address = 0x00000184  
 Width = 32 bits  
 Access Type = rw  
@@ -1289,7 +1252,6 @@ Description PL Clock 1 Throttle control
 
 ### FPGA1_THR_CNT  
 
-Module slcr  
 Relative Address = 0x00000188  
 Width = 32 bits  
 Access Type = rw  
@@ -1308,7 +1270,6 @@ Description PL Clock 1 Throttle Count
 
 ### FPGA1_THR_STA  
 
-Module slcr  
 Relative Address = 0x0000018c  
 Width = 32 bits  
 Access Type = ro  
@@ -1327,7 +1288,6 @@ Description PL Clock 1 Throttle Status control
 
 ### FPGA2_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x00000190  
 Width = 32 bits  
 Access Type = rw  
@@ -1354,7 +1314,6 @@ Description PL Clock 2 output control
 
 ### FPGA2_THR_CTRL  
 
-Module slcr  
 Relative Address = 0x00000194  
 Width = 32 bits  
 Access Type = rw  
@@ -1377,7 +1336,6 @@ Description PL Clock 2 Throttle Control
 
 ### FPGA2_THR_CNT  
 
-Module slcr  
 Relative Address = 0x00000198  
 Width = 32 bits  
 Access Type = rw  
@@ -1396,7 +1354,6 @@ Description PL Clock 2 Throttle Count
 
 ### FPGA2_THR_STA  
 
-Module slcr  
 Relative Address = 0x0000019c  
 Width = 32 bits  
 Access Type = ro  
@@ -1415,7 +1372,6 @@ Description PL Clock 2 Throttle Status
 
 ### FPGA3_CLK_CTRL  
 
-Module slcr  
 Relative Address = 0x000001a0  
 Width = 32 bits  
 Access Type = rw  
@@ -1442,7 +1398,6 @@ Description PL Clock 3 output control
 
 ### FPGA3_THR_CTRL  
 
-Module slcr  
 Relative Address = 0x000001a4  
 Width = 32 bits  
 Access Type = rw  
@@ -1469,7 +1424,6 @@ Description PL Clock 3 Throttle Control
 
 ### FPGA3_THR_CNT  
 
-Module slcr  
 Relative Address = 0x000001a8  
 Width = 32 bits  
 Access Type = rw  
@@ -1488,7 +1442,6 @@ Description PL Clock 3 Throttle Count
 
 ### FPGA3_THR_STA  
 
-Module slcr  
 Relative Address = 0x000001ac  
 Width = 32 bits  
 Access Type = ro  
@@ -1507,7 +1460,6 @@ Description PL Clock 3 Throttle Status
 
 ### CLK_621_TRUE  
 
-Module slcr  
 Relative Address = 0x000001c4  
 Width = 32 bits  
 Access Type = rw  
@@ -1524,7 +1476,6 @@ Description CPU Clock Ratio Mode select
 
 ### PSS_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000200  
 Width = 32 bits  
 Access Type = rw  
@@ -1541,7 +1492,6 @@ Description PS Software Reset Control
 
 ### DDR_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000204  
 Width = 32 bits  
 Access Type = rw  
@@ -1558,7 +1508,6 @@ Description DDR Software Reset Control
 
 ### TOPSW_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000208  
 Width = 32 bits  
 Access Type = rw  
@@ -1575,7 +1524,6 @@ Description Central Interconnect Reset Control
 
 ### DMAC_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x0000020c  
 Width = 32 bits  
 Access Type = rw  
@@ -1592,7 +1540,6 @@ Description DMAC Software Reset Control
 
 ### USB_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000210  
 Width = 32 bits  
 Access Type = rw  
@@ -1611,7 +1558,6 @@ Description USB Software Reset Control
 
 ### GEM_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000214  
 Width = 32 bits  
 Access Type = rw  
@@ -1640,7 +1586,6 @@ Description Gigabit Ethernet SW Reset Control
 
 ### SDIO_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000218  
 Width = 32 bits  
 Access Type = rw  
@@ -1665,7 +1610,6 @@ Description SDIO Software Reset Control
 
 ### SPI_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x0000021c  
 Width = 32 bits  
 Access Type = rw  
@@ -1688,7 +1632,6 @@ Description SPI Software Reset Control
 
 ### CAN_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000220  
 Width = 32 bits  
 Access Type = rw  
@@ -1711,7 +1654,6 @@ Description CAN Software Reset Control
 
 ### I2C_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000224  
 Width = 32 bits  
 Access Type = rw  
@@ -1730,7 +1672,6 @@ Description I2C Software Reset Control
 
 ### UART_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000228  
 Width = 32 bits  
 Access Type = rw  
@@ -1753,7 +1694,6 @@ Description UART Software Reset Control
 
 ### GPIO_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x0000022c  
 Width = 32 bits  
 Access Type = rw  
@@ -1770,7 +1710,6 @@ Description GPIO Software Reset Control
 
 ### LQSPI_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000230  
 Width = 32 bits  
 Access Type = rw  
@@ -1789,7 +1728,6 @@ Description Quad SPI Software Reset Control
 
 ### SMC_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000234  
 Width = 32 bits  
 Access Type = rw  
@@ -1808,7 +1746,6 @@ Description SMC Software Reset Control
 
 ### OCM_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000238  
 Width = 32 bits  
 Access Type = rw  
@@ -1825,7 +1762,6 @@ Description OCM Software Reset Control
 
 ### FPGA_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000240  
 Width = 32 bits  
 Access Type = rw  
@@ -1880,7 +1816,6 @@ Description FPGA Software Reset Control
 
 ### A9_CPU_RST_CTRL  
 
-Module slcr  
 Relative Address = 0x00000244  
 Width = 32 bits  
 Access Type = rw  
@@ -1909,7 +1844,6 @@ Description CPU Reset and Clock control
 
 ### RS_AWDT_CTRL  
 
-Module slcr  
 Relative Address = 0x0000024c  
 Width = 32 bits  
 Access Type = rw  
@@ -1928,7 +1862,6 @@ Description Watchdog Timer Reset Control
 
 ### REBOOT_STATUS  
 
-Module slcr  
 Relative Address = 0x00000258  
 Width = 32 bits  
 Access Type = rw  
@@ -1961,7 +1894,6 @@ Description Reboot Status, persistent
 
 ### BOOT_MODE  
 
-Module slcr  
 Relative Address = 0x0000025c  
 Width = 32 bits  
 Access Type = mixed  
@@ -1980,7 +1912,6 @@ Description Boot Mode Strapping Pins
 
 ### APU_CTRL  
 
-Module slcr  
 Relative Address = 0x00000300  
 Width = 32 bits  
 Access Type = rw  
@@ -1999,7 +1930,6 @@ Description APU Control
 
 ### WDT_CLK_SEL  
 
-Module slcr  
 Relative Address = 0x00000304  
 Width = 32 bits  
 Access Type = rw  
@@ -2016,7 +1946,6 @@ Description SWDT clock source select
 
 ### TZ_DMA_NS  
 
-Module slcr  
 Relative Address = 0x00000440  
 Width = 32 bits  
 Access Type = rw  
@@ -2033,7 +1962,6 @@ Description DMAC TrustZone Config
 
 ### TZ_DMA_IRQ_NS  
 
-Module slcr  
 Relative Address = 0x00000444  
 Width = 32 bits  
 Access Type = rw  
@@ -2050,7 +1978,6 @@ Description DMAC TrustZone Config for Interrupts
 
 ### TZ_DMA_PERIPH_NS  
 
-Module slcr  
 Relative Address = 0x00000448  
 Width = 32 bits  
 Access Type = rw  
@@ -2067,7 +1994,6 @@ Description DMAC TrustZone Config for Peripherals
 
 ### PSS_IDCODE  
 
-Module slcr  
 Relative Address = 0x00000530  
 Width = 32 bits  
 Access Type = ro  
@@ -2092,7 +2018,6 @@ Description PS IDCODE
 
 ### DDR_URGENT  
 
-Module slcr  
 Relative Address = 0x00000600  
 Width = 32 bits  
 Access Type = rw  
@@ -2123,7 +2048,6 @@ Description DDR Urgent Control
 
 ### DDR_CAL_START  
 
-Module slcr  
 Relative Address = 0x0000060c  
 Width = 32 bits  
 Access Type = mixed  
@@ -2142,7 +2066,6 @@ Description DDR Calibration Start Triggers
 
 ### DDR_REF_START  
 
-Module slcr  
 Relative Address = 0x00000614  
 Width = 32 bits  
 Access Type = mixed  
@@ -2159,7 +2082,6 @@ Description DDR Refresh Start Triggers
 
 ### DDR_CMD_STA  
 
-Module slcr  
 Relative Address = 0x00000618  
 Width = 32 bits  
 Access Type = mixed  
@@ -2176,7 +2098,6 @@ Description DDR Command Store Status
 
 ### DDR_URGENT_SEL  
 
-Module slcr  
 Relative Address = 0x0000061c  
 Width = 32 bits  
 Access Type = rw  
@@ -2207,7 +2128,6 @@ Description DDR Urgent Select
 
 ### DDR_DFI_STATUS  
 
-Module slcr  
 Relative Address = 0x00000620  
 Width = 32 bits  
 Access Type = mixed  
@@ -2224,7 +2144,6 @@ Description DDR DFI status
 
 ### MIO_PIN_00  
 
-Module slcr  
 Relative Address = 0x00000700  
 Width = 32 bits  
 Access Type = rw  
@@ -2257,7 +2176,6 @@ Description MIO Pin 0 Control
 
 ### MIO_PIN_01  
 
-Module slcr  
 Relative Address = 0x00000704  
 Width = 32 bits  
 Access Type = rw  
@@ -2290,7 +2208,6 @@ Description MIO Pin 1 Control
 
 ### MIO_PIN_02  
 
-Module slcr  
 Relative Address = 0x00000708  
 Width = 32 bits  
 Access Type = rw  
@@ -2323,7 +2240,6 @@ Description MIO Pin 2 Control
 
 ### MIO_PIN_03  
 
-Module slcr  
 Relative Address = 0x0000070c  
 Width = 32 bits  
 Access Type = rw  
@@ -2356,7 +2272,6 @@ Description MIO Pin 3 Control
 
 ### MIO_PIN_04  
 
-Module slcr  
 Relative Address = 0x00000710  
 Width = 32 bits  
 Access Type = rw  
@@ -2389,7 +2304,6 @@ Description MIO Pin 4 Control
 
 ### MIO_PIN_05  
 
-Module slcr  
 Relative Address = 0x00000714  
 Width = 32 bits  
 Access Type = rw  
@@ -2422,7 +2336,6 @@ Description MIO Pin 5 Control
 
 ### MIO_PIN_06  
 
-Module slcr  
 Relative Address = 0x00000718  
 Width = 32 bits  
 Access Type = rw  
@@ -2455,7 +2368,6 @@ Description MIO Pin 6 Control
 
 ### MIO_PIN_07  
 
-Module slcr  
 Relative Address = 0x0000071c  
 Width = 32 bits  
 Access Type = rw  
@@ -2488,7 +2400,6 @@ Description MIO Pin 7 Control
 
 ### MIO_PIN_08  
 
-Module slcr  
 Relative Address = 0x00000720  
 Width = 32 bits  
 Access Type = rw  
@@ -2521,7 +2432,6 @@ Description MIO Pin 8 Control
 
 ### MIO_PIN_09  
 
-Module slcr  
 Relative Address = 0x00000724  
 Width = 32 bits  
 Access Type = rw  
@@ -2554,7 +2464,6 @@ Description MIO Pin 9 Control
 
 ### MIO_PIN_10  
 
-Module slcr  
 Relative Address = 0x00000728  
 Width = 32 bits  
 Access Type = rw  
@@ -2587,7 +2496,6 @@ Description MIO Pin 10 Control
 
 ### MIO_PIN_11  
 
-Module slcr  
 Relative Address = 0x0000072c  
 Width = 32 bits  
 Access Type = rw  
@@ -2620,7 +2528,6 @@ Description MIO Pin 11 Control
 
 ### MIO_PIN_12  
 
-Module slcr  
 Relative Address = 0x00000730  
 Width = 32 bits  
 Access Type = rw  
@@ -2653,7 +2560,6 @@ Description MIO Pin 12 Control
 
 ### MIO_PIN_13  
 
-Module slcr  
 Relative Address = 0x00000734  
 Width = 32 bits  
 Access Type = rw  
@@ -2686,7 +2592,6 @@ Description MIO Pin 13 Control
 
 ### MIO_PIN_14  
 
-Module slcr  
 Relative Address = 0x00000738  
 Width = 32 bits  
 Access Type = rw  
@@ -2719,7 +2624,6 @@ Description MIO Pin 14 Control
 
 ### MIO_PIN_15  
 
-Module slcr  
 Relative Address = 0x0000073c  
 Width = 32 bits  
 Access Type = rw  
@@ -2752,7 +2656,6 @@ Description MIO Pin 15 Control
 
 ### MIO_PIN_16  
 
-Module slcr  
 Relative Address = 0x00000740  
 Width = 32 bits  
 Access Type = rw  
@@ -2785,7 +2688,6 @@ Description MIO Pin 16 Control
 
 ### MIO_PIN_17  
 
-Module slcr  
 Relative Address = 0x00000744  
 Width = 32 bits  
 Access Type = rw  
@@ -2818,7 +2720,6 @@ Description MIO Pin 17 Control
 
 ### MIO_PIN_18  
 
-Module slcr  
 Relative Address = 0x00000748  
 Width = 32 bits  
 Access Type = rw  
@@ -2851,7 +2752,6 @@ Description MIO Pin 18 Control
 
 ### MIO_PIN_19  
 
-Module slcr  
 Relative Address = 0x0000074c  
 Width = 32 bits  
 Access Type = rw  
@@ -2884,7 +2784,6 @@ Description MIO Pin 19 Control
 
 ### MIO_PIN_20  
 
-Module slcr  
 Relative Address = 0x00000750  
 Width = 32 bits  
 Access Type = rw  
@@ -2917,7 +2816,6 @@ Description MIO Pin 20 Control
 
 ### MIO_PIN_21  
 
-Module slcr  
 Relative Address = 0x00000754  
 Width = 32 bits  
 Access Type = rw  
@@ -2950,7 +2848,6 @@ Description MIO Pin 21 Control
 
 ### MIO_PIN_22  
 
-Module slcr  
 Relative Address = 0x00000758  
 Width = 32 bits  
 Access Type = rw  
@@ -2983,7 +2880,6 @@ Description MIO Pin 22 Control
 
 ### MIO_PIN_23  
 
-Module slcr  
 Relative Address = 0x0000075c  
 Width = 32 bits  
 Access Type = rw  
@@ -3016,7 +2912,6 @@ Description MIO Pin 23 Control
 
 ### MIO_PIN_24  
 
-Module slcr  
 Relative Address = 0x00000760  
 Width = 32 bits  
 Access Type = rw  
@@ -3049,7 +2944,6 @@ Description MIO Pin 24 Control
 
 ### MIO_PIN_25  
 
-Module slcr  
 Relative Address = 0x00000764  
 Width = 32 bits  
 Access Type = rw  
@@ -3082,7 +2976,6 @@ Description MIO Pin 25 Control
 
 ### MIO_PIN_26  
 
-Module slcr  
 Relative Address = 0x00000768  
 Width = 32 bits  
 Access Type = rw  
@@ -3115,7 +3008,6 @@ Description MIO Pin 26 Control
 
 ### MIO_PIN_27  
 
-Module slcr  
 Relative Address = 0x0000076c  
 Width = 32 bits  
 Access Type = rw  
@@ -3148,7 +3040,6 @@ Description MIO Pin 27 Control
 
 ### MIO_PIN_28  
 
-Module slcr  
 Relative Address = 0x00000770  
 Width = 32 bits  
 Access Type = rw  
@@ -3181,7 +3072,6 @@ Description MIO Pin 28 Control
 
 ### MIO_PIN_29  
 
-Module slcr  
 Relative Address = 0x00000774  
 Width = 32 bits  
 Access Type = rw  
@@ -3214,7 +3104,6 @@ Description MIO Pin 29 Control
 
 ### MIO_PIN_30  
 
-Module slcr  
 Relative Address = 0x00000778  
 Width = 32 bits  
 Access Type = rw  
@@ -3247,7 +3136,6 @@ Description MIO Pin 30 Control
 
 ### MIO_PIN_31  
 
-Module slcr  
 Relative Address = 0x0000077c  
 Width = 32 bits  
 Access Type = rw  
@@ -3280,7 +3168,6 @@ Description MIO Pin 31 Control
 
 ### MIO_PIN_32  
 
-Module slcr  
 Relative Address = 0x00000780  
 Width = 32 bits  
 Access Type = rw  
@@ -3313,7 +3200,6 @@ Description MIO Pin 32 Control
 
 ### MIO_PIN_33  
 
-Module slcr  
 Relative Address = 0x00000784  
 Width = 32 bits  
 Access Type = rw  
@@ -3346,7 +3232,6 @@ Description MIO Pin 33 Control
 
 ### MIO_PIN_34  
 
-Module slcr  
 Relative Address = 0x00000788  
 Width = 32 bits  
 Access Type = rw  
@@ -3379,7 +3264,6 @@ Description MIO Pin 34 Control
 
 ### MIO_PIN_35  
 
-Module slcr  
 Relative Address = 0x0000078c  
 Width = 32 bits  
 Access Type = rw  
@@ -3412,7 +3296,6 @@ Description MIO Pin 35 Control
 
 ### MIO_PIN_36  
 
-Module slcr  
 Relative Address = 0x00000790  
 Width = 32 bits  
 Access Type = rw  
@@ -3445,7 +3328,6 @@ Description MIO Pin 36 Control
 
 ### MIO_PIN_37  
 
-Module slcr  
 Relative Address = 0x00000794  
 Width = 32 bits  
 Access Type = rw  
@@ -3478,7 +3360,6 @@ Description MIO Pin 37 Control
 
 ### MIO_PIN_38  
 
-Module slcr  
 Relative Address = 0x00000798  
 Width = 32 bits  
 Access Type = rw  
@@ -3511,7 +3392,6 @@ Description MIO Pin 38 Control
 
 ### MIO_PIN_39  
 
-Module slcr  
 Relative Address = 0x0000079c  
 Width = 32 bits  
 Access Type = rw  
@@ -3544,7 +3424,6 @@ Description MIO Pin 39 Control
 
 ### MIO_PIN_40  
 
-Module slcr  
 Relative Address = 0x000007a0  
 Width = 32 bits  
 Access Type = rw  
@@ -3577,7 +3456,6 @@ Description MIO Pin 40 Control
 
 ### MIO_PIN_41  
 
-Module slcr  
 Relative Address = 0x000007a4  
 Width = 32 bits  
 Access Type = rw  
@@ -3610,7 +3488,6 @@ Description MIO Pin 41 Control
 
 ### MIO_PIN_42  
 
-Module slcr  
 Relative Address = 0x000007a8  
 Width = 32 bits  
 Access Type = rw  
@@ -3643,7 +3520,6 @@ Description MIO Pin 42 Control
 
 ### MIO_PIN_43  
 
-Module slcr  
 Relative Address = 0x000007ac  
 Width = 32 bits  
 Access Type = rw  
@@ -3676,7 +3552,6 @@ Description MIO Pin 43 Control
 
 ### MIO_PIN_44  
 
-Module slcr  
 Relative Address = 0x000007b0  
 Width = 32 bits  
 Access Type = rw  
@@ -3709,7 +3584,6 @@ Description MIO Pin 44 Control
 
 ### MIO_PIN_45  
 
-Module slcr  
 Relative Address = 0x000007b4  
 Width = 32 bits  
 Access Type = rw  
@@ -3742,7 +3616,6 @@ Description MIO Pin 45 Control
 
 ### MIO_PIN_46  
 
-Module slcr  
 Relative Address = 0x000007b8  
 Width = 32 bits  
 Access Type = rw  
@@ -3775,7 +3648,6 @@ Description MIO Pin 46 Control
 
 ### MIO_PIN_47  
 
-Module slcr  
 Relative Address = 0x000007bc  
 Width = 32 bits  
 Access Type = rw  
@@ -3808,7 +3680,6 @@ Description MIO Pin 47 Control
 
 ### MIO_PIN_48  
 
-Module slcr  
 Relative Address = 0x000007c0  
 Width = 32 bits  
 Access Type = rw  
@@ -3841,7 +3712,6 @@ Description MIO Pin 48 Control
 
 ### MIO_PIN_49  
 
-Module slcr  
 Relative Address = 0x000007c4  
 Width = 32 bits  
 Access Type = rw  
@@ -3874,7 +3744,6 @@ Description MIO Pin 49 Control
 
 ### MIO_PIN_50  
 
-Module slcr  
 Relative Address = 0x000007c8  
 Width = 32 bits  
 Access Type = rw  
@@ -3907,7 +3776,6 @@ Description MIO Pin 50 Control
 
 ### MIO_PIN_51  
 
-Module slcr  
 Relative Address = 0x000007cc  
 Width = 32 bits  
 Access Type = rw  
@@ -3940,7 +3808,6 @@ Description MIO Pin 51 Control
 
 ### MIO_PIN_52  
 
-Module slcr  
 Relative Address = 0x000007d0  
 Width = 32 bits  
 Access Type = rw  
@@ -3973,7 +3840,6 @@ Description MIO Pin 52 Control
 
 ### MIO_PIN_53  
 
-Module slcr  
 Relative Address = 0x000007d4  
 Width = 32 bits  
 Access Type = rw  
@@ -4006,7 +3872,6 @@ Description MIO Pin 53 Control
 
 ### MIO_LOOPBACK  
 
-Module slcr  
 Relative Address = 0x00000804  
 Width = 32 bits  
 Access Type = rw  
@@ -4029,7 +3894,6 @@ Description Loopback function within MIO
 
 ### MIO_MST_TRI0  
 
-Module slcr  
 Relative Address = 0x0000080c  
 Width = 32 bits  
 Access Type = rw  
@@ -4106,7 +3970,6 @@ Description MIO pin Tri-state Enables, 31:0
 
 ### MIO_MST_TRI1  
 
-Module slcr  
 Relative Address = 0x00000810  
 Width = 32 bits  
 Access Type = rw  
@@ -4165,7 +4028,6 @@ Description MIO pin Tri-state Enables, 53:32
 
 ### SD0_WP_CD_SEL  
 
-Module slcr  
 Relative Address = 0x00000830  
 Width = 32 bits  
 Access Type = rw  
@@ -4186,7 +4048,6 @@ Description SDIO 0 WP CD select
 
 ### SD1_WP_CD_SEL  
 
-Module slcr  
 Relative Address = 0x00000834  
 Width = 32 bits  
 Access Type = rw  
@@ -4207,7 +4068,6 @@ Description SDIO 1 WP CD select
 
 ### LVL_SHFTR_EN  
 
-Module slcr  
 Relative Address = 0x00000900  
 Width = 32 bits  
 Access Type = rw  
@@ -4226,7 +4086,6 @@ Description Level Shifters Enable
 
 ### OCM_CFG  
 
-Module slcr  
 Relative Address = 0x00000910  
 Width = 32 bits  
 Access Type = rw  
@@ -4245,7 +4104,6 @@ Description OCM Address Mapping
 
 ### Reserved  
 
-Module slcr  
 Relative Address = 0x00000a1c  
 Width = 32 bits  
 Access Type = rw  
@@ -4260,7 +4118,6 @@ Description Reserved
 
 ### GPIOB_CTRL  
 
-Module slcr  
 Relative Address = 0x00000b00  
 Width = 32 bits  
 Access Type = rw  
@@ -4295,7 +4152,6 @@ Description PS IO Buffer Control
 
 ### GPIOB_CFG_CMOS18  
 
-Module slcr  
 Relative Address = 0x00000b04  
 Width = 32 bits  
 Access Type = rw  
@@ -4326,7 +4182,6 @@ Description MIO GPIOB CMOS 1.8V config
 
 ### GPIOB_CFG_CMOS25  
 
-Module slcr  
 Relative Address = 0x00000b08  
 Width = 32 bits  
 Access Type = rw  
@@ -4357,7 +4212,6 @@ Description MIO GPIOB CMOS 2.5V config
 
 ### GPIOB_CFG_CMOS33  
 
-Module slcr  
 Relative Address = 0x00000b0c  
 Width = 32 bits  
 Access Type = rw  
@@ -4388,7 +4242,6 @@ Description MIO GPIOB CMOS 3.3V config
 
 ### GPIOB_CFG_HSTL  
 
-Module slcr  
 Relative Address = 0x00000b14  
 Width = 32 bits  
 Access Type = rw  
@@ -4419,7 +4272,6 @@ Description MIO GPIOB HSTL config
 
 ### GPIOB_DRVR_BIAS_CTRL  
 
-Module slcr  
 Relative Address = 0x00000b18  
 Width = 32 bits  
 Access Type = mixed  
@@ -4440,7 +4292,6 @@ Description MIO GPIOB Driver Bias Control
 
 ### DDRIOB_ADDR0  
 
-Module slcr  
 Relative Address = 0x00000b40  
 Width = 32 bits  
 Access Type = rw  
@@ -4473,7 +4324,6 @@ Description DDR IOB Config for A[14:0], CKE and DRST_B
 
 ### DDRIOB_ADDR1  
 
-Module slcr  
 Relative Address = 0x00000b44  
 Width = 32 bits  
 Access Type = rw  
@@ -4506,7 +4356,6 @@ Description DDR IOB Config for BA[2:0], ODT, CS_B, WE_B, RAS_B and CAS_B
 
 ### DDRIOB_DATA0  
 
-Module slcr  
 Relative Address = 0x00000b48  
 Width = 32 bits  
 Access Type = rw  
@@ -4539,7 +4388,6 @@ Description DDR IOB Config for Data 15:0
 
 ### DDRIOB_DATA1  
 
-Module slcr  
 Relative Address = 0x00000b4c  
 Width = 32 bits  
 Access Type = rw  
@@ -4572,7 +4420,6 @@ Description DDR IOB Config for Data 31:16
 
 ### DDRIOB_DIFF0  
 
-Module slcr  
 Relative Address = 0x00000b50  
 Width = 32 bits  
 Access Type = rw  
@@ -4605,7 +4452,6 @@ Description DDR IOB Config for DQS 1:0
 
 ### DDRIOB_DIFF1  
 
-Module slcr  
 Relative Address = 0x00000b54  
 Width = 32 bits  
 Access Type = rw  
@@ -4638,7 +4484,6 @@ Description DDR IOB Config for DQS 3:2
 
 ### DDRIOB_CLOCK  
 
-Module slcr  
 Relative Address = 0x00000b58  
 Width = 32 bits  
 Access Type = rw  
@@ -4671,7 +4516,6 @@ Description DDR IOB Config for Clock Output
 
 ### DDRIOB_DRIVE_SLEW_ADDR  
 
-Module slcr  
 Relative Address = 0x00000b5c  
 Width = 32 bits  
 Access Type = rw  
@@ -4696,7 +4540,6 @@ Description Drive and Slew controls for Address and Command pins of the DDR Inte
 
 ### DDRIOB_DRIVE_SLEW_DATA  
 
-Module slcr  
 Relative Address = 0x00000b60  
 Width = 32 bits  
 Access Type = rw  
@@ -4721,7 +4564,6 @@ Description Drive and Slew controls for DQ pins of the DDR Interface
 
 ### DDRIOB_DRIVE_SLEW_DIFF  
 
-Module slcr  
 Relative Address = 0x00000b64  
 Width = 32 bits  
 Access Type = rw  
@@ -4746,7 +4588,6 @@ Description Drive and Slew controls for DQS pins of the DDR Interface
 
 ### DDRIOB_DRIVE_SLEW_CLOCK  
 
-Module slcr  
 Relative Address = 0x00000b68  
 Width = 32 bits  
 Access Type = rw  
@@ -4771,7 +4612,6 @@ Description Drive and Slew controls for Clock pins of the DDR Interface
 
 ### DDRIOB_DDR_CTRL  
 
-Module slcr  
 Relative Address = 0x00000b6c  
 Width = 32 bits  
 Access Type = rw  
@@ -4804,7 +4644,6 @@ Description DDR IOB Buffer Control Register Name Address Width
 
 ### DDRIOB_DCI_CTRL  
 
-Module slcr  
 Relative Address = 0x00000b70  
 Width = 32 bits  
 Access Type = rw  
@@ -4859,7 +4698,6 @@ Description DDR IOB DCI Config
 
 ### DDRIOB_DCI_STATUS  
 
-Module slcr  
 Relative Address = 0x00000b74  
 Width = 32 bits  
 Access Type = mixed  

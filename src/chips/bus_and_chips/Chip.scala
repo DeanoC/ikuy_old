@@ -23,5 +23,9 @@ extends Component
   def getRegisterByName(name : String) : Register = {
     registers(name)
   }
+
+  def CHeaderPath : String
+  def DocPath : String 
+
 }
 

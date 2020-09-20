@@ -2,7 +2,7 @@
 
 Module L2 Cache PL310 (l2cache)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 l2cache Base Address = 0xf8f02000  
 
@@ -108,7 +108,6 @@ l2cache Base Address = 0xf8f02000
 
 ### CACHE_ID  
 
-Module l2cache  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -118,7 +117,6 @@ Description cache ID register, Returns the 32-bit device ID code it reads off th
 
 ### CACHE_TYPE  
 
-Module l2cache  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -128,7 +126,6 @@ Description cache type register, Returns the 32-bit cache type.
 
 ### CONTROL  
 
-Module l2cache  
 Relative Address = 0x00000100  
 Width = 32 bits  
 Access Type = mixed  
@@ -138,7 +135,6 @@ Description control register
 
 ### AUX_CONTROL  
 
-Module l2cache  
 Relative Address = 0x00000104  
 Width = 32 bits  
 Access Type = mixed  
@@ -148,7 +144,6 @@ Description auxilary control register
 
 ### TAG_RAM_CONTROL  
 
-Module l2cache  
 Relative Address = 0x00000108  
 Width = 32 bits  
 Access Type = mixed  
@@ -158,7 +153,6 @@ Description Configures Tag RAM latencies
 
 ### DATA_RAM_CONTROL  
 
-Module l2cache  
 Relative Address = 0x0000010c  
 Width = 32 bits  
 Access Type = mixed  
@@ -168,7 +162,6 @@ Description configures data RAM latencies
 
 ### EV_COUNTER_CTRL  
 
-Module l2cache  
 Relative Address = 0x00000200  
 Width = 32 bits  
 Access Type = mixed  
@@ -178,7 +171,6 @@ Description Permits the event counters to beenabled and reset.
 
 ### EV_COUNTER1_CFG  
 
-Module l2cache  
 Relative Address = 0x00000204  
 Width = 32 bits  
 Access Type = mixed  
@@ -188,7 +180,6 @@ Description Enables event counter 1 to be driven by a specific event.
 
 ### EV_COUNTER0_CFG  
 
-Module l2cache  
 Relative Address = 0x00000208  
 Width = 32 bits  
 Access Type = mixed  
@@ -198,7 +189,6 @@ Description Enables event counter 0 to be driven by a specific event.
 
 ### EV_COUNTER1  
 
-Module l2cache  
 Relative Address = 0x0000020c  
 Width = 32 bits  
 Access Type = rw  
@@ -208,7 +198,6 @@ Description Enable the programmer to read off the counter value.
 
 ### EV_COUNTER0  
 
-Module l2cache  
 Relative Address = 0x00000210  
 Width = 32 bits  
 Access Type = rw  
@@ -218,7 +207,6 @@ Description Enable the programmer to read off the counter value.
 
 ### INT_MASK  
 
-Module l2cache  
 Relative Address = 0x00000214  
 Width = 32 bits  
 Access Type = mixed  
@@ -228,7 +216,6 @@ Description Enables or masks interrupts from being triggered on the external pin
 
 ### INT_MASK_STATUS  
 
-Module l2cache  
 Relative Address = 0x00000218  
 Width = 32 bits  
 Access Type = ro  
@@ -238,7 +225,6 @@ Description It returns the masked interrupt status.
 
 ### INT_RAW_STATUS  
 
-Module l2cache  
 Relative Address = 0x0000021c  
 Width = 32 bits  
 Access Type = mixed  
@@ -248,7 +234,6 @@ Description The Raw Interrupt Status Register enables the interrupt status that 
 
 ### INT_CLEAR  
 
-Module l2cache  
 Relative Address = 0x00000220  
 Width = 32 bits  
 Access Type = mixed  
@@ -258,7 +243,6 @@ Description Clears the Raw Interrupt Status Register bits.
 
 ### CACHE_SYNC  
 
-Module l2cache  
 Relative Address = 0x00000730  
 Width = 32 bits  
 Access Type = mixed  
@@ -268,7 +252,6 @@ Description Drain the STB. Operation complete when all buffers, LRB, LFB, STB, a
 
 ### INV_PA  
 
-Module l2cache  
 Relative Address = 0x00000770  
 Width = 32 bits  
 Access Type = mixed  
@@ -278,7 +261,6 @@ Description Invalidate Line by PA: Specific L2 cache line is marked as not valid
 
 ### INV_WAY  
 
-Module l2cache  
 Relative Address = 0x0000077c  
 Width = 32 bits  
 Access Type = mixed  
@@ -288,7 +270,6 @@ Description Invalidate by Way Invalidate all data in specified ways, including d
 
 ### CLEAN_PA  
 
-Module l2cache  
 Relative Address = 0x000007b0  
 Width = 32 bits  
 Access Type = mixed  
@@ -298,7 +279,6 @@ Description Clean Line by PA Write the specific L2 cache line to L3 main memory 
 
 ### CLEAN_INDEX  
 
-Module l2cache  
 Relative Address = 0x000007b8  
 Width = 32 bits  
 Access Type = mixed  
@@ -308,7 +288,6 @@ Description Clean Line by Set/Way Write the specific L2 cache line within the sp
 
 ### CLEAN_WAY  
 
-Module l2cache  
 Relative Address = 0x000007bc  
 Width = 32 bits  
 Access Type = mixed  
@@ -318,7 +297,6 @@ Description Clean by Way Writes each line of the specified L2 cache ways to L3 m
 
 ### CLEAN_INV_PA  
 
-Module l2cache  
 Relative Address = 0x000007f0  
 Width = 32 bits  
 Access Type = mixed  
@@ -328,7 +306,6 @@ Description Clean and Invalidate Line by PA Write the specific L2 cache line to 
 
 ### CLEAN_INV_INDEX  
 
-Module l2cache  
 Relative Address = 0x000007f8  
 Width = 32 bits  
 Access Type = mixed  
@@ -338,7 +315,6 @@ Description Clean and Invalidate Line by Set/Way Write the specific L2 cache lin
 
 ### CLEAN_INV_WAY  
 
-Module l2cache  
 Relative Address = 0x000007fc  
 Width = 32 bits  
 Access Type = mixed  
@@ -348,7 +324,6 @@ Description Clean and Invalidate by Way Writes each line of the specified L2 cac
 
 ### DATA_LOCKDOWN0  
 
-Module l2cache  
 Relative Address = 0x00000900  
 Width = 32 bits  
 Access Type = mixed  
@@ -358,7 +333,6 @@ Description All Lockdown registers can prevent new addresses from being allocate
 
 ### INST_LOCKDOWN0  
 
-Module l2cache  
 Relative Address = 0x00000904  
 Width = 32 bits  
 Access Type = mixed  
@@ -368,7 +342,6 @@ Description Instruction lock down 0
 
 ### INST_LOCKDOWN1  
 
-Module l2cache  
 Relative Address = 0x0000090c  
 Width = 32 bits  
 Access Type = mixed  
@@ -378,7 +351,6 @@ Description instruction lock down 1
 
 ### INST_LOCKDOWN1  
 
-Module l2cache  
 Relative Address = 0x0000090c  
 Width = 32 bits  
 Access Type = mixed  
@@ -388,7 +360,6 @@ Description instruction lock down 1
 
 ### DATA_LOCKDOWN2  
 
-Module l2cache  
 Relative Address = 0x00000910  
 Width = 32 bits  
 Access Type = mixed  
@@ -398,7 +369,6 @@ Description data lock down 2
 
 ### INST_LOCKDOWN2  
 
-Module l2cache  
 Relative Address = 0x00000914  
 Width = 32 bits  
 Access Type = mixed  
@@ -408,7 +378,6 @@ Description instruction lock down 2
 
 ### DATA_LOCKDOWN3  
 
-Module l2cache  
 Relative Address = 0x00000918  
 Width = 32 bits  
 Access Type = mixed  
@@ -418,7 +387,6 @@ Description data lock down 3
 
 ### INST_LOCKDOWN3  
 
-Module l2cache  
 Relative Address = 0x0000091c  
 Width = 32 bits  
 Access Type = mixed  
@@ -428,7 +396,6 @@ Description instruction lock down 3
 
 ### DATA_LOCKDOWN4  
 
-Module l2cache  
 Relative Address = 0x00000920  
 Width = 32 bits  
 Access Type = mixed  
@@ -438,7 +405,6 @@ Description data lock down 4
 
 ### INST_LOCKDOWN4  
 
-Module l2cache  
 Relative Address = 0x00000924  
 Width = 32 bits  
 Access Type = mixed  
@@ -448,7 +414,6 @@ Description instruction lock down 4
 
 ### DATA_LOCKDOWN5  
 
-Module l2cache  
 Relative Address = 0x00000928  
 Width = 32 bits  
 Access Type = mixed  
@@ -458,7 +423,6 @@ Description data lock down 5
 
 ### INST_LOCKDOWN5  
 
-Module l2cache  
 Relative Address = 0x0000092c  
 Width = 32 bits  
 Access Type = mixed  
@@ -468,7 +432,6 @@ Description instruction lock down 5
 
 ### DATA_LOCKDOWN6  
 
-Module l2cache  
 Relative Address = 0x00000930  
 Width = 32 bits  
 Access Type = mixed  
@@ -478,7 +441,6 @@ Description data lock down 6
 
 ### INST_LOCKDOWN6  
 
-Module l2cache  
 Relative Address = 0x00000934  
 Width = 32 bits  
 Access Type = mixed  
@@ -488,7 +450,6 @@ Description instruction lock down 6
 
 ### DATA_LOCKDOWN7  
 
-Module l2cache  
 Relative Address = 0x00000938  
 Width = 32 bits  
 Access Type = mixed  
@@ -498,7 +459,6 @@ Description data lock down 7
 
 ### INST_LOCKDOWN7  
 
-Module l2cache  
 Relative Address = 0x0000093c  
 Width = 32 bits  
 Access Type = mixed  
@@ -508,7 +468,6 @@ Description instruction lock down 7
 
 ### LOCK_LINE_EN  
 
-Module l2cache  
 Relative Address = 0x00000950  
 Width = 32 bits  
 Access Type = mixed  
@@ -518,7 +477,6 @@ Description Lockdown by Line Enable
 
 ### UNLOCK_WAY  
 
-Module l2cache  
 Relative Address = 0x00000954  
 Width = 32 bits  
 Access Type = mixed  
@@ -528,7 +486,6 @@ Description Cache lockdown by way
 
 ### ADDR_FILTERING_START  
 
-Module l2cache  
 Relative Address = 0x00000c00  
 Width = 32 bits  
 Access Type = mixed  
@@ -538,7 +495,6 @@ Description Redirect a whole address range to master 1 (M1)
 
 ### ADDR_FILTERING_END  
 
-Module l2cache  
 Relative Address = 0x00000c04  
 Width = 32 bits  
 Access Type = mixed  
@@ -548,7 +504,6 @@ Description Redirect a whole address range to master 1 (M1)
 
 ### DEBUG_CTRL  
 
-Module l2cache  
 Relative Address = 0x00000f40  
 Width = 32 bits  
 Access Type = mixed  
@@ -558,7 +513,6 @@ Description The Debug Control Register forces specific cache behavior required f
 
 ### PREFETCH_CTRL  
 
-Module l2cache  
 Relative Address = 0x00000f60  
 Width = 32 bits  
 Access Type = mixed  
@@ -568,7 +522,6 @@ Description Purpose Enables prefetch-related features that can improve system pe
 
 ### POWER_CTRL  
 
-Module l2cache  
 Relative Address = 0x00000f80  
 Width = 32 bits  
 Access Type = mixed  

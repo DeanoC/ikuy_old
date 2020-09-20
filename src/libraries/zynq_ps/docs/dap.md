@@ -2,7 +2,7 @@
 
 Module Debug Access Port ROM Table (dap)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 dap Base Address = 0xf8800000  
 
@@ -70,7 +70,6 @@ dap Base Address = 0xf8800000
 
 ### ROMENTRY00  
 
-Module dap  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = ro  
@@ -80,7 +79,6 @@ Description ROM entry 00
 
 ### ROMENTRY01  
 
-Module dap  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = ro  
@@ -90,7 +88,6 @@ Description ROM entry 01
 
 ### ROMENTRY02  
 
-Module dap  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = ro  
@@ -100,7 +97,6 @@ Description ROM entry 02
 
 ### ROMENTRY03  
 
-Module dap  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = ro  
@@ -110,7 +106,6 @@ Description ROM entry 03
 
 ### ROMENTRY04  
 
-Module dap  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -120,7 +115,6 @@ Description ROM entry 04
 
 ### ROMENTRY05  
 
-Module dap  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = ro  
@@ -130,7 +124,6 @@ Description ROM entry 05
 
 ### ROMENTRY06  
 
-Module dap  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = ro  
@@ -140,7 +133,6 @@ Description ROM entry 06
 
 ### ROMENTRY07  
 
-Module dap  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = ro  
@@ -150,7 +142,6 @@ Description ROM entry 07
 
 ### ROMENTRY08  
 
-Module dap  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = ro  
@@ -160,7 +151,6 @@ Description ROM entry 08
 
 ### ROMENTRY09  
 
-Module dap  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = ro  
@@ -170,7 +160,6 @@ Description ROM entry 09
 
 ### ROMENTRY10  
 
-Module dap  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = rw  
@@ -180,7 +169,6 @@ Description ROM entry 10
 
 ### ROMENTRY11  
 
-Module dap  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = rw  
@@ -190,7 +178,6 @@ Description ROM entry 11
 
 ### ROMENTRY12  
 
-Module dap  
 Relative Address = 0x00000030  
 Width = 32 bits  
 Access Type = rw  
@@ -200,7 +187,6 @@ Description ROM entry 12
 
 ### ROMENTRY13  
 
-Module dap  
 Relative Address = 0x00000034  
 Width = 32 bits  
 Access Type = rw  
@@ -210,7 +196,6 @@ Description ROM entry 13
 
 ### ROMENTRY14  
 
-Module dap  
 Relative Address = 0x00000038  
 Width = 32 bits  
 Access Type = rw  
@@ -220,7 +205,6 @@ Description ROM entry 14
 
 ### ROMENTRY15  
 
-Module dap  
 Relative Address = 0x0000003c  
 Width = 32 bits  
 Access Type = rw  
@@ -230,7 +214,6 @@ Description ROM entry 15
 
 ### PERIPHID4  
 
-Module dap  
 Relative Address = 0x00000fd0  
 Width = 8 bits  
 Access Type = ro  
@@ -240,7 +223,6 @@ Description Peripheral ID4
 
 ### PERIPHID5  
 
-Module dap  
 Relative Address = 0x00000fd4  
 Width = 8 bits  
 Access Type = ro  
@@ -250,7 +232,6 @@ Description Peripheral ID5
 
 ### PERIPHID6  
 
-Module dap  
 Relative Address = 0x00000fd8  
 Width = 8 bits  
 Access Type = ro  
@@ -260,7 +241,6 @@ Description Peripheral ID6
 
 ### PERIPHID7  
 
-Module dap  
 Relative Address = 0x00000fdc  
 Width = 8 bits  
 Access Type = ro  
@@ -270,7 +250,6 @@ Description Peripheral ID7
 
 ### PERIPHID0  
 
-Module dap  
 Relative Address = 0x00000fe0  
 Width = 8 bits  
 Access Type = ro  
@@ -280,7 +259,6 @@ Description Peripheral ID0
 
 ### PERIPHID1  
 
-Module dap  
 Relative Address = 0x00000fe4  
 Width = 8 bits  
 Access Type = ro  
@@ -290,7 +268,6 @@ Description Peripheral ID1
 
 ### PERIPHID2  
 
-Module dap  
 Relative Address = 0x00000fe8  
 Width = 8 bits  
 Access Type = ro  
@@ -300,7 +277,6 @@ Description Peripheral ID2
 
 ### PERIPHID3  
 
-Module dap  
 Relative Address = 0x00000fec  
 Width = 8 bits  
 Access Type = ro  
@@ -310,7 +286,6 @@ Description Peripheral ID3
 
 ### COMPID0  
 
-Module dap  
 Relative Address = 0x00000ff0  
 Width = 8 bits  
 Access Type = ro  
@@ -320,7 +295,6 @@ Description Component ID0
 
 ### COMPID1  
 
-Module dap  
 Relative Address = 0x00000ff4  
 Width = 8 bits  
 Access Type = ro  
@@ -330,7 +304,6 @@ Description Component ID1
 
 ### COMPID2  
 
-Module dap  
 Relative Address = 0x00000ff8  
 Width = 8 bits  
 Access Type = ro  
@@ -340,7 +313,6 @@ Description Component ID2
 
 ### COMPID3  
 
-Module dap  
 Relative Address = 0x00000ffc  
 Width = 8 bits  
 Access Type = ro  

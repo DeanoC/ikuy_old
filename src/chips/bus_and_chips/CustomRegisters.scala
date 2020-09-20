@@ -9,6 +9,9 @@ extends Register(defi)
 {
   def read() : Bits = { B"32'h0000_0000" }
   def write(data : Bits, byteMask : Bits) : Unit = {}
+
+  var storage = if(needsStorage) Reg(Bits(32 bits)) init defi.default else null
+
 }
 
 case class ConstantCustomRegister(override val defi : RegisterDef) 
@@ -17,9 +20,7 @@ extends CustomRegister(defi, needsStorage = false)
 case class ReadOnlyCustomRegister(override val defi : RegisterDef)
 extends CustomRegister(defi)
 {
-  override def read(): Bits = owner.asInstanceOf[CustomChip]
-                              .getRegisterStorage(defi.name)
-                              .as(Bits)
+  override def read(): Bits = storage
 }
 
 case class WriteOnlyCustomRegister(override val defi : RegisterDef)
@@ -31,16 +32,14 @@ extends CustomRegister(defi)
       result(16 until 24) := byteMask(2) ? data(16 until 24) | B(0, 8 bits)
       result(8 until 16) := byteMask(1) ? data(8 until 16) | B(0, 8 bits)
       result(0 until 8) := byteMask(0) ? data(0 until 8) | B(0, 8 bits)
-      owner.asInstanceOf[CustomChip].getRegisterStorage(defi.name) := result
+      storage := result
   }
 }
 
 case class ReadWriteCustomRegister(override val defi : RegisterDef)
 extends CustomRegister(defi)
 {
-  override def read(): Bits = owner.asInstanceOf[CustomChip]
-                              .getRegisterStorage(defi.name)
-                              .as(Bits)
+  override def read(): Bits = storage
 
   override def write( data : Bits, byteMask : Bits) : Unit = {
       val exist = read()
@@ -49,6 +48,6 @@ extends CustomRegister(defi)
       result(16 until 24) := byteMask(2) ? data(16 until 24) | exist(16 until 24)
       result(8 until 16) := byteMask(1) ? data(8 until 16) | exist(8 until 16)
       result(0 until 8) := byteMask(0) ? data(0 until 8) | exist(0 until 8)
-      owner.asInstanceOf[CustomChip].getRegisterStorage(defi.name) := result
+      storage := result
   }
 }

@@ -2,7 +2,7 @@
 
 Module Device (PL) Config (devcfg)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 devcfg Base Address = 0xf8007000  
 
@@ -54,7 +54,6 @@ devcfg Base Address = 0xf8007000
 
 ### XDCFG_CTRL  
 
-Module devcfg  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -111,7 +110,6 @@ Description Control Register
 
 ### XDCFG_LOCK  
 
-Module devcfg  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -136,7 +134,6 @@ Description Locks for the Control Register.
 
 ### XDCFG_CFG  
 
-Module devcfg  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = rw  
@@ -171,7 +168,6 @@ Description Configuration Register
 
 ### XDCFG_INT_STS  
 
-Module devcfg  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -238,7 +234,6 @@ Description Interrupt Status
 
 ### XDCFG_INT_MASK  
 
-Module devcfg  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = rw  
@@ -305,7 +300,6 @@ Description Interrupt Mask.
 
 ### XDCFG_STATUS  
 
-Module devcfg  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -356,7 +350,6 @@ Description Miscellaneous Status.
 
 ### XDCFG_DMA_SRC_ADDR  
 
-Module devcfg  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = rw  
@@ -371,7 +364,6 @@ Description DMA Source Address.
 
 ### XDCFG_DMA_DEST_ADDR  
 
-Module devcfg  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = rw  
@@ -386,7 +378,6 @@ Description DMA Destination Address.
 
 ### XDCFG_DMA_SRC_LEN  
 
-Module devcfg  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = rw  
@@ -403,7 +394,6 @@ Description DMA Source Transfer Length.
 
 ### XDCFG_DMA_DEST_LEN  
 
-Module devcfg  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = rw  
@@ -420,7 +410,6 @@ Description DMA Destination Transfer Length.
 
 ### XDCFG_MULTIBOOT_ADDR  
 
-Module devcfg  
 Relative Address = 0x0000002c  
 Width = 13 bits  
 Access Type = rw  
@@ -435,7 +424,6 @@ Description Multi-Boot Address Pointer.
 
 ### XDCFG_UNLOCK  
 
-Module devcfg  
 Relative Address = 0x00000034  
 Width = 32 bits  
 Access Type = rw  
@@ -450,7 +438,6 @@ Description Unlock Control.
 
 ### XDCFG_MCTRL  
 
-Module devcfg  
 Relative Address = 0x00000080  
 Width = 32 bits  
 Access Type = mixed  
@@ -495,7 +482,6 @@ Description Miscellaneous Control.
 
 ### XADCIF_CFG  
 
-Module devcfg  
 Relative Address = 0x00000100  
 Width = 32 bits  
 Access Type = rw  
@@ -530,7 +516,6 @@ Description XADC Interface Configuration.
 
 ### XADCIF_INT_STS  
 
-Module devcfg  
 Relative Address = 0x00000104  
 Width = 32 bits  
 Access Type = mixed  
@@ -553,7 +538,6 @@ Description XADC Interface Interrupt Status.
 
 ### XADCIF_INT_MASK  
 
-Module devcfg  
 Relative Address = 0x00000108  
 Width = 32 bits  
 Access Type = rw  
@@ -576,7 +560,6 @@ Description XADC Interface Interrupt Mask.
 
 ### XADCIF_MSTS  
 
-Module devcfg  
 Relative Address = 0x0000010c  
 Width = 32 bits  
 Access Type = ro  
@@ -607,7 +590,6 @@ Description XADC Interface Miscellaneous Status.
 
 ### XADCIF_CMDFIFO  
 
-Module devcfg  
 Relative Address = 0x00000110  
 Width = 32 bits  
 Access Type = wo  
@@ -622,7 +604,6 @@ Description XADC Interface Command FIFO Data Port
 
 ### XADCIF_RDFIFO  
 
-Module devcfg  
 Relative Address = 0x00000114  
 Width = 32 bits  
 Access Type = ro  
@@ -637,7 +618,6 @@ Description XADC Interface Data FIFO Data Port
 
 ### XADCIF_MCTL  
 
-Module devcfg  
 Relative Address = 0x00000118  
 Width = 32 bits  
 Access Type = rw  

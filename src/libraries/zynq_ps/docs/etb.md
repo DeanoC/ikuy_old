@@ -2,7 +2,7 @@
 
 Module Embedded Trace Buffer (etb)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 etb Base Address = 0xf8801000  
 
@@ -88,7 +88,6 @@ etb Base Address = 0xf8801000
 
 ### RDP  
 
-Module etb  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = ro  
@@ -98,7 +97,6 @@ Description RAM Depth Register
 
 ### STS  
 
-Module etb  
 Relative Address = 0x0000000c  
 Width = 4 bits  
 Access Type = ro  
@@ -108,7 +106,6 @@ Description Status Register
 
 ### RRD  
 
-Module etb  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -118,7 +115,6 @@ Description RAM Read Data Register
 
 ### RRP  
 
-Module etb  
 Relative Address = 0x00000014  
 Width = 10 bits  
 Access Type = rw  
@@ -128,7 +124,6 @@ Description RAM Read Pointer Register
 
 ### RWP  
 
-Module etb  
 Relative Address = 0x00000018  
 Width = 10 bits  
 Access Type = rw  
@@ -138,7 +133,6 @@ Description RAM Write Pointer Register
 
 ### TRG  
 
-Module etb  
 Relative Address = 0x0000001c  
 Width = 10 bits  
 Access Type = rw  
@@ -148,7 +142,6 @@ Description Trigger Counter Register
 
 ### CTL  
 
-Module etb  
 Relative Address = 0x00000020  
 Width = 1 bits  
 Access Type = rw  
@@ -158,7 +151,6 @@ Description Control Register
 
 ### RWD  
 
-Module etb  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = rw  
@@ -168,7 +160,6 @@ Description RAM Write Data Register
 
 ### FFSR  
 
-Module etb  
 Relative Address = 0x00000300  
 Width = 2 bits  
 Access Type = ro  
@@ -178,7 +169,6 @@ Description Formatter and Flush Status Register
 
 ### FFCR  
 
-Module etb  
 Relative Address = 0x00000304  
 Width = 14 bits  
 Access Type = mixed  
@@ -188,7 +178,6 @@ Description Formatter and Flush Control Register
 
 ### ITMISCOP0  
 
-Module etb  
 Relative Address = 0x00000ee0  
 Width = 2 bits  
 Access Type = wo  
@@ -198,7 +187,6 @@ Description Integration Test Miscellaneous Output Register 0
 
 ### ITTRFLINACK  
 
-Module etb  
 Relative Address = 0x00000ee4  
 Width = 2 bits  
 Access Type = wo  
@@ -208,7 +196,6 @@ Description Integration Test Trigger In and Flush In Acknowledge Register
 
 ### ITTRFLIN  
 
-Module etb  
 Relative Address = 0x00000ee8  
 Width = 2 bits  
 Access Type = wo  
@@ -218,7 +205,6 @@ Description Integration Test Trigger In and Flush In Register
 
 ### ITATBDATA0  
 
-Module etb  
 Relative Address = 0x00000eec  
 Width = 5 bits  
 Access Type = ro  
@@ -228,7 +214,6 @@ Description Integration Test ATB Data Register
 
 ### ITATBCTR2  
 
-Module etb  
 Relative Address = 0x00000ef0  
 Width = 2 bits  
 Access Type = wo  
@@ -238,7 +223,6 @@ Description Integration Test ATB Control Register 2
 
 ### ITATBCTR1  
 
-Module etb  
 Relative Address = 0x00000ef4  
 Width = 7 bits  
 Access Type = ro  
@@ -248,7 +232,6 @@ Description Integration Test ATB Control Register 1
 
 ### ITATBCTR0  
 
-Module etb  
 Relative Address = 0x00000ef8  
 Width = 10 bits  
 Access Type = ro  
@@ -258,7 +241,6 @@ Description Integration Test ATB Control Register 0
 
 ### IMCR  
 
-Module etb  
 Relative Address = 0x00000f00  
 Width = 1 bits  
 Access Type = rw  
@@ -268,7 +250,6 @@ Description Integration Mode Control Register
 
 ### CTSR  
 
-Module etb  
 Relative Address = 0x00000fa0  
 Width = 4 bits  
 Access Type = rw  
@@ -278,7 +259,6 @@ Description Claim Tag Set Register
 
 ### CTCR  
 
-Module etb  
 Relative Address = 0x00000fa4  
 Width = 4 bits  
 Access Type = rw  
@@ -288,7 +268,6 @@ Description Claim Tag Clear Register
 
 ### LAR  
 
-Module etb  
 Relative Address = 0x00000fb0  
 Width = 32 bits  
 Access Type = wo  
@@ -298,7 +277,6 @@ Description Lock Access Register
 
 ### LSR  
 
-Module etb  
 Relative Address = 0x00000fb4  
 Width = 3 bits  
 Access Type = ro  
@@ -308,7 +286,6 @@ Description Lock Status Register
 
 ### ASR  
 
-Module etb  
 Relative Address = 0x00000fb8  
 Width = 8 bits  
 Access Type = ro  
@@ -318,7 +295,6 @@ Description Authentication Status Register
 
 ### DEVID  
 
-Module etb  
 Relative Address = 0x00000fc8  
 Width = 6 bits  
 Access Type = ro  
@@ -328,7 +304,6 @@ Description Device ID
 
 ### DTIR  
 
-Module etb  
 Relative Address = 0x00000fcc  
 Width = 8 bits  
 Access Type = ro  
@@ -338,7 +313,6 @@ Description Device Type Identifier Register
 
 ### PERIPHID4  
 
-Module etb  
 Relative Address = 0x00000fd0  
 Width = 8 bits  
 Access Type = ro  
@@ -348,7 +322,6 @@ Description Peripheral ID4
 
 ### PERIPHID5  
 
-Module etb  
 Relative Address = 0x00000fd4  
 Width = 8 bits  
 Access Type = ro  
@@ -358,7 +331,6 @@ Description Peripheral ID5
 
 ### PERIPHID6  
 
-Module etb  
 Relative Address = 0x00000fd8  
 Width = 8 bits  
 Access Type = ro  
@@ -368,7 +340,6 @@ Description Peripheral ID6
 
 ### PERIPHID7  
 
-Module etb  
 Relative Address = 0x00000fdc  
 Width = 8 bits  
 Access Type = ro  
@@ -378,7 +349,6 @@ Description Peripheral ID7
 
 ### PERIPHID0  
 
-Module etb  
 Relative Address = 0x00000fe0  
 Width = 8 bits  
 Access Type = ro  
@@ -388,7 +358,6 @@ Description Peripheral ID0
 
 ### PERIPHID1  
 
-Module etb  
 Relative Address = 0x00000fe4  
 Width = 8 bits  
 Access Type = ro  
@@ -398,7 +367,6 @@ Description Peripheral ID1
 
 ### PERIPHID2  
 
-Module etb  
 Relative Address = 0x00000fe8  
 Width = 8 bits  
 Access Type = ro  
@@ -408,7 +376,6 @@ Description Peripheral ID2
 
 ### PERIPHID3  
 
-Module etb  
 Relative Address = 0x00000fec  
 Width = 8 bits  
 Access Type = ro  
@@ -418,7 +385,6 @@ Description Peripheral ID3
 
 ### COMPID0  
 
-Module etb  
 Relative Address = 0x00000ff0  
 Width = 8 bits  
 Access Type = ro  
@@ -428,7 +394,6 @@ Description Component ID0
 
 ### COMPID1  
 
-Module etb  
 Relative Address = 0x00000ff4  
 Width = 8 bits  
 Access Type = ro  
@@ -438,7 +403,6 @@ Description Component ID1
 
 ### COMPID2  
 
-Module etb  
 Relative Address = 0x00000ff8  
 Width = 8 bits  
 Access Type = ro  
@@ -448,7 +412,6 @@ Description Component ID2
 
 ### COMPID3  
 
-Module etb  
 Relative Address = 0x00000ffc  
 Width = 8 bits  
 Access Type = ro  

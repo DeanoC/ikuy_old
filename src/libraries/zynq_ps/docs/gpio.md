@@ -2,7 +2,7 @@
 
 Module General Purpose Input/Output (gpio)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 gpio Base Address = 0xe000a000  
 
@@ -118,7 +118,6 @@ gpio Base Address = 0xe000a000
 
 ### MASK_DATA_0_LSW  
 
-Module gpio  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -135,7 +134,6 @@ Description Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)
 
 ### MASK_DATA_0_MSW  
 
-Module gpio  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -152,7 +150,6 @@ Description Maskable Output Data (GPIO Bank0, MIO, Upper 16bits)
 
 ### MASK_DATA_1_LSW  
 
-Module gpio  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = mixed  
@@ -169,7 +166,6 @@ Description Maskable Output Data (GPIO Bank1, MIO, Lower 16bits)
 
 ### MASK_DATA_1_MSW  
 
-Module gpio  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -186,7 +182,6 @@ Description Maskable Output Data (GPIO Bank1, MIO, Upper 6bits)
 
 ### MASK_DATA_2_LSW  
 
-Module gpio  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = mixed  
@@ -203,7 +198,6 @@ Description Maskable Output Data (GPIO Bank2, EMIO, Lower 16bits)
 
 ### MASK_DATA_2_MSW  
 
-Module gpio  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -220,7 +214,6 @@ Description Maskable Output Data (GPIO Bank2, EMIO, Upper 16bits)
 
 ### MASK_DATA_3_LSW  
 
-Module gpio  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = mixed  
@@ -237,7 +230,6 @@ Description Maskable Output Data (GPIO Bank3, EMIO, Lower 16bits)
 
 ### MASK_DATA_3_MSW  
 
-Module gpio  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = mixed  
@@ -254,7 +246,6 @@ Description Maskable Output Data (GPIO Bank3, EMIO, Upper 16bits)
 
 ### DATA_0  
 
-Module gpio  
 Relative Address = 0x00000040  
 Width = 32 bits  
 Access Type = rw  
@@ -269,7 +260,6 @@ Description Output Data (GPIO Bank0, MIO)
 
 ### DATA_1  
 
-Module gpio  
 Relative Address = 0x00000044  
 Width = 32 bits  
 Access Type = rw  
@@ -284,7 +274,6 @@ Description Output Data (GPIO Bank1, MIO)
 
 ### DATA_2  
 
-Module gpio  
 Relative Address = 0x00000048  
 Width = 32 bits  
 Access Type = rw  
@@ -299,7 +288,6 @@ Description Output Data (GPIO Bank2, EMIO)
 
 ### DATA_3  
 
-Module gpio  
 Relative Address = 0x0000004c  
 Width = 32 bits  
 Access Type = rw  
@@ -314,7 +302,6 @@ Description Output Data (GPIO Bank3, EMIO)
 
 ### DATA_0_RO  
 
-Module gpio  
 Relative Address = 0x00000060  
 Width = 32 bits  
 Access Type = ro  
@@ -329,7 +316,6 @@ Description Input Data (GPIO Bank0, MIO)
 
 ### DATA_1_RO  
 
-Module gpio  
 Relative Address = 0x00000064  
 Width = 32 bits  
 Access Type = ro  
@@ -344,7 +330,6 @@ Description Input Data (GPIO Bank1, MIO)
 
 ### DATA_2_RO  
 
-Module gpio  
 Relative Address = 0x00000068  
 Width = 32 bits  
 Access Type = ro  
@@ -359,7 +344,6 @@ Description Input Data (GPIO Bank2, EMIO)
 
 ### DATA_3_RO  
 
-Module gpio  
 Relative Address = 0x0000006c  
 Width = 32 bits  
 Access Type = ro  
@@ -374,7 +358,6 @@ Description Input Data (GPIO Bank3, EMIO)
 
 ### DIRM_0  
 
-Module gpio  
 Relative Address = 0x00000204  
 Width = 32 bits  
 Access Type = rw  
@@ -389,7 +372,6 @@ Description Direction mode (GPIO Bank0, MIO)
 
 ### OEN_0  
 
-Module gpio  
 Relative Address = 0x00000208  
 Width = 32 bits  
 Access Type = rw  
@@ -404,7 +386,6 @@ Description Output enable (GPIO Bank0, EMIO)
 
 ### INT_MASK_0  
 
-Module gpio  
 Relative Address = 0x0000020c  
 Width = 32 bits  
 Access Type = ro  
@@ -419,7 +400,6 @@ Description Interrupt Mask Status (GPIO Bank0, MIO)
 
 ### INT_EN_0  
 
-Module gpio  
 Relative Address = 0x00000210  
 Width = 32 bits  
 Access Type = wo  
@@ -434,7 +414,6 @@ Description Interrupt Enable/Unmask (GPIO Bank0, MIO)
 
 ### INT_DIS_0  
 
-Module gpio  
 Relative Address = 0x00000214  
 Width = 32 bits  
 Access Type = wo  
@@ -449,7 +428,6 @@ Description Interrupt Disable/Mask (GPIO Bank0, MIO)
 
 ### INT_STAT_0  
 
-Module gpio  
 Relative Address = 0x00000218  
 Width = 32 bits  
 Access Type = wtc  
@@ -464,7 +442,6 @@ Description Interrupt Status (GPIO Bank0, MIO)
 
 ### INT_TYPE_0  
 
-Module gpio  
 Relative Address = 0x0000021c  
 Width = 32 bits  
 Access Type = rw  
@@ -479,7 +456,6 @@ Description Interrupt Type (GPIO Bank0, MIO)
 
 ### INT_POLARITY_0  
 
-Module gpio  
 Relative Address = 0x00000220  
 Width = 32 bits  
 Access Type = rw  
@@ -494,7 +470,6 @@ Description Interrupt Polarity (GPIO Bank0, MIO)
 
 ### INT_ANY_0  
 
-Module gpio  
 Relative Address = 0x00000224  
 Width = 32 bits  
 Access Type = rw  
@@ -509,7 +484,6 @@ Description Interrupt Any Edge Sensitive (GPIO Bank0, MIO)
 
 ### DIRM_1  
 
-Module gpio  
 Relative Address = 0x00000244  
 Width = 32 bits  
 Access Type = rw  
@@ -524,7 +498,6 @@ Description Direction mode (GPIO Bank1, MIO)
 
 ### OEN_1  
 
-Module gpio  
 Relative Address = 0x00000248  
 Width = 32 bits  
 Access Type = rw  
@@ -539,7 +512,6 @@ Description Output enable (GPIO Bank1, MIO)
 
 ### INT_MASK_1  
 
-Module gpio  
 Relative Address = 0x0000024c  
 Width = 32 bits  
 Access Type = ro  
@@ -554,7 +526,6 @@ Description Interrupt Mask Status (GPIO Bank1, MIO)
 
 ### INT_EN_1  
 
-Module gpio  
 Relative Address = 0x00000250  
 Width = 32 bits  
 Access Type = wo  
@@ -569,7 +540,6 @@ Description Interrupt Enable/Unmask (GPIO Bank1, MIO)
 
 ### INT_DIS_1  
 
-Module gpio  
 Relative Address = 0x00000254  
 Width = 32 bits  
 Access Type = wo  
@@ -584,7 +554,6 @@ Description Interrupt Disable/Mask (GPIO Bank1, MIO)
 
 ### INT_STAT_1  
 
-Module gpio  
 Relative Address = 0x00000258  
 Width = 32 bits  
 Access Type = wtc  
@@ -599,7 +568,6 @@ Description Interrupt Status (GPIO Bank1, MIO)
 
 ### INT_TYPE_1  
 
-Module gpio  
 Relative Address = 0x0000025c  
 Width = 32 bits  
 Access Type = rw  
@@ -614,7 +582,6 @@ Description Interrupt Type (GPIO Bank1, MIO)
 
 ### INT_POLARITY_1  
 
-Module gpio  
 Relative Address = 0x00000260  
 Width = 32 bits  
 Access Type = rw  
@@ -629,7 +596,6 @@ Description Interrupt Polarity (GPIO Bank1, MIO)
 
 ### INT_ANY_1  
 
-Module gpio  
 Relative Address = 0x00000264  
 Width = 32 bits  
 Access Type = rw  
@@ -644,7 +610,6 @@ Description Interrupt Any Edge Sensitive (GPIO Bank1, MIO)
 
 ### DIRM_2  
 
-Module gpio  
 Relative Address = 0x00000284  
 Width = 32 bits  
 Access Type = rw  
@@ -659,7 +624,6 @@ Description Direction mode (GPIO Bank2, EMIO)
 
 ### OEN_2  
 
-Module gpio  
 Relative Address = 0x00000288  
 Width = 32 bits  
 Access Type = rw  
@@ -674,7 +638,6 @@ Description Output enable (GPIO Bank2, EMIO)
 
 ### INT_MASK_2  
 
-Module gpio  
 Relative Address = 0x0000028c  
 Width = 32 bits  
 Access Type = ro  
@@ -689,7 +652,6 @@ Description Interrupt Mask Status (GPIO Bank2, EMIO)
 
 ### INT_EN_2  
 
-Module gpio  
 Relative Address = 0x00000290  
 Width = 32 bits  
 Access Type = wo  
@@ -704,7 +666,6 @@ Description Interrupt Enable/Unmask (GPIO Bank2, EMIO)
 
 ### INT_DIS_2  
 
-Module gpio  
 Relative Address = 0x00000294  
 Width = 32 bits  
 Access Type = wo  
@@ -719,7 +680,6 @@ Description Interrupt Disable/Mask (GPIO Bank2, EMIO)
 
 ### INT_STAT_2  
 
-Module gpio  
 Relative Address = 0x00000298  
 Width = 32 bits  
 Access Type = wtc  
@@ -734,7 +694,6 @@ Description Interrup
 
 ### INT_TYPE_2  
 
-Module gpio  
 Relative Address = 0x0000029c  
 Width = 32 bits  
 Access Type = rw  
@@ -749,7 +708,6 @@ Description Interrupt Type (GPIO Bank2, EMIO)
 
 ### INT_POLARITY_2  
 
-Module gpio  
 Relative Address = 0x000002a0  
 Width = 32 bits  
 Access Type = rw  
@@ -764,7 +722,6 @@ Description Interrupt Polarity (GPIO Bank2, EMIO)
 
 ### INT_ANY_2  
 
-Module gpio  
 Relative Address = 0x000002a4  
 Width = 32 bits  
 Access Type = rw  
@@ -779,7 +736,6 @@ Description Interrupt Any Edge Sensitive (GPIO Bank2, EMIO)
 
 ### DIRM_3  
 
-Module gpio  
 Relative Address = 0x000002c4  
 Width = 32 bits  
 Access Type = rw  
@@ -794,7 +750,6 @@ Description Direction mode (GPIO Bank3, EMIO)
 
 ### OEN_3  
 
-Module gpio  
 Relative Address = 0x000002c8  
 Width = 32 bits  
 Access Type = rw  
@@ -809,7 +764,6 @@ Description Output enable (GPIO Bank3, EMIO)
 
 ### INT_MASK_3  
 
-Module gpio  
 Relative Address = 0x000002cc  
 Width = 32 bits  
 Access Type = ro  
@@ -824,7 +778,6 @@ Description Interrupt Mask Status (GPIO Bank3, EMIO)
 
 ### INT_EN_3  
 
-Module gpio  
 Relative Address = 0x000002d0  
 Width = 32 bits  
 Access Type = wo  
@@ -839,7 +792,6 @@ Description Interrupt Enable/Unmask (GPIO Bank3, EMIO)
 
 ### INT_DIS_3  
 
-Module gpio  
 Relative Address = 0x000002d4  
 Width = 32 bits  
 Access Type = wo  
@@ -854,7 +806,6 @@ Description Interrupt Disable/Mask (GPIO Bank3, EMIO)
 
 ### INT_STAT_3  
 
-Module gpio  
 Relative Address = 0x000002d8  
 Width = 32 bits  
 Access Type = wtc  
@@ -869,7 +820,6 @@ Description Interrupt Status (GPIO Bank3, EMIO)
 
 ### INT_TYPE_3  
 
-Module gpio  
 Relative Address = 0x000002dc  
 Width = 32 bits  
 Access Type = rw  
@@ -884,7 +834,6 @@ Description Interrupt Type (GPIO Bank3, EMIO)
 
 ### INT_POLARITY_3  
 
-Module gpio  
 Relative Address = 0x000002e0  
 Width = 32 bits  
 Access Type = rw  
@@ -899,7 +848,6 @@ Description Interrupt Polarity (GPIO Bank3, EMIO)
 
 ### INT_ANY_3  
 
-Module gpio  
 Relative Address = 0x000002e4  
 Width = 32 bits  
 Access Type = rw  

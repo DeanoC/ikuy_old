@@ -2,7 +2,7 @@
 
 Module Triple Timer Counter (ttc)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 ttc0 Base Address = 0xf8001000  
 ttc1 Base Address = 0xf8002000  
@@ -81,7 +81,6 @@ ttc1 Base Address = 0xf8002000
 
 ### CLK_CNTRL_0  
 
-Module ttc  
 Relative Address = 0x00000000  
 Width = 7 bits  
 Access Type = rw  
@@ -91,7 +90,6 @@ Description Clock Control register
 
 ### CLK_CNTRL_1  
 
-Module ttc  
 Relative Address = 0x00000004  
 Width = 7 bits  
 Access Type = rw  
@@ -101,7 +99,6 @@ Description Clock Control register
 
 ### CLK_CNTRL_2  
 
-Module ttc  
 Relative Address = 0x00000008  
 Width = 7 bits  
 Access Type = rw  
@@ -111,7 +108,6 @@ Description Clock Control register
 
 ### CNT_CNTRL_0  
 
-Module ttc  
 Relative Address = 0x0000000c  
 Width = 7 bits  
 Access Type = rw  
@@ -121,7 +117,6 @@ Description Operational mode and reset
 
 ### CNT_CNTRL_1  
 
-Module ttc  
 Relative Address = 0x00000010  
 Width = 7 bits  
 Access Type = rw  
@@ -131,7 +126,6 @@ Description Operational mode and reset
 
 ### CNT_CNTRL_2  
 
-Module ttc  
 Relative Address = 0x00000014  
 Width = 7 bits  
 Access Type = rw  
@@ -141,7 +135,6 @@ Description Operational mode and reset
 
 ### CNT_0  
 
-Module ttc  
 Relative Address = 0x00000018  
 Width = 16 bits  
 Access Type = ro  
@@ -151,7 +144,6 @@ Description Current counter value
 
 ### CNT_1  
 
-Module ttc  
 Relative Address = 0x0000001c  
 Width = 16 bits  
 Access Type = ro  
@@ -161,7 +153,6 @@ Description Current counter value
 
 ### CNT_2  
 
-Module ttc  
 Relative Address = 0x00000020  
 Width = 16 bits  
 Access Type = ro  
@@ -171,7 +162,6 @@ Description Current counter value
 
 ### INTERVAL_0  
 
-Module ttc  
 Relative Address = 0x00000024  
 Width = 16 bits  
 Access Type = rw  
@@ -181,7 +171,6 @@ Description Interval value
 
 ### INTERVAL_1  
 
-Module ttc  
 Relative Address = 0x00000028  
 Width = 16 bits  
 Access Type = rw  
@@ -191,7 +180,6 @@ Description Interval value
 
 ### INTERVAL_2  
 
-Module ttc  
 Relative Address = 0x0000002c  
 Width = 16 bits  
 Access Type = rw  
@@ -201,7 +189,6 @@ Description Interval value
 
 ### MATCH_0_CNT_0  
 
-Module ttc  
 Relative Address = 0x00000030  
 Width = 16 bits  
 Access Type = rw  
@@ -211,7 +198,6 @@ Description Match value
 
 ### MATCH_0_CNT_1  
 
-Module ttc  
 Relative Address = 0x00000034  
 Width = 16 bits  
 Access Type = rw  
@@ -221,7 +207,6 @@ Description Match value
 
 ### MATCH_0_CNT_2  
 
-Module ttc  
 Relative Address = 0x00000038  
 Width = 16 bits  
 Access Type = rw  
@@ -231,7 +216,6 @@ Description Match value
 
 ### MATCH_1_CNT_0  
 
-Module ttc  
 Relative Address = 0x0000003c  
 Width = 16 bits  
 Access Type = rw  
@@ -241,7 +225,6 @@ Description Match value
 
 ### MATCH_1_CNT_1  
 
-Module ttc  
 Relative Address = 0x00000040  
 Width = 16 bits  
 Access Type = rw  
@@ -251,7 +234,6 @@ Description Match value
 
 ### MATCH_1_CNT_2  
 
-Module ttc  
 Relative Address = 0x00000044  
 Width = 16 bits  
 Access Type = rw  
@@ -261,7 +243,6 @@ Description Match value
 
 ### MATCH_2_CNT_0  
 
-Module ttc  
 Relative Address = 0x00000048  
 Width = 16 bits  
 Access Type = rw  
@@ -271,7 +252,6 @@ Description Match value
 
 ### MATCH_2_CNT_1  
 
-Module ttc  
 Relative Address = 0x0000004c  
 Width = 16 bits  
 Access Type = rw  
@@ -281,7 +261,6 @@ Description Match value
 
 ### MATCH_2_CNT_2  
 
-Module ttc  
 Relative Address = 0x00000050  
 Width = 16 bits  
 Access Type = rw  
@@ -291,7 +270,6 @@ Description Match value
 
 ### ISR_0  
 
-Module ttc  
 Relative Address = 0x00000054  
 Width = 6 bits  
 Access Type = clronrd  
@@ -301,7 +279,6 @@ Description Counter 1 Interval, Match, Overflow and Event interrupts
 
 ### ISR_1  
 
-Module ttc  
 Relative Address = 0x00000058  
 Width = 6 bits  
 Access Type = clronrd  
@@ -311,7 +288,6 @@ Description Counter 2 Interval, Match, Overflow and Event interrupts
 
 ### ISR_2  
 
-Module ttc  
 Relative Address = 0x0000005c  
 Width = 6 bits  
 Access Type = clronrd  
@@ -321,7 +297,6 @@ Description Counter 3 Interval, Match, Overflow and Event interrupts
 
 ### IER_0  
 
-Module ttc  
 Relative Address = 0x00000060  
 Width = 6 bits  
 Access Type = rw  
@@ -331,7 +306,6 @@ Description ANDed with corresponding Interrupt
 
 ### IER_1  
 
-Module ttc  
 Relative Address = 0x00000064  
 Width = 6 bits  
 Access Type = rw  
@@ -341,7 +315,6 @@ Description ANDed with corresponding Interrupt
 
 ### IER_2  
 
-Module ttc  
 Relative Address = 0x00000068  
 Width = 6 bits  
 Access Type = rw  
@@ -351,7 +324,6 @@ Description ANDed with corresponding Interrupt
 
 ### EVENT_TIMER_0  
 
-Module ttc  
 Relative Address = 0x0000006c  
 Width = 3 bits  
 Access Type = rw  
@@ -361,7 +333,6 @@ Description Enable, pulse and overflow
 
 ### EVENT_TIMER_1  
 
-Module ttc  
 Relative Address = 0x00000070  
 Width = 3 bits  
 Access Type = rw  
@@ -371,7 +342,6 @@ Description Enable, pulse and overflow
 
 ### EVENT_TIMER_2  
 
-Module ttc  
 Relative Address = 0x00000074  
 Width = 3 bits  
 Access Type = rw  
@@ -381,7 +351,6 @@ Description Enable, pulse and overflow
 
 ### EVENT_0  
 
-Module ttc  
 Relative Address = 0x00000078  
 Width = 16 bits  
 Access Type = ro  
@@ -391,7 +360,6 @@ Description pclk cycle count for event
 
 ### EVENT_1  
 
-Module ttc  
 Relative Address = 0x0000007c  
 Width = 16 bits  
 Access Type = ro  
@@ -401,7 +369,6 @@ Description pclk cycle count for event
 
 ### EVENT_2  
 
-Module ttc  
 Relative Address = 0x00000080  
 Width = 16 bits  
 Access Type = ro  

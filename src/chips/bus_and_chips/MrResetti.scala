@@ -37,6 +37,10 @@ extends CustomChip( size = DUO,
                   rtype = WRITE_ONLY,
                   description = "Any write to this, we force a FPGA reset") ) )
 
+  // TODO improve pathing
+  override def CHeaderPath = "../../../../libraries/bus_and_chips/include/bus_and_chips/"
+  override def DocPath = "../../../../libraries/bus_and_chips/docs/"
+
   connect()
    
 }

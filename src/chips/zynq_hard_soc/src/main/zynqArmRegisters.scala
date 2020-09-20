@@ -10,21 +10,9 @@ object ZynqArmRegisters
 {
   // this is shit, tried resources but couldn't get it to work...
   private val registerBasePath = "../../../../chips/zynq_hard_soc/registers/"
-  private val headerBasePath = "../../../../libraries/zynq_ps/include/zynq_ps/"
-  private val docsBasePath = "../../../../libraries/zynq_ps/docs/"
-
-  def ensureDirectories(path : String ) : Unit = {
-    val directory = new File(path);
-    if (! directory.exists()){
-        directory.mkdirs();
-    }    
-  }
 
   def parseRegisters(c : HardChip)
   {
-    ensureDirectories(headerBasePath)
-    ensureDirectories(docsBasePath)
-
     parseMultiBanks(c, "uart", Vector(
         ("uart0", 0xE0000000L),
         ("uart1", 0xE0001000L)
@@ -110,9 +98,6 @@ object ZynqArmRegisters
 
     parseSingleBank(c, "scu", 0xF8F00000L, "CPU Configuration (mpcore)")
     parseSingleBank(c, "l2cache", 0xF8F02000L, "L2 Cache PL310")
-
-    CHeaderRegisterOutput.generateHeaders(c, headerBasePath)
-    MarkdownRegisterOutput.generateMarkdowns(c, docsBasePath)
   }
 
   private def parseRegisterLines(c : HardChip, chipName : String, regLines : Iterator[String])

@@ -2,7 +2,7 @@
 
 Module Controller Area Network (can)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 can0 Base Address = 0xe0008000  
 can1 Base Address = 0xe0009000  
@@ -81,7 +81,6 @@ can1 Base Address = 0xe0009000
 
 ### XCANPS_SRR_OFFSET  
 
-Module can  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -91,7 +90,6 @@ Description Software Reset Register
 
 ### XCANPS_MSR_OFFSET  
 
-Module can  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = rw  
@@ -101,7 +99,6 @@ Description Mode Select Register
 
 ### XCANPS_BRPR_OFFSET  
 
-Module can  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = rw  
@@ -111,7 +108,6 @@ Description Baud Rate Prescaler Register
 
 ### XCANPS_BTR_OFFSET  
 
-Module can  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = rw  
@@ -121,7 +117,6 @@ Description Bit Timing Register
 
 ### XCANPS_ECR_OFFSET  
 
-Module can  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -131,7 +126,6 @@ Description Error Counter Register
 
 ### XCANPS_ESR_OFFSET  
 
-Module can  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -141,7 +135,6 @@ Description Error Status Register
 
 ### XCANPS_SR_OFFSET  
 
-Module can  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = mixed  
@@ -151,7 +144,6 @@ Description Status Register
 
 ### XCANPS_ISR_OFFSET  
 
-Module can  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = mixed  
@@ -161,7 +153,6 @@ Description Interrupt Status Register
 
 ### XCANPS_IER_OFFSET  
 
-Module can  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = rw  
@@ -171,7 +162,6 @@ Description Interrupt Enable Register
 
 ### XCANPS_ICR_OFFSET  
 
-Module can  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = mixed  
@@ -181,7 +171,6 @@ Description Interrupt Clear Register
 
 ### XCANPS_TCR_OFFSET  
 
-Module can  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = mixed  
@@ -191,7 +180,6 @@ Description Timestamp Control Register
 
 ### XCANPS_WIR_OFFSET  
 
-Module can  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = rw  
@@ -201,7 +189,6 @@ Description Watermark Interrupt Register
 
 ### XCANPS_TXFIFO_ID_OFFSET  
 
-Module can  
 Relative Address = 0x00000030  
 Width = 32 bits  
 Access Type = wo  
@@ -211,7 +198,6 @@ Description transmit message fifo message identifier
 
 ### XCANPS_TXFIFO_DLC_OFFSET  
 
-Module can  
 Relative Address = 0x00000034  
 Width = 32 bits  
 Access Type = rw  
@@ -221,7 +207,6 @@ Description transmit message fifo data length code
 
 ### XCANPS_TXFIFO_DW1_OFFSET  
 
-Module can  
 Relative Address = 0x00000038  
 Width = 32 bits  
 Access Type = rw  
@@ -231,7 +216,6 @@ Description transmit message fifo data word 1
 
 ### XCANPS_TXFIFO_DW2_OFFSET  
 
-Module can  
 Relative Address = 0x0000003c  
 Width = 32 bits  
 Access Type = rw  
@@ -241,7 +225,6 @@ Description transmit message fifo data word 2
 
 ### XCANPS_TXHPB_ID_OFFSET  
 
-Module can  
 Relative Address = 0x00000040  
 Width = 32 bits  
 Access Type = wo  
@@ -251,7 +234,6 @@ Description transmit high priority buffer message identifier
 
 ### XCANPS_TXHPB_DLC_OFFSET  
 
-Module can  
 Relative Address = 0x00000044  
 Width = 32 bits  
 Access Type = rw  
@@ -261,7 +243,6 @@ Description transmit high priority buffer data length code
 
 ### XCANPS_TXHPB_DW1_OFFSET  
 
-Module can  
 Relative Address = 0x00000048  
 Width = 32 bits  
 Access Type = rw  
@@ -271,7 +252,6 @@ Description transmit high priority buffer data word 1
 
 ### XCANPS_TXHPB_DW2_OFFSET  
 
-Module can  
 Relative Address = 0x0000004c  
 Width = 32 bits  
 Access Type = rw  
@@ -281,7 +261,6 @@ Description transmit high priority buffer data word 2
 
 ### XCANPS_RXFIFO_ID_OFFSET  
 
-Module can  
 Relative Address = 0x00000050  
 Width = 32 bits  
 Access Type = ro  
@@ -291,7 +270,6 @@ Description receive message fifo message identifier
 
 ### XCANPS_RXFIFO_DLC_OFFSET  
 
-Module can  
 Relative Address = 0x00000054  
 Width = 32 bits  
 Access Type = rw  
@@ -301,7 +279,6 @@ Description receive message fifo data length code
 
 ### XCANPS_RXFIFO_DW1_OFFSET  
 
-Module can  
 Relative Address = 0x00000058  
 Width = 32 bits  
 Access Type = rw  
@@ -311,7 +288,6 @@ Description receive message fifo data word 1
 
 ### XCANPS_RXFIFO_DW2_OFFSET  
 
-Module can  
 Relative Address = 0x0000005c  
 Width = 32 bits  
 Access Type = rw  
@@ -321,7 +297,6 @@ Description receive message fifo data word 2
 
 ### XCANPS_AFR_OFFSET  
 
-Module can  
 Relative Address = 0x00000060  
 Width = 32 bits  
 Access Type = rw  
@@ -331,7 +306,6 @@ Description Acceptance Filter Register
 
 ### XCANPS_AFMR1_OFFSET  
 
-Module can  
 Relative Address = 0x00000064  
 Width = 32 bits  
 Access Type = rw  
@@ -341,7 +315,6 @@ Description Acceptance Filter Mask Register 1
 
 ### XCANPS_AFIR1_OFFSET  
 
-Module can  
 Relative Address = 0x00000068  
 Width = 32 bits  
 Access Type = rw  
@@ -351,7 +324,6 @@ Description Acceptance Filter ID Register 1
 
 ### XCANPS_AFMR2_OFFSET  
 
-Module can  
 Relative Address = 0x0000006c  
 Width = 32 bits  
 Access Type = rw  
@@ -361,7 +333,6 @@ Description Acceptance Filter Mask Register 2
 
 ### XCANPS_AFIR2_OFFSET  
 
-Module can  
 Relative Address = 0x00000070  
 Width = 32 bits  
 Access Type = rw  
@@ -371,7 +342,6 @@ Description Acceptance Filter ID Register 2
 
 ### XCANPS_AFMR3_OFFSET  
 
-Module can  
 Relative Address = 0x00000074  
 Width = 32 bits  
 Access Type = rw  
@@ -381,7 +351,6 @@ Description Acceptance Filter Mask Register 3
 
 ### XCANPS_AFIR3_OFFSET  
 
-Module can  
 Relative Address = 0x00000078  
 Width = 32 bits  
 Access Type = rw  
@@ -391,7 +360,6 @@ Description Acceptance Filter ID Register 3
 
 ### XCANPS_AFMR4_OFFSET  
 
-Module can  
 Relative Address = 0x0000007c  
 Width = 32 bits  
 Access Type = rw  
@@ -401,7 +369,6 @@ Description Acceptance Filter Mask Register 4
 
 ### XCANPS_AFIR4_OFFSET  
 
-Module can  
 Relative Address = 0x00000080  
 Width = 32 bits  
 Access Type = rw  

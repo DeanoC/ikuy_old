@@ -2,7 +2,7 @@
 
 Module USB Controller (usb)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 usb0 Base Address = 0xe0002000  
 usb1 Base Address = 0xe0003000  
@@ -117,7 +117,6 @@ usb1 Base Address = 0xe0003000
 
 ### ID  
 
-Module usb  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = ro  
@@ -127,7 +126,6 @@ Description IP version and revision
 
 ### HWGENERAL  
 
-Module usb  
 Relative Address = 0x00000004  
 Width = 12 bits  
 Access Type = ro  
@@ -137,7 +135,6 @@ Description Misc IP config constants
 
 ### HWHOST  
 
-Module usb  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = ro  
@@ -147,7 +144,6 @@ Description Host Mode IP config constants
 
 ### HWDEVICE  
 
-Module usb  
 Relative Address = 0x0000000c  
 Width = 6 bits  
 Access Type = ro  
@@ -157,7 +153,6 @@ Description Device Mode IP config constants
 
 ### HWTXBUF  
 
-Module usb  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -167,7 +162,6 @@ Description TxBuffer IP config constants
 
 ### HWRXBUF  
 
-Module usb  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = ro  
@@ -177,7 +171,6 @@ Description IP constants, RX buffer constants
 
 ### GPTIMER0LD  
 
-Module usb  
 Relative Address = 0x00000080  
 Width = 24 bits  
 Access Type = rw  
@@ -187,7 +180,6 @@ Description GP Timer 0 Load Value.
 
 ### GPTIMER0CTRL  
 
-Module usb  
 Relative Address = 0x00000084  
 Width = 32 bits  
 Access Type = mixed  
@@ -197,7 +189,6 @@ Description GP Timer 1 Control.
 
 ### GPTIMER1LD  
 
-Module usb  
 Relative Address = 0x00000088  
 Width = 24 bits  
 Access Type = rw  
@@ -207,7 +198,6 @@ Description GP Timer 1 Load Value
 
 ### GPTIMER1CTRL  
 
-Module usb  
 Relative Address = 0x0000008c  
 Width = 32 bits  
 Access Type = mixed  
@@ -217,7 +207,6 @@ Description GP Timer 1 Control
 
 ### SBUSCFG  
 
-Module usb  
 Relative Address = 0x00000090  
 Width = 3 bits  
 Access Type = rw  
@@ -227,7 +216,6 @@ Description DMA Master AHB Burst Mode
 
 ### CAPLENGTH_HCIVERSION  
 
-Module usb  
 Relative Address = 0x00000100  
 Width = 32 bits  
 Access Type = ro  
@@ -237,7 +225,6 @@ Description EHCI Addr Space and HCI constants
 
 ### HCSPARAMS  
 
-Module usb  
 Relative Address = 0x00000104  
 Width = 28 bits  
 Access Type = ro  
@@ -247,7 +234,6 @@ Description TT counts and EHCI HCS constants
 
 ### HCCPARAMS  
 
-Module usb  
 Relative Address = 0x00000108  
 Width = 16 bits  
 Access Type = ro  
@@ -257,7 +243,6 @@ Description EHCI Host Configuration Constants.
 
 ### DCIVERSION  
 
-Module usb  
 Relative Address = 0x00000120  
 Width = 16 bits  
 Access Type = ro  
@@ -267,7 +252,6 @@ Description Device Controller Interface Version.
 
 ### DCCPARAMS  
 
-Module usb  
 Relative Address = 0x00000124  
 Width = 9 bits  
 Access Type = ro  
@@ -277,7 +261,6 @@ Description EHCI, Device, and EndpointCapabilities.
 
 ### CMD  
 
-Module usb  
 Relative Address = 0x00000140  
 Width = 24 bits  
 Access Type = mixed  
@@ -287,7 +270,6 @@ Description USB Commands (EHCI extended)
 
 ### ISR  
 
-Module usb  
 Relative Address = 0x00000144  
 Width = 26 bits  
 Access Type = mixed  
@@ -297,7 +279,6 @@ Description Interrupt/Raw Status (EHCI extended) (Host/Device)
 
 ### IER  
 
-Module usb  
 Relative Address = 0x00000148  
 Width = 26 bits  
 Access Type = mixed  
@@ -307,7 +288,6 @@ Description Interrrupts and Enables
 
 ### FRAME  
 
-Module usb  
 Relative Address = 0x0000014c  
 Width = 14 bits  
 Access Type = rw  
@@ -317,7 +297,6 @@ Description Frame List Index
 
 ### LISTBASE  
 
-Module usb  
 Relative Address = 0x00000154  
 Width = 32 bits  
 Access Type = mixed  
@@ -327,7 +306,6 @@ Description Host/Device Address dual-use
 
 ### ASYNCLISTADDR  
 
-Module usb  
 Relative Address = 0x00000158  
 Width = 32 bits  
 Access Type = mixed  
@@ -337,7 +315,6 @@ Description Host/Device dual-use
 
 ### TTCTRL  
 
-Module usb  
 Relative Address = 0x0000015c  
 Width = 32 bits  
 Access Type = mixed  
@@ -347,7 +324,6 @@ Description TT Control
 
 ### BURSTSIZE  
 
-Module usb  
 Relative Address = 0x00000160  
 Width = 17 bits  
 Access Type = rw  
@@ -357,7 +333,6 @@ Description Burst Size
 
 ### TXFILL  
 
-Module usb  
 Relative Address = 0x00000164  
 Width = 22 bits  
 Access Type = mixed  
@@ -367,7 +342,6 @@ Description TxFIFO Fill Tuning
 
 ### TXTTFILLTUNING  
 
-Module usb  
 Relative Address = 0x00000168  
 Width = 13 bits  
 Access Type = mixed  
@@ -377,7 +351,6 @@ Description TT TX latency FIFO
 
 ### IC_USB  
 
-Module usb  
 Relative Address = 0x0000016c  
 Width = 32 bits  
 Access Type = mixed  
@@ -387,7 +360,6 @@ Description Low and Fast Speed Control constants
 
 ### ULPIVIEW  
 
-Module usb  
 Relative Address = 0x00000170  
 Width = 32 bits  
 Access Type = mixed  
@@ -397,7 +369,6 @@ Description ULPI Viewport
 
 ### EPNAKISR  
 
-Module usb  
 Relative Address = 0x00000178  
 Width = 32 bits  
 Access Type = wtc  
@@ -407,7 +378,6 @@ Description Endpoint NAK (Device mode)
 
 ### EPNAKIER  
 
-Module usb  
 Relative Address = 0x0000017c  
 Width = 32 bits  
 Access Type = rw  
@@ -417,7 +387,6 @@ Description Endpoint NAK (Device mode)
 
 ### CONFIG_FLAG  
 
-Module usb  
 Relative Address = 0x00000180  
 Width = 32 bits  
 Access Type = ro  
@@ -427,7 +396,6 @@ Description reserved
 
 ### PORTSCR1  
 
-Module usb  
 Relative Address = 0x00000184  
 Width = 32 bits  
 Access Type = mixed  
@@ -437,7 +405,6 @@ Description Port Status & Control
 
 ### OTGCSR  
 
-Module usb  
 Relative Address = 0x000001a4  
 Width = 32 bits  
 Access Type = mixed  
@@ -447,7 +414,6 @@ Description OTG Status and Control
 
 ### MODE  
 
-Module usb  
 Relative Address = 0x000001a8  
 Width = 32 bits  
 Access Type = mixed  
@@ -457,7 +423,6 @@ Description USB Mode Selection
 
 ### EPSTAT  
 
-Module usb  
 Relative Address = 0x000001ac  
 Width = 16 bits  
 Access Type = wtc  
@@ -467,7 +432,6 @@ Description Endpoint Status Setup (Device mode)
 
 ### EPPRIME  
 
-Module usb  
 Relative Address = 0x000001b0  
 Width = 32 bits  
 Access Type = wtc  
@@ -477,7 +441,6 @@ Description Endpoint Primer (Device mode)
 
 ### EPFLUSH  
 
-Module usb  
 Relative Address = 0x000001b4  
 Width = 32 bits  
 Access Type = wtc  
@@ -487,7 +450,6 @@ Description Endpoint Flush (Device mode)
 
 ### EPRDY  
 
-Module usb  
 Relative Address = 0x000001b8  
 Width = 32 bits  
 Access Type = ro  
@@ -497,7 +459,6 @@ Description Endpoint Buffer Ready Status (Device mode)
 
 ### EPCOMPL  
 
-Module usb  
 Relative Address = 0x000001bc  
 Width = 32 bits  
 Access Type = rw  
@@ -507,7 +468,6 @@ Description Endpoint Tx Complete (Device mode)
 
 ### EPCR0  
 
-Module usb  
 Relative Address = 0x000001c0  
 Width = 24 bits  
 Access Type = mixed  
@@ -517,7 +477,6 @@ Description Endpoint 0 (Device mode)
 
 ### ENDPTCTRL1  
 
-Module usb  
 Relative Address = 0x000001c4  
 Width = 24 bits  
 Access Type = mixed  
@@ -527,7 +486,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL2  
 
-Module usb  
 Relative Address = 0x000001c8  
 Width = 24 bits  
 Access Type = mixed  
@@ -537,7 +495,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL3  
 
-Module usb  
 Relative Address = 0x000001cc  
 Width = 24 bits  
 Access Type = mixed  
@@ -547,7 +504,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL4  
 
-Module usb  
 Relative Address = 0x000001d0  
 Width = 24 bits  
 Access Type = mixed  
@@ -557,7 +513,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL5  
 
-Module usb  
 Relative Address = 0x000001d4  
 Width = 24 bits  
 Access Type = mixed  
@@ -567,7 +522,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL6  
 
-Module usb  
 Relative Address = 0x000001d8  
 Width = 24 bits  
 Access Type = mixed  
@@ -577,7 +531,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL7  
 
-Module usb  
 Relative Address = 0x000001dc  
 Width = 24 bits  
 Access Type = mixed  
@@ -587,7 +540,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL8  
 
-Module usb  
 Relative Address = 0x000001e0  
 Width = 24 bits  
 Access Type = mixed  
@@ -597,7 +549,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL9  
 
-Module usb  
 Relative Address = 0x000001e4  
 Width = 24 bits  
 Access Type = mixed  
@@ -607,7 +558,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL10  
 
-Module usb  
 Relative Address = 0x000001e8  
 Width = 24 bits  
 Access Type = mixed  
@@ -617,7 +567,6 @@ Description Endpoints 1 to 11 (Device mode)
 
 ### ENDPTCTRL11  
 
-Module usb  
 Relative Address = 0x000001ec  
 Width = 24 bits  
 Access Type = mixed  

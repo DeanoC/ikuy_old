@@ -81,23 +81,33 @@ abstract class Register(val defi : RegisterDef)
   // who owns this register
   var owner : Chip = null
 
-  def hasRead() = defi.rtype == READ_ONLY || defi.rtype == READ_WRITE
+  def hasRead() : Boolean = defi.rtype match {
+    case MIXED => true    
+    case READ_ONLY => true
+    case READ_AS_ZERO => true
+    case READ_AS_UNDEFINED => true
+    case READ_WRITE => true
+    case READ_WRITE_SET_ONLY => true
+    case READ_WRITE_ZERO => true
+    case NON_SECURE_READ_ONLY => true
+    case NON_SECURE_READ_WRITE => true
+    case NON_SECURE_READ_AS_ZERO => true
+    case SECURE_READ_ONLY => true
+    case SECURE_READ_WRITE => true
+    case _ => false
+  }
 
-  def hasWrite() = defi.rtype == WRITE_ONLY || defi.rtype == READ_WRITE
+  def hasWrite() : Boolean = defi.rtype match {
+    case MIXED => true
+    case WRITE_ONLY => true
+    case WRITE_TO_CLEAR => true
+    case READ_WRITE => true
+    case CLEAR_ON_WRITE => true
+    case READ_WRITE_SET_ONLY => true
+    case READ_WRITE_ZERO => true
+    case NON_SECURE_WRITE_ONLY => true
+    case SECURE_READ_WRITE => true
+    case SECURE_WRITE_ONLY => true
+    case _ => false
+  }
 }
-/*
-case class ReadOnlyRegisterDef( override val name : String, 
-                                override val description : String,
-                                override val default : Long = 0) 
-extends RegisterDef( name, description, registerType = READONLY, default)
-
-case class WriteOnlyRegisterDef(  override val name : String, 
-                                  override val description : String,
-                                  override val default : Long = 0) 
-extends RegisterDef( name, description, registerType = WRITEONLY, default)
-
-case class ReadWriteRegisterDef(  override val name : String, 
-                                  override val description : String,
-                                  override val default : Long = 0)
-extends RegisterDef( name, description, registerType = READWRITE, default)
-*/

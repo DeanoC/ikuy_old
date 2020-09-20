@@ -72,35 +72,59 @@ extends Motherboard {
     val MIO = master( zynqMIO() )
     val PS_CLOCK_AND_RESET = master( zynqPSClockAndReset() )
   } 
-
   // Remove io_ prefix from verilog names
   noIoPrefix()
   
-  val mcp = addChip(
+   val systemClockDomain = ClockDomain(
+    clock = io.sys_clk,
+    frequency = FixedFrequency(125 MHz)
+  )
+ 
+  val mcpID = addChip(
             "mcp",
             (chipID : ChipID, mb : Motherboard) => 
             { 
               new zynqHardSoC(chipID = chipID, 
                               motherboard = mb,
                               config = zynqSoCConfig(
+                                useFPGAClock0 = true,
+                                usePSMasterGP0Axi = true
                               ))
             })
 
+  val buggyBoyID = addChip(
+              "BuggyBoy",
+              (chipID : ChipID, mb : Motherboard) => 
+              { 
+                new DebugCustomChip(chipID = chipID, motherboard = mb) 
+              })
+ 
+  val slaveGp0ID = addBus(
+                  "slaveGp0", 
+                  (busID : BusID, mb : Motherboard) => { 
+                    new Axi3Slave(
+                      config = zynqAxis.PSMasterGPAxiConfig,
+                      addressSpaceHighBit = 30, // 0x40000000 address range
+                      busID = busID,
+                      motherboard = mb)
+                  })
+  connectChipToBus( buggyBoyID, FULL_DUPLUX_CONN, slaveGp0ID)
+
   build()
 
+  // TODO figure out how to do this as part of build...
+  val mcp = getChipByID(mcpID).asInstanceOf[zynqHardSoC]
+  mcp.io.PS_CLOCK_AND_RESET <> io.PS_CLOCK_AND_RESET
+  mcp.io.DDR <> io.DDR 
+  mcp.io.MIO <> io.MIO 
+
+  mcp.io.FPGAClockEnable0 := True
+
+  getBusByID(slaveGp0ID).io.s_axi << mcp.io.M_AXI_GP0
+  mcp.io.M_AXI_GP0_clk <> mcp.io.FPGAClock0
+
+
 /*
-  val systemClockDomain = ClockDomain(
-    clock = io.sys_clk,
-    frequency = FixedFrequency(125 MHz)
-  )
-
-  val hardSoc = new zynq_hard_soc(
-    useFPGAClock0 = true
-  )
-  io.PS_CLOCK_AND_RESET <> hardSoc.io.PS_CLOCK_AND_RESET
-  io.DDR <> hardSoc.io.DDR  
-  io.MIO <> hardSoc.io.MIO
-
   val fclk0ClockDomain = ClockDomain.internal( 
     name = "fclk0",
     frequency = FixedFrequency(108 MHz),
@@ -116,32 +140,16 @@ extends Motherboard {
   fclk0ClockDomain.clockEnable := hardSoc.io.FPGAClockEnable0
   hardSoc.io.FPGAClockEnable0 := True
 
-  val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
+  val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)*/
   {
-    val buggyBoyID = addChip(
-                "BuggyBoy",
-                (chipID : ChipID, mb : Motherboard) => 
-                { 
-                  new DebugCustomChip(chipID = chipID, motherboard = mb) 
-                })
-    val mrRessetiID = addChip(
+  }
+/*          val mrRessetiID = addChip(
                 "MrResseti",
                 (chipID : ChipID, mb : Motherboard) => 
                 { 
                   new MrRessetiChip(chipID = chipID, motherboard = mb) 
                 })
 
-    val slaveGp0ID = addBus(
-                    "slaveGp0", 
-                    (busID : BusID, mb : Motherboard) => { 
-                      new Axi3Slave(    
-                        config = hardSoc.ps7.PSMasterGPAxiConfig,
-                        addressSpaceHighBit = 30, // 0x40000000 address range
-                        busID = busID,
-                        motherboard = mb)
-                    })
-    connectChipToBus( buggyBoyID, FULL_DUPLUX_CONN, slaveGp0ID)
-    connectChipToBus( mrRessetiID, FULL_DUPLUX_CONN, slaveGp0ID)
 
     build()
 

@@ -2,16 +2,16 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // UART (serial)
-// Auto-generated on Sun Sep 20 15:25:57 EEST 2020
+// Auto-generated on Sun Sep 20 23:32:01 EEST 2020
 
 #include <stdint.h>
 
 // 2 banks of uart chips
-#define uart0_BASE_ADDR 0xe0000000
-#define uart1_BASE_ADDR 0xe0001000
+#define uart0_BASE_ADDR 0xe0000000U
+#define uart1_BASE_ADDR 0xe0001000U
 
 // UART Control Register
-#define uart_CR_OFFSET 0x00000000
+#define uart_CR_OFFSET 0x00000000U
 #define uart_CR_reserved_0_LSHIFT 0x00000009U
 #define uart_CR_reserved_0_MASK 0xfffffe00U
 #define uart_CR_STOPBRK_LSHIFT 0x00000008U
@@ -44,7 +44,7 @@
 #define uart_CR_MASK 0x000001ffU
 
 // UART Mode Register
-#define uart_MR_OFFSET 0x00000004
+#define uart_MR_OFFSET 0x00000004U
 #define uart_MR_reserved_0_LSHIFT 0x0000000cU
 #define uart_MR_reserved_0_MASK 0xfffff000U
 #define uart_MR_reserved_1_LSHIFT 0x0000000bU
@@ -67,7 +67,7 @@
 #define uart_MR_MASK 0x000003ffU
 
 // Interrupt Enable Register
-#define uart_IER_OFFSET 0x00000008
+#define uart_IER_OFFSET 0x00000008U
 #define uart_IER_reserved_0_LSHIFT 0x0000000dU
 #define uart_IER_reserved_0_MASK 0xffffe000U
 #define uart_IER_TOVR_LSHIFT 0x0000000cU
@@ -112,7 +112,7 @@
 #define uart_IER_MASK 0x00001fffU
 
 // Interrupt Disable Register
-#define uart_IDR_OFFSET 0x0000000c
+#define uart_IDR_OFFSET 0x0000000cU
 #define uart_IDR_reserved_0_LSHIFT 0x0000000dU
 #define uart_IDR_reserved_0_MASK 0xffffe000U
 #define uart_IDR_TOVR_LSHIFT 0x0000000cU
@@ -157,7 +157,7 @@
 #define uart_IDR_MASK 0x00001fffU
 
 // Interrupt Mask Register
-#define uart_IMR_OFFSET 0x00000010
+#define uart_IMR_OFFSET 0x00000010U
 #define uart_IMR_reserved_0_LSHIFT 0x0000000dU
 #define uart_IMR_reserved_0_MASK 0xffffe000U
 #define uart_IMR_TOVR_LSHIFT 0x0000000cU
@@ -202,7 +202,7 @@
 #define uart_IMR_MASK 0x00001fffU
 
 // Channel Interrupt Status Register
-#define uart_ISR_OFFSET 0x00000014
+#define uart_ISR_OFFSET 0x00000014U
 #define uart_ISR_reserved_0_LSHIFT 0x0000000dU
 #define uart_ISR_reserved_0_MASK 0xffffe000U
 #define uart_ISR_TOVR_LSHIFT 0x0000000cU
@@ -247,7 +247,7 @@
 #define uart_ISR_MASK 0x00001fffU
 
 // Baud Rate Generator Register.
-#define uart_BAUD_RATE_GENERATOR_OFFSET 0x00000018
+#define uart_BAUD_RATE_GENERATOR_OFFSET 0x00000018U
 #define uart_BAUD_RATE_GENERATOR_reserved_0_LSHIFT 0x00000010U
 #define uart_BAUD_RATE_GENERATOR_reserved_0_MASK 0xffff0000U
 #define uart_BAUD_RATE_GENERATOR_CD_LSHIFT 0x00000000U
@@ -255,7 +255,7 @@
 #define uart_BAUD_RATE_GENERATOR_MASK 0x0000ffffU
 
 // Receiver Timeout Register
-#define uart_RXTOUT_OFFSET 0x0000001c
+#define uart_RXTOUT_OFFSET 0x0000001cU
 #define uart_RXTOUT_reserved_0_LSHIFT 0x00000008U
 #define uart_RXTOUT_reserved_0_MASK 0xffffff00U
 #define uart_RXTOUT_RTO_LSHIFT 0x00000000U
@@ -263,7 +263,7 @@
 #define uart_RXTOUT_MASK 0x000000ffU
 
 // Receiver FIFO Trigger Level Register
-#define uart_RX_FIFO_TRIGGER_LEVEL_OFFSET 0x00000020
+#define uart_RX_FIFO_TRIGGER_LEVEL_OFFSET 0x00000020U
 #define uart_RX_FIFO_TRIGGER_LEVEL_reserved_0_LSHIFT 0x00000006U
 #define uart_RX_FIFO_TRIGGER_LEVEL_reserved_0_MASK 0xffffffc0U
 #define uart_RX_FIFO_TRIGGER_LEVEL_TRIGGER_LSHIFT 0x00000000U
@@ -271,7 +271,7 @@
 #define uart_RX_FIFO_TRIGGER_LEVEL_MASK 0x0000003fU
 
 // Modem Control Register
-#define uart_MODEMCR_OFFSET 0x00000024
+#define uart_MODEMCR_OFFSET 0x00000024U
 #define uart_MODEMCR_reserved_0_LSHIFT 0x00000006U
 #define uart_MODEMCR_reserved_0_MASK 0xffffffc0U
 #define uart_MODEMCR_FCM_LSHIFT 0x00000005U
@@ -288,7 +288,7 @@
 #define uart_MODEMCR_MASK 0x00000023U
 
 // Modem Status Register
-#define uart_MODEMSR_OFFSET 0x00000028
+#define uart_MODEMSR_OFFSET 0x00000028U
 #define uart_MODEMSR_reserved_0_LSHIFT 0x00000009U
 #define uart_MODEMSR_reserved_0_MASK 0xfffffe00U
 #define uart_MODEMSR_FCMS_LSHIFT 0x00000008U
@@ -321,7 +321,7 @@
 #define uart_MODEMSR_MASK 0x000001ffU
 
 // Channel Status Register
-#define uart_SR_OFFSET 0x0000002c
+#define uart_SR_OFFSET 0x0000002cU
 #define uart_SR_reserved_0_LSHIFT 0x0000000fU
 #define uart_SR_reserved_0_MASK 0xffff8000U
 #define uart_SR_TNFUL_LSHIFT 0x0000000eU
@@ -372,7 +372,7 @@
 #define uart_SR_MASK 0x00007c1fU
 
 // Transmit and Receive FIFO
-#define uart_FIFO_OFFSET 0x00000030
+#define uart_FIFO_OFFSET 0x00000030U
 #define uart_FIFO_reserved_0_LSHIFT 0x00000008U
 #define uart_FIFO_reserved_0_MASK 0xffffff00U
 #define uart_FIFO_FIFO_LSHIFT 0x00000000U
@@ -380,7 +380,7 @@
 #define uart_FIFO_MASK 0x000000ffU
 
 // Baud Rate Divider Register
-#define uart_BAUD_RATE_DIVIDER_OFFSET 0x00000034
+#define uart_BAUD_RATE_DIVIDER_OFFSET 0x00000034U
 #define uart_BAUD_RATE_DIVIDER_reserved_0_LSHIFT 0x00000008U
 #define uart_BAUD_RATE_DIVIDER_reserved_0_MASK 0xffffff00U
 #define uart_BAUD_RATE_DIVIDER_BDIV_LSHIFT 0x00000000U
@@ -388,7 +388,7 @@
 #define uart_BAUD_RATE_DIVIDER_MASK 0x000000ffU
 
 // Flow Control Delay Register
-#define uart_FLOW_DELAY_OFFSET 0x00000038
+#define uart_FLOW_DELAY_OFFSET 0x00000038U
 #define uart_FLOW_DELAY_reserved_0_LSHIFT 0x00000006U
 #define uart_FLOW_DELAY_reserved_0_MASK 0xffffffc0U
 #define uart_FLOW_DELAY_FDEL_LSHIFT 0x00000000U
@@ -396,7 +396,7 @@
 #define uart_FLOW_DELAY_MASK 0x0000003fU
 
 // Transmitter fifo trigger level
-#define uart_TX_FIFO_TRIGGER_LEVEL_OFFSET 0x00000044
+#define uart_TX_FIFO_TRIGGER_LEVEL_OFFSET 0x00000044U
 #define uart_TX_FIFO_TRIGGER_LEVEL_reserved_0_LSHIFT 0x00000006U
 #define uart_TX_FIFO_TRIGGER_LEVEL_reserved_0_MASK 0xffffffc0U
 #define uart_TX_FIFO_TRIGGER_LEVEL_TRIGGER_LSHIFT 0x00000000U

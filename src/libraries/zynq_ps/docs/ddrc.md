@@ -2,7 +2,7 @@
 
 Module DDR Memory Controller (ddrc)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 ddrc Base Address = 0xf8006000  
 
@@ -240,7 +240,6 @@ ddrc Base Address = 0xf8006000
 
 ### CTRL  
 
-Module ddrc  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -250,7 +249,6 @@ Description DDRC Control
 
 ### TWO_RANK_CFG  
 
-Module ddrc  
 Relative Address = 0x00000004  
 Width = 29 bits  
 Access Type = rw  
@@ -260,7 +258,6 @@ Description Two Rank Configuration
 
 ### HPR  
 
-Module ddrc  
 Relative Address = 0x00000008  
 Width = 26 bits  
 Access Type = rw  
@@ -270,7 +267,6 @@ Description HPR Queue control
 
 ### LPR  
 
-Module ddrc  
 Relative Address = 0x0000000c  
 Width = 26 bits  
 Access Type = rw  
@@ -280,7 +276,6 @@ Description LPR Queue control
 
 ### WR  
 
-Module ddrc  
 Relative Address = 0x00000010  
 Width = 26 bits  
 Access Type = rw  
@@ -290,7 +285,6 @@ Description WR Queue control
 
 ### DRAM_PARAM0  
 
-Module ddrc  
 Relative Address = 0x00000014  
 Width = 21 bits  
 Access Type = rw  
@@ -300,7 +294,6 @@ Description DRAM Parameters 0
 
 ### DRAM_PARAM1  
 
-Module ddrc  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = rw  
@@ -310,7 +303,6 @@ Description DRAM Parameters 1
 
 ### DRAM_PARAM2  
 
-Module ddrc  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = rw  
@@ -320,7 +312,6 @@ Description DRAM Parameters 2
 
 ### DRAM_PARAM3  
 
-Module ddrc  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = mixed  
@@ -330,7 +321,6 @@ Description DRAM Parameters 3
 
 ### DRAM_PARAM4  
 
-Module ddrc  
 Relative Address = 0x00000024  
 Width = 28 bits  
 Access Type = mixed  
@@ -340,7 +330,6 @@ Description DRAM Parameters 4
 
 ### DRAM_INIT_PARAM  
 
-Module ddrc  
 Relative Address = 0x00000028  
 Width = 14 bits  
 Access Type = rw  
@@ -350,7 +339,6 @@ Description DRAM Initialization Parameters
 
 ### DRAM_EMR  
 
-Module ddrc  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = rw  
@@ -360,7 +348,6 @@ Description DRAM EMR2, EMR3 access
 
 ### DRAM_EMR_MR  
 
-Module ddrc  
 Relative Address = 0x00000030  
 Width = 32 bits  
 Access Type = rw  
@@ -370,7 +357,6 @@ Description DRAM EMR, MR access
 
 ### DRAM_BURST8_RDWR  
 
-Module ddrc  
 Relative Address = 0x00000034  
 Width = 29 bits  
 Access Type = mixed  
@@ -380,7 +366,6 @@ Description DRAM Burst 8 read/write
 
 ### DRAM_DISABLE_DQ  
 
-Module ddrc  
 Relative Address = 0x00000038  
 Width = 13 bits  
 Access Type = mixed  
@@ -390,7 +375,6 @@ Description DRAM Disable DQ
 
 ### DRAM_ADDR_MAP_BANK  
 
-Module ddrc  
 Relative Address = 0x0000003c  
 Width = 20 bits  
 Access Type = rw  
@@ -400,7 +384,6 @@ Description Row/Column address bits
 
 ### DRAM_ADDR_MAP_COL  
 
-Module ddrc  
 Relative Address = 0x00000040  
 Width = 32 bits  
 Access Type = rw  
@@ -410,7 +393,6 @@ Description Column address bits
 
 ### DRAM_ADDR_MAP_ROW  
 
-Module ddrc  
 Relative Address = 0x00000044  
 Width = 28 bits  
 Access Type = rw  
@@ -420,7 +402,6 @@ Description Select DRAM row address bits
 
 ### DRAM_ODT  
 
-Module ddrc  
 Relative Address = 0x00000048  
 Width = 30 bits  
 Access Type = rw  
@@ -430,7 +411,6 @@ Description DRAM ODT control
 
 ### PHY_DBG  
 
-Module ddrc  
 Relative Address = 0x0000004c  
 Width = 20 bits  
 Access Type = ro  
@@ -440,7 +420,6 @@ Description PHY debug
 
 ### PHY_CMD_TIMEOUT_RDDATA_CPT  
 
-Module ddrc  
 Relative Address = 0x00000050  
 Width = 32 bits  
 Access Type = mixed  
@@ -450,7 +429,6 @@ Description PHY command time out and
 
 ### READ_DATA_CAPTURE_FIFOMODE_STS  
 
-Module ddrc  
 Relative Address = 0x00000054  
 Width = 21 bits  
 Access Type = ro  
@@ -460,7 +438,6 @@ Description Controller operation mode status
 
 ### DLL_CALIB  
 
-Module ddrc  
 Relative Address = 0x00000058  
 Width = 17 bits  
 Access Type = rw  
@@ -470,7 +447,6 @@ Description DLL calibration
 
 ### ODT_DELAY_HOLD  
 
-Module ddrc  
 Relative Address = 0x0000005c  
 Width = 16 bits  
 Access Type = rw  
@@ -480,7 +456,6 @@ Description ODT delay and ODT hold
 
 ### CTRL1  
 
-Module ddrc  
 Relative Address = 0x00000060  
 Width = 13 bits  
 Access Type = mixed  
@@ -490,7 +465,6 @@ Description Controller 1
 
 ### CTRL2  
 
-Module ddrc  
 Relative Address = 0x00000064  
 Width = 18 bits  
 Access Type = mixed  
@@ -500,7 +474,6 @@ Description Controller 2
 
 ### CTRL3  
 
-Module ddrc  
 Relative Address = 0x00000068  
 Width = 26 bits  
 Access Type = rw  
@@ -510,7 +483,6 @@ Description Controller 3
 
 ### CTRL4  
 
-Module ddrc  
 Relative Address = 0x0000006c  
 Width = 16 bits  
 Access Type = rw  
@@ -520,7 +492,6 @@ Description Controller 4
 
 ### CTRL5  
 
-Module ddrc  
 Relative Address = 0x00000078  
 Width = 32 bits  
 Access Type = mixed  
@@ -530,7 +501,6 @@ Description Controller register 5
 
 ### CTRL6  
 
-Module ddrc  
 Relative Address = 0x0000007c  
 Width = 32 bits  
 Access Type = mixed  
@@ -540,7 +510,6 @@ Description Controller register 6
 
 ### CHE_REFRESH_TIMER01  
 
-Module ddrc  
 Relative Address = 0x000000a0  
 Width = 24 bits  
 Access Type = rw  
@@ -550,7 +519,6 @@ Description CHE_REFRESH_TIMER01
 
 ### CHE_T_ZQ  
 
-Module ddrc  
 Relative Address = 0x000000a4  
 Width = 32 bits  
 Access Type = rw  
@@ -560,7 +528,6 @@ Description ZQ parameters
 
 ### CHE_T_ZQ_Short_Interval_Reg  
 
-Module ddrc  
 Relative Address = 0x000000a8  
 Width = 28 bits  
 Access Type = rw  
@@ -570,7 +537,6 @@ Description Misc parameters
 
 ### DEEP_PWRDWN  
 
-Module ddrc  
 Relative Address = 0x000000ac  
 Width = 9 bits  
 Access Type = rw  
@@ -580,7 +546,6 @@ Description Deep powerdown (LPDDR2)
 
 ### REG_2C  
 
-Module ddrc  
 Relative Address = 0x000000b0  
 Width = 29 bits  
 Access Type = mixed  
@@ -590,7 +555,6 @@ Description Training control
 
 ### REG_2D  
 
-Module ddrc  
 Relative Address = 0x000000b4  
 Width = 11 bits  
 Access Type = rw  
@@ -600,7 +564,6 @@ Description Misc Debug
 
 ### DFI_TIMING  
 
-Module ddrc  
 Relative Address = 0x000000b8  
 Width = 25 bits  
 Access Type = rw  
@@ -610,7 +573,6 @@ Description DFI timing
 
 ### CHE_ECC_CONTROL  
 
-Module ddrc  
 Relative Address = 0x000000c4  
 Width = 2 bits  
 Access Type = rw  
@@ -620,7 +582,6 @@ Description ECC error clear
 
 ### CHE_CORR_ECC_LOG  
 
-Module ddrc  
 Relative Address = 0x000000c8  
 Width = 8 bits  
 Access Type = mixed  
@@ -630,7 +591,6 @@ Description ECC error correction
 
 ### CHE_CORR_ECC_ADDR  
 
-Module ddrc  
 Relative Address = 0x000000cc  
 Width = 31 bits  
 Access Type = ro  
@@ -640,7 +600,6 @@ Description ECC error correction address log
 
 ### CHE_CORR_ECC_DATA_31_0  
 
-Module ddrc  
 Relative Address = 0x000000d0  
 Width = 32 bits  
 Access Type = ro  
@@ -650,7 +609,6 @@ Description ECC error correction data log low
 
 ### CHE_CORR_ECC_DATA_63_32  
 
-Module ddrc  
 Relative Address = 0x000000d4  
 Width = 32 bits  
 Access Type = ro  
@@ -660,7 +618,6 @@ Description ECC error correction data log mid
 
 ### CHE_CORR_ECC_DATA_71_64  
 
-Module ddrc  
 Relative Address = 0x000000d8  
 Width = 8 bits  
 Access Type = ro  
@@ -670,7 +627,6 @@ Description ECC error correction data log high
 
 ### CHE_UNCORR_ECC_LOG  
 
-Module ddrc  
 Relative Address = 0x000000dc  
 Width = 1 bits  
 Access Type = clronwr  
@@ -680,7 +636,6 @@ Description ECC unrecoverable error status
 
 ### CHE_UNCORR_ECC_ADDR  
 
-Module ddrc  
 Relative Address = 0x000000e0  
 Width = 31 bits  
 Access Type = ro  
@@ -690,7 +645,6 @@ Description ECC unrecoverable error address
 
 ### CHE_UNCORR_ECC_DATA_31_0  
 
-Module ddrc  
 Relative Address = 0x000000e4  
 Width = 32 bits  
 Access Type = ro  
@@ -700,7 +654,6 @@ Description ECC unrecoverable error data low
 
 ### CHE_UNCORR_ECC_DATA_63_32  
 
-Module ddrc  
 Relative Address = 0x000000e8  
 Width = 32 bits  
 Access Type = ro  
@@ -710,7 +663,6 @@ Description ECC unrecoverable error data middle
 
 ### CHE_UNCORR_ECC_DATA_71_64  
 
-Module ddrc  
 Relative Address = 0x000000ec  
 Width = 8 bits  
 Access Type = ro  
@@ -720,7 +672,6 @@ Description ECC unrecoverable error data high
 
 ### CHE_ECC_STATS  
 
-Module ddrc  
 Relative Address = 0x000000f0  
 Width = 16 bits  
 Access Type = clronwr  
@@ -730,7 +681,6 @@ Description ECC error count
 
 ### ECC_SCRUB  
 
-Module ddrc  
 Relative Address = 0x000000f4  
 Width = 4 bits  
 Access Type = rw  
@@ -740,7 +690,6 @@ Description ECC mode/scrub
 
 ### CHE_ECC_CORR_BIT_MASK_31_0_REG  
 
-Module ddrc  
 Relative Address = 0x000000f8  
 Width = 32 bits  
 Access Type = ro  
@@ -750,7 +699,6 @@ Description ECC data mask low
 
 ### CHE_ECC_CORR_BIT_MASK_63_32_REG  
 
-Module ddrc  
 Relative Address = 0x000000fc  
 Width = 32 bits  
 Access Type = ro  
@@ -760,7 +708,6 @@ Description ECC data mask high
 
 ### PHY_RCVR_ENABLE  
 
-Module ddrc  
 Relative Address = 0x00000114  
 Width = 8 bits  
 Access Type = rw  
@@ -770,7 +717,6 @@ Description Phy receiver enable register
 
 ### PHY_CONFIG0  
 
-Module ddrc  
 Relative Address = 0x00000118  
 Width = 31 bits  
 Access Type = rw  
@@ -780,7 +726,6 @@ Description PHY configuration register for data slice 0.
 
 ### PHY_CONFIG1  
 
-Module ddrc  
 Relative Address = 0x0000011c  
 Width = 31 bits  
 Access Type = rw  
@@ -790,7 +735,6 @@ Description PHY configuration register for data slice 1.
 
 ### PHY_CONFIG2  
 
-Module ddrc  
 Relative Address = 0x00000120  
 Width = 31 bits  
 Access Type = rw  
@@ -800,7 +744,6 @@ Description PHY configuration register for data slice 2.
 
 ### PHY_CONFIG3  
 
-Module ddrc  
 Relative Address = 0x00000124  
 Width = 31 bits  
 Access Type = rw  
@@ -810,7 +753,6 @@ Description PHY configuration register for data slice 3.
 
 ### PHY_INIT_RATIO0  
 
-Module ddrc  
 Relative Address = 0x0000012c  
 Width = 20 bits  
 Access Type = rw  
@@ -820,7 +762,6 @@ Description PHY init ratio register for data slice 0.
 
 ### PHY_INIT_RATIO1  
 
-Module ddrc  
 Relative Address = 0x00000130  
 Width = 20 bits  
 Access Type = rw  
@@ -830,7 +771,6 @@ Description PHY init ratio register for data slice 1.
 
 ### PHY_INIT_RATIO2  
 
-Module ddrc  
 Relative Address = 0x00000134  
 Width = 20 bits  
 Access Type = rw  
@@ -840,7 +780,6 @@ Description PHY init ratio register for data slice 2.
 
 ### PHY_INIT_RATIO3  
 
-Module ddrc  
 Relative Address = 0x00000138  
 Width = 20 bits  
 Access Type = rw  
@@ -850,7 +789,6 @@ Description PHY init ratio register for data slice 3.
 
 ### PHY_RD_DQS_CFG0  
 
-Module ddrc  
 Relative Address = 0x00000140  
 Width = 20 bits  
 Access Type = rw  
@@ -860,7 +798,6 @@ Description PHY read DQS configuration register for data slice 0.
 
 ### PHY_RD_DQS_CFG1  
 
-Module ddrc  
 Relative Address = 0x00000144  
 Width = 20 bits  
 Access Type = rw  
@@ -870,7 +807,6 @@ Description PHY read DQS configuration register for data slice 1.
 
 ### PHY_RD_DQS_CFG2  
 
-Module ddrc  
 Relative Address = 0x00000148  
 Width = 20 bits  
 Access Type = rw  
@@ -880,7 +816,6 @@ Description PHY read DQS configuration register for data slice 2.
 
 ### PHY_RD_DQS_CFG3  
 
-Module ddrc  
 Relative Address = 0x0000014c  
 Width = 20 bits  
 Access Type = rw  
@@ -890,7 +825,6 @@ Description PHY read DQS configuration register for data slice 3.
 
 ### PHY_WR_DQS_CFG0  
 
-Module ddrc  
 Relative Address = 0x00000154  
 Width = 20 bits  
 Access Type = rw  
@@ -900,7 +834,6 @@ Description PHY write DQS configuration register for data slice 0.
 
 ### PHY_WR_DQS_CFG1  
 
-Module ddrc  
 Relative Address = 0x00000158  
 Width = 20 bits  
 Access Type = rw  
@@ -910,7 +843,6 @@ Description PHY write DQS configuration register for data slice 1.
 
 ### PHY_WR_DQS_CFG2  
 
-Module ddrc  
 Relative Address = 0x0000015c  
 Width = 20 bits  
 Access Type = rw  
@@ -920,7 +852,6 @@ Description PHY write DQS configuration register for data slice 2.
 
 ### PHY_WR_DQS_CFG3  
 
-Module ddrc  
 Relative Address = 0x00000160  
 Width = 20 bits  
 Access Type = rw  
@@ -930,7 +861,6 @@ Description PHY write DQS configuration register for data slice 3.
 
 ### PHY_WE_CFG0  
 
-Module ddrc  
 Relative Address = 0x00000168  
 Width = 21 bits  
 Access Type = rw  
@@ -940,7 +870,6 @@ Description PHY FIFO write enable configuration for data slice 0.
 
 ### PHY_WE_CFG1  
 
-Module ddrc  
 Relative Address = 0x0000016c  
 Width = 21 bits  
 Access Type = rw  
@@ -950,7 +879,6 @@ Description PHY FIFO write enable configuration for data slice 1.
 
 ### PHY_WE_CFG2  
 
-Module ddrc  
 Relative Address = 0x00000170  
 Width = 21 bits  
 Access Type = rw  
@@ -960,7 +888,6 @@ Description PHY FIFO write enable configuration for data slice 2.
 
 ### PHY_WE_CFG3  
 
-Module ddrc  
 Relative Address = 0x00000174  
 Width = 21 bits  
 Access Type = rw  
@@ -970,7 +897,6 @@ Description PHY FIFO write enable configuration for data slice 3.
 
 ### WR_DATA_SLV0  
 
-Module ddrc  
 Relative Address = 0x0000017c  
 Width = 20 bits  
 Access Type = rw  
@@ -980,7 +906,6 @@ Description PHY write data slave ratio config for data slice 0.
 
 ### WR_DATA_SLV1  
 
-Module ddrc  
 Relative Address = 0x00000180  
 Width = 20 bits  
 Access Type = rw  
@@ -990,7 +915,6 @@ Description PHY write data slave ratio config for data slice 1.
 
 ### WR_DATA_SLV2  
 
-Module ddrc  
 Relative Address = 0x00000184  
 Width = 20 bits  
 Access Type = rw  
@@ -1000,7 +924,6 @@ Description PHY write data slave ratio config for data slice 2.
 
 ### WR_DATA_SLV3  
 
-Module ddrc  
 Relative Address = 0x00000188  
 Width = 20 bits  
 Access Type = rw  
@@ -1010,7 +933,6 @@ Description PHY write data slave ratio config for data slice 3.
 
 ### REG_64  
 
-Module ddrc  
 Relative Address = 0x00000190  
 Width = 32 bits  
 Access Type = rw  
@@ -1020,7 +942,6 @@ Description Training control 2
 
 ### REG_65  
 
-Module ddrc  
 Relative Address = 0x00000194  
 Width = 20 bits  
 Access Type = rw  
@@ -1030,7 +951,6 @@ Description Training control 3
 
 ### REG69_6A0  
 
-Module ddrc  
 Relative Address = 0x000001a4  
 Width = 29 bits  
 Access Type = ro  
@@ -1040,7 +960,6 @@ Description Training results for data slice 0.
 
 ### REG69_6A1  
 
-Module ddrc  
 Relative Address = 0x000001a8  
 Width = 29 bits  
 Access Type = ro  
@@ -1050,7 +969,6 @@ Description Training results for data slice 1.
 
 ### REG6C_6D2  
 
-Module ddrc  
 Relative Address = 0x000001b0  
 Width = 28 bits  
 Access Type = ro  
@@ -1060,7 +978,6 @@ Description Training results for data slice 2.
 
 ### REG6C_6D3  
 
-Module ddrc  
 Relative Address = 0x000001b4  
 Width = 28 bits  
 Access Type = ro  
@@ -1070,7 +987,6 @@ Description Training results for data slice 3.
 
 ### REG6E_710  
 
-Module ddrc  
 Relative Address = 0x000001b8  
 Width = 30 bits  
 Access Type = ro  
@@ -1080,7 +996,6 @@ Description Training results (2) for data slice 0.
 
 ### REG6E_711  
 
-Module ddrc  
 Relative Address = 0x000001bc  
 Width = 30 bits  
 Access Type = ro  
@@ -1090,7 +1005,6 @@ Description Training results (2) for data slice 1.
 
 ### REG6E_712  
 
-Module ddrc  
 Relative Address = 0x000001c0  
 Width = 30 bits  
 Access Type = ro  
@@ -1100,7 +1014,6 @@ Description Training results (2) for data slice 2.
 
 ### REG6E_713  
 
-Module ddrc  
 Relative Address = 0x000001c4  
 Width = 30 bits  
 Access Type = ro  
@@ -1110,7 +1023,6 @@ Description Training results (2) for data slice 3.
 
 ### PHY_DLL_STS0  
 
-Module ddrc  
 Relative Address = 0x000001cc  
 Width = 27 bits  
 Access Type = ro  
@@ -1120,7 +1032,6 @@ Description Slave DLL results for data slice 0.
 
 ### PHY_DLL_STS1  
 
-Module ddrc  
 Relative Address = 0x000001d0  
 Width = 27 bits  
 Access Type = ro  
@@ -1130,7 +1041,6 @@ Description Slave DLL results for data slice 1.
 
 ### PHY_DLL_STS2  
 
-Module ddrc  
 Relative Address = 0x000001d4  
 Width = 27 bits  
 Access Type = ro  
@@ -1140,7 +1050,6 @@ Description Slave DLL results for data slice 2.
 
 ### PHY_DLL_STS3  
 
-Module ddrc  
 Relative Address = 0x000001d8  
 Width = 27 bits  
 Access Type = ro  
@@ -1150,7 +1059,6 @@ Description Slave DLL results for data slice 3.
 
 ### DLL_LOCK_STS  
 
-Module ddrc  
 Relative Address = 0x000001e0  
 Width = 24 bits  
 Access Type = ro  
@@ -1160,7 +1068,6 @@ Description DLL Lock Status, read
 
 ### PHY_CTRL_STS  
 
-Module ddrc  
 Relative Address = 0x000001e4  
 Width = 30 bits  
 Access Type = ro  
@@ -1170,7 +1077,6 @@ Description PHY Control status, read
 
 ### PHY_CTRL_STS_REG2  
 
-Module ddrc  
 Relative Address = 0x000001e8  
 Width = 27 bits  
 Access Type = ro  
@@ -1180,7 +1086,6 @@ Description PHY Control status (2), read
 
 ### AXI_ID  
 
-Module ddrc  
 Relative Address = 0x00000200  
 Width = 26 bits  
 Access Type = ro  
@@ -1190,7 +1095,6 @@ Description ID and revision information
 
 ### PAGE_MASK  
 
-Module ddrc  
 Relative Address = 0x00000204  
 Width = 32 bits  
 Access Type = rw  
@@ -1200,7 +1104,6 @@ Description Page mask
 
 ### AXI_PRIORITY_WR_PORT0  
 
-Module ddrc  
 Relative Address = 0x00000208  
 Width = 20 bits  
 Access Type = mixed  
@@ -1210,7 +1113,6 @@ Description AXI Priority control for write port 0.
 
 ### AXI_PRIORITY_WR_PORT1  
 
-Module ddrc  
 Relative Address = 0x0000020c  
 Width = 20 bits  
 Access Type = mixed  
@@ -1220,7 +1122,6 @@ Description AXI Priority control for write port 1.
 
 ### AXI_PRIORITY_WR_PORT2  
 
-Module ddrc  
 Relative Address = 0x00000210  
 Width = 20 bits  
 Access Type = mixed  
@@ -1230,7 +1131,6 @@ Description AXI Priority control for write port 2.
 
 ### AXI_PRIORITY_WR_PORT3  
 
-Module ddrc  
 Relative Address = 0x00000214  
 Width = 20 bits  
 Access Type = mixed  
@@ -1240,7 +1140,6 @@ Description AXI Priority control for write port 3.
 
 ### AXI_PRIORITY_RD_PORT0  
 
-Module ddrc  
 Relative Address = 0x00000218  
 Width = 20 bits  
 Access Type = mixed  
@@ -1250,7 +1149,6 @@ Description AXI Priority control for read port 0.
 
 ### AXI_PRIORITY_RD_PORT1  
 
-Module ddrc  
 Relative Address = 0x0000021c  
 Width = 20 bits  
 Access Type = mixed  
@@ -1260,7 +1158,6 @@ Description AXI Priority control for read port 1.
 
 ### AXI_PRIORITY_RD_PORT2  
 
-Module ddrc  
 Relative Address = 0x00000220  
 Width = 20 bits  
 Access Type = mixed  
@@ -1270,7 +1167,6 @@ Description AXI Priority control for read port 2.
 
 ### AXI_PRIORITY_RD_PORT3  
 
-Module ddrc  
 Relative Address = 0x00000224  
 Width = 20 bits  
 Access Type = mixed  
@@ -1280,7 +1176,6 @@ Description AXI Priority control for read port 3.
 
 ### EXCL_ACCESS_CFG0  
 
-Module ddrc  
 Relative Address = 0x00000294  
 Width = 18 bits  
 Access Type = rw  
@@ -1290,7 +1185,6 @@ Description Exclusive access configuration for port 0.
 
 ### EXCL_ACCESS_CFG1  
 
-Module ddrc  
 Relative Address = 0x00000298  
 Width = 18 bits  
 Access Type = rw  
@@ -1300,7 +1194,6 @@ Description Exclusive access configuration for port 1.
 
 ### EXCL_ACCESS_CFG2  
 
-Module ddrc  
 Relative Address = 0x0000029c  
 Width = 18 bits  
 Access Type = rw  
@@ -1310,7 +1203,6 @@ Description Exclusive access configuration for port 2.
 
 ### EXCL_ACCESS_CFG3  
 
-Module ddrc  
 Relative Address = 0x000002a0  
 Width = 18 bits  
 Access Type = rw  
@@ -1320,7 +1212,6 @@ Description Exclusive access configuration for port 3.
 
 ### MODE_REG_READ  
 
-Module ddrc  
 Relative Address = 0x000002a4  
 Width = 32 bits  
 Access Type = ro  
@@ -1330,7 +1221,6 @@ Description Mode register read data
 
 ### LPDDR_CTRL0  
 
-Module ddrc  
 Relative Address = 0x000002a8  
 Width = 12 bits  
 Access Type = rw  
@@ -1340,7 +1230,6 @@ Description LPDDR2 Control 0
 
 ### LPDDR_CTRL1  
 
-Module ddrc  
 Relative Address = 0x000002ac  
 Width = 32 bits  
 Access Type = rw  
@@ -1350,7 +1239,6 @@ Description LPDDR2 Control 1
 
 ### LPDDR_CTRL2  
 
-Module ddrc  
 Relative Address = 0x000002b0  
 Width = 22 bits  
 Access Type = rw  
@@ -1360,7 +1248,6 @@ Description LPDDR2 Control 2
 
 ### LPDDR_CTRL3  
 
-Module ddrc  
 Relative Address = 0x000002b4  
 Width = 18 bits  
 Access Type = rw  

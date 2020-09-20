@@ -2,7 +2,7 @@
 
 Module CoreSight PTM-A9 (ptm)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 debug_cpu_ptm0 Base Address = 0xf889c000  
 debug_cpu_ptm1 Base Address = 0xf889d000  
@@ -173,7 +173,6 @@ debug_cpu_ptm1 Base Address = 0xf889d000
 
 ### CR  
 
-Module ptm  
 Relative Address = 0x00000000  
 Width = 30 bits  
 Access Type = rw  
@@ -183,7 +182,6 @@ Description Main Control Register
 
 ### CCR  
 
-Module ptm  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = ro  
@@ -193,7 +191,6 @@ Description Configuration Code Register
 
 ### TRIGGER  
 
-Module ptm  
 Relative Address = 0x00000008  
 Width = 17 bits  
 Access Type = rw  
@@ -203,7 +200,6 @@ Description Trigger Event Register
 
 ### SR  
 
-Module ptm  
 Relative Address = 0x00000010  
 Width = 4 bits  
 Access Type = mixed  
@@ -213,7 +209,6 @@ Description Status Register
 
 ### SCR  
 
-Module ptm  
 Relative Address = 0x00000014  
 Width = 15 bits  
 Access Type = ro  
@@ -223,7 +218,6 @@ Description System Configuration Register
 
 ### TSSCR  
 
-Module ptm  
 Relative Address = 0x00000018  
 Width = 24 bits  
 Access Type = rw  
@@ -233,7 +227,6 @@ Description TraceEnable Start/Stop Control Register
 
 ### TEEVR  
 
-Module ptm  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = rw  
@@ -243,7 +236,6 @@ Description TraceEnable Event
 
 ### TECR1  
 
-Module ptm  
 Relative Address = 0x00000024  
 Width = 26 bits  
 Access Type = rw  
@@ -253,7 +245,6 @@ Description TraceEnable Control Register 1
 
 ### ACVR1  
 
-Module ptm  
 Relative Address = 0x00000040  
 Width = 32 bits  
 Access Type = rw  
@@ -263,7 +254,6 @@ Description Address Comparator Value Register 1
 
 ### ACVR2  
 
-Module ptm  
 Relative Address = 0x00000044  
 Width = 32 bits  
 Access Type = rw  
@@ -273,7 +263,6 @@ Description Address Comparator Value Register 2
 
 ### ACVR3  
 
-Module ptm  
 Relative Address = 0x00000048  
 Width = 32 bits  
 Access Type = rw  
@@ -283,7 +272,6 @@ Description Address Comparator Value Register 3
 
 ### ACVR4  
 
-Module ptm  
 Relative Address = 0x0000004c  
 Width = 32 bits  
 Access Type = rw  
@@ -293,7 +281,6 @@ Description Address Comparator Value Register 4
 
 ### ACVR5  
 
-Module ptm  
 Relative Address = 0x00000050  
 Width = 32 bits  
 Access Type = rw  
@@ -303,7 +290,6 @@ Description Address Comparator Value Register 5
 
 ### ACVR6  
 
-Module ptm  
 Relative Address = 0x00000054  
 Width = 32 bits  
 Access Type = rw  
@@ -313,7 +299,6 @@ Description Address Comparator Value Register 6
 
 ### ACVR7  
 
-Module ptm  
 Relative Address = 0x00000058  
 Width = 32 bits  
 Access Type = rw  
@@ -323,7 +308,6 @@ Description Address Comparator Value Register 7
 
 ### ACVR8  
 
-Module ptm  
 Relative Address = 0x0000005c  
 Width = 32 bits  
 Access Type = rw  
@@ -333,7 +317,6 @@ Description Address Comparator Value Register 8
 
 ### ACTR1  
 
-Module ptm  
 Relative Address = 0x00000080  
 Width = 12 bits  
 Access Type = mixed  
@@ -343,7 +326,6 @@ Description Address Comparator Access Type Register 1
 
 ### ACTR2  
 
-Module ptm  
 Relative Address = 0x00000084  
 Width = 12 bits  
 Access Type = mixed  
@@ -353,7 +335,6 @@ Description Address Comparator Access Type Register 2
 
 ### ACTR3  
 
-Module ptm  
 Relative Address = 0x00000088  
 Width = 12 bits  
 Access Type = mixed  
@@ -363,7 +344,6 @@ Description Address Comparator Access Type Register 3
 
 ### ACTR4  
 
-Module ptm  
 Relative Address = 0x0000008c  
 Width = 12 bits  
 Access Type = mixed  
@@ -373,7 +353,6 @@ Description Address Comparator Access Type Register 4
 
 ### ACTR5  
 
-Module ptm  
 Relative Address = 0x00000090  
 Width = 12 bits  
 Access Type = mixed  
@@ -383,7 +362,6 @@ Description Address Comparator Access Type Register 5
 
 ### ACTR6  
 
-Module ptm  
 Relative Address = 0x00000094  
 Width = 12 bits  
 Access Type = mixed  
@@ -393,7 +371,6 @@ Description Address Comparator Access Type Register 6
 
 ### ACTR7  
 
-Module ptm  
 Relative Address = 0x00000098  
 Width = 12 bits  
 Access Type = mixed  
@@ -403,7 +380,6 @@ Description Address Comparator Access Type Register 7
 
 ### ACTR8  
 
-Module ptm  
 Relative Address = 0x0000009c  
 Width = 12 bits  
 Access Type = mixed  
@@ -413,7 +389,6 @@ Description Address Comparator Access Type Register 8
 
 ### CNTRLDVR1  
 
-Module ptm  
 Relative Address = 0x00000140  
 Width = 16 bits  
 Access Type = rw  
@@ -423,7 +398,6 @@ Description Counter Reload Value Register 1
 
 ### CNTRLDVR2  
 
-Module ptm  
 Relative Address = 0x00000144  
 Width = 16 bits  
 Access Type = rw  
@@ -433,7 +407,6 @@ Description Counter Reload Value Register 2
 
 ### CNTENR1  
 
-Module ptm  
 Relative Address = 0x00000150  
 Width = 18 bits  
 Access Type = mixed  
@@ -443,7 +416,6 @@ Description Counter Enable Event Register 1
 
 ### CNTENR2  
 
-Module ptm  
 Relative Address = 0x00000154  
 Width = 18 bits  
 Access Type = mixed  
@@ -453,7 +425,6 @@ Description Counter Enable Event Register 2
 
 ### CNTRLDEVR1  
 
-Module ptm  
 Relative Address = 0x00000160  
 Width = 17 bits  
 Access Type = rw  
@@ -463,7 +434,6 @@ Description Counter Reload Event Register 1
 
 ### CNTRLDEVR2  
 
-Module ptm  
 Relative Address = 0x00000164  
 Width = 17 bits  
 Access Type = rw  
@@ -473,7 +443,6 @@ Description Counter Reload Event Register 2
 
 ### CNTVR1  
 
-Module ptm  
 Relative Address = 0x00000170  
 Width = 16 bits  
 Access Type = rw  
@@ -483,7 +452,6 @@ Description Counter Value Register 1
 
 ### CNTVR2  
 
-Module ptm  
 Relative Address = 0x00000174  
 Width = 16 bits  
 Access Type = rw  
@@ -493,7 +461,6 @@ Description Counter Value Register 2
 
 ### SQ12EVR  
 
-Module ptm  
 Relative Address = 0x00000180  
 Width = 17 bits  
 Access Type = rw  
@@ -503,7 +470,6 @@ Description Sequencer State Transition Event Register 12
 
 ### SQ21EVR  
 
-Module ptm  
 Relative Address = 0x00000184  
 Width = 17 bits  
 Access Type = rw  
@@ -513,7 +479,6 @@ Description Sequencer State Transition Event Register 21
 
 ### SQ23EVR  
 
-Module ptm  
 Relative Address = 0x00000188  
 Width = 17 bits  
 Access Type = rw  
@@ -523,7 +488,6 @@ Description Sequencer State Transition Event Register 23
 
 ### SQ31EVR  
 
-Module ptm  
 Relative Address = 0x0000018c  
 Width = 17 bits  
 Access Type = rw  
@@ -533,7 +497,6 @@ Description Sequencer State Transition Event Register 31
 
 ### SQ32EVR  
 
-Module ptm  
 Relative Address = 0x00000190  
 Width = 17 bits  
 Access Type = rw  
@@ -543,7 +506,6 @@ Description Sequencer State Transition Event Register 32
 
 ### SQ13EVR  
 
-Module ptm  
 Relative Address = 0x00000194  
 Width = 17 bits  
 Access Type = rw  
@@ -553,7 +515,6 @@ Description Sequencer State Transition Event Register 13
 
 ### SQR  
 
-Module ptm  
 Relative Address = 0x0000019c  
 Width = 2 bits  
 Access Type = rw  
@@ -563,7 +524,6 @@ Description Current Sequencer State Register
 
 ### EXTOUTEVR1  
 
-Module ptm  
 Relative Address = 0x000001a0  
 Width = 17 bits  
 Access Type = rw  
@@ -573,7 +533,6 @@ Description External Output Event Register 1
 
 ### EXTOUTEVR2  
 
-Module ptm  
 Relative Address = 0x000001a4  
 Width = 17 bits  
 Access Type = rw  
@@ -583,7 +542,6 @@ Description External Output Event Register 2
 
 ### CIDCVR1  
 
-Module ptm  
 Relative Address = 0x000001b0  
 Width = 32 bits  
 Access Type = rw  
@@ -593,7 +551,6 @@ Description Context ID Comparator Value Register
 
 ### CIDCMR  
 
-Module ptm  
 Relative Address = 0x000001bc  
 Width = 32 bits  
 Access Type = rw  
@@ -603,7 +560,6 @@ Description Context ID Comparator Mask Register
 
 ### SYNCFR  
 
-Module ptm  
 Relative Address = 0x000001e0  
 Width = 12 bits  
 Access Type = mixed  
@@ -613,7 +569,6 @@ Description Synchronization Frequency Register
 
 ### IDR  
 
-Module ptm  
 Relative Address = 0x000001e4  
 Width = 32 bits  
 Access Type = ro  
@@ -623,7 +578,6 @@ Description ID Register
 
 ### CCER  
 
-Module ptm  
 Relative Address = 0x000001e8  
 Width = 26 bits  
 Access Type = ro  
@@ -633,7 +587,6 @@ Description Configuration Code Extension Register
 
 ### EXTINSELR  
 
-Module ptm  
 Relative Address = 0x000001ec  
 Width = 14 bits  
 Access Type = rw  
@@ -643,7 +596,6 @@ Description Extended External Input Selection Register
 
 ### TSEVR  
 
-Module ptm  
 Relative Address = 0x000001f8  
 Width = 32 bits  
 Access Type = rw  
@@ -653,7 +605,6 @@ Description Timestamp Event
 
 ### AUXCR  
 
-Module ptm  
 Relative Address = 0x000001fc  
 Width = 4 bits  
 Access Type = rw  
@@ -663,7 +614,6 @@ Description Auxiliary Control Register
 
 ### TRACEIDR  
 
-Module ptm  
 Relative Address = 0x00000200  
 Width = 7 bits  
 Access Type = rw  
@@ -673,7 +623,6 @@ Description CoreSight Trace ID Register
 
 ### OSLSR  
 
-Module ptm  
 Relative Address = 0x00000304  
 Width = 32 bits  
 Access Type = ro  
@@ -683,7 +632,6 @@ Description OS Lock Status Register
 
 ### PDSR  
 
-Module ptm  
 Relative Address = 0x00000314  
 Width = 32 bits  
 Access Type = ro  
@@ -693,7 +641,6 @@ Description Device Powerdown Status Register
 
 ### ITMISCOUT  
 
-Module ptm  
 Relative Address = 0x00000edc  
 Width = 10 bits  
 Access Type = wo  
@@ -703,7 +650,6 @@ Description Miscellaneous Outputs Register
 
 ### ITMISCIN  
 
-Module ptm  
 Relative Address = 0x00000ee0  
 Width = 7 bits  
 Access Type = ro  
@@ -713,7 +659,6 @@ Description Miscellaneous Inputs Register
 
 ### ITTRIGGER  
 
-Module ptm  
 Relative Address = 0x00000ee8  
 Width = 1 bits  
 Access Type = wo  
@@ -723,7 +668,6 @@ Description Trigger Register
 
 ### ITATBDATA0  
 
-Module ptm  
 Relative Address = 0x00000eec  
 Width = 5 bits  
 Access Type = wo  
@@ -733,7 +677,6 @@ Description ATB Data 0 Register
 
 ### ITATBCTR2  
 
-Module ptm  
 Relative Address = 0x00000ef0  
 Width = 2 bits  
 Access Type = ro  
@@ -743,7 +686,6 @@ Description ATB Control 2 Register
 
 ### ITATBID  
 
-Module ptm  
 Relative Address = 0x00000ef4  
 Width = 7 bits  
 Access Type = wo  
@@ -753,7 +695,6 @@ Description ATB Identification Register
 
 ### ITATBCTR0  
 
-Module ptm  
 Relative Address = 0x00000ef8  
 Width = 10 bits  
 Access Type = wo  
@@ -763,7 +704,6 @@ Description ATB Control 0 Register
 
 ### ITCTRL  
 
-Module ptm  
 Relative Address = 0x00000f00  
 Width = 1 bits  
 Access Type = rw  
@@ -773,7 +713,6 @@ Description Integration Mode Control Register
 
 ### CTSR  
 
-Module ptm  
 Relative Address = 0x00000fa0  
 Width = 8 bits  
 Access Type = rw  
@@ -783,7 +722,6 @@ Description Claim Tag Set Register
 
 ### CTCR  
 
-Module ptm  
 Relative Address = 0x00000fa4  
 Width = 8 bits  
 Access Type = rw  
@@ -793,7 +731,6 @@ Description Claim Tag Clear Register
 
 ### LAR  
 
-Module ptm  
 Relative Address = 0x00000fb0  
 Width = 32 bits  
 Access Type = wo  
@@ -803,7 +740,6 @@ Description Lock Access Register
 
 ### LSR  
 
-Module ptm  
 Relative Address = 0x00000fb4  
 Width = 3 bits  
 Access Type = ro  
@@ -813,7 +749,6 @@ Description Lock Status Register
 
 ### ASR  
 
-Module ptm  
 Relative Address = 0x00000fb8  
 Width = 8 bits  
 Access Type = ro  
@@ -823,7 +758,6 @@ Description Authentication Status Register
 
 ### DEVID  
 
-Module ptm  
 Relative Address = 0x00000fc8  
 Width = 32 bits  
 Access Type = ro  
@@ -833,7 +767,6 @@ Description Device ID
 
 ### DTIR  
 
-Module ptm  
 Relative Address = 0x00000fcc  
 Width = 32 bits  
 Access Type = ro  
@@ -843,7 +776,6 @@ Description Device Type Identifier (ETMDEVTYPE)
 
 ### PERIPHID4  
 
-Module ptm  
 Relative Address = 0x00000fd0  
 Width = 8 bits  
 Access Type = ro  
@@ -853,7 +785,6 @@ Description Peripheral ID4
 
 ### PERIPHID5  
 
-Module ptm  
 Relative Address = 0x00000fd4  
 Width = 8 bits  
 Access Type = ro  
@@ -863,7 +794,6 @@ Description Peripheral ID5
 
 ### PERIPHID6  
 
-Module ptm  
 Relative Address = 0x00000fd8  
 Width = 8 bits  
 Access Type = ro  
@@ -873,7 +803,6 @@ Description Peripheral ID6
 
 ### PERIPHID7  
 
-Module ptm  
 Relative Address = 0x00000fdc  
 Width = 8 bits  
 Access Type = ro  
@@ -883,7 +812,6 @@ Description Peripheral ID7
 
 ### PERIPHID0  
 
-Module ptm  
 Relative Address = 0x00000fe0  
 Width = 8 bits  
 Access Type = ro  
@@ -893,7 +821,6 @@ Description Peripheral ID0
 
 ### PERIPHID1  
 
-Module ptm  
 Relative Address = 0x00000fe4  
 Width = 8 bits  
 Access Type = ro  
@@ -903,7 +830,6 @@ Description Peripheral ID1
 
 ### PERIPHID2  
 
-Module ptm  
 Relative Address = 0x00000fe8  
 Width = 8 bits  
 Access Type = ro  
@@ -913,7 +839,6 @@ Description Peripheral ID2
 
 ### PERIPHID3  
 
-Module ptm  
 Relative Address = 0x00000fec  
 Width = 8 bits  
 Access Type = ro  
@@ -923,7 +848,6 @@ Description Peripheral ID3
 
 ### COMPID0  
 
-Module ptm  
 Relative Address = 0x00000ff0  
 Width = 8 bits  
 Access Type = ro  
@@ -933,7 +857,6 @@ Description Component ID0
 
 ### COMPID1  
 
-Module ptm  
 Relative Address = 0x00000ff4  
 Width = 8 bits  
 Access Type = ro  
@@ -943,7 +866,6 @@ Description Component ID1
 
 ### COMPID2  
 
-Module ptm  
 Relative Address = 0x00000ff8  
 Width = 8 bits  
 Access Type = ro  
@@ -953,7 +875,6 @@ Description Component ID2
 
 ### COMPID3  
 
-Module ptm  
 Relative Address = 0x00000ffc  
 Width = 8 bits  
 Access Type = ro  

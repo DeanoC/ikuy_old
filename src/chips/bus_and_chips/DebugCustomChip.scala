@@ -37,6 +37,9 @@ extends CustomChip( size = DUO,
     )
   }
 
-  connect()
+  // TODO improve pathing
+  override def CHeaderPath = "../../../../libraries/bus_and_chips/include/bus_and_chips/"
+  override def DocPath = "../../../../libraries/bus_and_chips/docs/"
 
+  connect()
 }

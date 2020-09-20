@@ -2,16 +2,16 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // Serial Peripheral Interface
-// Auto-generated on Sun Sep 20 15:25:57 EEST 2020
+// Auto-generated on Sun Sep 20 23:32:01 EEST 2020
 
 #include <stdint.h>
 
 // 2 banks of spi chips
-#define spi0_BASE_ADDR 0xe0006000
-#define spi1_BASE_ADDR 0xe0007000
+#define spi0_BASE_ADDR 0xe0006000U
+#define spi1_BASE_ADDR 0xe0007000U
 
 // SPI Configuration.
-#define spi_CR_OFFSET 0x00000000
+#define spi_CR_OFFSET 0x00000000U
 #define spi_CR_reserved_0_LSHIFT 0x00000012U
 #define spi_CR_reserved_0_MASK 0xfffc0000U
 #define spi_CR_MODEFAIL_GEN_EN_LSHIFT 0x00000011U
@@ -50,7 +50,7 @@
 #define spi_CR_MASK 0x0003ff3fU
 
 // SPI Interrupt Status
-#define spi_SR_OFFSET 0x00000004
+#define spi_SR_OFFSET 0x00000004U
 #define spi_SR_reserved_0_LSHIFT 0x00000007U
 #define spi_SR_reserved_0_MASK 0xffffff80U
 #define spi_SR_IXR_TXUF_LSHIFT 0x00000006U
@@ -77,7 +77,7 @@
 #define spi_SR_MASK 0x0000007fU
 
 // Interrupt Enable.
-#define spi_IER_OFFSET 0x00000008
+#define spi_IER_OFFSET 0x00000008U
 #define spi_IER_reserved_0_LSHIFT 0x00000007U
 #define spi_IER_reserved_0_MASK 0xffffff80U
 #define spi_IER_IXR_TXUF_LSHIFT 0x00000006U
@@ -104,7 +104,7 @@
 #define spi_IER_MASK 0x0000007fU
 
 // Interrupt disable.
-#define spi_IDR_OFFSET 0x0000000c
+#define spi_IDR_OFFSET 0x0000000cU
 #define spi_IDR_reserved_0_LSHIFT 0x00000007U
 #define spi_IDR_reserved_0_MASK 0xffffff80U
 #define spi_IDR_IXR_TXUF_LSHIFT 0x00000006U
@@ -131,7 +131,7 @@
 #define spi_IDR_MASK 0x0000007fU
 
 // Interrupt mask.
-#define spi_IMR_OFFSET 0x00000010
+#define spi_IMR_OFFSET 0x00000010U
 #define spi_IMR_reserved_0_LSHIFT 0x00000007U
 #define spi_IMR_reserved_0_MASK 0xffffff80U
 #define spi_IMR_IXR_TXUF_LSHIFT 0x00000006U
@@ -158,7 +158,7 @@
 #define spi_IMR_MASK 0x0000007fU
 
 // SPI Controller Enable.
-#define spi_ER_OFFSET 0x00000014
+#define spi_ER_OFFSET 0x00000014U
 #define spi_ER_reserved_0_LSHIFT 0x00000001U
 #define spi_ER_reserved_0_MASK 0xfffffffeU
 #define spi_ER_ENABLE_LSHIFT 0x00000000U
@@ -167,7 +167,7 @@
 #define spi_ER_MASK 0x00000001U
 
 // Delay Control
-#define spi_DR_OFFSET 0x00000018
+#define spi_DR_OFFSET 0x00000018U
 #define spi_DR_D_NSS_LSHIFT 0x00000018U
 #define spi_DR_D_NSS_MASK 0xff000000U
 #define spi_DR_BTWN_LSHIFT 0x00000010U
@@ -179,17 +179,17 @@
 #define spi_DR_MASK 0xffffffffU
 
 // Transmit Data.
-#define spi_TXD_OFFSET 0x0000001c
+#define spi_TXD_OFFSET 0x0000001cU
 #define spi_TXD_TX_FIFO_data_LSHIFT 0x00000000U
 #define spi_TXD_TX_FIFO_data_MASK 0x00000000U
 
 // Receive Data.
-#define spi_RXD_OFFSET 0x00000020
+#define spi_RXD_OFFSET 0x00000020U
 #define spi_RXD_RX_FIFO_data_LSHIFT 0x00000000U
 #define spi_RXD_RX_FIFO_data_MASK 0x00000000U
 
 // Slave Idle Count.
-#define spi_SICR_OFFSET 0x00000024
+#define spi_SICR_OFFSET 0x00000024U
 #define spi_SICR_reserved_0_LSHIFT 0x00000008U
 #define spi_SICR_reserved_0_MASK 0xffffff00U
 #define spi_SICR_SLAVE_IDLE_COUNT_LSHIFT 0x00000000U
@@ -197,17 +197,17 @@
 #define spi_SICR_MASK 0x000000ffU
 
 // TX_FIFO Threshold.
-#define spi_TXWR_OFFSET 0x00000028
+#define spi_TXWR_OFFSET 0x00000028U
 #define spi_TXWR_THRESHOLD_OF_TX_FIFO_LSHIFT 0x00000000U
 #define spi_TXWR_THRESHOLD_OF_TX_FIFO_MASK 0x00000000U
 
 // RX FIFO Threshold.
-#define spi_RX_THRES_OFFSET 0x0000002c
+#define spi_RX_THRES_OFFSET 0x0000002cU
 #define spi_RX_THRES_THRESHOLD_OF_RX_FIFO_LSHIFT 0x00000000U
 #define spi_RX_THRES_THRESHOLD_OF_RX_FIFO_MASK 0x00000000U
 
 // Module ID
-#define spi_MOD_ID_OFFSET 0x000000fc
+#define spi_MOD_ID_OFFSET 0x000000fcU
 #define spi_MOD_ID_reserved_0_LSHIFT 0x00000019U
 #define spi_MOD_ID_reserved_0_MASK 0xfe000000U
 #define spi_MOD_ID_MODULE_ID_LSHIFT 0x00000000U

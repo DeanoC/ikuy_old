@@ -2,7 +2,7 @@
 
 Module Quad SPI (qspi)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 qspi Base Address = 0xe000d000  
 
@@ -54,7 +54,6 @@ qspi Base Address = 0xe000d000
 
 ### CR  
 
-Module qspi  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -105,7 +104,6 @@ Description QSPI configuration register
 
 ### SR  
 
-Module qspi  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -134,7 +132,6 @@ Description QSPI interrupt status register
 
 ### IER  
 
-Module qspi  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = mixed  
@@ -163,7 +160,6 @@ Description Interrupt Enable register.
 
 ### IDR  
 
-Module qspi  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -192,7 +188,6 @@ Description Interrupt disable register.
 
 ### IMR  
 
-Module qspi  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -221,7 +216,6 @@ Description Interrupt mask register
 
 ### ER  
 
-Module qspi  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -238,7 +232,6 @@ Description SPI_Enable Register
 
 ### DR  
 
-Module qspi  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = rw  
@@ -259,7 +252,6 @@ Description Delay Register
 
 ### TXD_00  
 
-Module qspi  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = wo  
@@ -274,7 +266,6 @@ Description Transmit Data Register. Keyhole addresses for the Transmit data FIFO
 
 ### RXD  
 
-Module qspi  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = ro  
@@ -289,7 +280,6 @@ Description Receive Data Register
 
 ### SICR  
 
-Module qspi  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = mixed  
@@ -306,7 +296,6 @@ Description Slave Idle Count Register
 
 ### TXWR  
 
-Module qspi  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = rw  
@@ -321,7 +310,6 @@ Description TX_FIFO Threshold Register
 
 ### RX_THRES  
 
-Module qspi  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = rw  
@@ -336,7 +324,6 @@ Description RX FIFO Threshold Register
 
 ### GPIO  
 
-Module qspi  
 Relative Address = 0x00000030  
 Width = 32 bits  
 Access Type = rw  
@@ -353,7 +340,6 @@ Description General Purpose Inputs and Outputs Register for the Quad-SPI Control
 
 ### LPBK_DLY_ADJ  
 
-Module qspi  
 Relative Address = 0x00000038  
 Width = 32 bits  
 Access Type = rw  
@@ -372,7 +358,6 @@ Description Loopback Master Clock Delay Adjustment Register
 
 ### TXD_01  
 
-Module qspi  
 Relative Address = 0x00000080  
 Width = 32 bits  
 Access Type = wo  
@@ -387,7 +372,6 @@ Description Transmit Data Register. Keyhole addresses for the Transmit data FIFO
 
 ### TXD_10  
 
-Module qspi  
 Relative Address = 0x00000084  
 Width = 32 bits  
 Access Type = wo  
@@ -402,7 +386,6 @@ Description Transmit Data Register. Keyhole addresses for the Transmit data FIFO
 
 ### TXD_11  
 
-Module qspi  
 Relative Address = 0x00000088  
 Width = 32 bits  
 Access Type = wo  
@@ -417,7 +400,6 @@ Description Transmit Data Register. Keyhole addresses for the Transmit data FIFO
 
 ### LQSPI_CR  
 
-Module qspi  
 Relative Address = 0x000000a0  
 Width = 32 bits  
 Access Type = rw  
@@ -454,7 +436,6 @@ Description Configuration Register specifically for the Linear Quad-SPI Controll
 
 ### LQSPI_SR  
 
-Module qspi  
 Relative Address = 0x000000a4  
 Width = 32 bits  
 Access Type = rw  
@@ -475,7 +456,6 @@ Description Status Register specifically for the Linear Quad-SPI Controller
 
 ### MOD_ID  
 
-Module qspi  
 Relative Address = 0x000000fc  
 Width = 32 bits  
 Access Type = rw  

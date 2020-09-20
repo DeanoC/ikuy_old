@@ -2,7 +2,7 @@
 
 Module Serial Peripheral Interface (spi)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 spi0 Base Address = 0xe0006000  
 spi1 Base Address = 0xe0007000  
@@ -41,7 +41,6 @@ spi1 Base Address = 0xe0007000
 
 ### CR  
 
-Module spi  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -80,7 +79,6 @@ Description SPI Configuration.
 
 ### SR  
 
-Module spi  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -109,7 +107,6 @@ Description SPI Interrupt Status
 
 ### IER  
 
-Module spi  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = mixed  
@@ -138,7 +135,6 @@ Description Interrupt Enable.
 
 ### IDR  
 
-Module spi  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -167,7 +163,6 @@ Description Interrupt disable.
 
 ### IMR  
 
-Module spi  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -196,7 +191,6 @@ Description Interrupt mask.
 
 ### ER  
 
-Module spi  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -213,7 +207,6 @@ Description SPI Controller Enable.
 
 ### DR  
 
-Module spi  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = rw  
@@ -234,7 +227,6 @@ Description Delay Control
 
 ### TXD  
 
-Module spi  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = wo  
@@ -249,7 +241,6 @@ Description Transmit Data.
 
 ### RXD  
 
-Module spi  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = ro  
@@ -264,7 +255,6 @@ Description Receive Data.
 
 ### SICR  
 
-Module spi  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = mixed  
@@ -281,7 +271,6 @@ Description Slave Idle Count.
 
 ### TXWR  
 
-Module spi  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = rw  
@@ -296,7 +285,6 @@ Description TX_FIFO Threshold.
 
 ### RX_THRES  
 
-Module spi  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = rw  
@@ -311,7 +299,6 @@ Description RX FIFO Threshold.
 
 ### MOD_ID  
 
-Module spi  
 Relative Address = 0x000000fc  
 Width = 32 bits  
 Access Type = ro  

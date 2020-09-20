@@ -2,7 +2,7 @@
 
 Module Inter Integrated Circuit(I2C) (i2c)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 i2c0 Base Address = 0xe0004000  
 i2c1 Base Address = 0xe0005000  
@@ -37,7 +37,6 @@ i2c1 Base Address = 0xe0005000
 
 ### CR  
 
-Module i2c  
 Relative Address = 0x00000000  
 Width = 16 bits  
 Access Type = mixed  
@@ -70,7 +69,6 @@ Description Control Register
 
 ### SR  
 
-Module i2c  
 Relative Address = 0x00000004  
 Width = 16 bits  
 Access Type = ro  
@@ -99,7 +97,6 @@ Description Status register
 
 ### ADDR  
 
-Module i2c  
 Relative Address = 0x00000008  
 Width = 16 bits  
 Access Type = mixed  
@@ -116,7 +113,6 @@ Description I2C Address register
 
 ### DATA  
 
-Module i2c  
 Relative Address = 0x0000000c  
 Width = 16 bits  
 Access Type = mixed  
@@ -133,7 +129,6 @@ Description I2C data register
 
 ### ISR  
 
-Module i2c  
 Relative Address = 0x00000010  
 Width = 16 bits  
 Access Type = mixed  
@@ -168,7 +163,6 @@ Description I2C interrupt status register
 
 ### TRANS_SIZE  
 
-Module i2c  
 Relative Address = 0x00000014  
 Width = 8 bits  
 Access Type = rw  
@@ -183,7 +177,6 @@ Description Transfer Size Register
 
 ### SLV_PAUSE  
 
-Module i2c  
 Relative Address = 0x00000018  
 Width = 8 bits  
 Access Type = mixed  
@@ -200,7 +193,6 @@ Description Slave Monitor Pause Register
 
 ### TIME_OUT  
 
-Module i2c  
 Relative Address = 0x0000001c  
 Width = 8 bits  
 Access Type = rw  
@@ -215,7 +207,6 @@ Description Time out register
 
 ### IMR  
 
-Module i2c  
 Relative Address = 0x00000020  
 Width = 16 bits  
 Access Type = ro  
@@ -250,7 +241,6 @@ Description Interrupt mask register
 
 ### IER  
 
-Module i2c  
 Relative Address = 0x00000024  
 Width = 16 bits  
 Access Type = mixed  
@@ -285,7 +275,6 @@ Description Interrupt Enable Register
 
 ### IDR  
 
-Module i2c  
 Relative Address = 0x00000028  
 Width = 16 bits  
 Access Type = mixed  

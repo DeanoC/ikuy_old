@@ -2,7 +2,7 @@
 
 Module CoreSight Trace Funnel (funnel)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 funnel Base Address = 0xf8804000  
 
@@ -66,7 +66,6 @@ funnel Base Address = 0xf8804000
 
 ### CONTROL  
 
-Module funnel  
 Relative Address = 0x00000000  
 Width = 12 bits  
 Access Type = rw  
@@ -76,7 +75,6 @@ Description CSTF Control Register
 
 ### PRICONTROL  
 
-Module funnel  
 Relative Address = 0x00000004  
 Width = 24 bits  
 Access Type = rw  
@@ -86,7 +84,6 @@ Description CSTF Priority Control Register
 
 ### ITATBDATA0  
 
-Module funnel  
 Relative Address = 0x00000eec  
 Width = 5 bits  
 Access Type = rw  
@@ -96,7 +93,6 @@ Description Integration Test ATB Data 0 Register
 
 ### ITATBCTR2  
 
-Module funnel  
 Relative Address = 0x00000ef0  
 Width = 2 bits  
 Access Type = rw  
@@ -106,7 +102,6 @@ Description Integration Test ATB Control 2 Register
 
 ### ITATBCTR1  
 
-Module funnel  
 Relative Address = 0x00000ef4  
 Width = 7 bits  
 Access Type = rw  
@@ -116,7 +111,6 @@ Description Integration Test ATB Control 1 Register
 
 ### ITATBCTR0  
 
-Module funnel  
 Relative Address = 0x00000ef8  
 Width = 10 bits  
 Access Type = mixed  
@@ -126,7 +120,6 @@ Description Integration Test ATB Control 0 Register
 
 ### IMCR  
 
-Module funnel  
 Relative Address = 0x00000f00  
 Width = 1 bits  
 Access Type = rw  
@@ -136,7 +129,6 @@ Description Integration Mode Control Register
 
 ### CTSR  
 
-Module funnel  
 Relative Address = 0x00000fa0  
 Width = 4 bits  
 Access Type = rw  
@@ -146,7 +138,6 @@ Description Claim Tag Set Register
 
 ### CTCR  
 
-Module funnel  
 Relative Address = 0x00000fa4  
 Width = 4 bits  
 Access Type = rw  
@@ -156,7 +147,6 @@ Description Claim Tag Clear Register
 
 ### LAR  
 
-Module funnel  
 Relative Address = 0x00000fb0  
 Width = 32 bits  
 Access Type = wo  
@@ -166,7 +156,6 @@ Description Lock Access Register
 
 ### LSR  
 
-Module funnel  
 Relative Address = 0x00000fb4  
 Width = 3 bits  
 Access Type = ro  
@@ -176,7 +165,6 @@ Description Lock Status Register
 
 ### ASR  
 
-Module funnel  
 Relative Address = 0x00000fb8  
 Width = 8 bits  
 Access Type = ro  
@@ -186,7 +174,6 @@ Description Authentication Status Register
 
 ### DEVID  
 
-Module funnel  
 Relative Address = 0x00000fc8  
 Width = 8 bits  
 Access Type = ro  
@@ -196,7 +183,6 @@ Description Device ID
 
 ### DTIR  
 
-Module funnel  
 Relative Address = 0x00000fcc  
 Width = 8 bits  
 Access Type = ro  
@@ -206,7 +192,6 @@ Description Device Type Identifier Register
 
 ### PERIPHID4  
 
-Module funnel  
 Relative Address = 0x00000fd0  
 Width = 8 bits  
 Access Type = ro  
@@ -216,7 +201,6 @@ Description Peripheral ID4
 
 ### PERIPHID5  
 
-Module funnel  
 Relative Address = 0x00000fd4  
 Width = 8 bits  
 Access Type = ro  
@@ -226,7 +210,6 @@ Description Peripheral ID5
 
 ### PERIPHID6  
 
-Module funnel  
 Relative Address = 0x00000fd8  
 Width = 8 bits  
 Access Type = ro  
@@ -236,7 +219,6 @@ Description Peripheral ID6
 
 ### PERIPHID7  
 
-Module funnel  
 Relative Address = 0x00000fdc  
 Width = 8 bits  
 Access Type = ro  
@@ -246,7 +228,6 @@ Description Peripheral ID7
 
 ### PERIPHID0  
 
-Module funnel  
 Relative Address = 0x00000fe0  
 Width = 8 bits  
 Access Type = ro  
@@ -256,7 +237,6 @@ Description Peripheral ID0
 
 ### PERIPHID1  
 
-Module funnel  
 Relative Address = 0x00000fe4  
 Width = 8 bits  
 Access Type = ro  
@@ -266,7 +246,6 @@ Description Peripheral ID1
 
 ### PERIPHID2  
 
-Module funnel  
 Relative Address = 0x00000fe8  
 Width = 8 bits  
 Access Type = ro  
@@ -276,7 +255,6 @@ Description Peripheral ID2
 
 ### PERIPHID3  
 
-Module funnel  
 Relative Address = 0x00000fec  
 Width = 8 bits  
 Access Type = ro  
@@ -286,7 +264,6 @@ Description Peripheral ID3
 
 ### COMPID0  
 
-Module funnel  
 Relative Address = 0x00000ff0  
 Width = 8 bits  
 Access Type = ro  
@@ -296,7 +273,6 @@ Description Component ID0
 
 ### COMPID1  
 
-Module funnel  
 Relative Address = 0x00000ff4  
 Width = 8 bits  
 Access Type = ro  
@@ -306,7 +282,6 @@ Description Component ID1
 
 ### COMPID2  
 
-Module funnel  
 Relative Address = 0x00000ff8  
 Width = 8 bits  
 Access Type = ro  
@@ -316,7 +291,6 @@ Description Component ID2
 
 ### COMPID3  
 
-Module funnel  
 Relative Address = 0x00000ffc  
 Width = 8 bits  
 Access Type = ro  

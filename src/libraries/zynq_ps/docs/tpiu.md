@@ -2,7 +2,7 @@
 
 Module Trace Port Interface (tpiu)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 tpiu Base Address = 0xf8803000  
 
@@ -92,7 +92,6 @@ tpiu Base Address = 0xf8803000
 
 ### SuppSize  
 
-Module tpiu  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -102,7 +101,6 @@ Description Supported Port Size Register
 
 ### CurrentSize  
 
-Module tpiu  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = rw  
@@ -112,7 +110,6 @@ Description Current Port Size Register
 
 ### SuppTrigMode  
 
-Module tpiu  
 Relative Address = 0x00000100  
 Width = 18 bits  
 Access Type = ro  
@@ -122,7 +119,6 @@ Description Supported Trigger Modes Register
 
 ### TrigCount  
 
-Module tpiu  
 Relative Address = 0x00000104  
 Width = 8 bits  
 Access Type = rw  
@@ -132,7 +128,6 @@ Description Trigger Counter Register
 
 ### TrigMult  
 
-Module tpiu  
 Relative Address = 0x00000108  
 Width = 5 bits  
 Access Type = rw  
@@ -142,7 +137,6 @@ Description Trigger Multiplier Register
 
 ### SuppTest  
 
-Module tpiu  
 Relative Address = 0x00000200  
 Width = 18 bits  
 Access Type = ro  
@@ -152,7 +146,6 @@ Description Supported Test Patterns/Modes Register
 
 ### CurrentTest  
 
-Module tpiu  
 Relative Address = 0x00000204  
 Width = 18 bits  
 Access Type = mixed  
@@ -162,7 +155,6 @@ Description Current Test Patterns/Modes Register
 
 ### TestRepeatCount  
 
-Module tpiu  
 Relative Address = 0x00000208  
 Width = 8 bits  
 Access Type = rw  
@@ -172,7 +164,6 @@ Description TPIU Test Pattern Repeat Counter Register
 
 ### FFSR  
 
-Module tpiu  
 Relative Address = 0x00000300  
 Width = 3 bits  
 Access Type = ro  
@@ -182,7 +173,6 @@ Description Formatter and Flush Status Register
 
 ### FFCR  
 
-Module tpiu  
 Relative Address = 0x00000304  
 Width = 14 bits  
 Access Type = mixed  
@@ -192,7 +182,6 @@ Description Formatter and Flush Control Register
 
 ### FormatSyncCount  
 
-Module tpiu  
 Relative Address = 0x00000308  
 Width = 12 bits  
 Access Type = rw  
@@ -202,7 +191,6 @@ Description Formatter Synchronization Counter Register
 
 ### EXTCTLIn  
 
-Module tpiu  
 Relative Address = 0x00000400  
 Width = 8 bits  
 Access Type = ro  
@@ -212,7 +200,6 @@ Description EXTCTL In Port
 
 ### EXTCTLOut  
 
-Module tpiu  
 Relative Address = 0x00000404  
 Width = 8 bits  
 Access Type = rw  
@@ -222,7 +209,6 @@ Description EXTCTL Out Port
 
 ### ITTRFLINACK  
 
-Module tpiu  
 Relative Address = 0x00000ee4  
 Width = 2 bits  
 Access Type = wo  
@@ -232,7 +218,6 @@ Description Integration Test Trigger In and Flush In Acknowledge Register
 
 ### ITTRFLIN  
 
-Module tpiu  
 Relative Address = 0x00000ee8  
 Width = 2 bits  
 Access Type = ro  
@@ -242,7 +227,6 @@ Description Integration Test Trigger In and Flush In Register
 
 ### ITATBDATA0  
 
-Module tpiu  
 Relative Address = 0x00000eec  
 Width = 5 bits  
 Access Type = ro  
@@ -252,7 +236,6 @@ Description Integration Test ATB Data Register 0
 
 ### ITATBCTR2  
 
-Module tpiu  
 Relative Address = 0x00000ef0  
 Width = 2 bits  
 Access Type = wo  
@@ -262,7 +245,6 @@ Description Integration Test ATB Control Register 2
 
 ### ITATBCTR1  
 
-Module tpiu  
 Relative Address = 0x00000ef4  
 Width = 7 bits  
 Access Type = ro  
@@ -272,7 +254,6 @@ Description Integration Test ATB Control Register 1
 
 ### ITATBCTR0  
 
-Module tpiu  
 Relative Address = 0x00000ef8  
 Width = 10 bits  
 Access Type = ro  
@@ -282,7 +263,6 @@ Description Integration Test ATB Control Register 0
 
 ### IMCR  
 
-Module tpiu  
 Relative Address = 0x00000f00  
 Width = 1 bits  
 Access Type = rw  
@@ -292,7 +272,6 @@ Description Integration Mode Control Register
 
 ### CTSR  
 
-Module tpiu  
 Relative Address = 0x00000fa0  
 Width = 4 bits  
 Access Type = rw  
@@ -302,7 +281,6 @@ Description Claim Tag Set Register
 
 ### CTCR  
 
-Module tpiu  
 Relative Address = 0x00000fa4  
 Width = 4 bits  
 Access Type = rw  
@@ -312,7 +290,6 @@ Description Claim Tag Clear Register
 
 ### LAR  
 
-Module tpiu  
 Relative Address = 0x00000fb0  
 Width = 32 bits  
 Access Type = wo  
@@ -322,7 +299,6 @@ Description Lock Access Register
 
 ### LSR  
 
-Module tpiu  
 Relative Address = 0x00000fb4  
 Width = 3 bits  
 Access Type = ro  
@@ -332,7 +308,6 @@ Description Lock Status Register
 
 ### ASR  
 
-Module tpiu  
 Relative Address = 0x00000fb8  
 Width = 8 bits  
 Access Type = ro  
@@ -342,7 +317,6 @@ Description Authentication Status Register
 
 ### DEVID  
 
-Module tpiu  
 Relative Address = 0x00000fc8  
 Width = 12 bits  
 Access Type = ro  
@@ -352,7 +326,6 @@ Description Device ID
 
 ### DTIR  
 
-Module tpiu  
 Relative Address = 0x00000fcc  
 Width = 8 bits  
 Access Type = ro  
@@ -362,7 +335,6 @@ Description Device Type Identifier Register
 
 ### PERIPHID4  
 
-Module tpiu  
 Relative Address = 0x00000fd0  
 Width = 8 bits  
 Access Type = ro  
@@ -372,7 +344,6 @@ Description Peripheral ID4
 
 ### PERIPHID5  
 
-Module tpiu  
 Relative Address = 0x00000fd4  
 Width = 8 bits  
 Access Type = ro  
@@ -382,7 +353,6 @@ Description Peripheral ID5
 
 ### PERIPHID6  
 
-Module tpiu  
 Relative Address = 0x00000fd8  
 Width = 8 bits  
 Access Type = ro  
@@ -392,7 +362,6 @@ Description Peripheral ID6
 
 ### PERIPHID7  
 
-Module tpiu  
 Relative Address = 0x00000fdc  
 Width = 8 bits  
 Access Type = ro  
@@ -402,7 +371,6 @@ Description Peripheral ID7
 
 ### PERIPHID0  
 
-Module tpiu  
 Relative Address = 0x00000fe0  
 Width = 8 bits  
 Access Type = ro  
@@ -412,7 +380,6 @@ Description Peripheral ID0
 
 ### PERIPHID1  
 
-Module tpiu  
 Relative Address = 0x00000fe4  
 Width = 8 bits  
 Access Type = ro  
@@ -422,7 +389,6 @@ Description Peripheral ID1
 
 ### PERIPHID2  
 
-Module tpiu  
 Relative Address = 0x00000fe8  
 Width = 8 bits  
 Access Type = ro  
@@ -432,7 +398,6 @@ Description Peripheral ID2
 
 ### PERIPHID3  
 
-Module tpiu  
 Relative Address = 0x00000fec  
 Width = 8 bits  
 Access Type = ro  
@@ -442,7 +407,6 @@ Description Peripheral ID3
 
 ### COMPID0  
 
-Module tpiu  
 Relative Address = 0x00000ff0  
 Width = 8 bits  
 Access Type = ro  
@@ -452,7 +416,6 @@ Description Component ID0
 
 ### COMPID1  
 
-Module tpiu  
 Relative Address = 0x00000ff4  
 Width = 8 bits  
 Access Type = ro  
@@ -462,7 +425,6 @@ Description Component ID1
 
 ### COMPID2  
 
-Module tpiu  
 Relative Address = 0x00000ff8  
 Width = 8 bits  
 Access Type = ro  
@@ -472,7 +434,6 @@ Description Component ID2
 
 ### COMPID3  
 
-Module tpiu  
 Relative Address = 0x00000ffc  
 Width = 8 bits  
 Access Type = ro  

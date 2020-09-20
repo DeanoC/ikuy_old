@@ -356,10 +356,7 @@ case class zynqDDR() extends Bundle with IMasterSlave
   }
 }
 
-class zynqPS7Wwrapper(
-  config : zynqSoCConfig
-)
-extends Component
+object zynqAxis
 {
   val PSMasterGPAxiConfig = Axi4Config( addressWidth = 32,
                                         dataWidth = 32,
@@ -426,7 +423,13 @@ extends Component
                                           useResp = true,
                                           useProt = true,
                                           useStrb = true)
+}
 
+class zynqPS7Wwrapper(
+  config : zynqSoCConfig
+)
+extends Component
+{
                                           
   val usesFCLK =  config.useFPGAClock0 | config.useFPGAClock1 | 
                   config.useFPGAClock2 | config.useFPGAClock3 | 
@@ -487,15 +490,17 @@ extends Component
 
     val irq = zynqInterrupts() genIf config.useInterrupts
 
-    val ps_axi3_master_gp0 = slave( Axi4(PSMasterGPAxiConfig) ) genIf config.usePSMasterGP0Axi
-    val ps_axi3_master_gp1 = slave( Axi4(PSMasterGPAxiConfig) ) genIf config.usePSMasterGP1Axi
-    val fpga_axi3_master_gp0 = master( Axi4(FPGAMasterGPAxiConfig) ) genIf config.useFPGAMasterGP0Axi
-    val fpga_axi3_master_gp1 = master( Axi4(FPGAMasterGPAxiConfig) ) genIf config.useFPGAMasterGP1Axi
-    val fpga_axi3_master_acp = master( Axi4(FPGAMasterACPAxiConfig) ) genIf config.useFPGAMasterACPAxi
-    val fpga_axi3_master_hp0 = master( Axi4(FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP0Axi
-    val fpga_axi3_master_hp1 = master( Axi4(FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP1Axi
-    val fpga_axi3_master_hp2 = master( Axi4(FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP2Axi
-    val fpga_axi3_master_hp3 = master( Axi4(FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP3Axi
+    val ps_axi3_master_gp0 = slave( Axi4(zynqAxis.PSMasterGPAxiConfig) ) genIf config.usePSMasterGP0Axi
+    val ps_axi3_master_gp0_clk = (in Bool) genIf config.usePSMasterGP0Axi
+    val ps_axi3_master_gp1 = slave( Axi4(zynqAxis.PSMasterGPAxiConfig) ) genIf config.usePSMasterGP1Axi
+    val ps_axi3_master_gp1_clk = (in Bool) genIf config.usePSMasterGP1Axi
+    val fpga_axi3_master_gp0 = master( Axi4(zynqAxis.FPGAMasterGPAxiConfig) ) genIf config.useFPGAMasterGP0Axi
+    val fpga_axi3_master_gp1 = master( Axi4(zynqAxis.FPGAMasterGPAxiConfig) ) genIf config.useFPGAMasterGP1Axi
+    val fpga_axi3_master_acp = master( Axi4(zynqAxis.FPGAMasterACPAxiConfig) ) genIf config.useFPGAMasterACPAxi
+    val fpga_axi3_master_hp0 = master( Axi4(zynqAxis.FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP0Axi
+    val fpga_axi3_master_hp1 = master( Axi4(zynqAxis.FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP1Axi
+    val fpga_axi3_master_hp2 = master( Axi4(zynqAxis.FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP2Axi
+    val fpga_axi3_master_hp3 = master( Axi4(zynqAxis.FPGAMasterHPAxiConfig) ) genIf config.useFPGAMasterHP3Axi
 
     // require connections
     val ps_clock_and_reset = master(zynqPSClockAndReset())
@@ -821,48 +826,25 @@ extends Component
 
   if(usesFCLK)
   {
-    val clk0 : Bool = False
-    val clk1 : Bool = False
-    val clk2 : Bool = False
-    val clk3 : Bool = False
-    val trig0_n : Bool = False
-    val trig1_n : Bool = False
-    val trig2_n : Bool = False
-    val trig3_n : Bool = False
-    val reset0_n : Bool = False
-    val reset1_n : Bool = False
-    val reset2_n : Bool = False
-    val reset3_n : Bool = False
+    val trig0_n = Bool
+    val trig1_n = Bool
+    val trig2_n = Bool
+    val trig3_n = Bool
 
-    if(config.useFPGAClock0) 
-    {
-      clk0 <> io.fclk.clk0
-      trig0_n <> ~io.fclk.clk0En
-    } 
-    if(config.useFPGAClock1) 
-    {
-      clk1 <> io.fclk.clk1
-      trig1_n <> ~io.fclk.clk1En
-    } 
-    if(config.useFPGAClock2) 
-    {
-      clk2 <> io.fclk.clk2
-      trig2_n <> ~io.fclk.clk2En
-    } 
-    if(config.useFPGAClock3) 
-    {
-      clk3 <> io.fclk.clk3
-      trig3_n <> ~io.fclk.clk3En
-    } 
+    if(config.useFPGAClock0) trig0_n := io.fclk.clk0En else trig0_n := True
+    if(config.useFPGAClock1) trig1_n := io.fclk.clk1En else trig1_n := True
+    if(config.useFPGAClock2) trig2_n := io.fclk.clk2En else trig2_n := True
+    if(config.useFPGAClock3) trig3_n := io.fclk.clk3En else trig3_n := True
 
-    if(config.useFPGAReset0) reset0_n <> io.fclk.reset0_n
-    if(config.useFPGAReset1) reset1_n <> io.fclk.reset1_n
-    if(config.useFPGAReset2) reset2_n <> io.fclk.reset2_n
-    if(config.useFPGAReset3) reset3_n <> io.fclk.reset3_n
-
-    ps7.io.FCLKCLK <> clk3 ## clk2 ## clk1 ## clk0
+    io.fclk.clk0 := ps7.io.FCLKCLK(0)
+    io.fclk.clk1 := ps7.io.FCLKCLK(1)
+    io.fclk.clk2 := ps7.io.FCLKCLK(2)
+    io.fclk.clk3 := ps7.io.FCLKCLK(3)
     ps7.io.FCLKCLKTRIGN <> trig3_n ## trig2_n ## trig1_n ## trig0_n
-    ps7.io.FCLKRESETN <> reset3_n ## reset2_n ## reset1_n ## reset0_n
+    io.fclk.reset0_n := ps7.io.FCLKRESETN(0)
+    io.fclk.reset1_n := ps7.io.FCLKRESETN(1)
+    io.fclk.reset2_n := ps7.io.FCLKRESETN(2)
+    io.fclk.reset3_n := ps7.io.FCLKRESETN(3)
   }
   else
   {
@@ -1047,47 +1029,48 @@ extends Component
 
   if(config.usePSMasterGP0Axi)
   {
-    ps7.io.MAXIGP0ACLK <> ClockDomain.current.clock
-    ps7.io.MAXIGP0ARESETN <> ClockDomain.current.reset
+    ps7.io.MAXIGP0ACLK <> io.ps_axi3_master_gp0_clk
+//    ps7.io.MAXIGP0ARESETN <> ClockDomain.current.reset
+    val ps_axi3_master_gp0 = master(io.ps_axi3_master_gp0)
 
-    ps7.io.MAXIGP0AWID <> io.ps_axi3_master_gp0.aw.id
-    ps7.io.MAXIGP0AWADDR <> io.ps_axi3_master_gp0.aw.addr
-    ps7.io.MAXIGP0AWLEN <> io.ps_axi3_master_gp0.aw.len
-    ps7.io.MAXIGP0AWSIZE <> io.ps_axi3_master_gp0.aw.size
-    ps7.io.MAXIGP0AWBURST <> io.ps_axi3_master_gp0.aw.burst
-    ps7.io.MAXIGP0AWLOCK <> io.ps_axi3_master_gp0.aw.lock
-    ps7.io.MAXIGP0AWCACHE <> io.ps_axi3_master_gp0.aw.cache
-    ps7.io.MAXIGP0AWPROT <> io.ps_axi3_master_gp0.aw.prot
-    ps7.io.MAXIGP0AWVALID <> io.ps_axi3_master_gp0.aw.valid
-    ps7.io.MAXIGP0AWREADY <> io.ps_axi3_master_gp0.aw.ready
+    ps7.io.MAXIGP0AWID <> ps_axi3_master_gp0.aw.id
+    ps7.io.MAXIGP0AWADDR <> ps_axi3_master_gp0.aw.addr
+    ps7.io.MAXIGP0AWLEN.resize(8) <> ps_axi3_master_gp0.aw.len
+    ps7.io.MAXIGP0AWSIZE.resize(3) <> ps_axi3_master_gp0.aw.size
+    ps7.io.MAXIGP0AWBURST <> ps_axi3_master_gp0.aw.burst
+    ps7.io.MAXIGP0AWLOCK.resize(1) <> ps_axi3_master_gp0.aw.lock
+    ps7.io.MAXIGP0AWCACHE <> ps_axi3_master_gp0.aw.cache
+    ps7.io.MAXIGP0AWPROT <> ps_axi3_master_gp0.aw.prot
+    ps7.io.MAXIGP0AWVALID <> ps_axi3_master_gp0.aw.valid
+    ps7.io.MAXIGP0AWREADY <> ps_axi3_master_gp0.aw.ready
 //isn't used by Axi4    ps7.io.MAXIGP0WID <> io.ps_axi3_master_gp0.w.id
-    ps7.io.MAXIGP0WDATA <> io.ps_axi3_master_gp0.w.data
-    ps7.io.MAXIGP0WSTRB <> io.ps_axi3_master_gp0.w.strb
-    ps7.io.MAXIGP0WLAST <> io.ps_axi3_master_gp0.w.last
-    ps7.io.MAXIGP0WVALID <> io.ps_axi3_master_gp0.w.valid
-    ps7.io.MAXIGP0WREADY <> io.ps_axi3_master_gp0.w.ready
-    ps7.io.MAXIGP0BID <> io.ps_axi3_master_gp0.b.id
-    ps7.io.MAXIGP0BRESP <> io.ps_axi3_master_gp0.b.resp
-    ps7.io.MAXIGP0BVALID <> io.ps_axi3_master_gp0.b.valid
-    ps7.io.MAXIGP0BREADY <> io.ps_axi3_master_gp0.b.ready
-    ps7.io.MAXIGP0ARID <> io.ps_axi3_master_gp0.ar.id
-    ps7.io.MAXIGP0ARADDR <> io.ps_axi3_master_gp0.ar.addr
-    ps7.io.MAXIGP0ARLEN <> io.ps_axi3_master_gp0.ar.len
-    ps7.io.MAXIGP0ARSIZE <> io.ps_axi3_master_gp0.ar.size
-    ps7.io.MAXIGP0ARBURST <> io.ps_axi3_master_gp0.ar.burst
-    ps7.io.MAXIGP0ARLOCK <> io.ps_axi3_master_gp0.ar.lock
-    ps7.io.MAXIGP0ARCACHE <> io.ps_axi3_master_gp0.ar.cache
-    ps7.io.MAXIGP0ARPROT <> io.ps_axi3_master_gp0.ar.prot
-    ps7.io.MAXIGP0ARVALID <> io.ps_axi3_master_gp0.ar.valid
-    ps7.io.MAXIGP0ARREADY <> io.ps_axi3_master_gp0.ar.ready
-    ps7.io.MAXIGP0RID <> io.ps_axi3_master_gp0.r.id
-    ps7.io.MAXIGP0RDATA <> io.ps_axi3_master_gp0.r.data
-    ps7.io.MAXIGP0RRESP <> io.ps_axi3_master_gp0.r.resp
-    ps7.io.MAXIGP0RLAST <> io.ps_axi3_master_gp0.r.last
-    ps7.io.MAXIGP0RVALID <> io.ps_axi3_master_gp0.r.valid
-    ps7.io.MAXIGP0RREADY <> io.ps_axi3_master_gp0.r.ready
-    ps7.io.MAXIGP0AWQOS <> io.ps_axi3_master_gp0.aw.qos
-    ps7.io.MAXIGP0ARQOS <> io.ps_axi3_master_gp0.ar.qos
+    ps7.io.MAXIGP0WDATA <> ps_axi3_master_gp0.w.data
+    ps7.io.MAXIGP0WSTRB <> ps_axi3_master_gp0.w.strb
+    ps7.io.MAXIGP0WLAST <> ps_axi3_master_gp0.w.last
+    ps7.io.MAXIGP0WVALID <> ps_axi3_master_gp0.w.valid
+    ps7.io.MAXIGP0WREADY <> ps_axi3_master_gp0.w.ready
+    ps7.io.MAXIGP0BID <> ps_axi3_master_gp0.b.id
+    ps7.io.MAXIGP0BRESP <> ps_axi3_master_gp0.b.resp
+    ps7.io.MAXIGP0BVALID <> ps_axi3_master_gp0.b.valid
+    ps7.io.MAXIGP0BREADY <> ps_axi3_master_gp0.b.ready
+    ps7.io.MAXIGP0ARID <> ps_axi3_master_gp0.ar.id
+    ps7.io.MAXIGP0ARADDR <> ps_axi3_master_gp0.ar.addr
+    ps7.io.MAXIGP0ARLEN.resize(8) <> ps_axi3_master_gp0.ar.len
+    ps7.io.MAXIGP0ARSIZE.resize(3) <> ps_axi3_master_gp0.ar.size
+    ps7.io.MAXIGP0ARBURST <> ps_axi3_master_gp0.ar.burst
+    ps7.io.MAXIGP0ARLOCK.resize(1) <> ps_axi3_master_gp0.ar.lock
+    ps7.io.MAXIGP0ARCACHE <> ps_axi3_master_gp0.ar.cache
+    ps7.io.MAXIGP0ARPROT <> ps_axi3_master_gp0.ar.prot
+    ps7.io.MAXIGP0ARVALID <> ps_axi3_master_gp0.ar.valid
+    ps7.io.MAXIGP0ARREADY <> ps_axi3_master_gp0.ar.ready
+    ps7.io.MAXIGP0RID <> ps_axi3_master_gp0.r.id
+    ps7.io.MAXIGP0RDATA <> ps_axi3_master_gp0.r.data
+    ps7.io.MAXIGP0RRESP <> ps_axi3_master_gp0.r.resp
+    ps7.io.MAXIGP0RLAST <> ps_axi3_master_gp0.r.last
+    ps7.io.MAXIGP0RVALID <> ps_axi3_master_gp0.r.valid
+    ps7.io.MAXIGP0RREADY <> ps_axi3_master_gp0.r.ready
+    ps7.io.MAXIGP0AWQOS <> ps_axi3_master_gp0.aw.qos
+    ps7.io.MAXIGP0ARQOS <> ps_axi3_master_gp0.ar.qos
   }
   else
   {
@@ -1107,7 +1090,7 @@ extends Component
 
   if(config.usePSMasterGP1Axi)
   {
-    ps7.io.MAXIGP1ACLK <> ClockDomain.current.clock
+    ps7.io.MAXIGP1ACLK <> io.ps_axi3_master_gp1_clk
     ps7.io.MAXIGP1ARESETN <> ClockDomain.current.reset
 
     ps7.io.MAXIGP1AWID <> io.ps_axi3_master_gp1.aw.id

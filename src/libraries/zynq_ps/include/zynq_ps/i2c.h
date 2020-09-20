@@ -2,16 +2,16 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // Inter Integrated Circuit(I2C)
-// Auto-generated on Sun Sep 20 15:25:57 EEST 2020
+// Auto-generated on Sun Sep 20 23:32:01 EEST 2020
 
 #include <stdint.h>
 
 // 2 banks of i2c chips
-#define i2c0_BASE_ADDR 0xe0004000
-#define i2c1_BASE_ADDR 0xe0005000
+#define i2c0_BASE_ADDR 0xe0004000U
+#define i2c1_BASE_ADDR 0xe0005000U
 
 // Control Register
-#define i2c_CR_OFFSET 0x00000000
+#define i2c_CR_OFFSET 0x00000000U
 #define i2c_CR_DIV_A_LSHIFT 0x0000000eU
 #define i2c_CR_DIV_A_MASK 0x0000c000U
 #define i2c_CR_DIV_B_LSHIFT 0x00000008U
@@ -43,7 +43,7 @@
 #define i2c_CR_MASK 0x0000ff7fU
 
 // Status register
-#define i2c_SR_OFFSET 0x00000004
+#define i2c_SR_OFFSET 0x00000004U
 #define i2c_SR_reserved_0_LSHIFT 0x00000009U
 #define i2c_SR_reserved_0_MASK 0x0000fe00U
 #define i2c_SR_BA_LSHIFT 0x00000008U
@@ -69,7 +69,7 @@
 #define i2c_SR_MASK 0x000001e8U
 
 // I2C Address register
-#define i2c_ADDR_OFFSET 0x00000008
+#define i2c_ADDR_OFFSET 0x00000008U
 #define i2c_ADDR_reserved_0_LSHIFT 0x0000000aU
 #define i2c_ADDR_reserved_0_MASK 0x0000fc00U
 #define i2c_ADDR_MASK_LSHIFT 0x00000000U
@@ -77,7 +77,7 @@
 #define i2c_ADDR_MASK 0x000003ffU
 
 // I2C data register
-#define i2c_DATA_OFFSET 0x0000000c
+#define i2c_DATA_OFFSET 0x0000000cU
 #define i2c_DATA_reserved_0_LSHIFT 0x00000008U
 #define i2c_DATA_reserved_0_MASK 0x0000ff00U
 #define i2c_DATA_MASK_LSHIFT 0x00000000U
@@ -85,7 +85,7 @@
 #define i2c_DATA_MASK 0x000000ffU
 
 // I2C interrupt status register
-#define i2c_ISR_OFFSET 0x00000010
+#define i2c_ISR_OFFSET 0x00000010U
 #define i2c_ISR_reserved_0_LSHIFT 0x0000000aU
 #define i2c_ISR_reserved_0_MASK 0x0000fc00U
 #define i2c_ISR_IXR_ARB_LOST_LSHIFT 0x00000009U
@@ -121,13 +121,13 @@
 #define i2c_ISR_MASK 0x000002ffU
 
 // Transfer Size Register
-#define i2c_TRANS_SIZE_OFFSET 0x00000014
+#define i2c_TRANS_SIZE_OFFSET 0x00000014U
 #define i2c_TRANS_SIZE_MASK_LSHIFT 0x00000000U
 #define i2c_TRANS_SIZE_MASK_MASK 0x000000ffU
 #define i2c_TRANS_SIZE_MASK 0x000000ffU
 
 // Slave Monitor Pause Register
-#define i2c_SLV_PAUSE_OFFSET 0x00000018
+#define i2c_SLV_PAUSE_OFFSET 0x00000018U
 #define i2c_SLV_PAUSE_reserved_0_LSHIFT 0x00000004U
 #define i2c_SLV_PAUSE_reserved_0_MASK 0x000000f0U
 #define i2c_SLV_PAUSE_MASK_LSHIFT 0x00000000U
@@ -135,13 +135,13 @@
 #define i2c_SLV_PAUSE_MASK 0x0000000fU
 
 // Time out register
-#define i2c_TIME_OUT_OFFSET 0x0000001c
+#define i2c_TIME_OUT_OFFSET 0x0000001cU
 #define i2c_TIME_OUT_MASK_LSHIFT 0x00000000U
 #define i2c_TIME_OUT_MASK_MASK 0x000000ffU
 #define i2c_TIME_OUT_MASK 0x000000ffU
 
 // Interrupt mask register
-#define i2c_IMR_OFFSET 0x00000020
+#define i2c_IMR_OFFSET 0x00000020U
 #define i2c_IMR_reserved_0_LSHIFT 0x0000000aU
 #define i2c_IMR_reserved_0_MASK 0x0000fc00U
 #define i2c_IMR_ARB_LOST_LSHIFT 0x00000009U
@@ -177,7 +177,7 @@
 #define i2c_IMR_MASK 0x000002ffU
 
 // Interrupt Enable Register
-#define i2c_IER_OFFSET 0x00000024
+#define i2c_IER_OFFSET 0x00000024U
 #define i2c_IER_reserved_0_LSHIFT 0x0000000aU
 #define i2c_IER_reserved_0_MASK 0x0000fc00U
 #define i2c_IER_ARB_LOST_LSHIFT 0x00000009U
@@ -213,7 +213,7 @@
 #define i2c_IER_MASK 0x000002ffU
 
 // Interrupt Disable Register
-#define i2c_IDR_OFFSET 0x00000028
+#define i2c_IDR_OFFSET 0x00000028U
 #define i2c_IDR_reserved_0_LSHIFT 0x0000000aU
 #define i2c_IDR_reserved_0_MASK 0x0000fc00U
 #define i2c_IDR_ARB_LOST_LSHIFT 0x00000009U

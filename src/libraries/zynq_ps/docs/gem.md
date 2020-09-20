@@ -2,7 +2,7 @@
 
 Module Gigabit Ethernet Controller (gem)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 gem0 Base Address = 0xe000b000  
 gem1 Base Address = 0xe000c000  
@@ -209,7 +209,6 @@ gem1 Base Address = 0xe000c000
 
 ### NWCTRL  
 
-Module gem  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = mixed  
@@ -219,7 +218,6 @@ Description Network Control
 
 ### NWCFG  
 
-Module gem  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = rw  
@@ -229,7 +227,6 @@ Description Network Configuration
 
 ### NWSR  
 
-Module gem  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = ro  
@@ -239,7 +236,6 @@ Description Network Status
 
 ### DMACR  
 
-Module gem  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = mixed  
@@ -249,7 +245,6 @@ Description DMA Configuration
 
 ### TXSR  
 
-Module gem  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = mixed  
@@ -259,7 +254,6 @@ Description Transmit Status
 
 ### RXQBASE  
 
-Module gem  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = mixed  
@@ -269,7 +263,6 @@ Description Receive Buffer Queue Base Address
 
 ### TXQBASE  
 
-Module gem  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = mixed  
@@ -279,7 +272,6 @@ Description Transmit Buffer Queue Base Address
 
 ### RXSR  
 
-Module gem  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = mixed  
@@ -289,7 +281,6 @@ Description Receive Status
 
 ### ISR  
 
-Module gem  
 Relative Address = 0x00000024  
 Width = 32 bits  
 Access Type = mixed  
@@ -299,7 +290,6 @@ Description Interrupt Status
 
 ### IER  
 
-Module gem  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = wo  
@@ -309,7 +299,6 @@ Description Interrupt Enable
 
 ### IDR  
 
-Module gem  
 Relative Address = 0x0000002c  
 Width = 32 bits  
 Access Type = wo  
@@ -319,7 +308,6 @@ Description Interrupt Disable
 
 ### IMR  
 
-Module gem  
 Relative Address = 0x00000030  
 Width = 32 bits  
 Access Type = mixed  
@@ -329,7 +317,6 @@ Description Interrupt Mask Status
 
 ### PHYMNTNC  
 
-Module gem  
 Relative Address = 0x00000034  
 Width = 32 bits  
 Access Type = rw  
@@ -339,7 +326,6 @@ Description PHY Maintenance
 
 ### RXPAUSE  
 
-Module gem  
 Relative Address = 0x00000038  
 Width = 32 bits  
 Access Type = ro  
@@ -349,7 +335,6 @@ Description Received Pause Quantum
 
 ### TXPAUSE  
 
-Module gem  
 Relative Address = 0x0000003c  
 Width = 32 bits  
 Access Type = rw  
@@ -359,7 +344,6 @@ Description Transmit Pause Quantum
 
 ### HASHL  
 
-Module gem  
 Relative Address = 0x00000080  
 Width = 32 bits  
 Access Type = rw  
@@ -369,7 +353,6 @@ Description Hash Register Bottom [31:0]
 
 ### HASHH  
 
-Module gem  
 Relative Address = 0x00000084  
 Width = 32 bits  
 Access Type = rw  
@@ -379,7 +362,6 @@ Description Hash Register Top [63:32]
 
 ### LADDR1L  
 
-Module gem  
 Relative Address = 0x00000088  
 Width = 32 bits  
 Access Type = rw  
@@ -389,7 +371,6 @@ Description Specific Address 1 Bottom [31:0]
 
 ### LADDR1H  
 
-Module gem  
 Relative Address = 0x0000008c  
 Width = 32 bits  
 Access Type = mixed  
@@ -399,7 +380,6 @@ Description Specific Address 1 Top [47:32]
 
 ### LADDR2L  
 
-Module gem  
 Relative Address = 0x00000090  
 Width = 32 bits  
 Access Type = rw  
@@ -409,7 +389,6 @@ Description Specific Address 2 Bottom [31:0]
 
 ### LADDR2H  
 
-Module gem  
 Relative Address = 0x00000094  
 Width = 32 bits  
 Access Type = mixed  
@@ -419,7 +398,6 @@ Description Specific Address 2 Top [47:32]
 
 ### LADDR3L  
 
-Module gem  
 Relative Address = 0x00000098  
 Width = 32 bits  
 Access Type = rw  
@@ -429,7 +407,6 @@ Description Specific Address 3 Bottom [31:0]
 
 ### LADDR3H  
 
-Module gem  
 Relative Address = 0x0000009c  
 Width = 32 bits  
 Access Type = mixed  
@@ -439,7 +416,6 @@ Description Specific Address 3 Top [47:32]
 
 ### LADDR4L  
 
-Module gem  
 Relative Address = 0x000000a0  
 Width = 32 bits  
 Access Type = rw  
@@ -449,7 +425,6 @@ Description Specific Address 4 Bottom [31:0]
 
 ### LADDR4H  
 
-Module gem  
 Relative Address = 0x000000a4  
 Width = 32 bits  
 Access Type = mixed  
@@ -459,7 +434,6 @@ Description Specific Address 4 Top [47:32]
 
 ### MATCH1  
 
-Module gem  
 Relative Address = 0x000000a8  
 Width = 32 bits  
 Access Type = mixed  
@@ -469,7 +443,6 @@ Description Type ID Match 1
 
 ### MATCH2  
 
-Module gem  
 Relative Address = 0x000000ac  
 Width = 32 bits  
 Access Type = mixed  
@@ -479,7 +452,6 @@ Description Type ID Match 2
 
 ### MATCH3  
 
-Module gem  
 Relative Address = 0x000000b0  
 Width = 32 bits  
 Access Type = mixed  
@@ -489,7 +461,6 @@ Description Type ID Match 3
 
 ### MATCH4  
 
-Module gem  
 Relative Address = 0x000000b4  
 Width = 32 bits  
 Access Type = mixed  
@@ -499,7 +470,6 @@ Description Type ID Match 4
 
 ### WAKE_ON_LAN  
 
-Module gem  
 Relative Address = 0x000000b8  
 Width = 32 bits  
 Access Type = mixed  
@@ -509,7 +479,6 @@ Description Wake on LAN Register
 
 ### STRETCH  
 
-Module gem  
 Relative Address = 0x000000bc  
 Width = 32 bits  
 Access Type = mixed  
@@ -519,7 +488,6 @@ Description IPG stretch register
 
 ### STACKED_VLAN  
 
-Module gem  
 Relative Address = 0x000000c0  
 Width = 32 bits  
 Access Type = mixed  
@@ -529,7 +497,6 @@ Description Stacked VLAN Register
 
 ### TX_PFC_PAUSE  
 
-Module gem  
 Relative Address = 0x000000c4  
 Width = 32 bits  
 Access Type = mixed  
@@ -539,7 +506,6 @@ Description Transmit PFC Pause Register
 
 ### SPEC_ADDR1_MASK_BOT  
 
-Module gem  
 Relative Address = 0x000000c8  
 Width = 32 bits  
 Access Type = rw  
@@ -549,7 +515,6 @@ Description Specific Address Mask 1 Bottom [31:0]
 
 ### SPEC_ADDR1_MASK_TOP  
 
-Module gem  
 Relative Address = 0x000000cc  
 Width = 32 bits  
 Access Type = mixed  
@@ -559,7 +524,6 @@ Description Specific Address Mask 1 Top [47:32]
 
 ### MODULE_ID  
 
-Module gem  
 Relative Address = 0x000000fc  
 Width = 32 bits  
 Access Type = ro  
@@ -569,7 +533,6 @@ Description Module ID
 
 ### OCTTXL  
 
-Module gem  
 Relative Address = 0x00000100  
 Width = 32 bits  
 Access Type = ro  
@@ -579,7 +542,6 @@ Description Octets transmitted [31:0] (in frames without error)
 
 ### OCTTXH  
 
-Module gem  
 Relative Address = 0x00000104  
 Width = 32 bits  
 Access Type = ro  
@@ -589,7 +551,6 @@ Description Octets transmitted [47:32] (in frames without error)
 
 ### TXCNT  
 
-Module gem  
 Relative Address = 0x00000108  
 Width = 32 bits  
 Access Type = ro  
@@ -599,7 +560,6 @@ Description Frames Transmitted
 
 ### TXBCCNT  
 
-Module gem  
 Relative Address = 0x0000010c  
 Width = 32 bits  
 Access Type = ro  
@@ -609,7 +569,6 @@ Description Broadcast frames Tx
 
 ### TXMCCNT  
 
-Module gem  
 Relative Address = 0x00000110  
 Width = 32 bits  
 Access Type = ro  
@@ -619,7 +578,6 @@ Description Multicast frames Tx
 
 ### TXPAUSECNT  
 
-Module gem  
 Relative Address = 0x00000114  
 Width = 32 bits  
 Access Type = ro  
@@ -629,7 +587,6 @@ Description Pause frames Tx
 
 ### TX64CNT  
 
-Module gem  
 Relative Address = 0x00000118  
 Width = 32 bits  
 Access Type = ro  
@@ -639,7 +596,6 @@ Description Frames Tx, 64-byte length
 
 ### TX65CNT  
 
-Module gem  
 Relative Address = 0x0000011c  
 Width = 32 bits  
 Access Type = ro  
@@ -649,7 +605,6 @@ Description Frames Tx, 65 to 127-byte length
 
 ### TX128CNT  
 
-Module gem  
 Relative Address = 0x00000120  
 Width = 32 bits  
 Access Type = ro  
@@ -659,7 +614,6 @@ Description Frames Tx, 128 to 255-bytelength
 
 ### TX256CNT  
 
-Module gem  
 Relative Address = 0x00000124  
 Width = 32 bits  
 Access Type = ro  
@@ -669,7 +623,6 @@ Description Frames Tx, 256 to 511-byte length
 
 ### TX512CNT  
 
-Module gem  
 Relative Address = 0x00000128  
 Width = 32 bits  
 Access Type = ro  
@@ -679,7 +632,6 @@ Description Frames Tx, 512 to 1023-byte length
 
 ### TX1024CNT  
 
-Module gem  
 Relative Address = 0x0000012c  
 Width = 32 bits  
 Access Type = ro  
@@ -689,7 +641,6 @@ Description Frame Tx, 1024 to 1518-byte length
 
 ### TXURUNCNT  
 
-Module gem  
 Relative Address = 0x00000134  
 Width = 32 bits  
 Access Type = ro  
@@ -699,7 +650,6 @@ Description Transmit under runs
 
 ### SNGLCOLLCNT  
 
-Module gem  
 Relative Address = 0x00000138  
 Width = 32 bits  
 Access Type = ro  
@@ -709,7 +659,6 @@ Description Single Collision Frames
 
 ### MULTICOLLCNT  
 
-Module gem  
 Relative Address = 0x0000013c  
 Width = 32 bits  
 Access Type = ro  
@@ -719,7 +668,6 @@ Description Multiple Collision Frames
 
 ### EXCESSCOLLCNT  
 
-Module gem  
 Relative Address = 0x00000140  
 Width = 32 bits  
 Access Type = ro  
@@ -729,7 +677,6 @@ Description Excessive Collisions
 
 ### LATECOLLCNT  
 
-Module gem  
 Relative Address = 0x00000144  
 Width = 32 bits  
 Access Type = ro  
@@ -739,7 +686,6 @@ Description Late Collisions
 
 ### TXDEFERCNT  
 
-Module gem  
 Relative Address = 0x00000148  
 Width = 32 bits  
 Access Type = ro  
@@ -749,7 +695,6 @@ Description Deferred Transmission Frames
 
 ### TXCSENSECNT  
 
-Module gem  
 Relative Address = 0x0000014c  
 Width = 32 bits  
 Access Type = ro  
@@ -759,7 +704,6 @@ Description Carrier Sense Errors.
 
 ### OCTRXL  
 
-Module gem  
 Relative Address = 0x00000150  
 Width = 32 bits  
 Access Type = ro  
@@ -769,7 +713,6 @@ Description Octets Received [31:0]
 
 ### OCTRXH  
 
-Module gem  
 Relative Address = 0x00000154  
 Width = 32 bits  
 Access Type = ro  
@@ -779,7 +722,6 @@ Description Octets Received [47:32]
 
 ### RXCNT  
 
-Module gem  
 Relative Address = 0x00000158  
 Width = 32 bits  
 Access Type = ro  
@@ -789,7 +731,6 @@ Description Frames Received
 
 ### RXBROADCNT  
 
-Module gem  
 Relative Address = 0x0000015c  
 Width = 32 bits  
 Access Type = ro  
@@ -799,7 +740,6 @@ Description Broadcast Frames Rx
 
 ### RXMULTICNT  
 
-Module gem  
 Relative Address = 0x00000160  
 Width = 32 bits  
 Access Type = ro  
@@ -809,7 +749,6 @@ Description Multicast Frames Rx
 
 ### RXPAUSECNT  
 
-Module gem  
 Relative Address = 0x00000164  
 Width = 32 bits  
 Access Type = ro  
@@ -819,7 +758,6 @@ Description Pause Frames Rx
 
 ### RX64CNT  
 
-Module gem  
 Relative Address = 0x00000168  
 Width = 32 bits  
 Access Type = ro  
@@ -829,7 +767,6 @@ Description Frames Rx, 64-byte length
 
 ### RX65CNT  
 
-Module gem  
 Relative Address = 0x0000016c  
 Width = 32 bits  
 Access Type = ro  
@@ -839,7 +776,6 @@ Description Frames Rx, 65 to 127-byte length
 
 ### RX128CNT  
 
-Module gem  
 Relative Address = 0x00000170  
 Width = 32 bits  
 Access Type = ro  
@@ -849,7 +785,6 @@ Description Frames Rx, 128 to 255-byte length
 
 ### RX256CNT  
 
-Module gem  
 Relative Address = 0x00000174  
 Width = 32 bits  
 Access Type = ro  
@@ -859,7 +794,6 @@ Description Frames Rx, 256 to 511-byte length
 
 ### RX512CNT  
 
-Module gem  
 Relative Address = 0x00000178  
 Width = 32 bits  
 Access Type = ro  
@@ -869,7 +803,6 @@ Description Frames Rx, 512 to 1023-byte length
 
 ### RX1024CNT  
 
-Module gem  
 Relative Address = 0x0000017c  
 Width = 32 bits  
 Access Type = ro  
@@ -879,7 +812,6 @@ Description Frames Rx, 1024 to 1518-byte length
 
 ### RXUNDRCNT  
 
-Module gem  
 Relative Address = 0x00000184  
 Width = 32 bits  
 Access Type = ro  
@@ -889,7 +821,6 @@ Description Undersize frames received
 
 ### RXOVRCNT  
 
-Module gem  
 Relative Address = 0x00000188  
 Width = 32 bits  
 Access Type = ro  
@@ -899,7 +830,6 @@ Description Oversize frames received
 
 ### RXJABCNT  
 
-Module gem  
 Relative Address = 0x0000018c  
 Width = 32 bits  
 Access Type = ro  
@@ -909,7 +839,6 @@ Description Jabbers received
 
 ### RXFCSCNT  
 
-Module gem  
 Relative Address = 0x00000190  
 Width = 32 bits  
 Access Type = ro  
@@ -919,7 +848,6 @@ Description Frame check sequence errors
 
 ### RXLENGTHCNT  
 
-Module gem  
 Relative Address = 0x00000194  
 Width = 32 bits  
 Access Type = ro  
@@ -929,7 +857,6 @@ Description Length field frame errors
 
 ### RXSYMBCNT  
 
-Module gem  
 Relative Address = 0x00000198  
 Width = 32 bits  
 Access Type = ro  
@@ -939,7 +866,6 @@ Description Receive symbol errors
 
 ### RXALIGNCNT  
 
-Module gem  
 Relative Address = 0x0000019c  
 Width = 32 bits  
 Access Type = ro  
@@ -949,7 +875,6 @@ Description Alignment errors
 
 ### RXRESERRCNT  
 
-Module gem  
 Relative Address = 0x000001a0  
 Width = 32 bits  
 Access Type = ro  
@@ -959,7 +884,6 @@ Description Receive resource errors
 
 ### RXORCNT  
 
-Module gem  
 Relative Address = 0x000001a4  
 Width = 32 bits  
 Access Type = ro  
@@ -969,7 +893,6 @@ Description Receive overrun errors
 
 ### RXIPCCNT  
 
-Module gem  
 Relative Address = 0x000001a8  
 Width = 32 bits  
 Access Type = ro  
@@ -979,7 +902,6 @@ Description IP header checksum errors
 
 ### RXTCPCCNT  
 
-Module gem  
 Relative Address = 0x000001ac  
 Width = 32 bits  
 Access Type = ro  
@@ -989,7 +911,6 @@ Description TCP checksum errors
 
 ### RXUDPCCNT  
 
-Module gem  
 Relative Address = 0x000001b0  
 Width = 32 bits  
 Access Type = ro  
@@ -999,7 +920,6 @@ Description UDP checksum error
 
 ### ROBE_S  
 
-Module gem  
 Relative Address = 0x000001c8  
 Width = 32 bits  
 Access Type = rw  
@@ -1009,7 +929,6 @@ Description 1588 timer sync strobe seconds
 
 ### ROBE_NS  
 
-Module gem  
 Relative Address = 0x000001cc  
 Width = 32 bits  
 Access Type = mixed  
@@ -1019,7 +938,6 @@ Description 1588 timer sync strobe nanoseconds
 
 ### TIMER_1588_SEC  
 
-Module gem  
 Relative Address = 0x000001d0  
 Width = 32 bits  
 Access Type = rw  
@@ -1029,7 +947,6 @@ Description 1588 timer seconds
 
 ### TIMER_1588_NANOSEC  
 
-Module gem  
 Relative Address = 0x000001d4  
 Width = 32 bits  
 Access Type = mixed  
@@ -1039,7 +956,6 @@ Description 1588 timer nanoseconds
 
 ### TIMER_1588_ADJ  
 
-Module gem  
 Relative Address = 0x000001d8  
 Width = 32 bits  
 Access Type = mixed  
@@ -1049,7 +965,6 @@ Description 1588 timer adjust
 
 ### TIMER_1588_INC  
 
-Module gem  
 Relative Address = 0x000001dc  
 Width = 32 bits  
 Access Type = mixed  
@@ -1059,7 +974,6 @@ Description 1588 timer increment
 
 ### PTP_TXSEC  
 
-Module gem  
 Relative Address = 0x000001e0  
 Width = 32 bits  
 Access Type = ro  
@@ -1069,7 +983,6 @@ Description PTP event frame transmitted seconds
 
 ### PTP_TXNANOSEC  
 
-Module gem  
 Relative Address = 0x000001e4  
 Width = 32 bits  
 Access Type = ro  
@@ -1079,7 +992,6 @@ Description PTP event frame transmitted nanoseconds
 
 ### PTP_RXSEC  
 
-Module gem  
 Relative Address = 0x000001e8  
 Width = 32 bits  
 Access Type = ro  
@@ -1089,7 +1001,6 @@ Description PTP event frame received seconds
 
 ### PTP_RXNANOSEC  
 
-Module gem  
 Relative Address = 0x000001ec  
 Width = 32 bits  
 Access Type = ro  
@@ -1099,7 +1010,6 @@ Description PTP event frame received nanoseconds.
 
 ### PTPP_TXSEC  
 
-Module gem  
 Relative Address = 0x000001f0  
 Width = 32 bits  
 Access Type = ro  
@@ -1109,7 +1019,6 @@ Description PTP peer event frame transmitted seconds
 
 ### PTPP_TXNANOSEC  
 
-Module gem  
 Relative Address = 0x000001f4  
 Width = 32 bits  
 Access Type = ro  
@@ -1119,7 +1028,6 @@ Description PTP peer event frame transmitted nanoseconds
 
 ### PTPP_RXSEC  
 
-Module gem  
 Relative Address = 0x000001f8  
 Width = 32 bits  
 Access Type = ro  
@@ -1129,7 +1037,6 @@ Description PTP peer event frame received seconds
 
 ### PTPP_RXNANOSEC  
 
-Module gem  
 Relative Address = 0x000001fc  
 Width = 32 bits  
 Access Type = ro  
@@ -1139,7 +1046,6 @@ Description PTP peer event frame received nanoseconds.
 
 ### DESIGN_CFG2  
 
-Module gem  
 Relative Address = 0x00000284  
 Width = 32 bits  
 Access Type = ro  
@@ -1149,7 +1055,6 @@ Description Design Configuration 2
 
 ### DESIGN_CFG3  
 
-Module gem  
 Relative Address = 0x00000288  
 Width = 32 bits  
 Access Type = ro  
@@ -1159,7 +1064,6 @@ Description Design Configuration 3
 
 ### DESIGN_CFG4  
 
-Module gem  
 Relative Address = 0x0000028c  
 Width = 32 bits  
 Access Type = ro  
@@ -1169,7 +1073,6 @@ Description Design Configuration 4
 
 ### DESIGN_CFG5  
 
-Module gem  
 Relative Address = 0x00000290  
 Width = 32 bits  
 Access Type = ro  

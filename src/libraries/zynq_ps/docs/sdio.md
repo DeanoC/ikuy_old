@@ -2,7 +2,7 @@
 
 Module SD2.0/SDIO2.0/MMC3.31 (sdio)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 sd0 Base Address = 0xe0100000  
 sd1 Base Address = 0xe0101000  
@@ -65,7 +65,6 @@ sd1 Base Address = 0xe0101000
 
 ### SDMA_SYSTEM_ADDRESS  
 
-Module sdio  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -75,7 +74,6 @@ Description System DMA Address Register
 
 ### BLOCK_SIZE  
 
-Module sdio  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = mixed  
@@ -85,7 +83,6 @@ Description Block size register
 
 ### ARGUMENT  
 
-Module sdio  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = rw  
@@ -95,7 +92,6 @@ Description Argument register
 
 ### TRANSFER_CMD  
 
-Module sdio  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = mixed  
@@ -105,7 +101,6 @@ Description Transfer mode register command register
 
 ### RESPONSE0  
 
-Module sdio  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = ro  
@@ -115,7 +110,6 @@ Description Response register
 
 ### RESPONSE1  
 
-Module sdio  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = ro  
@@ -125,7 +119,6 @@ Description Response register
 
 ### RESPONSE2  
 
-Module sdio  
 Relative Address = 0x00000018  
 Width = 32 bits  
 Access Type = ro  
@@ -135,7 +128,6 @@ Description Response register
 
 ### RESPONSE3  
 
-Module sdio  
 Relative Address = 0x0000001c  
 Width = 32 bits  
 Access Type = ro  
@@ -145,7 +137,6 @@ Description Response register
 
 ### BUFFER_DATA  
 
-Module sdio  
 Relative Address = 0x00000020  
 Width = 32 bits  
 Access Type = rw  
@@ -155,7 +146,6 @@ Description Buffer data port register
 
 ### PRESENT_STATE  
 
-Module sdio  
 Relative Address = 0x00000024  
 Width = 25 bits  
 Access Type = ro  
@@ -165,7 +155,6 @@ Description Present State register
 
 ### HOST_CTRL  
 
-Module sdio  
 Relative Address = 0x00000028  
 Width = 32 bits  
 Access Type = mixed  
@@ -175,7 +164,6 @@ Description Host control register Power control register Block gap control regis
 
 ### CLOCK_CTRL  
 
-Module sdio  
 Relative Address = 0x0000002c  
 Width = 27 bits  
 Access Type = mixed  
@@ -185,7 +173,6 @@ Description Clock Control register Timeout control register Software reset regis
 
 ### INTERRUPT_STATUS  
 
-Module sdio  
 Relative Address = 0x00000030  
 Width = 30 bits  
 Access Type = mixed  
@@ -195,7 +182,6 @@ Description Normal interrupt status register
 
 ### INTERRUPT_STATUS_EN  
 
-Module sdio  
 Relative Address = 0x00000034  
 Width = 30 bits  
 Access Type = mixed  
@@ -205,7 +191,6 @@ Description Normal interrupt status enable register
 
 ### INTERRUPT_SIGNAL_E  
 
-Module sdio  
 Relative Address = 0x00000038  
 Width = 30 bits  
 Access Type = mixed  
@@ -215,7 +200,6 @@ Description Normal interrupt signal enable register
 
 ### AUTO_CMD12_STATUS  
 
-Module sdio  
 Relative Address = 0x0000003c  
 Width = 8 bits  
 Access Type = ro  
@@ -225,7 +209,6 @@ Description Auto CMD12 error status register
 
 ### CAPABILITIES  
 
-Module sdio  
 Relative Address = 0x00000040  
 Width = 31 bits  
 Access Type = ro  
@@ -235,7 +218,6 @@ Description Capabilities register
 
 ### CURRENT_CAPS  
 
-Module sdio  
 Relative Address = 0x00000048  
 Width = 24 bits  
 Access Type = ro  
@@ -245,7 +227,6 @@ Description Maximum current capabilities register
 
 ### FORCE_AUTO_CMD12_STATUS  
 
-Module sdio  
 Relative Address = 0x00000050  
 Width = 32 bits  
 Access Type = mixed  
@@ -255,7 +236,6 @@ Description Force event register for Auto CMD12 error status register
 
 ### ADMA_ERROR_STATUS  
 
-Module sdio  
 Relative Address = 0x00000054  
 Width = 3 bits  
 Access Type = mixed  
@@ -265,7 +245,6 @@ Description ADMA error status register
 
 ### ADMA_SYSTEM_ADDRESS  
 
-Module sdio  
 Relative Address = 0x00000058  
 Width = 32 bits  
 Access Type = rw  
@@ -275,7 +254,6 @@ Description ADMA system address register
 
 ### BOOT_TIMEOUT_CTRL  
 
-Module sdio  
 Relative Address = 0x00000060  
 Width = 32 bits  
 Access Type = rw  
@@ -285,7 +263,6 @@ Description Boot Timeout control register
 
 ### DEBUG_SEL  
 
-Module sdio  
 Relative Address = 0x00000064  
 Width = 1 bits  
 Access Type = wo  
@@ -295,7 +272,6 @@ Description Debug Selection Register
 
 ### SPI_INTERRUPT_SUPPORT  
 
-Module sdio  
 Relative Address = 0x000000f0  
 Width = 8 bits  
 Access Type = rw  
@@ -305,7 +281,6 @@ Description SPI interrupt support register
 
 ### SLOT_INTERRUPT_STATUS  
 
-Module sdio  
 Relative Address = 0x000000fc  
 Width = 32 bits  
 Access Type = ro  

@@ -2,7 +2,7 @@
 
 Module Cortex A9 Performance Monitoring Unit (cortexa9_pmu)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 15:25:57 EEST 2020  
+Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
 
 debug_cpu_pmu0 Base Address = 0xf8891000  
 debug_cpu_pmu1 Base Address = 0xf8893000  
@@ -57,7 +57,6 @@ debug_cpu_pmu1 Base Address = 0xf8893000
 
 ### pmu_PMXEVCNTR0  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000000  
 Width = 32 bits  
 Access Type = rw  
@@ -67,7 +66,6 @@ Description PMU event counter 0
 
 ### pmu_PMXEVCNTR1  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000004  
 Width = 32 bits  
 Access Type = rw  
@@ -77,7 +75,6 @@ Description PMU event counter 1
 
 ### pmu_PMXEVCNTR2  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000008  
 Width = 32 bits  
 Access Type = rw  
@@ -87,7 +84,6 @@ Description PMU event counter 2
 
 ### pmu_PMXEVCNTR3  
 
-Module cortexa9_pmu  
 Relative Address = 0x0000000c  
 Width = 32 bits  
 Access Type = rw  
@@ -97,7 +93,6 @@ Description PMU event counter 3
 
 ### pmu_PMXEVCNTR4  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000010  
 Width = 32 bits  
 Access Type = rw  
@@ -107,7 +102,6 @@ Description PMU event counter 4
 
 ### pmu_PMXEVCNTR5  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000014  
 Width = 32 bits  
 Access Type = rw  
@@ -117,7 +111,6 @@ Description PMU event counter 5
 
 ### pmu_PMCCNTR  
 
-Module cortexa9_pmu  
 Relative Address = 0x0000007c  
 Width = 32 bits  
 Access Type = rw  
@@ -127,7 +120,6 @@ Description pmccntr
 
 ### pmu_PMXEVTYPER0  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000400  
 Width = 32 bits  
 Access Type = rw  
@@ -137,7 +129,6 @@ Description pmevtyper0
 
 ### pmu_PMXEVTYPER1  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000404  
 Width = 32 bits  
 Access Type = rw  
@@ -147,7 +138,6 @@ Description pmevtyper1
 
 ### pmu_PMXEVTYPER2  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000408  
 Width = 32 bits  
 Access Type = rw  
@@ -157,7 +147,6 @@ Description pmevtyper2
 
 ### pmu_PMXEVTYPER3  
 
-Module cortexa9_pmu  
 Relative Address = 0x0000040c  
 Width = 32 bits  
 Access Type = rw  
@@ -167,7 +156,6 @@ Description pmevtyper3
 
 ### pmu_PMXEVTYPER4  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000410  
 Width = 32 bits  
 Access Type = rw  
@@ -177,7 +165,6 @@ Description pmevtyper4
 
 ### pmu_PMXEVTYPER5  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000414  
 Width = 32 bits  
 Access Type = rw  
@@ -187,7 +174,6 @@ Description pmevtyper5
 
 ### pmu_PMCNTENSET  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000c00  
 Width = 32 bits  
 Access Type = rw  
@@ -197,7 +183,6 @@ Description pmcntenset
 
 ### pmu_PMCNTENCLR  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000c20  
 Width = 32 bits  
 Access Type = rw  
@@ -207,7 +192,6 @@ Description pmcntenclr
 
 ### pmu_PMINTENSET  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000c40  
 Width = 32 bits  
 Access Type = rw  
@@ -217,7 +201,6 @@ Description pmintenset
 
 ### pmu_PMINTENCLR  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000c60  
 Width = 32 bits  
 Access Type = rw  
@@ -227,7 +210,6 @@ Description pmintenclr
 
 ### pmu_PMOVSR  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000c80  
 Width = 32 bits  
 Access Type = rw  
@@ -237,7 +219,6 @@ Description pmovsr
 
 ### pmu_PMSWINC  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000ca0  
 Width = 32 bits  
 Access Type = wo  
@@ -247,7 +228,6 @@ Description pmswinc
 
 ### pmu_PMCR  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000e04  
 Width = 32 bits  
 Access Type = rw  
@@ -257,7 +237,6 @@ Description pmcr
 
 ### pmu_PMUSERENR  
 
-Module cortexa9_pmu  
 Relative Address = 0x00000e08  
 Width = 32 bits  
 Access Type = rw  

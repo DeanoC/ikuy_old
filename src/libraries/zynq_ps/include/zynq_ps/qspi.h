@@ -2,15 +2,15 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // Quad SPI
-// Auto-generated on Sun Sep 20 15:25:57 EEST 2020
+// Auto-generated on Sun Sep 20 23:32:01 EEST 2020
 
 #include <stdint.h>
 
 // 1 banks of qspi chips
-#define qspi_BASE_ADDR 0xe000d000
+#define qspi_BASE_ADDR 0xe000d000U
 
 // QSPI configuration register
-#define qspi_CR_OFFSET 0x00000000
+#define qspi_CR_OFFSET 0x00000000U
 #define qspi_CR_IFMODE_LSHIFT 0x0000001fU
 #define qspi_CR_IFMODE 0x80000000U
 #define qspi_CR_IFMODE_MASK 0x80000000U
@@ -66,7 +66,7 @@
 #define qspi_CR_MASK 0x8409c5ffU
 
 // QSPI interrupt status register
-#define qspi_SR_OFFSET 0x00000004
+#define qspi_SR_OFFSET 0x00000004U
 #define qspi_SR_reserved_0_LSHIFT 0x00000007U
 #define qspi_SR_reserved_0_MASK 0xffffff80U
 #define qspi_SR_IXR_TXUF_LSHIFT 0x00000006U
@@ -93,7 +93,7 @@
 #define qspi_SR_MASK 0x0000007dU
 
 // Interrupt Enable register.
-#define qspi_IER_OFFSET 0x00000008
+#define qspi_IER_OFFSET 0x00000008U
 #define qspi_IER_reserved_0_LSHIFT 0x00000007U
 #define qspi_IER_reserved_0_MASK 0xffffff80U
 #define qspi_IER_IXR_TXUF_LSHIFT 0x00000006U
@@ -120,7 +120,7 @@
 #define qspi_IER_MASK 0x0000007dU
 
 // Interrupt disable register.
-#define qspi_IDR_OFFSET 0x0000000c
+#define qspi_IDR_OFFSET 0x0000000cU
 #define qspi_IDR_reserved_0_LSHIFT 0x00000007U
 #define qspi_IDR_reserved_0_MASK 0xffffff80U
 #define qspi_IDR_IXR_TXUF_LSHIFT 0x00000006U
@@ -147,7 +147,7 @@
 #define qspi_IDR_MASK 0x0000007dU
 
 // Interrupt mask register
-#define qspi_IMR_OFFSET 0x00000010
+#define qspi_IMR_OFFSET 0x00000010U
 #define qspi_IMR_reserved_0_LSHIFT 0x00000007U
 #define qspi_IMR_reserved_0_MASK 0xffffff80U
 #define qspi_IMR_IXR_TXUF_LSHIFT 0x00000006U
@@ -174,7 +174,7 @@
 #define qspi_IMR_MASK 0x0000007dU
 
 // SPI_Enable Register
-#define qspi_ER_OFFSET 0x00000014
+#define qspi_ER_OFFSET 0x00000014U
 #define qspi_ER_reserved_0_LSHIFT 0x00000001U
 #define qspi_ER_reserved_0_MASK 0xfffffffeU
 #define qspi_ER_ENABLE_LSHIFT 0x00000000U
@@ -183,7 +183,7 @@
 #define qspi_ER_MASK 0x00000001U
 
 // Delay Register
-#define qspi_DR_OFFSET 0x00000018
+#define qspi_DR_OFFSET 0x00000018U
 #define qspi_DR_D_NSS_LSHIFT 0x00000018U
 #define qspi_DR_D_NSS_MASK 0xff000000U
 #define qspi_DR_BTWN_LSHIFT 0x00000010U
@@ -195,17 +195,17 @@
 #define qspi_DR_MASK 0xffffffffU
 
 // Transmit Data Register. Keyhole addresses for the Transmit data FIFO.
-#define qspi_TXD_00_OFFSET 0x0000001c
+#define qspi_TXD_00_OFFSET 0x0000001cU
 #define qspi_TXD_00_TXD_LSHIFT 0x00000000U
 #define qspi_TXD_00_TXD_MASK 0x00000000U
 
 // Receive Data Register
-#define qspi_RXD_OFFSET 0x00000020
+#define qspi_RXD_OFFSET 0x00000020U
 #define qspi_RXD_RX_FIFO_LSHIFT 0x00000000U
 #define qspi_RXD_RX_FIFO_MASK 0x00000000U
 
 // Slave Idle Count Register
-#define qspi_SICR_OFFSET 0x00000024
+#define qspi_SICR_OFFSET 0x00000024U
 #define qspi_SICR_reserved_0_LSHIFT 0x00000008U
 #define qspi_SICR_reserved_0_MASK 0xffffff00U
 #define qspi_SICR_MASK_LSHIFT 0x00000000U
@@ -213,17 +213,17 @@
 #define qspi_SICR_MASK 0x000000ffU
 
 // TX_FIFO Threshold Register
-#define qspi_TXWR_OFFSET 0x00000028
+#define qspi_TXWR_OFFSET 0x00000028U
 #define qspi_TXWR_THRESHOLD_OF_TX_FIFO_LSHIFT 0x00000000U
 #define qspi_TXWR_THRESHOLD_OF_TX_FIFO_MASK 0x00000000U
 
 // RX FIFO Threshold Register
-#define qspi_RX_THRES_OFFSET 0x0000002c
+#define qspi_RX_THRES_OFFSET 0x0000002cU
 #define qspi_RX_THRES_THRESHOLD_OF_RX_FIFO_LSHIFT 0x00000000U
 #define qspi_RX_THRES_THRESHOLD_OF_RX_FIFO_MASK 0x00000000U
 
 // General Purpose Inputs and Outputs Register for the Quad-SPI Controller core
-#define qspi_GPIO_OFFSET 0x00000030
+#define qspi_GPIO_OFFSET 0x00000030U
 #define qspi_GPIO_reserved_0_LSHIFT 0x00000001U
 #define qspi_GPIO_reserved_0_MASK 0xfffffffeU
 #define qspi_GPIO_WP_N_LSHIFT 0x00000000U
@@ -232,7 +232,7 @@
 #define qspi_GPIO_MASK 0x00000001U
 
 // Loopback Master Clock Delay Adjustment Register
-#define qspi_LPBK_DLY_ADJ_OFFSET 0x00000038
+#define qspi_LPBK_DLY_ADJ_OFFSET 0x00000038U
 #define qspi_LPBK_DLY_ADJ_reserved_0_LSHIFT 0x00000006U
 #define qspi_LPBK_DLY_ADJ_reserved_0_MASK 0xffffffc0U
 #define qspi_LPBK_DLY_ADJ_USE_LPBK_LSHIFT 0x00000005U
@@ -243,22 +243,22 @@
 #define qspi_LPBK_DLY_ADJ_MASK 0x00000020U
 
 // Transmit Data Register. Keyhole addresses for the Transmit data FIFO.
-#define qspi_TXD_01_OFFSET 0x00000080
+#define qspi_TXD_01_OFFSET 0x00000080U
 #define qspi_TXD_01_TXD_LSHIFT 0x00000000U
 #define qspi_TXD_01_TXD_MASK 0x00000000U
 
 // Transmit Data Register. Keyhole addresses for the Transmit data FIFO.
-#define qspi_TXD_10_OFFSET 0x00000084
+#define qspi_TXD_10_OFFSET 0x00000084U
 #define qspi_TXD_10_TXD_LSHIFT 0x00000000U
 #define qspi_TXD_10_TXD_MASK 0x00000000U
 
 // Transmit Data Register. Keyhole addresses for the Transmit data FIFO.
-#define qspi_TXD_11_OFFSET 0x00000088
+#define qspi_TXD_11_OFFSET 0x00000088U
 #define qspi_TXD_11_TXD_LSHIFT 0x00000000U
 #define qspi_TXD_11_TXD_MASK 0x00000000U
 
 // Configuration Register specifically for the Linear Quad-SPI Controller
-#define qspi_LQSPI_CR_OFFSET 0x000000a0
+#define qspi_LQSPI_CR_OFFSET 0x000000a0U
 #define qspi_LQSPI_CR_LINEAR_LSHIFT 0x0000001fU
 #define qspi_LQSPI_CR_LINEAR 0x80000000U
 #define qspi_LQSPI_CR_LINEAR_MASK 0x80000000U
@@ -294,7 +294,7 @@
 #define qspi_LQSPI_CR_MASK 0xf3ff07ffU
 
 // Status Register specifically for the Linear Quad-SPI Controller
-#define qspi_LQSPI_SR_OFFSET 0x000000a4
+#define qspi_LQSPI_SR_OFFSET 0x000000a4U
 #define qspi_LQSPI_SR_reserved_0_LSHIFT 0x00000003U
 #define qspi_LQSPI_SR_reserved_0_MASK 0xfffffff8U
 #define qspi_LQSPI_SR_FB_RECVD_LSHIFT 0x00000002U
@@ -309,6 +309,6 @@
 #define qspi_LQSPI_SR_MASK 0x00000006U
 
 // Module Identification register
-#define qspi_MOD_ID_OFFSET 0x000000fc
+#define qspi_MOD_ID_OFFSET 0x000000fcU
 #define qspi_MOD_ID_ID_LSHIFT 0x00000000U
 #define qspi_MOD_ID_ID_MASK 0x00000000U
