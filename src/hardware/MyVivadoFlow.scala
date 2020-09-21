@@ -26,6 +26,13 @@ object MyVivadoFlow {
 
   }
 
+  def ensureDirectories(path : String ) : Unit = {
+    val directory = new File(path);
+    if (! directory.exists()){
+        directory.mkdirs();
+    }    
+  }
+
   val isWindows = System.getProperty("os.name").toLowerCase().contains("win")
 
   def apply(vivadoPath : String,
@@ -38,20 +45,28 @@ object MyVivadoFlow {
     val projectName = modulePath.split("/").last.split("[.]").head
 
     val workspacePathFile = new File(workspacePath)
-    FileUtils.deleteDirectory(workspacePathFile)
-    workspacePathFile.mkdir()
 
+    val directory = new File(workspacePath);
+    if (directory.exists()){
+      FileUtils.deleteDirectory(directory)
+    }
+    ensureDirectories(workspacePath)
+
+    val zc0 = new File("constraints/ps7_constraints.xdc");
+    val boardc = new File("boards/pynqz2-z7-20/top.xdc");
     val tcl = new java.io.FileWriter(Paths.get(workspacePath,"doit.tcl").toFile)
-    tcl.write(
-    s"""
+
+    val mergedString = if(mergedPath.isEmpty()) "" else f"read_verilog $mergedPath%n"
+
+    tcl.write(s"""
 read_verilog $modulePath
-read_verilog $mergedPath
+$mergedString
 set_msg_config -id "Vivado 12-4739" -suppress
 set_msg_config -id "Netlist 29-160" -suppress
 set_msg_config -id "Vivado 12-584" -suppress
 set_msg_config -id "Common 17-55" -suppress
-read_xdc /home/deano/ikuy/src/carts/blinky/hardware/constraints/ps7_constraints.xdc
-read_xdc /home/deano/ikuy/src/carts/blinky/hardware/boards/pynqz2-z7-20/top.xdc
+read_xdc ${zc0.getCanonicalPath}
+read_xdc ${boardc.getAbsolutePath}
 set_property used_in_synthesis false [get_files ps7_constraints.xdc]
 set_property used_in_synthesis false [get_files top.xdc]
 
@@ -60,8 +75,7 @@ opt_design
 place_design
 route_design
 write_bitstream -bin_file -force [string tolower ${projectName}_hw]
-"""
-    )
+""")
 
     tcl.flush();
     tcl.close();

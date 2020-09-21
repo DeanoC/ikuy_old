@@ -9,7 +9,7 @@ import java.io.{ File, FileNotFoundException, IOException }
 object ZynqArmRegisters
 {
   // this is shit, tried resources but couldn't get it to work...
-  private val registerBasePath = "../../../../chips/zynq_hard_soc/registers/"
+  private val registerBasePath = "../chips/zynq_hard_soc/registers/"
 
   def parseRegisters(c : HardChip)
   {

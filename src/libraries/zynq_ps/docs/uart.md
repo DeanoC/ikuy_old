@@ -2,7 +2,7 @@
 
 Module UART (serial) (uart)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:27 EEST 2020  
 
 uart0 Base Address = 0xe0000000  
 uart1 Base Address = 0xe0001000  

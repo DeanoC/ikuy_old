@@ -2,7 +2,7 @@
 
 Module Serial Peripheral Interface (spi)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
 
 spi0 Base Address = 0xe0006000  
 spi1 Base Address = 0xe0007000  

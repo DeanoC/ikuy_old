@@ -2,7 +2,7 @@
 
 Module Cortex A9 Performance Monitoring Unit (cortexa9_pmu)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
 
 debug_cpu_pmu0 Base Address = 0xf8891000  
 debug_cpu_pmu1 Base Address = 0xf8893000  

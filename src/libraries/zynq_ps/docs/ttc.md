@@ -2,7 +2,7 @@
 
 Module Triple Timer Counter (ttc)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
 
 ttc0 Base Address = 0xf8001000  
 ttc1 Base Address = 0xf8002000  

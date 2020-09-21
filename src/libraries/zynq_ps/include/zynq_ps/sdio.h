@@ -2,7 +2,7 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // SD2.0/SDIO2.0/MMC3.31
-// Auto-generated on Mon Sep 21 17:18:27 EEST 2020
+// Auto-generated on Mon Sep 21 19:32:27 EEST 2020
 
 #include <stdint.h>
 

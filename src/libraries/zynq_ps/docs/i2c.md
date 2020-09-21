@@ -2,7 +2,7 @@
 
 Module Inter Integrated Circuit(I2C) (i2c)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:27 EEST 2020  
 
 i2c0 Base Address = 0xe0004000  
 i2c1 Base Address = 0xe0005000  

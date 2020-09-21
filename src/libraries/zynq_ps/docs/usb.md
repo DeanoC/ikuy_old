@@ -2,7 +2,7 @@
 
 Module USB Controller (usb)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:27 EEST 2020  
 
 usb0 Base Address = 0xe0002000  
 usb1 Base Address = 0xe0003000  

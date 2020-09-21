@@ -2,7 +2,7 @@
 
 Module General Purpose Input/Output (gpio)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
 
 gpio Base Address = 0xe000a000  
 

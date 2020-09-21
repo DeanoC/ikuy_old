@@ -29,7 +29,7 @@ extends Component
   }
 
   // TODO improve pathing
-  def LibraryPath = "../../../../libraries"
+  def LibraryPath = "../libraries"
 
   val cHeaderSrc = ArrayBuffer[(String,String)]()
   val cSrc = ArrayBuffer[(String,String)]()

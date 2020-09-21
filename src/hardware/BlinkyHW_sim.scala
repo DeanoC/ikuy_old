@@ -6,7 +6,7 @@ import spinal.core.sim._
 import spinal.lib.bus.amba4.axi._
 import scala.collection.mutable.{ArrayBuffer}
 import bus_and_chips._
-import dissy._
+//import dissy._
 
 object BlinkyTests 
 {

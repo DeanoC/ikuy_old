@@ -8,7 +8,7 @@ import spinal.lib.blackbox.xilinx.s7._
 import scala.collection.mutable.{ArrayBuffer, HashMap}
 import bus_and_chips._
 import zynq_hard_soc._
-import dissy._
+//import dissy._
 
 case class MasterAxi4SharedEndPlug(config : Axi4Config)
 extends Component

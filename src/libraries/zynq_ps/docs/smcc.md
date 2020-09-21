@@ -2,7 +2,7 @@
 
 Module Static Memory Controller (smcc)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
 
 smcc Base Address = 0xe000e000  
 

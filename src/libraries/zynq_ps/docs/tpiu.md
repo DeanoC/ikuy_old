@@ -2,7 +2,7 @@
 
 Module Trace Port Interface (tpiu)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
+Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
 
 tpiu Base Address = 0xf8803000  
 
