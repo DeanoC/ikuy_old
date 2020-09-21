@@ -1,11 +1,13 @@
 set(project blinky_hw)
 
 file(GLOB SRC_SCALA_FILES CONFIGURE_DEPENDS 
-    src/*.scala
-    src/dissy/*.scala
+    *.scala
+    ../chip/dissy/*.scala
+    ../chip/*.scala
     project/plugins.sbt
     project/ikuy.scala
     build.sbt
+
 )
 
 set( GEN_DIR ${CMAKE_CURRENT_BINARY_DIR}/workspace )

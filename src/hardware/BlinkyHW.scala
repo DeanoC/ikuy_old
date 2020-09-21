@@ -104,21 +104,23 @@ extends Motherboard {
   )
 
   val buggyBoyID = addChip(
-              "BuggyBoy",
-              (chipID : ChipID, mb : Motherboard) => 
-              { 
-                new DebugCustomChip(chipID = chipID, motherboard = mb) 
-              })
+    "BuggyBoy",
+    (chipID : ChipID, mb : Motherboard) => 
+    { 
+      new DebugCustomChip(chipID = chipID, motherboard = mb) 
+    })
 
   val slaveGp0ID = addBus(
-                  "slaveGp0", 
-                  (busID : BusID, mb : Motherboard) => { 
-                    new Axi3Slave(
-                      config = zynqAxis.PSMasterGPAxiConfig,
-                      addressSpaceHighBit = 30, // 0x40000000 address range
-                      busID = busID,
-                      motherboard = mb)
-                  })
+    "slaveGp0", 
+    (busID : BusID, mb : Motherboard) => 
+    { 
+      new Axi3Slave(
+        config = zynqAxis.PSMasterGPAxiConfig,
+        addressSpaceHighBit = 30, // 0x40000000 address range
+        busID = busID,
+        motherboard = mb)
+    })
+    
   connectChipToBus( buggyBoyID, FULL_DUPLUX_CONN, slaveGp0ID)
 
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)

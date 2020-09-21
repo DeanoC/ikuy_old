@@ -103,7 +103,7 @@ object CHeaderRegisterOutput
 
       rb.registers.foreach( r => {
         val register = chip.getRegisterByName(r)
-        s ++= outputRegister(register)
+        s ++= outputRegister("", register)
       })
 
       writeFile(filename, s.result)
@@ -122,10 +122,10 @@ object CHeaderRegisterOutput
     writeFile(chipfilename, sb.result)
   }
 
-  private def outputRegister(register : Register) : String = {
+  private def outputRegister(prefix : String, register : Register) : String = {
     var s : StringBuilder = new StringBuilder()
     s ++= f"%n// ${register.defi.description}%n"
-    s ++= f"#define ${register.defi.name}_OFFSET ${register.address}%#010xU%n"
+    s ++= f"#define $prefix${register.defi.name}_OFFSET ${register.address}%#010xU%n"
 
     var totalUserMask : Long = 0
 
@@ -135,12 +135,12 @@ object CHeaderRegisterOutput
       else if(f.desc.describe().isEmpty)
         totalUserMask |= f.bits.mask
 
-      s++= f"#define ${register.defi.name}_${f.name}_LSHIFT ${f.bits.lo}%#010xU%n"
+      s++= f"#define $prefix${register.defi.name}_${f.name}_LSHIFT ${f.bits.lo}%#010xU%n"
       if(f.bits.singleBit) s++= f"#define ${register.defi.name}_${f.name} ${f.bits.mask}%#10xU%n"
-      s++= f"#define ${register.defi.name}_${f.name}_MASK ${f.bits.mask}%#010xU%n"
+      s++= f"#define $prefix${register.defi.name}_${f.name}_MASK ${f.bits.mask}%#010xU%n"
     })
     if(totalUserMask != 0)
-      s++= f"#define ${register.defi.name}_MASK ${totalUserMask & 0xFFFFFFFF}%#010xU%n"
+      s++= f"#define $prefix${register.defi.name}_MASK ${totalUserMask & 0xFFFFFFFF}%#010xU%n"
 
     s.result
   }
@@ -167,7 +167,7 @@ object CHeaderRegisterOutput
       })
     else if(buses.length == 1) s ++= f"#define ${chip.chipID.name}_BASE_ADDR ${buses(0).getAbsoluteChipAddress(chip.chipID)}%#010xU%n"
 
-    chip.registers.foreach( r => s ++= outputRegister(r._2) )
+    chip.registers.foreach( r => s ++= outputRegister(f"${chip.chipID.name}_", r._2) )
     
     writeFile(filename, s.result)
   }

@@ -2,7 +2,7 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // AXI_HP Interface (AFI)
-// Auto-generated on Mon Sep 21 19:32:27 EEST 2020
+// Auto-generated on Mon Sep 21 21:57:55 EEST 2020
 
 #include <stdint.h>
 

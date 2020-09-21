@@ -2,7 +2,7 @@
 
 Module Fabric Trace (itm)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
+Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
 
 itm Base Address = 0xf8805000  
 

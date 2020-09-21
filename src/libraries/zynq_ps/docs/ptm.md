@@ -2,7 +2,7 @@
 
 Module CoreSight PTM-A9 (ptm)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
+Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
 
 debug_cpu_ptm0 Base Address = 0xf889c000  
 debug_cpu_ptm1 Base Address = 0xf889d000  

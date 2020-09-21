@@ -1,5 +1,5 @@
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 19:32:27 EEST 2020  
+Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
 
 A test chip that is used to check bus is working okay.
 Provides 2 registers, one that can store a 32 bit value

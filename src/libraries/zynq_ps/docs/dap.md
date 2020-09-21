@@ -2,7 +2,7 @@
 
 Module Debug Access Port ROM Table (dap)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 19:32:28 EEST 2020  
+Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
 
 dap Base Address = 0xf8800000  
 
