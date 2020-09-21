@@ -7,7 +7,7 @@ object MarkdownRegisterOutput
 {
   def generateMarkdowns(chip : Chip) : Unit =
   {
-    ensureDirectories(chip.DocPath)
+    ensureDirectories(f"${chip.LibraryPath}/${chip.chipID.name}/docs/")
 
     if(chip.isHard) 
     {
@@ -160,7 +160,6 @@ object MarkdownRegisterOutput
 
     chip.registerBanks.foreach( rb => {
       var str = ""
-      val filename = chip.DocPath + rb.name + ".md"
       val dT = Calendar.getInstance()
       var s = new StringBuilder()
       s ++= f"# ${rb.description}  %n%n"
@@ -180,21 +179,26 @@ object MarkdownRegisterOutput
       str += outputTOC(regs.toIterator)
       str += outputRegisters(regs.toIterator)
 
+      val filename = f"${chip.LibraryPath}/${chip.chipID.name}/docs/${rb.name}.md"
       writeFile(filename, str)
     })
 
+    // generate the primary doc
+    var sb : StringBuilder = new StringBuilder()
+    chip.description.split("\n").foreach(l => sb ++= f"$l  %n")
+
+    val chipfilename = f"${chip.LibraryPath}/${chip.chipID.name}/docs/${chip.chipID.name}.md"
+    writeFile(chipfilename, sb.result)
   }
 
   private def generateCustomMarkdowns(chip : CustomChip) : Unit =
   {
     var str = ""
-    val filename = chip.DocPath + chip.chipID.name + ".md"
     val dT = Calendar.getInstance()
     var s = new StringBuilder()
-//    s ++= f"# ${rb.description}  %n%n"
-//    s ++= f"Module ${rb.description} (${rb.name})  %n"
     s ++= f"SPDX-License-Identifier: MIT  %n"
     s ++= f"Auto-generated: ${dT.getTime()}  %n%n"
+    chip.description.split("\n").foreach(l => s ++= f"$l%n")
     s ++= f"%n## Register Summary  %n%n"
 
     str = s.result
@@ -205,6 +209,7 @@ object MarkdownRegisterOutput
     str += outputTOC(regs.toIterator)
     str += outputRegisters(regs.toIterator) 
 
+    val filename = f"${chip.LibraryPath}/${chip.chipID.name}/docs/${chip.chipID.name}.md"
     writeFile(filename, str)
   }
 

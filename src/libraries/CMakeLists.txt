@@ -1,10 +1,7 @@
 
-add_subdirectory(core)
-add_subdirectory(serial_debug)
-add_subdirectory(hw_i2c)
-add_subdirectory(hw_fpga)
-add_subdirectory(hw_timers)
-add_subdirectory(hw_gpio)
-add_subdirectory(hw_slcr)
-add_subdirectory(system_info)
-add_subdirectory(zynq_ps)
+file(GLOB _all LIST_DIRECTORIES true RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} CONFIGURE_DEPENDS * )
+list(REMOVE_ITEM _all "CMakeLists.txt" )
+
+foreach(sd ${_all})
+  add_subdirectory(${sd})
+endforeach()

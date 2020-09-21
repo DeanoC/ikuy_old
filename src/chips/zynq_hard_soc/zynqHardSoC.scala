@@ -12,6 +12,17 @@ class zynqHardSoC(
   val config : zynqSoCConfig
 )
 extends HardChip(chipID, motherboard) {
+  override val description: String = 
+    """This chip represents the hard Arm A9 mpcore SoC in Zynq FPGAs.
+      |The SoC contains a lot of other hard cores apart from just the ARM processors themselves.
+      |You can choose which parts of the SoC are exposed to the FPGA via the ZynqSoCConfig.
+      |It has a total of 9 AXI3+ buses. These aren't quite AXI4 in HW but are close enough that simple adaptions allow them to connect to AXI4.
+      |There are 3 bundles that must be connected at the toplevel.
+      |Normaly at least a AXI bus and an FCLK would be needed, these are PS_CLOCK_AND_RESET, DDR and MIO.
+      |This also produces the CPU C headers and documentation for the SoC cores that are exposed on the CPU side. Your board probably doesn't connect all of these externally. Linking with CMAKE with the zynq_ps project to use these from ARMs.
+      |""".stripMargin
+
+
   val ps7 = new zynqPS7Wwrapper(config)
 
   val usesFCLK =  config.useFPGAClock0 | config.useFPGAClock1 | 
@@ -70,9 +81,9 @@ extends HardChip(chipID, motherboard) {
   if(config.usePSMasterGP0Axi) io.M_AXI_GP0_clk <> ps7.io.ps_axi3_master_gp0_clk
 
   ZynqArmRegisters.parseRegisters(this)
-  
-  // TODO improve pathing
-  override def CHeaderPath = "../../../../libraries/zynq_ps/include/zynq_ps/"
-  override def DocPath = "../../../../libraries/zynq_ps/docs/"
+
+  ZynqArmA9CCode.addToChip(this)
+  ZynqL1CacheCCode.addToChip(this)
+  ZynqMemoryMap.addToChip(this) 
   
 }

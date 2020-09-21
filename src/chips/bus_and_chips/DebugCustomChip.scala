@@ -10,6 +10,12 @@ extends CustomChip( size = DUO,
                     chipID = chipID,
                     motherboard = motherboard)
 {
+  override val description: String = 
+    """A test chip that is used to check bus is working okay.
+      |Provides 2 registers, one that can store a 32 bit value
+      |and the other which returns a constant that is the local
+      |address of the register (0x4) currently""".stripMargin
+
 
   case class DebugReflectAddressRegister(override val defi : RegisterDef)
   extends CustomRegister(defi, needsStorage = false)
@@ -36,10 +42,6 @@ extends CustomChip( size = DUO,
         ) 
     )
   }
-
-  // TODO improve pathing
-  override def CHeaderPath = "../../../../libraries/bus_and_chips/include/bus_and_chips/"
-  override def DocPath = "../../../../libraries/bus_and_chips/docs/"
 
   connect()
 }

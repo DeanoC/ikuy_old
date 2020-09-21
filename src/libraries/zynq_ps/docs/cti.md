@@ -2,7 +2,7 @@
 
 Module CoreSight Cross Trigger Interface (cti)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
+Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
 
 debug_cpu_cti0 Base Address = 0xf8898000  
 debug_cpu_cti1 Base Address = 0xf8899000  

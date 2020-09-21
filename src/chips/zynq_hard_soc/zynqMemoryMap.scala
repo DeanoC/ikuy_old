@@ -1,4 +1,15 @@
-#pragma once
+package zynq_hard_soc
+
+import bus_and_chips._
+
+object ZynqMemoryMap
+{
+  def addToChip(chip : Chip) = {
+    chip.addCHeaderFile(cheader)
+  }
+
+  private val cheader = ("memory_map.h", """
+  #pragma once
 
 /*
  This is the memory map post boot. Before boot has
@@ -100,3 +111,5 @@
 
 #define MEM_MAP_OCM_START (0xFFFC0000)
 #define MEM_MAP_OCM_END (0xFFFFFFFF)
+""")
+}

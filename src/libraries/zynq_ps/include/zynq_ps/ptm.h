@@ -2,7 +2,7 @@
 // Copyright Deano Calver
 // SPDX-License-Identifier: MIT
 // CoreSight PTM-A9
-// Auto-generated on Sun Sep 20 23:32:01 EEST 2020
+// Auto-generated on Mon Sep 21 17:18:27 EEST 2020
 
 #include <stdint.h>
 

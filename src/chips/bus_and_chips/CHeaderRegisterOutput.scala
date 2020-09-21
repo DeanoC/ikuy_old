@@ -7,7 +7,8 @@ object CHeaderRegisterOutput
 {
   def generateHeaders(chip : Chip) : Unit =
   {
-    ensureDirectories(chip.CHeaderPath)
+    ensureDirectories(f"${chip.LibraryPath}/${chip.chipID.name}/include/${chip.chipID.name}/")
+    ensureDirectories(f"${chip.LibraryPath}/${chip.chipID.name}/src/")
     
     if(chip.isHard) 
     {
@@ -17,6 +18,9 @@ object CHeaderRegisterOutput
     {
       generateCustomHeaders(chip.asInstanceOf[CustomChip])
     }
+    generateCMakeList(chip)
+    copyCHeaderFiles(chip)
+    copyCSrcFiles(chip)
   }
 
   def ensureDirectories(path : String ) : Unit = {
@@ -32,11 +36,57 @@ object CHeaderRegisterOutput
       bw.write(s)
       bw.close()
   }
+
+  private def copyCHeaderFiles(chip : Chip) : Unit = 
+  {
+    var s : StringBuilder = new StringBuilder()
+    val path = f"${chip.LibraryPath}/${chip.chipID.name}/include/${chip.chipID.name}/"
+
+    chip.cHeaderSrc.foreach{ case (fileName, cSrc) => {
+      writeFile(path + fileName, cSrc)
+    }}
+  }
+
+  private def copyCSrcFiles(chip : Chip) : Unit = 
+  {
+    var s : StringBuilder = new StringBuilder()
+    val path = f"${chip.LibraryPath}/${chip.chipID.name}/src/"
+    chip.cSrc.foreach{ case (fileName, cSrc) => {
+      writeFile(path + fileName, cSrc)
+    }}
+  }
+
+  private def generateCMakeList(chip : Chip) : Unit =
+  {
+    var s : StringBuilder = new StringBuilder()
+    val dT = Calendar.getInstance()
+    s ++= f"set(project ${chip.chipID.name})%n"
+    s ++= f"project($${project} C ASM)%n"
+    if(chip.cSrc.length > 0)
+      s ++= f"file(GLOB_RECURSE SRCLIST CONFIGURE_DEPENDS src/*.c)%n"
+
+    s ++= f"file(GLOB_RECURSE HEADERLIST CONFIGURE_DEPENDS include/*.h)%n"
+    if(chip.cSrc.length > 0)
+    {
+      s ++= f"add_library($${project} $${SRCLIST} $${HEADERLIST})%n"
+      s ++= f"target_include_directories($${project} PUBLIC include)%n"
+      s ++= f"target_link_libraries($${project} PUBLIC core)%n"
+      s ++= f"target_link_libraries($${project} PUBLIC serial_debug)%n"
+    }
+    else {
+      s ++= f"add_library($${project} INTERFACE)%n"
+      s ++= f"target_include_directories($${project} INTERFACE include)%n"
+    }
+
+    val cmakefilename = f"${chip.LibraryPath}/${chip.chipID.name}/CMakeLists.txt"
+    writeFile(cmakefilename, s.result)
+  }
+
   private def generateHardHeaders(chip : HardChip) : Unit =
   {
+    val dT = Calendar.getInstance()
     chip.registerBanks.foreach( rb => {
-      val filename = chip.CHeaderPath + rb.name + ".h"
-      val dT = Calendar.getInstance()
+      val filename = f"${chip.LibraryPath}/${chip.chipID.name}/include/${chip.chipID.name}/${rb.name}.h"
       var s : StringBuilder = new StringBuilder()
       s ++= f"#pragma once%n"
       s ++= f"// Copyright Deano Calver%n"
@@ -59,6 +109,17 @@ object CHeaderRegisterOutput
       writeFile(filename, s.result)
     })
 
+    // generate the primary config header
+    var sb : StringBuilder = new StringBuilder()
+
+    sb ++= f"#pragma once%n"
+    sb ++= f"// Copyright Deano Calver%n"
+    sb ++= f"// SPDX-License-Identifier: MIT%n"
+    chip.description.split("\n").foreach(l => sb ++= f"// $l%n")
+    sb ++= f"#define ${chip.chipID.name.toUpperCase} 1"
+
+    val chipfilename = f"${chip.LibraryPath}/${chip.chipID.name}/include/${chip.chipID.name}/${chip.chipID.name}.h"
+    writeFile(chipfilename, sb.result)
   }
 
   private def outputRegister(register : Register) : String = {
@@ -86,14 +147,14 @@ object CHeaderRegisterOutput
 
   private def generateCustomHeaders(chip : CustomChip) : Unit =
   {
-    val filename = chip.CHeaderPath + chip.chipID.name + ".h"
+    val filename = f"${chip.LibraryPath}/${chip.chipID.name}/include/${chip.chipID.name}/${chip.chipID.name}.h"
     val dT = Calendar.getInstance()
     var s : StringBuilder = new StringBuilder()
     s ++= f"#pragma once%n"
     s ++= f"// Copyright Deano Calver%n"
     s ++= f"// SPDX-License-Identifier: MIT%n"
-//    s ++= f"// ${rb.description}%n"
     s ++= f"// Auto-generated on ${dT.getTime()}%n"
+    chip.description.split("\n").foreach(l => s ++= f"// $l%n")
     s ++= f"%n#include <stdint.h>%n";
 
     val mb = chip.motherboard

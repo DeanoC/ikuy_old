@@ -14,7 +14,7 @@ lazy val buildSettings = Seq(
 
 name := "zynq_hard_soc"
 
-lazy val all = (project in file("src/main"))
+lazy val all = (project in file("."))
   .dependsOn(spinalCore)
   .dependsOn(spinalLib)
   .dependsOn(spinalPlugin)

@@ -75,13 +75,13 @@ extends Motherboard {
   // Remove io_ prefix from verilog names
   noIoPrefix()
   
-   val systemClockDomain = ClockDomain(
+  val systemClockDomain = ClockDomain(
     clock = io.sys_clk,
     frequency = FixedFrequency(125 MHz)
   )
  
   val mcpID = addChip(
-            "mcp",
+            "zynq_ps",
             (chipID : ChipID, mb : Motherboard) => 
             { 
               new zynqHardSoC(chipID = chipID, 
@@ -91,6 +91,17 @@ extends Motherboard {
                                 usePSMasterGP0Axi = true
                               ))
             })
+  val fclk0ClockDomain = ClockDomain.internal( 
+    name = "fclk0",
+    frequency = FixedFrequency(108 MHz),
+    withClockEnable = true,
+    config = ClockDomainConfig (
+      clockEdge = RISING,
+      resetKind = BOOT,
+      resetActiveLevel = HIGH,
+      clockEnableActiveLevel = HIGH
+    )
+  )
 
   val buggyBoyID = addChip(
               "BuggyBoy",
@@ -98,7 +109,7 @@ extends Motherboard {
               { 
                 new DebugCustomChip(chipID = chipID, motherboard = mb) 
               })
- 
+
   val slaveGp0ID = addBus(
                   "slaveGp0", 
                   (busID : BusID, mb : Motherboard) => { 
@@ -110,36 +121,24 @@ extends Motherboard {
                   })
   connectChipToBus( buggyBoyID, FULL_DUPLUX_CONN, slaveGp0ID)
 
-  build()
+  val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)
+  {
+    build()
+  }
 
-  // TODO figure out how to do this as part of build...
   val mcp = getChipByID(mcpID).asInstanceOf[zynqHardSoC]
   mcp.io.PS_CLOCK_AND_RESET <> io.PS_CLOCK_AND_RESET
   mcp.io.DDR <> io.DDR 
   mcp.io.MIO <> io.MIO 
-
   mcp.io.FPGAClockEnable0 := True
+  fclk0ClockDomain.clock := mcp.io.FPGAClock0
+  fclk0ClockDomain.clockEnable := mcp.io.FPGAClockEnable0
 
   getBusByID(slaveGp0ID).io.s_axi << mcp.io.M_AXI_GP0
   mcp.io.M_AXI_GP0_clk <> mcp.io.FPGAClock0
 
 
 /*
-  val fclk0ClockDomain = ClockDomain.internal( 
-    name = "fclk0",
-    frequency = FixedFrequency(108 MHz),
-    withClockEnable = true,
-    config = ClockDomainConfig (
-      clockEdge = RISING,
-      resetKind = SYNC,
-      resetActiveLevel = HIGH,
-      clockEnableActiveLevel = HIGH
-    )
-  )
-  fclk0ClockDomain.clock := hardSoc.io.FPGAClock0
-  fclk0ClockDomain.clockEnable := hardSoc.io.FPGAClockEnable0
-  hardSoc.io.FPGAClockEnable0 := True
-
   val fclk0ClockArea = new ClockingArea(fclk0ClockDomain)*/
   {
   }

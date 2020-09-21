@@ -2,7 +2,7 @@
 
 Module SD2.0/SDIO2.0/MMC3.31 (sdio)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Sun Sep 20 23:32:01 EEST 2020  
+Auto-generated: Mon Sep 21 17:18:27 EEST 2020  
 
 sd0 Base Address = 0xe0100000  
 sd1 Base Address = 0xe0101000  

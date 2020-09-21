@@ -1,0 +1,5 @@
+set(project BuggyBoy)
+project(${project} C ASM)
+file(GLOB_RECURSE HEADERLIST CONFIGURE_DEPENDS include/*.h)
+add_library(${project} INTERFACE)
+target_include_directories(${project} INTERFACE include)
