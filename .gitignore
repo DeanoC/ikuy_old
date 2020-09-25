@@ -390,3 +390,5 @@ gradle-wrapper.*
 .metals/metals.lock.db
 .metals/readonly/scala/Array.scala
 *.lpp
+.metals/readonly/scala/
+.vscode/
