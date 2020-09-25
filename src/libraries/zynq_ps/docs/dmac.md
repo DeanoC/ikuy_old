@@ -2,7 +2,7 @@
 
 Module Direct Memory Access Controller (PL330) (dmac)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
+Auto-generated: Fri Sep 25 10:29:42 EEST 2020  
 
 dmac0_s Base Address = 0xf8003000  
 dmac0_ns Base Address = 0xf8004000  

@@ -43,6 +43,10 @@ case class zynqSoCConfig(
   useFPGAClock1 : Boolean = false,
   useFPGAClock2 : Boolean = false,
   useFPGAClock3 : Boolean = false,
+  useFPGAClockTrigger0 : Boolean = false,
+  useFPGAClockTrigger1 : Boolean = false,
+  useFPGAClockTrigger2 : Boolean = false,
+  useFPGAClockTrigger3 : Boolean = false,
   useFPGAReset0 : Boolean = false,
   useFPGAReset1 : Boolean = false,
   useFPGAReset2 : Boolean = false,
@@ -225,10 +229,10 @@ case class zynqFCLK() extends Bundle
   val clk2 = out Bool
   val clk3 = out Bool
 
-  val clk0En = in Bool
-  val clk1En = in Bool
-  val clk2En = in Bool
-  val clk3En = in Bool
+  val clk1Trig0_n = in Bool
+  val clk1Trig1_n = in Bool
+  val clk1Trig2_n = in Bool
+  val clk1Trig3_n = in Bool
 
   val reset0_n = out Bool
   val reset1_n = out Bool
@@ -433,6 +437,8 @@ extends Component
                                           
   val usesFCLK =  config.useFPGAClock0 | config.useFPGAClock1 | 
                   config.useFPGAClock2 | config.useFPGAClock3 | 
+                  config.useFPGAClockTrigger0 | config.useFPGAClockTrigger1 | 
+                  config.useFPGAClockTrigger2 | config.useFPGAClockTrigger3
                   config.useFPGAReset0 | config.useFPGAReset1 | 
                   config.useFPGAReset2 | config.useFPGAReset3
 
@@ -831,10 +837,10 @@ extends Component
     val trig2_n = Bool
     val trig3_n = Bool
 
-    if(config.useFPGAClock0) trig0_n := io.fclk.clk0En else trig0_n := True
-    if(config.useFPGAClock1) trig1_n := io.fclk.clk1En else trig1_n := True
-    if(config.useFPGAClock2) trig2_n := io.fclk.clk2En else trig2_n := True
-    if(config.useFPGAClock3) trig3_n := io.fclk.clk3En else trig3_n := True
+    if(config.useFPGAClockTrigger0) trig0_n := io.fclk.clk1Trig0_n else trig0_n := True
+    if(config.useFPGAClockTrigger1) trig1_n := io.fclk.clk1Trig1_n else trig1_n := True
+    if(config.useFPGAClockTrigger2) trig2_n := io.fclk.clk1Trig2_n else trig2_n := True
+    if(config.useFPGAClockTrigger3) trig3_n := io.fclk.clk1Trig3_n else trig3_n := True
 
     io.fclk.clk0 := ps7.io.FCLKCLK(0)
     io.fclk.clk1 := ps7.io.FCLKCLK(1)

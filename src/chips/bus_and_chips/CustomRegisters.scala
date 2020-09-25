@@ -17,10 +17,26 @@ extends Register(defi)
 case class ConstantCustomRegister(override val defi : RegisterDef) 
 extends CustomRegister(defi, needsStorage = false)
 
+case class ReadAsZeroCustomRegister(override val defi : RegisterDef) 
+extends CustomRegister(defi, needsStorage = false)
+{
+  override def read(): Bits = B(0, defi.width bits)
+
+}
 case class ReadOnlyCustomRegister(override val defi : RegisterDef)
 extends CustomRegister(defi)
 {
   override def read(): Bits = storage
+}
+
+case class ClearOnReadCustomRegister(override val defi : RegisterDef)
+extends CustomRegister(defi)
+{
+  override def read(): Bits = { 
+    val tmp = storage
+    storage := B(0, defi.width bits)
+    tmp
+  }
 }
 
 case class WriteOnlyCustomRegister(override val defi : RegisterDef)
@@ -33,6 +49,14 @@ extends CustomRegister(defi)
       result(8 until 16) := byteMask(1) ? data(8 until 16) | B(0, 8 bits)
       result(0 until 8) := byteMask(0) ? data(0 until 8) | B(0, 8 bits)
       storage := result
+  }
+}
+
+case class WriteToClearCustomRegister(override val defi : RegisterDef)
+extends CustomRegister(defi)
+{
+  override def write( data : Bits, byteMask : Bits) : Unit = {
+      storage := B(0, defi.width bits)
   }
 }
 

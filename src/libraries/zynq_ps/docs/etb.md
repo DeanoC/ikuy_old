@@ -2,7 +2,7 @@
 
 Module Embedded Trace Buffer (etb)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
+Auto-generated: Fri Sep 25 10:29:42 EEST 2020  
 
 etb Base Address = 0xf8801000  
 

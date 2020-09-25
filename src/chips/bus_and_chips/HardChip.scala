@@ -17,11 +17,12 @@ extends Chip(chipID, motherboard, true)
     registerBanks += new HardRegisterBanks( name, banks, description)
   }
 
-  override def addRegister(register : Register) : Unit = {
+  def addRegister(register : HardRegister) : HardRegister = {
     register.defi.name = registerBanks.last.name + "_" + register.defi.name
     registers += ((register.defi.name, register))
     register.owner = this
     registerBanks.last.registers += register.defi.name
+    register
   }
 
   override def addHole( bytesForHole : Int ) : Unit =

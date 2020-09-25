@@ -1,6 +1,9 @@
-lazy val spinalCore = ProjectRef(uri("git://github.com/deanoc/SpinalHDL.git#dev"), "core")
-lazy val spinalLib = ProjectRef(uri("git://github.com/deanoc/SpinalHDL.git#dev"), "lib")
-lazy val spinalPlugin = ProjectRef(uri("git://github.com/deanoc/SpinalHDL.git#dev"), "idslplugin")
+//lazy val spinalCore = ProjectRef(uri("git://github.com/deanoc/SpinalHDL.git#dev"), "core")
+//lazy val spinalLib = ProjectRef(uri("git://github.com/deanoc/SpinalHDL.git#dev"), "lib")
+//lazy val spinalPlugin = ProjectRef(uri("git://github.com/deanoc/SpinalHDL.git#dev"), "idslplugin")
+lazy val spinalCore = ProjectRef(file("../../../../SpinalHDL"), "core")
+lazy val spinalLib = ProjectRef(file("../../../../SpinalHDL"), "lib")
+lazy val spinalPlugin = ProjectRef(file("../../../../SpinalHDL"), "idslplugin")
 
 lazy val buildSettings = Seq(
   organization := "com.deanoc",

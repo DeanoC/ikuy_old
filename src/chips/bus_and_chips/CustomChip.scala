@@ -33,15 +33,50 @@ abstract class CustomChip(val size : CustomChipSize,
                           override val motherboard : Motherboard)
 extends Chip(chipID, motherboard, false)
 {
+  class CustomChipBaseIO extends Bundle 
+  {
+    val busClk = in Bool
+    val busReset_n = in Bool
+  }
+
   var registerAddress = 0
 
-  override def addRegister(register : Register) = 
+  def addRegister(register : CustomRegister) : CustomRegister = 
   {
     assert(registerAddress < size.addressSpaceSize)
     register.address = registerAddress
     registers += ((register.defi.name, register))
     register.owner = this    
     registerAddress += 4
+    register
+  }
+
+  def addRegister(regDef : RegisterDef) : CustomRegister = 
+  {
+    addRegister(
+      regDef.rtype match 
+      {
+        case MIXED => ReadWriteCustomRegister(regDef)
+        case WRITE_ONLY => WriteOnlyCustomRegister(regDef)
+        case WRITE_TO_CLEAR => WriteToClearCustomRegister(regDef)
+        case READ_ONLY => ReadOnlyCustomRegister(regDef)
+        case CLEAR_ON_READ => ClearOnReadCustomRegister(regDef)
+        case READ_AS_ZERO => ReadAsZeroCustomRegister(regDef)
+        case READ_AS_UNDEFINED => ReadOnlyCustomRegister(regDef)
+        case READ_WRITE => ReadWriteCustomRegister(regDef)
+        case CLEAR_ON_WRITE => WriteToClearCustomRegister(regDef)
+  //      case READ_WRITE_SET_ONLY => WriteOnlyCustomRegister(regDef)
+  //      case READ_WRITE_ZERO => 
+
+  //      case NON_SECURE_READ_ONLY => 
+  //      case NON_SECURE_READ_WRITE => 
+  //      case NON_SECURE_WRITE_ONLY => 
+  //      case NON_SECURE_READ_AS_ZERO => 
+  //      case SECURE_READ_ONLY => 
+  //      case SECURE_READ_WRITE => 
+  //      case SECURE_WRITE_ONLY => 
+          case _ => { println("ERROR Register Type not suppoerted yet\n"); assert(false); null}
+      })
   }
 
   override def addHole( bytesForHole : Int ) : Unit = registerAddress += bytesForHole

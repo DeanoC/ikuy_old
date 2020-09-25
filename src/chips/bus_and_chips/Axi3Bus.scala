@@ -28,6 +28,8 @@ extends Component
   var io = new Bundle
   {
     val s_axi = slave( Axi4(config) )
+    val busClk = in Bool
+    val busReset_n = in Bool
   }
 
   def sizeConverter(sizeVal : UInt) : UInt =
@@ -139,18 +141,18 @@ extends Component
           readReadyForNewAddr := True
         }
       }
-      io.s_axi.r.data := 0
+      io.s_axi.r.data := B"32'hBADDBADD"
 
       val chips = motherboard.getChipsConnectedToBus(busID)
+      var chipOffset = 0
       chips.filter( p => !motherboard.isChipHard(p)).foreach( c => {
         val chip = motherboard.getCustomChipByID(c)
         val csize = chip.size
-        val addr = Cat(upperAddress, readFourKPage)
-        val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
-        val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
-
-        when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
+        val addr = Cat(upperAddress, readFourKPage).asUInt - U(chipOffset, 29 bits)
+        chipOffset += csize.addressSpaceSize
+        when(addr(csize.addressSpaceWidth until 29) === 0)
         {
+          val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
             val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
             connection match {
                 case FULL_DUPLUX_CONN => {
@@ -167,14 +169,12 @@ extends Component
       })
     }
 
-/*        if(ClockDomain.current.reset != null)
-      {
-          when(ClockDomain.current.reset)
-          {
-              io.s_axi.ar.ready <> False
-              io.s_axi.r.valid <> False
-          }
-      }*/
+    when(!io.busReset_n)
+    {
+        io.s_axi.ar.ready <> False
+        io.s_axi.r.valid <> False
+    }
+
   } else
   {
     io.s_axi.ar.ready <> False
@@ -248,16 +248,16 @@ extends Component
         writeReadyForNewAddr := True
       }
 
+      var chipOffset = 0
       val chips = motherboard.getChipsConnectedToBus(busID)
       chips.filter( p => !motherboard.isChipHard(p)).foreach( c => {
         val chip = motherboard.getCustomChipByID(c)
         val csize = chip.size
-        val addr = Cat(upperAddress, fourKPage)
-        val addrMasked = addr & ~U(csize.addressSpaceMask, 29 bits).asBits
-        val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
-
-        when(addrMasked === U(chipAddresses(c), 29 bits).asBits)
+        val addr = Cat(upperAddress, fourKPage).asUInt - U(chipOffset, 29 bits)
+        chipOffset += csize.addressSpaceSize
+        when(addr(csize.addressSpaceWidth until 29) === 0)
         {
+          val connection = motherboard.getConnectionBetweenChipAndBus(c, busID)
           val registerAddress = addr.asBits.resize(csize.addressSpaceWidth bits) & csize.addressSpaceMask
           connection match {
             case FULL_DUPLUX_CONN => {
@@ -278,15 +278,12 @@ extends Component
       })
     }
 
-/*        if(ClockDomain.current.reset != null)
+    when(!io.busReset_n)
     {
-        when(ClockDomain.current.reset)
-        {
-            io.s_axi.aw.ready := False
-            io.s_axi.w.ready := False
-            io.s_axi.b.valid := False
-        }
-    }*/
+        io.s_axi.aw.ready := False
+        io.s_axi.w.ready := False
+        io.s_axi.b.valid := False
+    }
   } else
   {
     io.s_axi.aw.ready := False

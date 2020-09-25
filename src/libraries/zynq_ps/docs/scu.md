@@ -2,7 +2,7 @@
 
 Module CPU Configuration (mpcore) (scu)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
+Auto-generated: Fri Sep 25 10:29:42 EEST 2020  
 
 scu Base Address = 0xf8f00000  
 

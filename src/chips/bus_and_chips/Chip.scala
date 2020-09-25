@@ -21,9 +21,6 @@ extends Component
   // add a register space hole
   def addHole( bytesForHole : Int ) : Unit
 
-  // called in addRegisters to add an register
-  def addRegister(register : Register) : Unit
-
   def getRegisterByName(name : String) : Register = {
     registers(name)
   }

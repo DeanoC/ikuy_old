@@ -2,7 +2,7 @@
 
 Module Quad SPI (qspi)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
+Auto-generated: Fri Sep 25 10:29:41 EEST 2020  
 
 qspi Base Address = 0xe000d000  
 

@@ -2,7 +2,7 @@
 
 Module Controller Area Network (can)  
 SPDX-License-Identifier: MIT  
-Auto-generated: Mon Sep 21 21:57:55 EEST 2020  
+Auto-generated: Fri Sep 25 10:29:41 EEST 2020  
 
 can0 Base Address = 0xe0008000  
 can1 Base Address = 0xe0009000  

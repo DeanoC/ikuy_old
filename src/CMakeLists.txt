@@ -41,6 +41,7 @@ target_link_libraries(${project} PUBLIC hw_i2c)
 target_link_libraries(${project} PUBLIC system_info)
 target_link_libraries(${project} PUBLIC zynq_ps)
 target_link_libraries(${project} PUBLIC BuggyBoy)
+target_link_libraries(${project} PUBLIC Dissy)
 
 add_dependencies(${project} ${project}_hw)
 

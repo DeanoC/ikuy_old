@@ -108,23 +108,31 @@ set_property -dict { PACKAGE_PIN R17   IOSTANDARD LVCMOS33 } [get_ports { ar[11]
 set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { ar[12] }]; #IO_L23N_T3_34 Sch=ar[12]
 set_property -dict { PACKAGE_PIN N17   IOSTANDARD LVCMOS33 } [get_ports { ar[13] }]; #IO_L23P_T3_34 Sch=ar[13]
 # temp set them to outputs for vga test
-set_property IO_BUFFER_TYPE OBUF [get_ports ar[8]]
-set_property IO_BUFFER_TYPE OBUF [get_ports ar[9]]
-set_property IO_BUFFER_TYPE OBUF [get_ports ar[10]]
-set_property IO_BUFFER_TYPE OBUF [get_ports ar[11]]
-set_property IO_BUFFER_TYPE OBUF [get_ports ar[12]]
-set_property IO_BUFFER_TYPE OBUF [get_ports ar[13]]
+set_property IO_BUFFER_TYPE OBUF [get_ports ar[0]]
+set_property IO_BUFFER_TYPE OBUF [get_ports ar[1]]
+set_property IO_BUFFER_TYPE OBUF [get_ports ar[2]]
+set_property IO_BUFFER_TYPE OBUF [get_ports ar[3]]
+set_property IO_BUFFER_TYPE OBUF [get_ports ar[4]]
+set_property IO_BUFFER_TYPE OBUF [get_ports ar[5]]
+
 #set_property -dict { PACKAGE_PIN Y13   IOSTANDARD LVCMOS33 } [get_ports { a }]; #IO_L20N_T3_13 Sch=a
 
 ##Arduino Digital I/O On Outer Analog Header
 ##NOTE: These pins should be used when using the analog header signals A0-A5 as digital I/O 
 
-#set_property -dict { PACKAGE_PIN Y11   IOSTANDARD LVCMOS33 } [get_ports { a[0] }]; #IO_L18N_T2_13 Sch=a[0]
-#set_property -dict { PACKAGE_PIN Y12   IOSTANDARD LVCMOS33 } [get_ports { a[1] }]; #IO_L20P_T3_13 Sch=a[1]
-#set_property -dict { PACKAGE_PIN W11   IOSTANDARD LVCMOS33 } [get_ports { a[2] }]; #IO_L18P_T2_13 Sch=a[2]
-#set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { a[3] }]; #IO_L21P_T3_DQS_13 Sch=a[3]
-#set_property -dict { PACKAGE_PIN T5    IOSTANDARD LVCMOS33 } [get_ports { a[4] }]; #IO_L19P_T3_13 Sch=a[4]
-#set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { a[5] }]; #IO_L12N_T1_MRCC_13 Sch=a[5]
+set_property -dict { PACKAGE_PIN Y11   IOSTANDARD LVCMOS33 } [get_ports { a[0] }]; #IO_L18N_T2_13 Sch=a[0]
+set_property -dict { PACKAGE_PIN Y12   IOSTANDARD LVCMOS33 } [get_ports { a[1] }]; #IO_L20P_T3_13 Sch=a[1]
+set_property -dict { PACKAGE_PIN W11   IOSTANDARD LVCMOS33 } [get_ports { a[2] }]; #IO_L18P_T2_13 Sch=a[2]
+set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { a[3] }]; #IO_L21P_T3_DQS_13 Sch=a[3]
+set_property -dict { PACKAGE_PIN T5    IOSTANDARD LVCMOS33 } [get_ports { a[4] }]; #IO_L19P_T3_13 Sch=a[4]
+set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { a[5] }]; #IO_L12N_T1_MRCC_13 Sch=a[5]
+# temp set them to outputs for vga test
+set_property IO_BUFFER_TYPE OBUF [get_ports a[0]]
+set_property IO_BUFFER_TYPE OBUF [get_ports a[1]]
+set_property IO_BUFFER_TYPE OBUF [get_ports a[2]]
+set_property IO_BUFFER_TYPE OBUF [get_ports a[3]]
+set_property IO_BUFFER_TYPE OBUF [get_ports a[4]]
+set_property IO_BUFFER_TYPE OBUF [get_ports a[5]]
 
 ## Arduino SPI
 

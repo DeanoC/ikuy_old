@@ -38,18 +38,19 @@ extends HardChip(chipID, motherboard) {
       val DDR_ARB = in Bits(4 bits) genIf config.useDDR_ARB
 
       val FPGAClock0 = (out Bool()) genIf config.useFPGAClock0
-      val FPGAClockEnable0 = (in Bool()) genIf config.useFPGAClock0
       val FPGAClock1 = (out Bool()) genIf config.useFPGAClock1
-      val FPGAClockEnable1 = (in Bool()) genIf config.useFPGAClock1
       val FPGAClock2 = (out Bool()) genIf config.useFPGAClock2
-      val FPGAClockEnable2 = (in Bool()) genIf config.useFPGAClock2
       val FPGAClock3 = (out Bool()) genIf config.useFPGAClock3
-      val FPGAClockEnable3 = (in Bool()) genIf config.useFPGAClock3
 
-      val FPGAReset0 = (out Bool()) genIf config.useFPGAReset0
-      val FPGAReset1 = (out Bool()) genIf config.useFPGAReset1
-      val FPGAReset2 = (out Bool()) genIf config.useFPGAReset2
-      val FPGAReset3 = (out Bool()) genIf config.useFPGAReset3
+      val FPGAClockTrigger0_n = (in Bool()) genIf config.useFPGAClockTrigger0
+      val FPGAClockTrigger1_n = (in Bool()) genIf config.useFPGAClockTrigger1
+      val FPGAClockTrigger2_n = (in Bool()) genIf config.useFPGAClockTrigger2
+      val FPGAClockTrigger3_n = (in Bool()) genIf config.useFPGAClockTrigger3
+
+      val FPGAReset0_n = (out Bool()) genIf config.useFPGAReset0
+      val FPGAReset1_n = (out Bool()) genIf config.useFPGAReset1
+      val FPGAReset2_n = (out Bool()) genIf config.useFPGAReset2
+      val FPGAReset3_n = (out Bool()) genIf config.useFPGAReset3
 
       val DDR = master( zynqDDR() )
 
@@ -72,10 +73,20 @@ extends HardChip(chipID, motherboard) {
   io.MIO <> ps7.io.mio 
   io.PS_CLOCK_AND_RESET <> ps7.io.ps_clock_and_reset
 
-  if(config.useFPGAClock0) { io.FPGAClock0 <> ps7.io.fclk.clk0; io.FPGAClockEnable0 <> ps7.io.fclk.clk0En }
-  if(config.useFPGAClock1) { io.FPGAClock1 <> ps7.io.fclk.clk1; io.FPGAClockEnable1 <> ps7.io.fclk.clk1En }
-  if(config.useFPGAClock2) { io.FPGAClock2 <> ps7.io.fclk.clk2; io.FPGAClockEnable2 <> ps7.io.fclk.clk2En }
-  if(config.useFPGAClock3) { io.FPGAClock3 <> ps7.io.fclk.clk3; io.FPGAClockEnable3 <> ps7.io.fclk.clk3En }
+  if(config.useFPGAClock0) io.FPGAClock0 <> ps7.io.fclk.clk0  
+  if(config.useFPGAClock1) io.FPGAClock1 <> ps7.io.fclk.clk1
+  if(config.useFPGAClock2) io.FPGAClock2 <> ps7.io.fclk.clk2
+  if(config.useFPGAClock3) io.FPGAClock3 <> ps7.io.fclk.clk3
+
+  if(config.useFPGAClockTrigger0) io.FPGAClockTrigger0_n <> ps7.io.fclk.clk1Trig0_n
+  if(config.useFPGAClockTrigger1) io.FPGAClockTrigger1_n <> ps7.io.fclk.clk1Trig1_n
+  if(config.useFPGAClockTrigger2) io.FPGAClockTrigger2_n <> ps7.io.fclk.clk1Trig2_n
+  if(config.useFPGAClockTrigger3) io.FPGAClockTrigger3_n <> ps7.io.fclk.clk1Trig3_n
+
+  if(config.useFPGAReset0) io.FPGAReset0_n <> ps7.io.fclk.reset0_n
+  if(config.useFPGAReset1) io.FPGAReset1_n <> ps7.io.fclk.reset1_n
+  if(config.useFPGAReset2) io.FPGAReset2_n <> ps7.io.fclk.reset2_n
+  if(config.useFPGAReset3) io.FPGAReset3_n <> ps7.io.fclk.reset3_n
 
   if(config.usePSMasterGP0Axi) io.M_AXI_GP0 <> ps7.io.ps_axi3_master_gp0
   if(config.usePSMasterGP0Axi) io.M_AXI_GP0_clk <> ps7.io.ps_axi3_master_gp0_clk

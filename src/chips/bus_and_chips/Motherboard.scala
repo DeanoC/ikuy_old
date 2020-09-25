@@ -33,7 +33,8 @@ extends Component
   val io = new Bundle {
   }
 
-  val chipGenerators = HashMap[ChipID,  (ChipID, Motherboard) => Chip]()
+  val customChipGenerators = HashMap[ChipID,  (ChipID, Motherboard) => CustomChip]()
+  val hardChipGenerators = HashMap[ChipID,  (ChipID, Motherboard) => HardChip]()
   val busGenerators = HashMap[BusID, (BusID, Motherboard) => Axi3Slave]()
 
   var chips : HashMap[ChipID, Chip] = null
@@ -41,10 +42,17 @@ extends Component
 
   private var busChipConnections = ArrayBuffer[(ChipID, ChipBusConnection, BusID)]()
 
-  def addChip(name : String, chipGenerator : (ChipID, Motherboard) => Chip) : ChipID = 
+  def addCustomChip(name : String, chipGenerator : (ChipID, Motherboard) => CustomChip) : ChipID = 
   {
-    val chipID = ChipID(name, chipGenerators.size)
-    chipGenerators += (chipID -> chipGenerator)
+    val chipID = ChipID(name, customChipGenerators.size)
+    customChipGenerators += (chipID -> chipGenerator)
+    chipID
+  }
+
+  def addHardChip(name : String, chipGenerator : (ChipID, Motherboard) => HardChip) : ChipID = 
+  {
+    val chipID = ChipID(name, hardChipGenerators.size)
+    hardChipGenerators += (chipID -> chipGenerator)
     chipID
   }
 
@@ -100,15 +108,31 @@ extends Component
     buses(busID)
   }
 
-  def build() = 
+  def build_stage1() = 
   {
     chips = new HashMap[ChipID, Chip]()
     buses = new HashMap[BusID, Axi3Slave]()
 
+    // create the hard chips first
+    hardChipGenerators.foreach{ case (chipID, cg) => {
+      val chip = cg(chipID, this)
+      assert(chip != null)
+      chips += (chipID -> chip)
+    }}
+  }
+
+  def build_stage2(busClockDomain : ClockDomain) = 
+  {
     // create the chips 
     // will create io for each bus they will be connected to
-    chipGenerators.foreach{ case (chipID, cg) => {
+    customChipGenerators.foreach{ case (chipID, cg) => {
       val chip = cg(chipID, this)
+
+      val busClk = chip.io.get("busClk")
+      if(busClk.isDefined) busClk.get := busClockDomain.clock
+      val busReset_n = chip.io.get("busReset_n")
+      if(busReset_n.isDefined) busReset_n.get := busClockDomain.reset
+
       assert(chip != null)
       chips += (chipID -> chip)
     }}
@@ -116,7 +140,12 @@ extends Component
     // create the buses
     // will create io for each chip they will be connected to
     busGenerators.foreach{ case (busID, bg) => {
-      buses += busID -> bg(busID, this)
+      val bus = bg(busID, this)
+      buses += busID -> bus
+      val busClk = bus.io.get("busClk")
+      if(busClk.isDefined) busClk.get := busClockDomain.clock
+      val busReset_n = bus.io.get("busReset_n")
+      if(busReset_n.isDefined) busReset_n.get := busClockDomain.reset
     }}
 
     // now connect buses and chips
